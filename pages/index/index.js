@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+let api = require('../../utils/api.js')
 Page({
   data: {
     motto: 'Hello World',
@@ -16,6 +16,16 @@ Page({
     })
   },
   onLoad: function () {
+    console.log('onLoad')
+    // 使用 Mock
+    api.ajax('', function (res) {
+      //这里既可以获取模拟的res
+      console.log(res)
+      // this.setData({
+      //   list: this.data
+      // })
+    });
+    console.log(this.data.list)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
