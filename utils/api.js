@@ -1,6 +1,6 @@
 let API_HOST = "http://activity.in66.com"
 let DEBUG = true
-var Mock = require('mock.js')
+let Mock = require('mock.js')
 
 function ajax(data = '', fn, method = "get", header = {}) {
   if (!DEBUG) {
