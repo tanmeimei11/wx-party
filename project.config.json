@@ -9,7 +9,7 @@
 	"compileType": "weapp",
 	"libVersion": "1.5.4",
 	"appid": "wx48155bddeea6fb66",
-	"projectname": "we-party",
+	"projectname": "wx-party",
 	"condition": {
 		"weapp": {
 			"current": -1,
