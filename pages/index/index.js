@@ -20,7 +20,7 @@ Page({
   },
   onLoad: function () {
     requestPromisify({
-      url: 'https://print.in66.com/wechat/homepage'
+      url: '/citysocial/groups'
     }).then((res) => {
       console.log(res)
     })
