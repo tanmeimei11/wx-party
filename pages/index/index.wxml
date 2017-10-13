@@ -1,13 +1,26 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo}}" bindtap="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="topic-main">
+      <block wx:for="{{qunList}}" wx:key="id">
+        <view class="qun" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
+          <view> {{}} </view>
+            <!-- <image class="member-avatar" src="{{item.member.avatar_normal}}" background-size="cover"></image>
+            <view class="topic-info">
+                <view class="topic-inner">
+                    <view class="topic-left">
+                        <view class="topic-title"><text>{{item.title}}</text></view>
+                        <view >
+                            <text class="node-name">{{item.node.name}}</text>
+                            <text class="member-nickname">{{item.member.username}}</text>
+                        </view>
+                    </view>
+                    <view class="reply-num">{{item.replies}}</view>
+                </view>
+            </view> -->
+        </view> 
+      </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <loading hidden="{{hidden}}">
+    加载中...
+  </loading>
 </view>
