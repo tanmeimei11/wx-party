@@ -130,6 +130,22 @@
   border-bottom: 1rpx solid #E0E0E0;
 }
 
+.c-infos .m-more {
+  color: #43DDF5;
+  font-size: 28rpx;
+}
+
+.c-infos .m-intro {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.mm-user:last-child {
+  border: none
+}
+
 .mm-user .user-avatar {
   width: 80rpx;
   height: 80rpx;

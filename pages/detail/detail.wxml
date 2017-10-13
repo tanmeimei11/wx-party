@@ -36,19 +36,20 @@
     <!-- 活动介绍 -->
     <view class="s-line">
       <view class="title">活动介绍</view>
-      <view class="m-text">{{infos.intro}}</view>
+      <view class="m-text m-intro">{{infos.intro}}</view>
+      <!-- <view class="m-more">展开全部</view> -->
     </view>
 
     <!-- 报名用户 -->
     <view class="s-line">
       <view class="title">已报名用户</view>
       <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
-        <view class="user-avatar" style="background-image:url({{item.avatar}})">
-          <view class="sex {{item.sex}}"></view>
+        <view class="user-avatar" style="background-image:url({{item.avatar_url}})">
+          <view class="sex {{item.gender ? 'male': 'female'}}"></view>
         </view>
         <view class="user-info">
-          <view class="user-nick">{{item.nick}}</view>
-          <view class="user-desc">{{item.desc}}</view>
+          <view class="user-nick">{{item.name}}</view>
+          <view class="user-desc">{{item.age+"岁 "+item.city+'.'+item.district+ " "+item.work}}</view>
         </view>
       </view>
     </view>
