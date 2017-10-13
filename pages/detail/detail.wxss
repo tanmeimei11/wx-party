@@ -1,5 +1,9 @@
 /**index.wxss**/
 
+.container {
+  padding-bottom: 150rpx;
+}
+
 .c-bottom-nav {
   position: fixed;
   bottom: 0;
@@ -7,6 +11,7 @@
   height: 100rpx;
   width: 100%;
   font-size: 0;
+  background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px -2px 10px;
 }
 
@@ -29,8 +34,6 @@
   height: 500rpx;
   position: relative;
 }
-
-.c-main-swiper swiper-item {}
 
 .c-main-swiper swiper-item .slide-image {
   width: 100%;
@@ -58,4 +61,118 @@
 .c-main-swiper .IndicatorDots .dot.active {
   width: 24rpx;
   border-radius: 12rpx;
+}
+
+.c-headLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 0 40rpx 40rpx 40rpx;
+  color: #fff;
+}
+
+.c-headLine .s-title {
+  font-size: 40rpx;
+  margin-bottom: 25rpx
+}
+
+.c-headLine .s-desc {
+  font-size: 22rpx
+}
+
+.c-infos {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+}
+
+.c-infos .s-line {
+  border-bottom: 1rpx solid #E0E0E0;
+  padding: 50rpx 0;
+  color: #666666;
+  font-size: 28rpx;
+}
+
+.c-infos .s-header {
+  color: #333333;
+}
+
+.c-infos .s-header view {
+  padding-left: 30rpx;
+  background-repeat: no-repeat;
+  background-size: 24rpx auto;
+  background-position: left center;
+}
+
+.c-infos .s-header .s-addr {
+  margin-bottom: 28rpx;
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/07690A0B-A917-5A50-D8FC-AB582E3413D1.jpg)
+}
+
+.c-infos .s-header .s-time {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/39306798-92E8-A50F-72AF-60850E71041E.jpg)
+}
+
+.c-infos .s-line:last-child {
+  border: none;
+}
+
+.c-infos .s-line .title {
+  color: #333333;
+  font-size: 34rpx;
+  margin-bottom: 15rpx;
+}
+
+.c-infos .mm-user {
+  padding: 40rpx 0;
+  font-size: 0;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+
+.mm-user .user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.mm-user .user-avatar .sex {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24rpx;
+  height: 24rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.mm-user .user-avatar .sex.male {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/AC7CA472-C19B-62EF-952B-97CAAD1C65F0.jpg)
+}
+
+.mm-user .user-avatar .sex.female {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/E72C5ACB-CCD1-7428-FD66-2AD0662288CF.jpg)
+}
+
+.mm-user .user-info {
+  display: inline-block;
+  vertical-align: middle
+}
+
+.mm-user .user-nick {
+  font-size: 28rpx;
+  color: #333333
+}
+
+.mm-user .user-desc {
+  font-size: 22rpx;
+  color: #B0B0B0
 }

@@ -1,16 +1,59 @@
-<!--index.wxml-->
+<!--detail.wxml-->
 <view class="container">
-<swiper indicator-dots="{{indicatorDots}}" class="c-main-swiper"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="swiperChange">
-  <block wx:for="{{imgUrls}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
-    <swiper-item >
-    <view class="slide-image" width="355" height="150" style="background-image:url({{item}})"></view>
-    </swiper-item>
-  </block>
-  <view class="IndicatorDots">
-    <view wx:for="{{imgUrls.length}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" class="dot {{idx== curSwiperIdx ? 'active':''}}"></view>
+  <!-- 详情页面swipe-->
+  <swiper indicator-dots="{{indicatorDots}}" class="c-main-swiper" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+    circular="{{circular}}" bindchange="swiperChange">
+    <block wx:for="{{imgUrls}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+      <swiper-item>
+        <view class="slide-image" width="355" height="150" style="background-image:url({{item}})"></view>
+      </swiper-item>
+    </block>
+
+    <view class="IndicatorDots">
+      <view wx:for="{{imgUrls.length}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" class="dot {{idx== curSwiperIdx ? 'active':''}}"></view>
+    </view>
+
+    <!-- 大标题 -->
+    <view class="c-headLine">
+      <view class="s-title">{{headLine.title}}</view>
+      <view class="s-desc">{{headLine.desc}}</view>
+    </view>
+  </swiper>
+
+  <view class="c-infos">
+    <!-- 地点 时间 -->
+    <view class="s-line s-header">
+      <view class="s-addr">{{infos.sAddr}}</view>
+      <view class="s-time">{{infos.time}}</view>
+    </view>
+
+    <!-- 详细地址 -->
+    <view class="s-line">
+      <view class="title">详细地址</view>
+      <view class="m-text">{{infos.detailAddr}}</view>
+    </view>
+
+    <!-- 活动介绍 -->
+    <view class="s-line">
+      <view class="title">活动介绍</view>
+      <view class="m-text">{{infos.intro}}</view>
+    </view>
+
+    <!-- 报名用户 -->
+    <view class="s-line">
+      <view class="title">已报名用户</view>
+      <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+        <view class="user-avatar" style="background-image:url({{item.avatar}})">
+          <view class="sex {{item.sex}}"></view>
+        </view>
+        <view class="user-info">
+          <view class="user-nick">{{item.nick}}</view>
+          <view class="user-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
   </view>
-</swiper>
+
 
   <!-- 底部导航 -->
   <view class="c-bottom-nav">
