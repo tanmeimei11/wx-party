@@ -3,19 +3,21 @@
   <view class="qun-list">
     <block wx:for="{{qunList}}" wx:key="id">
       <view class="qun" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
-        <image class="avatar" src="{{item.avatar}}"></image>
-        <view class="info">
-          <view class="name">
-            <text>{{item.group_name}}</text>
+        <view class="qun-info">
+          <image class="avatar" src="{{item.avatar}}"></image>
+          <view class="info">
+            <view class="name">
+              <text>{{item.group_name}}</text>
+            </view>
+            <view class="total-num">
+              <image src="/images/person.png" class="icon-person"></image>
+              <text class="num">{{item.female_count + item.male_count }}人</text>
+            </view>
           </view>
-          <view>
-            <text class="num">{{item.female_count + item.male_count }}</text>
-            <text class="member-nickname">{{item.member.username}}</text>
-          </view>
+          <view class="join">加入</view>
         </view>
-        <view class="reply-num">{{item.replies}}</view>
-
-
+        <view class="qun-tags">
+        </view>
       </view>
     </block>
   </view>

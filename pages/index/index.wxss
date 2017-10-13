@@ -17,9 +17,54 @@
   padding: 40rpx;
   padding-bottom: 30rpx; 
 }
+.qun-info {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 180rpx;
+  border-bottom: 1px solid #E0E0E0;
+  justify-content: space-between;
+
+}
+.info {
+  margin-top: 10rpx;
+  height: 100rpx;
+}
 .avatar {
   width: 100rpx;
   height: 100rpx;
   margin-right: 20rpx;
   border-radius: 100%;
+}
+.icon-person {
+  height: 24rpx;
+  width: 24rpx;
+}
+.name {
+  font-size: 34rpx;
+  color: #333333;
+  letter-spacing: 0;
+}
+.join {
+  width: 140rpx;
+  height: 60rpx;
+  background: #FF4338;
+  border-radius: 8rpx;
+  /* font-family: PingFangSC-Regular; */
+  font-size: 28rpx;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  line-height: 60rpx;
+  text-align: center;
+}
+.total-num {
+  display: flex;
+  flex-direction: row;
+  font-size: 24rpx;
+  color: #666666;
+  align-items: center;
+}
+.total-num image {
+  margin-right: 8rpx;
 }

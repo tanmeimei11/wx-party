@@ -12,12 +12,12 @@
 	"projectname": "wx-party",
 	"condition": {
 		"weapp": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "log",
-					"pathName": "pages/logs/logs",
+					"name": "index",
+					"pathName": "pages/index/index",
 					"query": ""
 				},
 				{
