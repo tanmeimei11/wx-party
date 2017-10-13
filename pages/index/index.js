@@ -12,6 +12,7 @@ Page({
       url: '/citysocial/groups'
     }).then((res) => {
       if (res.succ && res.data) {
+        console.log(res.data)
         this.setData({
           qunList: res.data
         })
