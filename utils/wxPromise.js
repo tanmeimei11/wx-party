@@ -41,11 +41,6 @@ var checkLoginSession = () => {
  * 授权登录
  */
 var loginSession = () => {
-  wx.showToast({
-    title: '授权失败',
-    image: '../images/toast-fail.png',
-    duration: 2000
-  })
   loginPromisify()
     .then(res => {
       globalCode = res.code
