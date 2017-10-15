@@ -9,7 +9,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 .lower-loading {
   display: flex;
   height: 100rpx;
@@ -20,11 +19,13 @@
   color: #B0B0B0;
   letter-spacing: 0;
 }
-
 .lower-loading-txt {
   margin-left: 12rpx;
 }
-
+.lower-loading-gif {
+  width: 48rpx;
+  height: 48rpx;
+}
 .list-tabs {
   position: fixed;
   display: flex;
@@ -39,7 +40,6 @@
   color: #666666;
   letter-spacing: 0;
 }
-
 .list-tabs .tab-1,
 .list-tabs .tab-2 {
   height: 100%;

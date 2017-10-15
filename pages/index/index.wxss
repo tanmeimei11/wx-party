@@ -127,10 +127,7 @@
   margin-top: -40rpx;
 }
 
-.lower-loading-gif {
-  width: 50rpx;
-  height: 50rpx;
-}
+
 
 /**promoList**/
 
