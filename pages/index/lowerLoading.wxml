@@ -1,0 +1,7 @@
+<view class="lower-loading">
+  <block wx:if="{{ !noMore }}">
+    <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
+    <text class="lower-loading-txt">加载中...</text>
+  </block>
+  <text class="lower-loading-no-more" wx:if="{{ noMore }}">没有更多了</text>
+</view>

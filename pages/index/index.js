@@ -7,30 +7,76 @@ Page({
     promoList: [],
     hidden: false,
     scrollHeight: 0,
-    noMore: false
+    noMoreQun: false,
+    noMorePromo: false,
+    currentList: 'qunList',
+    qunListLoaded: false,
+    promoListLoaded: false
   },
-  // checkString(str, len, tag) {
-  //   if (str && str.length > len) {
-  //     return str.substring(0, len) + tag
-  //   }
-  //   return str
-  // },
+  jumpToDetail: function (e) {
+    if (e.target.dataset.id) {
+      wx.navigateTo({
+        url: '../detail/detail?id=' + e.target.dataset.id
+      })
+    }
+  },
+  switchTab1: function (e) {
+    this.setData({
+      currentList: 'qunList'
+    })
+    this.loadMoreQun()
+  },
+  switchTab2: function (e) {
+    this.setData({
+      currentList: 'promoList'
+    })
+    this.loadMorePromo()
+  },
   upper: function () {
-    console.log("upper"); 
+    console.log("upper");
+  },
+  promoLower: function () {
+    console.log("promoLower")
+    let that = this;
+    setTimeout(function () { that.loadMorePromo(); }, 300);
   },
   lower: function (e) {
     console.log("lower")
     let that = this;
-    setTimeout(function () { that.loadMore(); }, 300);
+    setTimeout(function () { that.loadMoreQun(); }, 300);
   },
   scroll: function (e) {
     console.log("scroll")
   },
-  loadMore: function () {
-    console.log('loadMore')
-    if (this.noMore) {
+  loadMorePromo: function () {
+    console.log('loadMorePromo')
+    if (this.noMorePromo) {
+      console.log('noMorePromo')
+      return
+    }
+    request({
+      url: '/activity/groups'
+    }).then((res) => {
+      if (res.succ && res.data) {
+        console.log(res.data)
+        this.setData({
+          promoList: this.data.promoList.concat(res.data),
+          promoListLoaded: true
+        })
+        let self = this
+        setTimeout(function () {
+          self.setData({
+            hidden: true
+          })
+        }, 300)
+      }
+    })
+  },
+  loadMoreQun: function () {
+    console.log('loadMoreQun')
+    if (this.noMoreQun) {
       console.log('noMore')
-      return 
+      return
     }
     request({
       url: '/citysocial/groups'
@@ -38,7 +84,8 @@ Page({
       if (res.succ && res.data) {
         console.log(res.data)
         this.setData({
-          qunList: this.data.qunList.concat(res.data)
+          qunList: this.data.qunList.concat(res.data),
+          qunListLoaded: true
         })
         let self = this
         setTimeout(function () {
@@ -55,10 +102,19 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
-          scrollHeight: res.windowHeight
+          scrollHeight: res.windowHeight - 50
         });
       }
     })
-    this.loadMore()
+    wx.setNavigationBarTitle({
+      title: 'in 同城趴'
+    })
+    this.switchTab1()
   }
 })
+  // checkString(str, len, tag) {
+  //   if (str && str.length > len) {
+  //     return str.substring(0, len) + tag
+  //   }
+  //   return str
+  // },

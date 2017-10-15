@@ -12,7 +12,11 @@
 	"projectname": "wx-party",
 	"condition": {
 		"weapp": {
+<<<<<<< HEAD
 			"current": 3,
+=======
+			"current": 0,
+>>>>>>> 5e4e800fb177768423859d9422830a07fb3ae6d0
 			"list": [
 				{
 					"id": 0,

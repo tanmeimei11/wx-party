@@ -1,37 +1,14 @@
-<scroll-view scroll-y="true" class="container " bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}px;">
-  <view class="qun-list">
-    <block wx:for="{{qunList}}" wx:key="id">
-      <view class="qun" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
-        <view class="qun-info">
-          <image class="avatar" src="{{item.avatar}}"></image>
-          <view class="info">
-            <view class="name">
-              <text>{{ item.group_name }}</text>
-            </view>
-            <view class="total-num">
-              <image src="/images/person.png" class="icon-person"></image>
-              <text class="num">{{item.female_count + item.male_count }}人</text>
-            </view>
-          </view>
-          <view class="join">加入</view>
-        </view>
-        <view class="qun-tags">
-          <block wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag" wx:for-index="idx">
-            <view class="tag {{ idx == 0 || idx == 1 ? 'front2' : ''}}">
-              {{ tag }}
-            </view>
-          </block>
-        </view>
-      </view>
-    </block>
-    <view class="lower-loading">
-      <block wx:if="{{ !noMore }}">
-        <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
-        <text class="lower-loading-txt">加载中...</text>
-      </block>
-      <text class="lower-loading-no-more" wx:if="{{ noMore }}">没有更多了</text>
+<include src="qunList.wxml" wx:if="{{currentList=='qunList'}}"/>
+<include src="promoList.wxml" wx:if="{{currentList=='promoList'}}"/>
 
-    </view>
+<view class="list-tabs">
+  <view class="tab-1">
+    <image src="/images/person.png" class="icon-person" bindtap="switchTab1"></image>
+    <text class="{{ currentList == 'qunList'? 'active' : ''}}" bindtap="switchTab1">同城群</text>
   </view>
-</scroll-view>
+  <view class="tab-2">
+    <image src="/images/person.png" class="icon-person" bindtap="switchTab2"></image>
+    <text class="{{ currentList == 'promoList'? 'active' : ''}}"  bindtap="switchTab2">活动</text>
+  </view>
+</view>
 <loading hidden="{{hidden}}">加载中...</loading>
