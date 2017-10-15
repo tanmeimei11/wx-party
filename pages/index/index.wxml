@@ -3,11 +3,13 @@
 
 <view class="list-tabs">
   <view class="tab-1">
-    <image src="/images/person.png" class="icon-person" bindtap="switchTab1"></image>
+    <image src="/images/tab1-active.png" class="icon-person" bindtap="switchTab1" wx:if="{{currentList == 'qunList'}}"></image>
+    <image src="/images/tab1.png" class="icon-person" bindtap="switchTab1" wx:else></image>
     <text class="{{ currentList == 'qunList'? 'active' : ''}}" bindtap="switchTab1">同城群</text>
   </view>
   <view class="tab-2">
-    <image src="/images/person.png" class="icon-person" bindtap="switchTab2"></image>
+    <image src="/images/tab2-active.png" class="icon-person" bindtap="switchTab2" wx:if="{{currentList == 'promoList'}}"></image>
+    <image src="/images/tab2.png" class="icon-person" bindtap="switchTab2" wx:else></image>
     <text class="{{ currentList == 'promoList'? 'active' : ''}}"  bindtap="switchTab2">活动</text>
   </view>
 </view>
