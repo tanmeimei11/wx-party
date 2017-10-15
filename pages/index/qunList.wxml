@@ -1,0 +1,29 @@
+<scroll-view scroll-y="true" class="container " bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" style="height:{{scrollHeight}}px;">
+  <view class="list">
+    <block wx:for="{{qunList}}" wx:key="id">
+      <view class="qun" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
+        <view class="qun-info">
+          <image class="avatar" src="{{item.avatar}}"></image>
+          <view class="info">
+            <view class="name">
+              <text>{{ item.group_name }}</text>
+            </view>
+            <view class="total-num">
+              <image src="/images/person.png" class="icon-person"></image>
+              <text class="num">{{item.female_count + item.male_count }}人</text>
+            </view>
+          </view>
+          <view class="join">加入</view>
+        </view>
+        <view class="qun-tags">
+          <block wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag" wx:for-index="idx">
+            <view class="tag {{ idx == 0 || idx == 1 ? 'front2' : ''}}">
+              {{ tag }}
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+    <include src="lowerLoading"/>
+  </view>
+</scroll-view>

@@ -1,0 +1,29 @@
+<scroll-view scroll-y="true" class="container " bindscrolltoupper="promoUpper" upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower" style="height:{{scrollHeight}}px;">
+  <view class="list">
+    <block wx:for="{{promoList}}" wx:key="id">
+      <view class="promo" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
+        <view class="promo-image" style="background-image: url({{ item.act_url }})">
+          <text class="promo-name">{{item.group_name}}</text>
+          <view class="promo-info">
+            <image class="icon-promo-area" src="/images/promo-area.png"></image>
+            <text class="promo-area">{{item.city_district}}</text>
+            <image class="icon-promo-time" src="/images/promo-time.png"></image>
+            <text class="promo-time">{{item.start_time}}</text>
+          </view>
+        </view>
+        <view class="promo-joiners">
+          <block wx:for="{{item.joins}}" wx:key="*this" wx:for-item="joiner" wx:for-index="idx">
+            <view class="joiner">
+              <view class="joiner-image" style="background-image: url({{ joiner.avatar_url }})"></view>
+              <image class="icon-sex" src="/images/male.png" wx:if="{{ joiner.gender == '1'}}"></image>
+              <image class="icon-sex" src="/images/female.png" wx:else></image> 
+            </view>
+          </block>
+          <text class="joiner-tip">已参加</text>
+          <view class="baoming">报名</view>
+        </view>
+      </view>
+    </block>
+    <include src="lowerLoading" />
+  </view>
+</scroll-view>
