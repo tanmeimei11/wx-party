@@ -20,7 +20,7 @@
             </view>
           </block>
           <text class="joiner-tip">已参加</text>
-          <view class="baoming">报名</view>
+          <view class="baoming" bindtap='jumpToDetail' data-id="{{ item.id }}">报名</view>
         </view>
       </view>
     </block>

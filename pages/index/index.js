@@ -13,6 +13,13 @@ Page({
     qunListLoaded: false,
     promoListLoaded: false
   },
+  jumpToDetail: function (e) {
+    if (e.target.dataset.id) {
+      wx.navigateTo({
+        url: '../detail/detail?id=' + e.target.dataset.id
+      })
+    }
+  },
   switchTab1: function (e) {
     this.setData({
       currentList: 'qunList'
@@ -98,6 +105,9 @@ Page({
           scrollHeight: res.windowHeight - 50
         });
       }
+    })
+    wx.setNavigationBarTitle({
+      title: 'in 同城趴'
     })
     this.switchTab1()
   }
