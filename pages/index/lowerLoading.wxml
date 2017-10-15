@@ -1,7 +1,7 @@
 <view class="lower-loading">
-  <block wx:if="{{ !noMore }}">
+  <block wx:if="{{ currentList=='qunList' && !noMoreQun || currentList=='promoList' && !noMorePromo}}">
     <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
     <text class="lower-loading-txt">加载中...</text>
   </block>
-  <text class="lower-loading-no-more" wx:if="{{ noMore }}">没有更多了</text>
+  <text class="lower-loading-no-more" wx:if="{{ currentList=='qunList' && noMoreQun || currentList=='promoList' && noMorePromo }}">没有更多了</text>
 </view>

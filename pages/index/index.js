@@ -11,7 +11,23 @@ Page({
     noMorePromo: false,
     currentList: 'qunList',
     qunListLoaded: false,
-    promoListLoaded: false
+    promoListLoaded: false,
+    isJoinQun: false,
+    joinQunQrcode: ''
+  },
+  close: function (e) {
+    this.setData({
+      isJoinQun: false
+    })
+  },
+  joinQun: function(e) {
+    this.setData({
+      isJoinQun: true,
+      joinQunQrcode: e.target.dataset.qrcodeUrl
+    })
+    // if (e.target.dataset.qrcodeUrl) {
+    //   console.log(e.target.dataset.qrcodeUrl)
+    // }
   },
   jumpToDetail: function (e) {
     if (e.target.dataset.id) {
@@ -50,7 +66,7 @@ Page({
   },
   loadMorePromo: function () {
     console.log('loadMorePromo')
-    if (this.noMorePromo) {
+    if (this.data.noMorePromo) {
       console.log('noMorePromo')
       return
     }
@@ -58,7 +74,7 @@ Page({
       url: '/activity/groups'
     }).then((res) => {
       if (res.succ && res.data) {
-        console.log(res.data)
+        // console.log(res.data)
         this.setData({
           promoList: this.data.promoList.concat(res.data),
           promoListLoaded: true
@@ -74,7 +90,7 @@ Page({
   },
   loadMoreQun: function () {
     console.log('loadMoreQun')
-    if (this.noMoreQun) {
+    if (this.data.noMoreQun) {
       console.log('noMore')
       return
     }

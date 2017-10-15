@@ -1,7 +1,7 @@
 <scroll-view scroll-y="true" class="container " bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" style="height:{{scrollHeight}}px;">
   <view class="list">
     <block wx:for="{{qunList}}" wx:key="id">
-      <view class="qun" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
+      <view class="qun" index="{{index}}" id="{{item.id}}">
         <view class="qun-info">
           <image class="avatar" src="{{item.avatar}}"></image>
           <view class="info">
@@ -13,7 +13,7 @@
               <text class="num">{{item.female_count + item.male_count }}人</text>
             </view>
           </view>
-          <view class="join">加入</view>
+          <view class="join" bindtap='joinQun' data-qrcode-url="/images/ex.png">加入</view>
         </view>
         <view class="qun-tags">
           <block wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag" wx:for-index="idx">

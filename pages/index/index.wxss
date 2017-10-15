@@ -263,3 +263,18 @@
   right: -8%;
   bottom: -8%;
 }
+
+.qrcode {
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+}
+.s-qun {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.c-wrap .s-bottom-text {
+    width: 300rpx;
+}

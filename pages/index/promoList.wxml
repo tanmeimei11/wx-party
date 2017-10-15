@@ -1,7 +1,7 @@
 <scroll-view scroll-y="true" class="container " bindscrolltoupper="promoUpper" upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower" style="height:{{scrollHeight}}px;">
   <view class="list">
     <block wx:for="{{promoList}}" wx:key="id">
-      <view class="promo" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
+      <view class="promo" index="{{index}}" id="{{item.id}}">
         <view class="promo-image" style="background-image: url({{ item.act_url }})">
           <text class="promo-name">{{item.group_name}}</text>
           <view class="promo-info">
