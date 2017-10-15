@@ -8,3 +8,16 @@
   padding: 0;
   box-sizing: border-box;
 } 
+.lower-loading {
+  display: flex;
+  height: 100rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  color: #B0B0B0;
+  letter-spacing: 0;
+}
+.lower-loading-txt {
+  margin-left: 12rpx;
+}

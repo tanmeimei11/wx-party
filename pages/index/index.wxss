@@ -1,40 +1,45 @@
 /**index.wxss**/
 .qun-list {
-  width: 670rpx;
-  margin: 0 auto;
+  width: 750rpx;
   margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .qun {
-  box-sizing: border-box;
+  box-sizing: border-box; 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
-  width: 670rpx;
-  height: 284rpx;
+  margin: 0 auto;
+  width: 670rpx; 
+  /* height: 284rpx; */
   box-shadow: 0 0 15rpx 0 rgba(0,0,0,0.10);
   border-radius: 8rpx;
   margin-bottom: 40rpx;
   padding: 40rpx;
   padding-bottom: 30rpx; 
+
 }
 .qun-info {
   box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 180rpx;
+  height: 140rpx;
   border-bottom: 1px solid #E0E0E0;
-  justify-content: space-between;
-
+  justify-content: flex-start;
 }
 .info {
   margin-top: 10rpx;
   height: 100rpx;
+  width: 300rpx;
+  overflow: hidden;
+  margin-left: 20rpx;
 }
 .avatar {
   width: 100rpx;
   height: 100rpx;
-  margin-right: 20rpx;
   border-radius: 100%;
 }
 .icon-person {
@@ -45,8 +50,10 @@
   font-size: 34rpx;
   color: #333333;
   letter-spacing: 0;
+  white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;
 }
 .join {
+  margin-top: 20rpx;
   width: 140rpx;
   height: 60rpx;
   background: #FF4338;
@@ -57,6 +64,7 @@
   letter-spacing: 0;
   line-height: 60rpx;
   text-align: center;
+  margin-left: 25rpx;
 }
 .total-num {
   display: flex;
@@ -64,7 +72,44 @@
   font-size: 24rpx;
   color: #666666;
   align-items: center;
+
 }
 .total-num image {
   margin-right: 8rpx;
+}
+.qun-tags {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 15rpx;  
+  flex-wrap: wrap;
+}
+.tag {
+  border: 1px solid #FB91C9;
+  color: #FB91C9;
+  border-radius: 6rpx;
+  text-align: center;
+  /* display: inline-block; */
+  margin-right: 12rpx;
+  font-size: 24rpx;
+  line-height: 42rpx;
+  padding-left: 14rpx;
+  padding-right: 20rpx;
+  margin-top: 15rpx;  
+  max-width: 300rpx;
+  white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;
+
+}
+.front2 {
+  border: 1px solid #43DDF5;
+  color: #43DDF5;
+}
+
+.qun-list .lower-loading {
+  margin-top: -40rpx;
+}
+.lower-loading-gif {
+  width: 50rpx;
+  height: 50rpx;
 }
