@@ -1,39 +1,60 @@
 //app.js
+var wxPromisify = require('./utils/wxPromise.js').wxPromisify
+var requestPromisify = require('./utils/wxPromise.js').requestPromisify
+
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
-  },
   globalData: {
+    code: '',
     userInfo: null
+  },
+  // 检查登陆态
+  checkLoginSession: function () {
+    wxPromisify(wx.checkSession)()
+      .then(() => {
+        if (!wx.getStorageSync('token')) {
+          this.loginSession()
+        } else {
+          wxPromisify(wx.getUserInfo)()
+            .then((res) => {
+              this.globalData.userInfo = res.userInfo
+            })
+
+        }
+      }, () => {
+        this.loginSession()
+      }).catch(() => {
+        this.loginSession()
+      })
+  },
+  // 授权登录
+  loginSession: function () {
+    wxPromisify(wx.login)()
+      .then(res => {
+        console.log(res)
+        this.globalData.code = res.code
+        return wxPromisify(wx.getUserInfo)()
+      })
+      .then(res => {
+        this.globalData.userInfo = res.userInfo
+        console.log(this.globalData.userInfo)
+        return requestPromisify({
+          url: '/login',
+          data: {
+            code: this.globalData.code,
+            encryptedData: res.encryptedData,
+            iv: res.encryptedData
+          }
+        })
+      }).then((res) => {
+        if (res.succ && res.data) {
+          wx.setStorageSync("token", res.data.token)
+        }
+      }).catch((error) => {
+        console.log(error)
+        // this.loginSession()
+      })
+  },
+  onLaunch: function () {
+    this.checkLoginSession()
   }
 })

@@ -4,6 +4,7 @@ var mockConfig = require('../mock/mockConfig')
 var isMock = true
 var globalCode = ''
 var globalUserInfo = null
+var userInfo = null
 
 /**
  * 封装wxPromisefy
@@ -21,57 +22,6 @@ function wxPromisify(fn) {
     })
   }
 }
-
-/**
- * 检查登陆态
- */
-var checkLoginSession = () => {
-  wxPromisify(wx.checkSession)()
-    .then(() => {
-      if (!wx.getStorageSync('token')) {
-        loginSession()
-      }
-    }, () => {
-      loginSession()
-    }).catch(() => {
-      loginSession()
-    })
-}
-/**
- * 授权登录
- */
-var loginSession = () => {
-  loginPromisify()
-    .then(res => {
-      globalCode = res.code
-      console.log(globalCode)
-      return wxPromisify(wx.getUserInfo)()
-    })
-    .then(res => {
-      console.log(res.userInfo)
-      return requestPromisify({
-        url: '/login',
-        data: {
-          code: globalCode,
-          encryptedData: res.encryptedData,
-          iv: res.encryptedData
-        }
-      })
-    }).then((res) => {
-      console.log(res.data.token)
-      if (res.succ && res.data) {
-        wx.setStorageSync("token", res.data.token)
-      }
-    }).catch((error) => {
-      // wx.showToast({
-      //   title: '授权失败',
-      //   image: '../images/toast-fail.png',
-      //   duration: 2000
-      // })
-      loginSession()
-    })
-}
-
 
 // 封装request 并且mock
 var requestPromisify = (() => {
@@ -96,11 +46,9 @@ var requestPromisify = (() => {
   }
 })()
 
-var loginPromisify = wxPromisify(wx.login)
-checkLoginSession()
 
 module.exports = {
-  loginPromisify: loginPromisify,
   requestPromisify: requestPromisify,
-  wxPromisify: wxPromisify
+  wxPromisify: wxPromisify,
+  userInfo: userInfo
 }

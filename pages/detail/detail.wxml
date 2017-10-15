@@ -13,6 +13,13 @@
       <view wx:for="{{imgUrls.length}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" class="dot {{idx== curSwiperIdx ? 'active':''}}"></view>
     </view>
 
+    <!-- 其他活动 -->
+    <view class="c-other" bindtap="goBack">
+      <view class="s-logo"></view>
+      <view class="s-text">{{otherAct}}</view>
+      <view class="s-look">查看</view>
+    </view>
+
     <!-- 大标题 -->
     <view class="c-headLine">
       <view class="s-title">{{headLine.title}}</view>
@@ -36,8 +43,9 @@
     <!-- 活动介绍 -->
     <view class="s-line">
       <view class="title">活动介绍</view>
-      <view class="m-text m-intro">{{infos.intro}}</view>
-      <!-- <view class="m-more">展开全部</view> -->
+      <view class="m-text m-intro">{{tempIntro}}
+        <view class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</view>
+      </view>
     </view>
 
     <!-- 报名用户 -->
@@ -58,7 +66,32 @@
 
   <!-- 底部导航 -->
   <view class="c-bottom-nav">
-    <view class="s-btn">邀请好友</view>
-    <view class="s-btn btn-sign">立即报名</view>
+    <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
+    <view class="s-btn btn-sign" bindtap="openBookModal">立即报名</view>
   </view>
+
+  <!-- 邀请弹窗 -->
+  <view class="c-modal" wx:if="{{isShowInviteModal}}">
+    <view class="c-wrap c-invite-wrap">
+      <view class="s-close" bindtap="closeInviteModal"></view>
+      <view class="s-avatar" style="background-image:url({{userInfo.avatarUrl}})"></view>
+      <view class="s-desc">参加了一个活动</view>
+      <view class="s-title">{{headLine.title}}</view>
+      <view class="s-qr"></view>
+      <view class="s-transmit s-btn">转发到群聊</view>
+      <view class="s-share-img s-btn">生成朋友圈分享图</view>
+    </view>
+  </view>
+
+  <!-- 报名弹窗 -->
+  <view class="c-modal" wx:if="{{isShowBookModal}}">
+    <view class="c-wrap c-book-wrap">
+      <view class="s-close" bindtap="closeBookModal"></view>
+      <view class="s-title">长按扫码入群</view>
+      <view class="s-qun">
+      </view>
+      <view class="s-qr-text">如果二维码失效，请添加小助手微信:123456，回复活动名等待人工拉群</view>
+    </view>
+  </view>
+
 </view>

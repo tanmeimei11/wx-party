@@ -1,5 +1,6 @@
 <!--logs.wxml-->
 <view class="container log-list">
+<button type="default" size="defaultSize" bindtap="goDetail" hover-class="defaultTap">Button</button>
   <block wx:for="{{logs}}" wx:for-item="log">
     <text class="log-item">{{index + 1}}. {{log}}</text>
   </block>
