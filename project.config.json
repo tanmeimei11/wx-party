@@ -12,8 +12,9 @@
 	"projectname": "wx-party",
 	"condition": {
 		"weapp": {
-			"current": 0,
-			"list": [{
+			"current": 2,
+			"list": [
+				{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
@@ -34,7 +35,8 @@
 				{
 					"id": -1,
 					"name": "apply",
-					"pathName": "pages/apply/apply"
+					"pathName": "pages/apply/apply",
+					"query": ""
 				}
 			]
 		},

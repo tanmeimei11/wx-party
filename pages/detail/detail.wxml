@@ -87,10 +87,10 @@
   <view class="c-modal" wx:if="{{isShowBookModal}}">
     <view class="c-wrap c-book-wrap">
       <view class="s-close" bindtap="closeBookModal"></view>
-      <view class="s-title">长按扫码入群</view>
+      <view class="s-top-text">长按扫码入群</view>
       <view class="s-qun">
       </view>
-      <view class="s-qr-text">如果二维码失效，请添加小助手微信:123456，回复活动名等待人工拉群</view>
+      <view class="s-bottom-text">如果二维码失效，请添加小助手微信:123456，回复活动名等待人工拉群</view>
     </view>
   </view>
 

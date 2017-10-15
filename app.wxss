@@ -59,3 +59,53 @@
   width: 54rpx;
   height: 54rpx;
 }
+
+
+/* 弹窗 */
+
+.c-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.c-modal .c-wrap {
+  width: 560rpx;
+  background-color: #fff;
+  margin: 130rpx auto 0;
+  padding: 60rpx 0;
+  border-radius: 8rpx;
+  position: relative;
+}
+
+.c-wrap .s-close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/1C51CF46-3F39-78F7-1972-C33785B2D124.jpg);
+  background-repeat: no-repeat;
+  background-size: 32rpx 32rpx;
+  background-position: center;
+}
+
+.c-wrap .s-top-text {
+  text-align: center;
+  color: #333333;
+  font-size: 36prx;
+}
+
+.c-wrap .s-bottom-text {
+  color: #888888;
+  font-size: 24rpx;
+  width: 400rpx;
+  text-align: center;
+  margin: 0 auto;
+}
