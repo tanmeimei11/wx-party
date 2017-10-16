@@ -101,12 +101,13 @@ Page({
   },
   submit: function () {
     requestPromisify({
-      url: '/citysocial/submit',
+      url: '/activity/add_info',
+      method: 'POST',
       data: {
-        regionText: this.data.regionText,
-        birthText: this.data.birthText,
-        jobText: this.data.jobText,
-        phoneNum: this.data.phoneNum
+        area: this.data.regionText,
+        birth: this.data.birthText,
+        work: this.data.jobText,
+        phone: this.data.phoneNum
       }
     }).then((res) => {
       if (res.succ) {

@@ -31,6 +31,13 @@ var requestPromisify = (() => {
       if (!/^http/.test(obj.url)) {
         obj.url = DOMAIN + obj.url
       }
+
+      // 添加token
+      var _token = wx.getStorageSync('token')
+      if (_token) {
+        obj.data.privateKey = _token
+      }
+
       if (isMock) {
         resolve(require('../mock/' + mockConfig[obj.url]))
       } else {

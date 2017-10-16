@@ -63,6 +63,7 @@
     </view>
   </view>
 
+  <canvas style="width: 300px; height: 200px;" canvas-id="firstCanvas"></canvas>
 
   <!-- 底部导航 -->
   <view class="c-bottom-nav">
@@ -79,7 +80,7 @@
       <view class="s-title">{{headLine.title}}</view>
       <view class="s-qr"></view>
       <view class="s-transmit s-btn">转发到群聊</view>
-      <view class="s-share-img s-btn">生成朋友圈分享图</view>
+      <view class="s-share-img s-btn" bindtap="compose">生成朋友圈分享图</view>
     </view>
   </view>
 
@@ -93,5 +94,8 @@
       <view class="s-bottom-text">如果二维码失效，请添加小助手微信:123456，回复活动名等待人工拉群</view>
     </view>
   </view>
+
+  <!-- canvas -->
+  <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
 
 </view>
