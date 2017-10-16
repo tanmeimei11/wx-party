@@ -13,6 +13,7 @@
   <view class="tab-2">
     <image src="/images/tab2-active.png" class="icon-person" bindtap="switchTab2" wx:if="{{currentList == 'promoList'}}"></image>
     <image src="/images/tab2.png" class="icon-person" bindtap="switchTab2" wx:else></image>
+    <text class="promo-num">123</text>
     <text class="{{ currentList == 'promoList'? 'active' : ''}}" bindtap="switchTab2">活动</text>
   </view>
 </view>

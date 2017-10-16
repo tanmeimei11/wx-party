@@ -6,7 +6,7 @@
           <image class="avatar" src="{{item.avatar}}"></image>
           <view class="info">
             <view class="name">
-              <text>{{ item.group_name }}</text>
+              <text>{{ item.city_social_name }}</text>
             </view>
             <view class="total-num">
               <image src="/images/person.png" class="icon-person"></image>

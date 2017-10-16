@@ -15,7 +15,8 @@ Page({
     promoListLoaded: false,
     isJoinQun: false,
     trackSeed: '',
-    joinQunQrcode: ''
+    joinQunQrcode: '',
+    token: null
   }, 
   close: function (e) {
     this.setData({
@@ -30,7 +31,7 @@ Page({
     }
   },
   joinQun: function(e) {
-    track(this, '------------------')
+    // track(this, '------------------')
     this.setData({
       isJoinQun: true,
       joinQunQrcode: e.target.dataset.qrcodeUrl
@@ -48,13 +49,15 @@ Page({
   },
   switchTab1: function (e) {
     this.setData({
-      currentList: 'qunList'
+      currentList: 'qunList',
+      hidden: false
     })
     this.loadMoreQun()
   },
   switchTab2: function (e) {
     this.setData({
-      currentList: 'promoList'
+      currentList: 'promoList',
+      hidden: false
     })
     this.loadMorePromo()
   },
@@ -81,7 +84,8 @@ Page({
       return
     }
     request({
-      url: '/activity/groups'
+      url: '/activity/groups',
+      token: this.data.token
     }).then((res) => {
       if (res.succ && res.data) {
         // console.log(res.data)
@@ -101,11 +105,12 @@ Page({
   loadMoreQun: function () {
     console.log('loadMoreQun')
     if (this.data.noMoreQun) {
-      console.log('noMore')
+      console.log('noMoreQun')
       return
     }
     request({
-      url: '/citysocial/groups'
+      url: '/citysocial/groups',
+      token: this.data.token
     }).then((res) => {
       if (res.succ && res.data) {
         console.log(res.data)
@@ -124,7 +129,15 @@ Page({
   },
   onLoad() {
     console.log('onLoad')
-    let self = this;
+    let self = this
+    try {
+      let token = wx.getStorageSync('token')
+      if (token.length) {
+        self.data.token = token
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
