@@ -1,6 +1,6 @@
 // import common from './common'
-// const U_TRACK = 'http://stats1.jiuyan.info/onepiece/router.html'
-const U_TRACK = 'http://10.10.109.253:8018/index.html'
+const U_TRACK = 'http://stats1.jiuyan.info/onepiece/router.html'
+// const U_TRACK = 'http://10.10.109.253:8018/index.html'
 
 
 export default function track(app, seed, query = []) {

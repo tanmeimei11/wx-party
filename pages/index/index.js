@@ -17,7 +17,7 @@ Page({
     trackSeed: '',
     joinQunQrcode: '',
     token: null
-  }, 
+  },
   close: function (e) {
     this.setData({
       isJoinQun: false
@@ -30,7 +30,7 @@ Page({
       path: '/pages/index/index'
     }
   },
-  joinQun: function(e) {
+  joinQun: function (e) {
     // track(this, '------------------')
     this.setData({
       isJoinQun: true,
@@ -67,12 +67,16 @@ Page({
   promoLower: function () {
     console.log("promoLower")
     let that = this;
-    setTimeout(function () { that.loadMorePromo(); }, 300);
+    setTimeout(function () {
+      that.loadMorePromo();
+    }, 300);
   },
   lower: function (e) {
     console.log("lower")
     let that = this;
-    setTimeout(function () { that.loadMoreQun(); }, 300);
+    setTimeout(function () {
+      that.loadMoreQun();
+    }, 300);
   },
   scroll: function (e) {
     console.log("scroll")
@@ -151,9 +155,9 @@ Page({
     this.switchTab1()
   }
 })
-  // checkString(str, len, tag) {
-  //   if (str && str.length > len) {
-  //     return str.substring(0, len) + tag
-  //   }
-  //   return str
-  // },
+// checkString(str, len, tag) {
+//   if (str && str.length > len) {
+//     return str.substring(0, len) + tag
+//   }
+//   return str
+// },
