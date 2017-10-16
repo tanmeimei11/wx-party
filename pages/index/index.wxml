@@ -1,6 +1,5 @@
 <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
 <include src="promoList.wxml" wx:if="{{currentList=='promoList'}}" />
-
 <view class="list-tabs">
   <image src="/images/tab1.png" class="icon-person hide"></image>
   <image src="/images/tab1-active.png" class="icon-person hide"></image>
@@ -30,3 +29,4 @@
 自动拉你进群</view>
   </view>
 </view>
+<image src="{{trackSeed}}" class="" wx:if="{{trackSeed.length}}"></image>

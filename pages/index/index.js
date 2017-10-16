@@ -1,6 +1,7 @@
 //index.js
 const app = getApp()
 let request = require('../../utils/wxPromise.js').requestPromisify
+import track from '../../utils/track.js'
 Page({
   data: {
     qunList: [],
@@ -13,14 +14,23 @@ Page({
     qunListLoaded: false,
     promoListLoaded: false,
     isJoinQun: false,
+    trackSeed: '',
     joinQunQrcode: ''
-  },
+  }, 
   close: function (e) {
     this.setData({
       isJoinQun: false
     })
   },
+  onShareAppMessage: function () {
+    return {
+      title: 'in打印照片',
+      desc: '和我一起0.01元抢1人高熊公仔',
+      path: '/pages/index/index'
+    }
+  },
   joinQun: function(e) {
+    track(this, '------------------')
     this.setData({
       isJoinQun: true,
       joinQunQrcode: e.target.dataset.qrcodeUrl
