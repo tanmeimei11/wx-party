@@ -1,6 +1,6 @@
-//index.js
 const app = getApp()
 let request = require('../../utils/wxPromise.js').requestPromisify
+import track from '../../utils/track.js'
 Page({
   data: {
     qunList: [],
@@ -13,14 +13,23 @@ Page({
     qunListLoaded: false,
     promoListLoaded: false,
     isJoinQun: false,
+    trackSeed: '',
     joinQunQrcode: ''
-  },
+  }, 
   close: function (e) {
     this.setData({
       isJoinQun: false
     })
   },
-  joinQun: function(e) {
+  onShareAppMessage: function () {
+    return {
+      title: 'in打印照片',
+      desc: '和我一起0.01元抢1人高熊公仔',
+      path: '/pages/index/index'
+    }
+  },
+  joinQun: function (e) {
+    // track(this, '------------------')
     this.setData({
       isJoinQun: true,
       joinQunQrcode: e.target.dataset.qrcodeUrl
@@ -38,13 +47,15 @@ Page({
   },
   switchTab1: function (e) {
     this.setData({
-      currentList: 'qunList'
+      currentList: 'qunList',
+      hidden: false
     })
     this.loadMoreQun()
   },
   switchTab2: function (e) {
     this.setData({
-      currentList: 'promoList'
+      currentList: 'promoList',
+      hidden: false
     })
     this.loadMorePromo()
   },
@@ -54,12 +65,16 @@ Page({
   promoLower: function () {
     console.log("promoLower")
     let that = this;
-    setTimeout(function () { that.loadMorePromo(); }, 300);
+    setTimeout(function () {
+      that.loadMorePromo();
+    }, 300);
   },
   lower: function (e) {
     console.log("lower")
     let that = this;
-    setTimeout(function () { that.loadMoreQun(); }, 300);
+    setTimeout(function () {
+      that.loadMoreQun();
+    }, 300);
   },
   scroll: function (e) {
     console.log("scroll")
@@ -91,7 +106,7 @@ Page({
   loadMoreQun: function () {
     console.log('loadMoreQun')
     if (this.data.noMoreQun) {
-      console.log('noMore')
+      console.log('noMoreQun')
       return
     }
     request({
@@ -114,7 +129,7 @@ Page({
   },
   onLoad() {
     console.log('onLoad')
-    let self = this;
+    let self = this
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
@@ -128,9 +143,9 @@ Page({
     this.switchTab1()
   }
 })
-  // checkString(str, len, tag) {
-  //   if (str && str.length > len) {
-  //     return str.substring(0, len) + tag
-  //   }
-  //   return str
-  // },
+// checkString(str, len, tag) {
+//   if (str && str.length > len) {
+//     return str.substring(0, len) + tag
+//   }
+//   return str
+// },

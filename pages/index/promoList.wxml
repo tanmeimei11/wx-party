@@ -3,10 +3,10 @@
     <block wx:for="{{promoList}}" wx:key="id">
       <view class="promo" index="{{index}}" id="{{item.id}}">
         <view class="promo-image" style="background-image: url({{ item.act_url }})">
-          <text class="promo-name">{{item.group_name}}</text>
+          <text class="promo-name">{{item.act_name}}</text>
           <view class="promo-info">
             <image class="icon-promo-area" src="/images/promo-area.png"></image>
-            <text class="promo-area">{{item.city_district}}</text>
+            <text class="promo-area">{{item.act_location}}</text>
             <image class="icon-promo-time" src="/images/promo-time.png"></image>
             <text class="promo-time">{{item.start_time}}</text>
           </view>

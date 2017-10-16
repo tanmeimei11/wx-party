@@ -3,7 +3,8 @@ module.exports = Mock.mock({
   'succ': true,
   'data|10': [{
     'id|+1': 1,
-    'group_name': '杭州城西户外群222222222222222222222222222',
+    'city_social_id': "11212",
+    'city_social_name': '杭州城西户外群222222222222222222222222222',
     'female_count': 10,
     'male_count': 11,
     'avatar': 'http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!',
