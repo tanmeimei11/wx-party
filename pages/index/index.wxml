@@ -23,7 +23,7 @@
     <text class="{{ currentList == 'promoList'? 'active' : ''}}" >活动</text>
   </view>
 </view>
-<loading hidden="{{hidden}}" style="display:none">加载中...</loading>
+<loading hidden="{{hidden}}"xx>加载中...</loading>
 
 <view class="c-modal" wx:if="{{ isJoinQun }}">
   <view class="c-wrap c-book-wrap">
