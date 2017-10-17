@@ -17,7 +17,7 @@ Page({
     id: '',
     userInfo: app.globalData.userInfo,
     isShowIntroAll: false,
-    isShowInviteModal: true,
+    isShowInviteModal: false,
     isShowBookModal: false,
     isShowOtherAct: false,
     isOrgize: true,
@@ -66,7 +66,7 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id || '145'
+      id: option.id || '10101'
     })
 
     if (option.prepage == 'apply') {
@@ -101,6 +101,7 @@ Page({
           id: this.data.id
         }
       }).then((res) => {
+        console.log(res)
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
         } else {
@@ -174,7 +175,7 @@ Page({
   },
   openSign: function () {
     wx.redirectTo({
-      url: '../sign/sign'
+      url: `../sign/sign?id=${this.data.id}`
     })
   },
   openBook: function () {

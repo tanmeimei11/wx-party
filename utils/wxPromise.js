@@ -42,7 +42,6 @@ var requestPromisify = (() => {
           obj.data = {}
         }
         obj.data.privateKey = _token
-        // obj.data.privateKey = '12321'
       }
       if (isMock) {
         console.log('===== Begin mock request =====')

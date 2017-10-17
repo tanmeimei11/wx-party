@@ -9,9 +9,10 @@ Page({
     logs: [],
     id: '',
     userInfo: app.globalData.userInfo,
-    siginInUsers: []
+    siginInUsers: [],
+    qrImage: ''
   },
-  onLoad: function(option){
+  onLoad: function (option) {
     wx.setNavigationBarTitle({
       title: '签到'
     })
@@ -43,7 +44,7 @@ Page({
         } else {
           wx.showToast({
             title: '网络开小差了',
-            image: '../image/toast-fail.png',
+            image: '../../images/toast-fail.png',
             duration: 2000
           })
         }

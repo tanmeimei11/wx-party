@@ -1,4 +1,5 @@
-<scroll-view scroll-y="true" class="container " bindscrolltoupper="promoUpper" upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower" style="height:{{scrollHeight}}px;">
+<scroll-view scroll-y="true" class="container " bindscrolltoupper="promoUpper" upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower"
+  style="height:{{scrollHeight}}px;">
   <view class="list">
     <block wx:for="{{promoList}}" wx:key="id">
       <view class="promo" index="{{index}}" id="{{item.id}}">
@@ -16,12 +17,12 @@
             <view class="joiner">
               <view class="joiner-image" style="background-image: url({{ joiner.avatar_url }})"></view>
               <image class="icon-sex" src="/images/male.png" wx:if="{{ joiner.gender == '1'}}"></image>
-              <image class="icon-sex" src="/images/female.png" wx:else></image> 
+              <image class="icon-sex" src="/images/female.png" wx:else></image>
             </view>
           </block>
           <text class="joiner-tip" wx-if="{{item.joiners.length !== 0}}">已参加</text>
           <text class="joiner-tip" wx-else>快来参与吧！</text>
-          <view class="baoming" bindtap='jumpToDetail' data-id="{{ item.id }}">报名</view>
+          <view class="baoming" bindtap='jumpToDetail' data-id="{{ item.act_id }}">报名</view>
         </view>
       </view>
     </block>
