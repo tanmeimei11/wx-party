@@ -20,7 +20,7 @@ Page({
     isShowInviteModal: true,
     isShowBookModal: false,
     isShowOtherAct: false,
-    isOrgize: false,
+    isOrgize: true,
     bookStatus: 0,
     bookQrImg: '',
     actQrImg: '',
@@ -50,7 +50,7 @@ Page({
     }
     return {
       title: '快来参加活动吧～',
-      path: 'pages/detail/detail?id=123',
+      path: `pages/detail/detail?id=${this.data.id}`,
       success: function (res) {
         // 转发成功
       },
@@ -66,7 +66,7 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id || '222'
+      id: option.id || '145'
     })
 
     if (option.prepage == 'apply') {
@@ -106,7 +106,7 @@ Page({
         } else {
           wx.showToast({
             title: '网络开小差了',
-            image: '../image/toast-fail.png',
+            image: '../../images/toast-fail.png',
             duration: 2000
           })
         }
@@ -170,6 +170,11 @@ Page({
   closeInviteModal: function () {
     this.setData({
       isShowInviteModal: false
+    })
+  },
+  openSign: function () {
+    wx.redirectTo({
+      url: '../sign/sign'
     })
   },
   openBook: function () {
@@ -237,7 +242,7 @@ Page({
       otherAct: `同城趴其他${data.other_act_count}个活动`,
       images: this.data.images,
       bookStatus: data.join_status,
-      isOrgize: false,
+      isOrgize: true,
     })
   },
   loadImages: function (images) {

@@ -51,7 +51,7 @@ var requestPromisify = (() => {
         resolve(require('../mock/' + mockConfig[obj.url]))
       } else {
         obj.success = function (res) {
-          resolve(res)
+          resolve(res.data)
         }
         obj.fail = function (res) {
           reject(res)
@@ -103,14 +103,14 @@ var loginSession = function () {
     }).then((res) => {
       console.log('token', res)
       if (res.succ && res.data) {
-        wx.setStorageSync("token", res.data.token)
+        wx.setStorageSync("token", res.data)
       }
     }).catch((error) => {
       console.log(error)
     })
 }
 
-// checkLoginSession()
+checkLoginSession()
 module.exports = {
   requestPromisify: requestPromisify,
   wxPromisify: wxPromisify,
