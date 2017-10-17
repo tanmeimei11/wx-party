@@ -12,7 +12,7 @@
           </view>
         </view>
         <view class="promo-joiners">
-          <block wx:for="{{item.joins}}" wx:key="*this" wx:for-item="joiner" wx:for-index="idx">
+          <block wx:for="{{item.joiners}}" wx:key="*this" wx:for-item="joiner" wx:for-index="idx">
             <view class="joiner">
               <view class="joiner-image" style="background-image: url({{ joiner.avatar_url }})"></view>
               <image class="icon-sex" src="/images/male.png" wx:if="{{ joiner.gender == '1'}}"></image>

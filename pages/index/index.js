@@ -1,5 +1,6 @@
 const app = getApp()
 let request = require('../../utils/wxPromise.js').requestPromisify
+let util = require('../../utils/util.js')
 import track from '../../utils/track.js'
 Page({
   data: {
@@ -14,7 +15,9 @@ Page({
     promoListLoaded: false,
     isJoinQun: false,
     trackSeed: '',
-    joinQunQrcode: ''
+    joinQunQrcode: '',
+    promoNum: 0,
+    currentCursor: null
   }, 
   close: function (e) {
     this.setData({
@@ -115,8 +118,10 @@ Page({
       if (res.succ && res.data) {
         console.log(res.data)
         this.setData({
-          qunList: this.data.qunList.concat(res.data),
-          qunListLoaded: true
+          qunList: this.data.qunList.concat(res.data.list),
+          qunListLoaded: true,
+          promoNum: res.data && res.data.act_num ||  0,
+          currentCursor: this.data.current_cursor || null
         })
         let self = this
         setTimeout(function () {
@@ -128,7 +133,8 @@ Page({
     })
   },
   onLoad() {
-    console.log('onLoad')
+    // console.log('onLoad')
+    // console.log(util.formatTime(new Date(1506787200000)))
     let self = this
     wx.getSystemInfo({
       success: function (res) {
