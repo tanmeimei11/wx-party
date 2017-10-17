@@ -18,24 +18,27 @@ Page({
     userInfo: app.globalData.userInfo,
     isShowIntroAll: false,
     isShowInviteModal: false,
-    isShowBookModal: true,
+    isShowBookModal: false,
+    isShowOtherAct: false,
     isOrgize: false,
-    isBook: false,
+    bookStatus: 0,
+    bookQrImg: '',
+    actQrImg: '',
     images: {
       head: {
-        src: "http://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
+        src: "",
         local: ""
       },
       bottom: {
-        src: "http://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg",
+        src: "https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg",
         local: ""
       },
       logo: {
-        src: "http://inimg01.jiuyan.info/in/2017/10/15/6CD1BC72-FBBB-BC4E-528E-50943934E20F.jpg",
+        src: '',
         local: ""
       },
       avatar: {
-        src: "http://inimg01.jiuyan.info/in/2017/03/13/B0ABE39F-0BD4-D9D8-2312-2DEE4E9F5B4F-1JyqzdYV.jpg",
+        src: "",
         local: ""
       },
     }
@@ -47,14 +50,29 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id
+      id: option.id || '222'
     })
+
+    if (option.prepage == 'apply') {
+      this.setData({
+        isShowBookModal: true
+      })
+    }
+
+    if (option.showOther) {
+      this.setData({
+        isShowOtherAct: true
+      })
+    }
 
     if (!this.data.userInfo) {
       wxPromisify(wx.getUserInfo)()
         .then((res) => {
+          // this.data.images.avatar.src = res.userInfo.avatarUrl
+          this.data.images.avatar.src = 'https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg'
           this.setData({
-            userInfo: res.userInfo
+            userInfo: res.userInfo,
+            images: this.data.images
           })
         })
     }
@@ -76,13 +94,14 @@ Page({
             duration: 2000
           })
         }
+        return 'a'
+      }).then(() => {
+
       })
     }
-    this.composeImage()
   },
-  composeImage: function () {
-    console.log('composeImage')
-
+  getQrImage: function () {
+    this.getInternetImage(bookQrImg)
   },
   getInternetImage: function (url) {
     wxPromisify(wx.authorize)({
@@ -134,38 +153,52 @@ Page({
       isShowInviteModal: false
     })
   },
-  openBookModal: function () {
-    if (this.data.isBook) {
+  openBook: function () {
+    if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       this.setData({
         isShowBookModal: true
       })
       return
     }
-
     requestPromisify({
       url: "/activity/join",
       data: {
         id: this.data.id
       }
     }).then((res) => {
+      console.log(res.succ)
       if (res.succ) {
-        res.data == '1' && this.setData({
-          isShowBookModal: true
-        })
-      } else {
+        console.log(res.data)
+        if (res.data == '1') {
+          this.setData({
+            isShowBookModal: true
+          })
+          return
+        }
         wx.redirectTo({
-          url: '../apply/apply'
+          url: '../apply/apply?prepage=detail'
         })
       }
     })
-
+  },
+  openBookModal: function () {
+    this.setData({
+      isShowBookModal: true
+    })
   },
   closeBookModal: function () {
     this.setData({
       isShowBookModal: false
     })
   },
+  getOneQrByRandom: function (arr) {
+    var len = arr.length;
+    var _idx = Math.floor(Math.random() * (len - 1))
+    return arr[_idx].assistant_url
+  },
   getActiveInfo: function (data) {
+    this.data.images.logo.src = data.act_qrcode_url
+    this.data.images.head.src = data.act_urls[0]
     this.setData({
       imgUrls: data.act_urls,
       headLine: {
@@ -180,7 +213,12 @@ Page({
       },
       tempIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joins,
-      otherAct: `同城趴其他${data.other_act_count}个活动`
+      bookQrImg: this.getOneQrByRandom(data.assistants),
+      actQrImg: data.act_qrcode_url,
+      otherAct: `同城趴其他${data.other_act_count}个活动`,
+      images: this.data.images,
+      bookStatus: data.join_status,
+      isOrgize: false,
     })
   },
   loadImages: function (images) {
@@ -202,8 +240,10 @@ Page({
     })
     this.loadImages(this.data.images)
       .then(() => {
+        console.log('loadimg finish')
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
+
         // 画头上的背景
         ctx.drawImage(_images.head.local, 0, 0, 750, 545)
         // 画底部背景
@@ -211,12 +251,12 @@ Page({
         // 画头像
         ctx.drawImage(_images.avatar.local, 311, 132, 128, 128)
         // 画二维码
-        setTimeout(() => {
-          ctx.drawImage(_images.logo.local, 275, 444, 200, 200)
-        }, 100)
+        ctx.drawImage(_images.logo.local, 275, 444, 200, 200)
+
         // 画文字
-        var title = util.getLenStr('龙井户外徒步旅行烧烤龙井户外徒步旅行烧烤龙井户外徒步旅行烧烤龙井户外徒步旅行烧烤', 20)
+        var title = getLenStr(this.data.headLine.title, 20)
         ctx.draw()
+
         setTimeout(() => {
           ctx.setTextAlign('center')
           ctx.setFillStyle('white')
@@ -229,15 +269,24 @@ Page({
           wxPromisify(wx.canvasToTempFilePath)({
             canvasId: 'firstCanvas',
           }).then(res => {
+            console.log('saveImage start')
             this.saveImage(res.tempFilePath)
           })
         }, 100)
+      }).catch((error) => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '保存失败',
+          image: '../../images/toast-fail.png',
+          duration: 2000
+        })
       })
   },
   saveImage: function (file) {
     wxPromisify(wx.authorize)({
       scope: 'scope.writePhotosAlbum'
     }).then(() => {
+      console.log('授权成功')
       wxPromisify(wx.saveImageToPhotosAlbum)({
           filePath: file
         })
@@ -245,9 +294,16 @@ Page({
           wx.hideLoading()
           wx.showToast({
             title: '保存成功',
-            duration: 1000
+            duration: 2000
           })
         })
+    }, () => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '保存失败',
+        image: '../../images/toast-fail.png',
+        duration: 2000
+      })
     })
 
   },

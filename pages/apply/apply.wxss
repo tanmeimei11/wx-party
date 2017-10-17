@@ -57,7 +57,7 @@
   text-align: center;
 }
 
-.c-finish .active {
+.c-finish.active {
   background-color: #FF4338;
   color: #fff;
 }

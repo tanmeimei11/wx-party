@@ -18,11 +18,11 @@ const getTimeObj = time => {
   var date = new Date(time)
   return {
     year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hour: date.getHours(),
-    minute: date.getMinutes(),
-    second: date.getSeconds()
+    month: formatNumber(date.getMonth() + 1),
+    day: formatNumber(date.getDate()),
+    hour: formatNumber(date.getHours()),
+    minute: formatNumber(date.getMinutes()),
+    second: formatNumber(date.getSeconds())
   }
 }
 
@@ -31,16 +31,17 @@ const formatTimeToTime = (startTime, endTime) => {
   var _eDate = getTimeObj(endTime)
 
   if (_sDate.day == _eDate.day) {
-    return `${_sDate.month}月${_sDate.day}日 ${[_sDate.hour, _sDate.minute].map(formatNumber).join(':')}~${[_eDate.hour, _eDate.minute].map(formatNumber).join(':')}`
+    return `${_sDate.month}月${_sDate.day}日 ${[_sDate.hour, _sDate.minute].join(':')}~${[_eDate.hour, _eDate.minute].map(formatNumber).join(':')}`
   }
 
-  return `${_sDate.month}月${_sDate.day}日 ${[_sDate.hour, _sDate.minute].map(formatNumber).join(':')}~${_eDate.month}月${_eDate.day}日 ${[_eDate.hour, _eDate.minute].map(formatNumber).join(':')}`
+  return `${_sDate.month}月${_sDate.day}日 ${[_sDate.hour, _sDate.minute].join(':')}~${_eDate.month}月${_eDate.day}日 ${[_eDate.hour, _eDate.minute].join(':')}`
 
 }
 
 // 截取固定长度的字符串
 function getLenStr(str, realLen) {
   var len = str.length
+  console.log(len)
   var truelen = 0
   for (var x = 0; x < len; x++) {
     var s = str.charCodeAt(x)
@@ -62,6 +63,7 @@ function getLenStr(str, realLen) {
 }
 
 module.exports = {
+  getTimeObj: getTimeObj,
   formatTime: formatTime,
   getLenStr: getLenStr,
   formatTimeToTime: formatTimeToTime

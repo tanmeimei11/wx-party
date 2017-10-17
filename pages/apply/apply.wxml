@@ -5,20 +5,20 @@
 
   <!-- 省市选择 -->
   <view class="c-line">
-  <view class="triangle"></view>
+    <view class="triangle"></view>
     <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
       <view class="picker">
-      {{regionText}}
+        {{regionText}}
       </view>
     </picker>
   </view>
 
   <!-- 生日选择 -->
   <view class="c-line">
-  <view class="triangle"></view>
+    <view class="triangle"></view>
     <picker mode="date" bindchange="bindDateChange" value="{{birth}}">
-      <view class="picker">
-       {{birthText}}
+      <view class="picker" end="{{endTime}}">
+        {{birthText}}
       </view>
     </picker>
   </view>
@@ -26,21 +26,22 @@
   <!-- 职业选择 -->
   <view class="c-line">
     <view class="triangle"></view>
-    <picker  bindchange="bindJobChange" value="{{job}}" range="{{jobList}}">
+    <picker bindchange="bindJobChange" value="{{job}}" range="{{jobList}}">
       <view class="picker">
-       {{jobText}}
+        {{jobText}}
       </view>
     </picker>
   </view>
 
   <!-- 手机号输入 -->
   <view class="c-line">
-    <input placeholder="请输入手机号" type="number" value="{{phoneNum}}" maxlength="11" bindinput="getPhoneNum" placeholder-style="color:#B0B0B0"/>
+    <input placeholder="请输入手机号" type="number" value="{{phoneNum}}" maxlength="11" bindinput="getPhoneNum" placeholder-style="color:#B0B0B0"
+    />
   </view>
 
   <view class="c-tips">*手机号码不会对其他用户显示</view>
 
   <!-- 完成 -->
-  <view class="c-finish {{isVerify ? 'active':''}}" bindtap="verify" >完成</view>
+  <view class="c-finish {{isVerify ? 'active':''}}" bindtap="verify">完成</view>
 
 </view>

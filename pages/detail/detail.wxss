@@ -273,7 +273,7 @@
   width: 200rpx;
   height: 200rpx;
   margin: 40rpx auto;
-  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/7F0C1C09-F71E-F0D9-45E8-A00C102CF065.jpg);
+  border-radius: 50%;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -310,4 +310,7 @@
   width: 420rpx;
   height: 500rpx;
   margin: 55rpx auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
