@@ -1,0 +1,168 @@
+.sign-wrap{
+  background: #fff;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.sign-wrap .code-wrap{
+    width: 520rpx;
+    height: 536rpx;
+    box-shadow: 0 0 15rpx 0 rgba(0,0,0,0.10);
+    border-radius: 8rpx;
+    margin: 120rpx auto 0 auto;
+    overflow: hidden;
+  }
+
+.code-bar{
+  height: 128rpx;
+  background: #43DDF5;
+  overflow: hidden;
+}
+
+.code-bar .text{
+  width: 408rpx;
+  height: 48rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 40rpx auto 0 auto;
+  font-family: PingFangSC-Medium;
+  font-size: 34rpx;
+  color: #FFFFFF;
+}
+.code-wrap .code-box{
+  width: 240rpx;
+  height: 240rpx;
+  display: block;
+  margin: 56rpx auto 0 auto;
+}
+.code-txt{
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #666666;
+  text-align: center;
+  margin-top: 26rpx;
+}
+
+.s-line{
+  border-bottom: 1rpx solid #E0E0E0;
+  padding: 0 50rpx;
+  color: #666666;
+  font-size: 28rpx;
+  margin-top: 120rpx;
+}
+.s-line .title{
+  font-family: PingFangSC-Medium;
+  font-size: 34px;
+  color: #333333;
+  text-align: center;
+}
+.mm-user {
+  padding: 40rpx 0;
+  font-size: 0;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+.mm-user .num{
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  color: #333333;
+  vertical-align:middle;
+  font-size: 28rpx;
+}
+.s-line:last-child {
+  border: none;
+}
+
+.s-line .title {
+  color: #333333;
+  font-size: 34rpx;
+  margin-bottom: 15rpx;
+}
+
+.mm-user {
+  padding: 40rpx 0;
+  font-size: 0;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+
+ .m-more {
+  display: inline-block;
+  color: #43DDF5;
+  font-size: 28rpx;
+}
+
+.m-intro {
+  display: -webkit-box;
+}
+
+.mm-user:last-child {
+  border: none
+}
+
+.mm-user .user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.mm-user .user-avatar .sex {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24rpx;
+  height: 24rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.mm-user .user-avatar .sex.male {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/AC7CA472-C19B-62EF-952B-97CAAD1C65F0.jpg)
+}
+
+.mm-user .user-avatar .sex.female {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/E72C5ACB-CCD1-7428-FD66-2AD0662288CF.jpg)
+}
+
+.mm-user .user-info {
+  display: inline-block;
+  vertical-align: middle
+}
+
+.mm-user .user-nick {
+  font-size: 28rpx;
+  color: #333333
+}
+
+.mm-user .user-desc {
+  font-size: 22rpx;
+  color: #B0B0B0
+}
+
+.not-sign{
+  width: 100%;
+  margin-top: 190rpx;
+}
+.not-img{
+  width: 144rpx;
+  height: 144rpx;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.not-txt{
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #B0B0B0;
+  margin-top: 27rpx;
+}

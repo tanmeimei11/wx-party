@@ -10,9 +10,10 @@
 	"libVersion": "1.5.4",
 	"appid": "wx48155bddeea6fb66",
 	"projectname": "wx-party",
+	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 0,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -37,6 +38,12 @@
 					"name": "apply",
 					"pathName": "pages/apply/apply",
 					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "sign",
+					"pathName": "pages/sign/sign",
+					"query": "id=1233"
 				}
 			]
 		},

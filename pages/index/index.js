@@ -1,4 +1,3 @@
-//index.js
 const app = getApp()
 let request = require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
@@ -15,9 +14,8 @@ Page({
     promoListLoaded: false,
     isJoinQun: false,
     trackSeed: '',
-    joinQunQrcode: '',
-    token: null
-  },
+    joinQunQrcode: ''
+  }, 
   close: function (e) {
     this.setData({
       isJoinQun: false
@@ -88,8 +86,7 @@ Page({
       return
     }
     request({
-      url: '/activity/groups',
-      token: this.data.token
+      url: '/activity/groups'
     }).then((res) => {
       if (res.succ && res.data) {
         // console.log(res.data)
@@ -113,8 +110,7 @@ Page({
       return
     }
     request({
-      url: '/citysocial/groups',
-      token: this.data.token
+      url: '/citysocial/groups'
     }).then((res) => {
       if (res.succ && res.data) {
         console.log(res.data)
@@ -134,14 +130,6 @@ Page({
   onLoad() {
     console.log('onLoad')
     let self = this
-    try {
-      let token = wx.getStorageSync('token')
-      if (token.length) {
-        self.data.token = token
-      }
-    } catch (e) {
-      // Do something when catch error
-    }
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
