@@ -35,7 +35,7 @@ Page({
         local: ""
       },
       logo: {
-        src: '',
+        src: 'https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg',
         local: ""
       },
       avatar: {
@@ -67,7 +67,7 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id || '10101'
+      id: option.id || '10201'
     })
 
     if (option.prepage == 'apply') {
@@ -85,8 +85,8 @@ Page({
     if (!this.data.userInfo) {
       wxPromisify(wx.getUserInfo)()
         .then((res) => {
-          // this.data.images.avatar.src = res.userInfo.avatarUrl
-          this.data.images.avatar.src = 'https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg'
+          this.data.images.avatar.src = res.userInfo.avatarUrl
+          // this.data.images.avatar.src = 'https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg'
           this.setData({
             userInfo: res.userInfo,
             images: this.data.images
@@ -223,7 +223,7 @@ Page({
     return arr[_idx].assistant_url
   },
   getActiveInfo: function (data) {
-    this.data.images.logo.src = data.act_qrcode_url
+    // this.data.images.logo.src = data.act_qrcode_url
     this.data.images.head.src = data.act_url[0]
     this.setData({
       imgUrls: data.act_url,
@@ -268,6 +268,7 @@ Page({
     this.loadImages(this.data.images)
       .then(() => {
         console.log('loadimg finish')
+        console.log(this.data.images)
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
 
