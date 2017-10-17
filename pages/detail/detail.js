@@ -105,11 +105,11 @@ Page({
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
         } else {
-          wx.showToast({
-            title: '网络开小差了',
-            image: '../../images/toast-fail.png',
-            duration: 2000
-          })
+          // wx.showToast({
+          //   title: '网络开小差了',
+          //   image: '../../images/toast-fail.png',
+          //   duration: 2000
+          // })
         }
         return 'a'
       })

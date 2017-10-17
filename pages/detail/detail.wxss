@@ -346,8 +346,8 @@
 .c-modal .c-book-wrap contact-button-wrapper,
 div.wx-contact-button-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 30rpx;
+  left: 22%;
   /* opacity: 0; */
   display: block;
   width: 100%;
