@@ -1,6 +1,6 @@
 const app = getApp()
-let request = require('../../utils/wxPromise.js').requestPromisify
 let util = require('../../utils/util.js')
+let request = util.request //require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
 Page({
   data: {
@@ -136,9 +136,7 @@ Page({
       console.log('---------------')
       console.log(res)
       console.log('---------------')
-
       if (res.succ && res.data) {
-        // console.log(res.data)
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,
@@ -155,8 +153,6 @@ Page({
     })
   },
   onLoad() {
-    // console.log('onLoad')
-    // console.log(util.formatTime(new Date(1506787200000)))
     let self = this
     wx.getSystemInfo({
       success: function (res) {

@@ -62,7 +62,80 @@ function getLenStr(str, realLen) {
   }
 }
 
+let wxPromise = require('./wxPromise.js').wxPromisify
+let wxRequestPromise = require('./wxPromise.js').requestPromisify
+let wxPromisify = require('./wxPromise.js').wxPromisify
+let wxLoginPromise = wxPromisify(wx.login)
+let wxCheckSessionPromise = wxPromisify(wx.checkSession)
+let wxGetUserInfoPromise = wxPromisify(wx.getUserInfo)
+
+function wxLogin(next) {
+  let code, encryptedData, iv, userInfo, token
+  wxLoginPromise()
+    .then(res => {
+      code = res.code
+      return wxGetUserInfoPromise()
+    })
+    .then(res => {
+      userInfo = res.userInfo
+      encryptedData = res.encryptedData
+      iv = res.iv
+      return wxRequestPromise({
+        url: '/party/login',
+        data: {
+          code: code,
+          encryptedData: encryptedData,
+          iv: iv
+        }
+      })
+    })
+    .then(res => {
+      if (res.succ && res.data) {
+        wx.setStorageSync("token", res.data.token)
+      }
+      if (next) {
+        console.log('===next===')
+        return next()
+      }
+      // return true
+    }).catch((error) => {
+      console.log(error)
+    })
+}
+
+function wxCheck(next) {
+  wxCheckSessionPromise()
+    .then(() => {
+      wx.getStorage({
+        key: 'token',
+        success: function (res) {
+          // console.log(res)
+          if (res.data && res.data.length) {
+            console.log('token check success ~')
+            return next()
+          } else {
+            return wxLogin(next)
+          }
+        },
+        fail: function (err) {
+          console.log("storageerr", err)
+          return wxLogin(next)
+        }
+      })
+    })
+}
+
+function request(options) {
+  return wxCheck(function (options) {
+    console.log(options)
+    return wxRequestPromise(options)
+  })
+}
+
 module.exports = {
+  request: request,
+  wxCheck: wxCheck,
+  wxLogin: wxLogin,
   getTimeObj: getTimeObj,
   formatTime: formatTime,
   getLenStr: getLenStr,
