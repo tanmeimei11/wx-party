@@ -12,7 +12,7 @@ Page({
       url: `https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=${this.data.access_token}`,
       method: 'POST',
       data: {
-        scene: urlencode('id=1'),
+        scene: 'id=1',
         page: 'pages/index/index'
       },
       success: function (res) {
