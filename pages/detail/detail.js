@@ -19,8 +19,9 @@ Page({
     isShowIntroAll: false,
     isShowInviteModal: false,
     isShowBookModal: false,
-    isShowOtherAct: false,
-    isOrgize: true,
+    notShowOther: false,
+    isOrgize: false,
+    actStatus: '0',
     bookStatus: 0,
     bookQrImg: '',
     actQrImg: '',
@@ -75,7 +76,7 @@ Page({
       })
     }
 
-    if (option.showOther) {
+    if (!option.notShowOther) {
       this.setData({
         isShowOtherAct: true
       })
@@ -223,9 +224,9 @@ Page({
   },
   getActiveInfo: function (data) {
     this.data.images.logo.src = data.act_qrcode_url
-    this.data.images.head.src = data.act_urls[0]
+    this.data.images.head.src = data.act_url[0]
     this.setData({
-      imgUrls: data.act_urls,
+      imgUrls: data.act_url,
       headLine: {
         title: data.act_name,
         desc: `发起人：${data.creator_name}`
@@ -243,7 +244,8 @@ Page({
       otherAct: `同城趴其他${data.other_act_count}个活动`,
       images: this.data.images,
       bookStatus: data.join_status,
-      isOrgize: true,
+      isOrgize: data.is_org,
+      actStatus: data.act_status
     })
   },
   loadImages: function (images) {

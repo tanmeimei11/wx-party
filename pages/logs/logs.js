@@ -56,5 +56,10 @@ Page({
         this.getQrImage()
       }
     })
+  },
+  preview: function () {
+    wx.previewImage({
+      urls: ['https://inimg07.jiuyan.info/in/2017/07/07/B0382243-8A7C-32B2-8D0E-E68CC8AD6AA0.jpg']
+    })
   }
 })

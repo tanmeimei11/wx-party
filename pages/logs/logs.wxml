@@ -7,6 +7,7 @@
 
   <!-- <canvas style="width: 750rpx; height: 866rpx;" canvas-id="firstCanvas" bindtap="getCanvas"></canvas>
   <button type="default" size="defaultSize" bindtap="compose" hover-class="defaultTap">Button</button> -->
-  <button type="default" size="defaultSize" bindtap="getAccessToken" hover-class="defaultTap">获取二维码</button>
+  <!-- <button type="default" size="defaultSize" bindtap="getAccessToken" hover-class="defaultTap">获取二维码</button> -->
+  <button type="default" size="defaultSize" bindtap="preview" hover-class="defaultTap">预览</button>
   <image src="{{qrImg}}" />
 </view>

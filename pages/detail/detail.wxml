@@ -67,10 +67,15 @@
 
   <!-- 底部导航 -->
   <view class="c-bottom-nav">
-    <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
-    <view class="s-btn btn-sign" wx:if="{{isOrgize}}" bindtap="openSign">签到</view>
-    <view class="s-btn btn-sign" wx:elif="{{bookStatus != '1'}}" bindtap="openBook">立即报名</view>
-    <view class="s-btn btn-sign" wx:elif="{{bookStatus == '1'}}" bindtap="openBookModal">已报名</view>
+    <block wx:if="{{actStatus == '1'}}">
+      <view class="btn-end-act">已结束 </view>
+    </block>
+    <block wx:else>
+      <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
+      <view class="s-btn btn-sign" wx:if="{{isOrgize}}" bindtap="openSign">签到</view>
+      <view class="s-btn btn-sign" wx:elif="{{bookStatus != '1'}}" bindtap="openBook">立即报名</view>
+      <view class="s-btn btn-sign" wx:elif="{{bookStatus == '1'}}" bindtap="openBookModal">已报名</view>
+    </block>
   </view>
 
   <!-- 邀请弹窗 -->
@@ -92,11 +97,12 @@
   <view class="c-modal" wx:if="{{isShowBookModal}}">
     <view class="c-wrap c-book-wrap">
       <view class="s-close" bindtap="closeBookModal"></view>
-      <view class="s-top-text">入群完成报名</view>
-      <view class="s-qun" style="background-image:url({{bookQrImg}})">
+      <view class="s-bottom-text">点击下方按钮联系小助手回复“报名”获取活动二维码</view>
+      <view class="s-bottom-btn">联系小助手
+        <contact-button type="default-dark" size="200" session-from="weapp">
+        </contact-button>
+        <!-- <button open-type="contact" show-message-card="true" session-from="weapp"></button> -->
       </view>
-      <view class="s-bottom-text">保存二维码到相册，使用微信“扫一扫”添加小助手</view>
-      <view class="s-bottom-btn" bindtap="getQrImage">保存二维码</view>
     </view>
   </view>
 

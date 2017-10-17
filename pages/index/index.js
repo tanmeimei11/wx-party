@@ -19,7 +19,7 @@ Page({
     promoNum: 0,
     currentCursorQun: 0,
     currentCursorPromo: 0
-  }, 
+  },
   close: function (e) {
     this.setData({
       isJoinQun: false
@@ -45,7 +45,7 @@ Page({
   jumpToDetail: function (e) {
     if (e.target.dataset.id) {
       wx.navigateTo({
-        url: '../detail/detail?id=' + e.target.dataset.id
+        url: '../detail/detail?id=' + e.target.dataset.id + '&notShowOther=true'
       })
     }
   },
@@ -101,7 +101,7 @@ Page({
         limit: 10,
         cursor: this.data.currentCursorPromo
       }
-    }    
+    }
     request(params).then((res) => {
       if (res.succ && res.data) {
         // console.log(res.data)
@@ -131,7 +131,7 @@ Page({
         limit: 10,
         cursor: this.data.currentCursorQun
       }
-    }    
+    }
     request(params).then((res) => {
       console.log('---------------')
       console.log(res)
@@ -142,7 +142,7 @@ Page({
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,
-          promoNum: res.data && res.data.act_num ||  0,
+          promoNum: res.data && res.data.act_num || 0,
           currentCursorQun: res.data.current_cursor || null
         })
         let self = this
