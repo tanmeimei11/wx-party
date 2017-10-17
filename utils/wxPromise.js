@@ -72,7 +72,9 @@ var requestPromisify = ((not) => {
 // 检查登陆态
 var checkLoginSession = function (option) {
   return wxPromisify(wx.checkSession)()
-    .then(() => {
+    .then((res) => {
+      console.log('--------------')
+      console.log(res)
       if (!wx.getStorageSync('token')) {
         console.log('token 过期')
         return loginSession(option)

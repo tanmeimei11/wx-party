@@ -34,7 +34,7 @@
     <image src="{{joinQunQrcode}}" class="qrcode"></image>
     </view>
     <view class="s-bottom-text">保存二维码到相册，使用微信“扫一扫”添加小助手</view>
-    <view bindtap='saveQrcode'>保存二维码</view>
+    <view class="saveQrcode" bindtap="downloadQrcode">保存二维码</view>
   </view>
 </view>
 <image src="{{trackSeed}}" class="" wx:if="{{trackSeed.length}}"></image>
