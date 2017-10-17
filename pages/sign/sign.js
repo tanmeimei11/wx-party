@@ -34,7 +34,7 @@ Page({
     console.log(this.data.id)
     if (this.data.id) {
       requestPromisify({
-        url: "/activity/signins",
+        url: "/activity/prepare",
         data: {
           id: this.data.id
         }
@@ -53,7 +53,27 @@ Page({
   },
   getListInfo: function (data) {
     this.setData({
-      siginInUsers: data
+      siginInUsers: data.list.map(this.getDescCollect),
+      qrImage: data.act_qrcode_url
     })
+  },
+  getDescCollect: function (item) {
+    var _desc = ''
+    item.age && (_desc += `${item.age}岁`)
+    if (item.city) {
+      _desc += ` ${item.city}`
+      item.district && (_desc += `.${item.district}`)
+    } else {
+      item.district && (_desc += ` ${item.district}`)
+    }
+    item.work && (_desc += ` ${item.work}`)
+    console.log('2222')
+    return {
+      avatar_url: item.avatar_url,
+      name: item.name,
+      personDesc: _desc,
+      gender: item.gender
+    }
   }
+
 })

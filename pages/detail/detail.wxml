@@ -54,11 +54,11 @@
       <view class="title">已报名用户</view>
       <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
         <view class="user-avatar" style="background-image:url({{item.avatar_url}})">
-          <view class="sex {{item.gender ? 'male': 'female'}}"></view>
+          <view class="sex {{item.gender=='男' ? 'male': 'female'}}"></view>
         </view>
         <view class="user-info">
           <view class="user-nick">{{item.name}}</view>
-          <view class="user-desc">{{item.age+"岁 "+item.city+'.'+item.district+ " "+item.work}}</view>
+          <view class="user-desc">{{item.personDesc}}</view>
         </view>
       </view>
     </view>
@@ -72,7 +72,7 @@
     </block>
     <block wx:else>
       <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
-      <view class="s-btn btn-sign" wx:if="{{isOrgize}}" bindtap="openSign">签到</view>
+      <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
       <view class="s-btn btn-sign" wx:elif="{{bookStatus != '1'}}" bindtap="openBook">立即报名</view>
       <view class="s-btn btn-sign" wx:elif="{{bookStatus == '1'}}" bindtap="openBookModal">已报名</view>
     </block>
@@ -99,9 +99,9 @@
       <view class="s-close" bindtap="closeBookModal"></view>
       <view class="s-bottom-text">点击下方按钮联系小助手回复“报名”获取活动二维码</view>
       <view class="s-bottom-btn">联系小助手
-        <contact-button type="default-dark" size="200" session-from="weapp">
+        <contact-button type="default-dark" size="20" session-from="weapp">
         </contact-button>
-        <!-- <button open-type="contact" show-message-card="true" session-from="weapp"></button> -->
+        <!-- <button open-type="contact" session-from="weapp"></button> -->
       </view>
     </view>
   </view>

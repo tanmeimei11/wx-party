@@ -117,7 +117,7 @@ Page({
   },
   submit: function () {
     requestPromisify({
-      url: '/activity/add_info',
+      url: `/activity/add_info?privateKey=${ wx.getStorageSync('token')}`,
       method: 'POST',
       data: {
         area: this.data.regionText,

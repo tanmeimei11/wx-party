@@ -341,20 +341,15 @@
   position: relative;
 }
 
-.c-modal .c-book-wrap contact-button {
+.c-modal .c-book-wrap button,
+.c-modal .c-book-wrap contact-button,
+.c-modal .c-book-wrap contact-button-wrapper,
+div.wx-contact-button-wrapper {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.c-modal .c-book-wrap button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
+  /* opacity: 0; */
+  display: block;
   width: 100%;
   height: 100%;
 }

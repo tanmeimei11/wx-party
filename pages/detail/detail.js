@@ -10,7 +10,7 @@ Page({
   data: {
     indicatorDots: false,
     autoplay: true,
-    interval: 5000,
+    interval: 2000,
     duration: 1000,
     circular: true,
     curSwiperIdx: 0,
@@ -23,7 +23,7 @@ Page({
     isOrgize: false,
     actStatus: '0',
     bookStatus: 0,
-    bookQrImg: '',
+    // bookQrImg: '',
     actQrImg: '',
     images: {
       head: {
@@ -35,7 +35,7 @@ Page({
         local: ""
       },
       logo: {
-        src: 'https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg',
+        src: '',
         local: ""
       },
       avatar: {
@@ -86,7 +86,6 @@ Page({
       wxPromisify(wx.getUserInfo)()
         .then((res) => {
           this.data.images.avatar.src = res.userInfo.avatarUrl
-          // this.data.images.avatar.src = 'https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg'
           this.setData({
             userInfo: res.userInfo,
             images: this.data.images
@@ -113,13 +112,26 @@ Page({
           })
         }
         return 'a'
-      }).then(() => {
-
       })
     }
   },
-  transferQun: function () {
-
+  getDescCollect: function (item) {
+    var _desc = ''
+    item.age && (_desc += `${item.age}岁`)
+    if (item.city) {
+      _desc += ` ${item.city}`
+      item.district && (_desc += `.${item.district}`)
+    } else {
+      item.district && (_desc += ` ${item.district}`)
+    }
+    item.work && (_desc += ` ${item.work}`)
+    console.log('2222')
+    return {
+      avatar_url: item.avatar_url,
+      name: item.name,
+      personDesc: _desc,
+      gender: item.gender
+    }
   },
   getQrImage: function () {
     this.getInternetImage(bookQrImg)
@@ -192,7 +204,6 @@ Page({
         id: this.data.id
       }
     }).then((res) => {
-      console.log(res.succ)
       if (res.succ) {
         console.log(res.data)
         if (res.data == '1') {
@@ -223,7 +234,8 @@ Page({
     return arr[_idx].assistant_url
   },
   getActiveInfo: function (data) {
-    // this.data.images.logo.src = data.act_qrcode_url
+    // this.data.images.logo.src = data.share_qrcode_url
+    this.data.images.logo.src = 'https://inimg01.jiuyan.info/in/2017/10/15/7F0C1C09-F71E-F0D9-45E8-A00C102CF065.jpg'
     this.data.images.head.src = data.act_url[0]
     this.setData({
       imgUrls: data.act_url,
@@ -238,9 +250,9 @@ Page({
         intro: data.act_desc
       },
       tempIntro: this.getLenStr(data.act_desc),
-      siginInUsers: data.joins,
-      bookQrImg: this.getOneQrByRandom(data.assistants),
-      actQrImg: data.act_qrcode_url,
+      siginInUsers: data.joiners.map(this.getDescCollect),
+      // bookQrImg: this.getOneQrByRandom(data.assistants),
+      actQrImg: data.share_qrcode_url,
       otherAct: `同城趴其他${data.other_act_count}个活动`,
       images: this.data.images,
       bookStatus: data.join_status,

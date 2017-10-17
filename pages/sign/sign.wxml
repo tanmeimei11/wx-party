@@ -17,7 +17,7 @@
       </view>
       <view class="user-info">
         <view class="user-nick">{{item.name}}</view>
-        <view class="user-desc">{{item.age+"岁 "+item.city+'.'+item.district+ " "+item.work}}</view>
+        <view class="user-desc">{{item.personDesc}}</view>
       </view>
     </view>
   </view>
