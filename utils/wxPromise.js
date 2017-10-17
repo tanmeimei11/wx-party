@@ -42,6 +42,10 @@ var requestPromisify = (() => {
         obj.data.privateKey = _token
       }
       if (isMock) {
+        console.log('===== Begin mock request =====')
+        console.log(obj)
+        console.log(obj.data)
+        console.log('============ End =============')
         resolve(require('../mock/' + mockConfig[obj.url]))
       } else {
         obj.success = function (res) {

@@ -19,7 +19,8 @@
               <image class="icon-sex" src="/images/female.png" wx:else></image> 
             </view>
           </block>
-          <text class="joiner-tip">已参加</text>
+          <text class="joiner-tip" wx-if="{{item.joiners.length !== 0}}">已参加</text>
+          <text class="joiner-tip" wx-else>快来参与吧！</text>
           <view class="baoming" bindtap='jumpToDetail' data-id="{{ item.id }}">报名</view>
         </view>
       </view>
