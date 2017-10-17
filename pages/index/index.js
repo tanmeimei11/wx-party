@@ -17,7 +17,8 @@ Page({
     trackSeed: '',
     joinQunQrcode: '',
     promoNum: 0,
-    currentCursor: null
+    currentCursorQun: null,
+    currentCursorPromo: null
   }, 
   close: function (e) {
     this.setData({
@@ -49,6 +50,9 @@ Page({
     }
   },
   switchTab1: function (e) {
+    if (this.data.promoListLoaded && this.data.currentList == 'qunList') {
+      return
+    }
     this.setData({
       currentList: 'qunList',
       hidden: false
@@ -56,6 +60,9 @@ Page({
     this.loadMoreQun()
   },
   switchTab2: function (e) {
+    if (this.data.currentList == 'promoList') {
+      return
+    }
     this.setData({
       currentList: 'promoList',
       hidden: false
@@ -88,14 +95,22 @@ Page({
       console.log('noMorePromo')
       return
     }
-    request({
-      url: '/activity/groups'
-    }).then((res) => {
+    let params = {
+      url: '/activity/groups',
+      data: {
+        limit: 10
+      }
+    }
+    if (this.data.currentCursorPromo) {
+      params.data.cursor = this.data.currentCursorPromo
+    }
+    request(params).then((res) => {
       if (res.succ && res.data) {
         // console.log(res.data)
         this.setData({
-          promoList: this.data.promoList.concat(res.data),
-          promoListLoaded: true
+          promoList: this.data.promoList.concat(res.data.list),
+          promoListLoaded: true,
+          currentCursorPromo: res.data.current_cursor || null
         })
         let self = this
         setTimeout(function () {
@@ -112,16 +127,23 @@ Page({
       console.log('noMoreQun')
       return
     }
-    request({
-      url: '/citysocial/groups'
-    }).then((res) => {
+    let params = {
+      url: '/citysocial/groups',
+      data: {
+        limit: 10
+      }
+    }
+    if (this.data.currentCursorQun) {
+      params.data.cursor = this.data.currentCursorQun
+    }
+    request(params).then((res) => {
       if (res.succ && res.data) {
-        console.log(res.data)
+        // console.log(res.data)
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,
           promoNum: res.data && res.data.act_num ||  0,
-          currentCursor: this.data.current_cursor || null
+          currentCursorQun: res.data.current_cursor || null
         })
         let self = this
         setTimeout(function () {

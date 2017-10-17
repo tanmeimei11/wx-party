@@ -2,6 +2,7 @@ let Mock = require('../utils/mock.js')
 module.exports = Mock.mock({
   'succ': true,
   'data|10': {
+    'current_cursor': 32123123,
     'act_num': 12,
     'list|10': [{
       'id|+1': 1,
@@ -20,8 +21,7 @@ module.exports = Mock.mock({
         {
           "assistant_url": "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!"
         }
-      ],
-      'current_cursor': 32123123
+      ]
     }]
   },
   'timestamp': 1502261173

@@ -28,7 +28,7 @@ var requestPromisify = (() => {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
       // 添加DOMAIN
-      console.log(obj.url)
+      // console.log(obj.url)
       if (!/^http/.test(obj.url)) {
         obj.url = DOMAIN + obj.url
       }
@@ -41,6 +41,10 @@ var requestPromisify = (() => {
         obj.data.privateKey = _token
       }
       if (isMock) {
+        console.log('===== Begin mock request =====')
+        console.log(obj)
+        console.log(obj.data)
+        console.log('============ End =============')
         resolve(require('../mock/' + mockConfig[obj.url]))
       } else {
         obj.success = function (res) {
