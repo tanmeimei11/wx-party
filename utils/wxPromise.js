@@ -1,8 +1,9 @@
-// const DOMAIN = 'https://activity.in66.com'
-const DOMAIN = 'http://10.10.106.127:30929'
+const DOMAIN = 'https://activity.in66.com'
+// const DOMAIN = 'http://10.10.106.127:30929'
 var Promise = require('../lib/es6-promise');
 var mockConfig = require('../mock/mockConfig')
-var isMock = false
+var isMock = true
+// var isMock = false
 var globalCode = ''
 var globalUserInfo = null
 var userInfo = null
@@ -50,7 +51,7 @@ var requestPromisify = (() => {
         resolve(require('../mock/' + mockConfig[obj.url]))
       } else {
         obj.success = function (res) {
-          resolve(res)
+          resolve(res.data)
         }
         obj.fail = function (res) {
           reject(res)

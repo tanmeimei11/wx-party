@@ -45,7 +45,8 @@ App({
             iv: res.iv
           }
         })
-      }).then((res) => {
+      })
+      .then((res) => {
         if (res.succ && res.data) {
           wx.setStorageSync("token", res.data.token)
         }
