@@ -63,7 +63,6 @@
     </view>
   </view>
 
-  <canvas style="width: 300px; height: 200px;" canvas-id="firstCanvas"></canvas>
 
   <!-- 底部导航 -->
   <view class="c-bottom-nav">
@@ -88,10 +87,11 @@
   <view class="c-modal" wx:if="{{isShowBookModal}}">
     <view class="c-wrap c-book-wrap">
       <view class="s-close" bindtap="closeBookModal"></view>
-      <view class="s-top-text">长按扫码入群</view>
+      <view class="s-top-text">入群完成报名</view>
       <view class="s-qun">
       </view>
-      <view class="s-bottom-text">如果二维码失效，请添加小助手微信:123456，回复活动名等待人工拉群</view>
+      <view class="s-bottom-text">保存二维码到相册，使用微信“扫一扫”添加小助手</view>
+      <view class="s-bottom-btn">保存二维码</view>
     </view>
   </view>
 

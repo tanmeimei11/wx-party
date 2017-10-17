@@ -5,6 +5,7 @@ var Promise = require('../../lib/es6-promise');
 let getLenStr = require('../../utils/util.js').getLenStr
 var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
+var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 Page({
   data: {
     indicatorDots: false,
@@ -17,7 +18,9 @@ Page({
     userInfo: app.globalData.userInfo,
     isShowIntroAll: false,
     isShowInviteModal: false,
-    isShowBookModal: false,
+    isShowBookModal: true,
+    isOrgize: false,
+    isBook: false,
     images: {
       head: {
         src: "http://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
@@ -132,9 +135,30 @@ Page({
     })
   },
   openBookModal: function () {
-    this.setData({
-      isShowBookModal: true
+    if (this.data.isBook) {
+      this.setData({
+        isShowBookModal: true
+      })
+      return
+    }
+
+    requestPromisify({
+      url: "/activity/join",
+      data: {
+        id: this.data.id
+      }
+    }).then((res) => {
+      if (res.succ) {
+        res.data == '1' && this.setData({
+          isShowBookModal: true
+        })
+      } else {
+        wx.redirectTo({
+          url: '../apply/apply'
+        })
+      }
     })
+
   },
   closeBookModal: function () {
     this.setData({
@@ -145,12 +169,12 @@ Page({
     this.setData({
       imgUrls: data.act_urls,
       headLine: {
-        title: data.group_name,
+        title: data.act_name,
         desc: `发起人：${data.creator_name}`
       },
       infos: {
         sAddr: data.city_district,
-        time: data.start_time,
+        time: formatTimeToTime(data.start_time, data.end_time),
         detailAddr: data.act_location,
         intro: data.act_desc
       },

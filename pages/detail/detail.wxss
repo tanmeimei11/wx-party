@@ -301,8 +301,9 @@
   margin-top: 20px;
 }
 
-.c-book-wrap {
-  padding: 50rpx 55rpx;
+.c-modal .c-book-wrap {
+  padding: 50rpx 0;
+  padding-bottom: 0px;
 }
 
 .c-book-wrap .s-qun {

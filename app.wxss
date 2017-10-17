@@ -1,7 +1,9 @@
 /**app.wxss**/
+
 .hide {
   display: none;
 }
+
 .container {
   height: 100%;
   display: flex;
@@ -11,6 +13,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .lower-loading {
   display: flex;
   height: 100rpx;
@@ -21,13 +24,16 @@
   color: #B0B0B0;
   letter-spacing: 0;
 }
+
 .lower-loading-txt {
   margin-left: 12rpx;
 }
+
 .lower-loading-gif {
   width: 48rpx;
   height: 48rpx;
 }
+
 .list-tabs {
   position: fixed;
   display: flex;
@@ -42,6 +48,7 @@
   color: #666666;
   letter-spacing: 0;
 }
+
 .list-tabs .tab-1,
 .list-tabs .tab-2 {
   height: 100%;
@@ -51,6 +58,7 @@
   align-items: center;
   position: relative;
 }
+
 .promo-num {
   position: absolute;
   left: 51%;
@@ -122,4 +130,13 @@
   width: 400rpx;
   text-align: center;
   margin: 0 auto;
+}
+
+.c-wrap .s-bottom-btn {
+  border-top: solid 1rpx #E0E0E0;
+  text-align: center;
+  margin-top: 31rpx;
+  padding: 25rpx 0;
+  font-size: 36rpx;
+  color: #FF4338;
 }

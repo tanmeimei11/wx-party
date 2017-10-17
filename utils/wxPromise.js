@@ -40,7 +40,6 @@ var requestPromisify = (() => {
         }
         obj.data.privateKey = _token
       }
-      console.log('_token')
       if (isMock) {
         resolve(require('../mock/' + mockConfig[obj.url]))
       } else {
