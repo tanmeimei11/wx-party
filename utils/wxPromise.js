@@ -35,12 +35,13 @@ var requestPromisify = (() => {
       // 添加token
       var _token = wx.getStorageSync('token')
       console.log(obj.url, _token)
-      if (_token) {
-        if (!obj.data) {
-          obj.data = {}
-        }
-        obj.data.privateKey = _token
+      // if (_token) {
+      if (!obj.data) {
+        obj.data = {}
       }
+      // obj.data.privateKey = _token
+      obj.data.privateKey = '12321'
+      // }
       if (isMock) {
         console.log('===== Begin mock request =====')
         console.log(obj)
