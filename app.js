@@ -42,7 +42,7 @@ App({
           data: {
             code: this.globalData.code,
             encryptedData: res.encryptedData,
-            iv: res.encryptedData
+            iv: res.iv
           }
         })
       }).then((res) => {
