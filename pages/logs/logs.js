@@ -4,19 +4,33 @@ var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var Promise = require('../../lib/es6-promise');
 Page({
   data: {
-    access_token: ''
+    access_token: '',
+    qrImg: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg'
   },
   onLoad: function (e) {},
   getQrImage: function () {
+    // wx.request({
+    //   url: `https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=${this.data.access_token}`,
+    //   method: 'POST',
+    //   data: {
+    //     scene: 'id=1',
+    //     page: '../index/index'
+    //   },
+    //   success: function (res) {
+    //     console.log(res)
+    //   }
+    // })
     wx.request({
-      url: `https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=${this.data.access_token}`,
+      url: `https://api.weixin.qq.com/wxa/getwxacode?access_token=${this.data.access_token}`,
       method: 'POST',
       data: {
-        scene: 'id=1',
-        page: 'pages/index/index'
+        path: '../index/index'
       },
-      success: function (res) {
+      success: res => {
         console.log(res)
+        // this.setData({
+        //   qrImg: res.data
+        // })
       }
     })
   },

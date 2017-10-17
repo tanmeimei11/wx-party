@@ -38,7 +38,7 @@ App({
         this.globalData.userInfo = res.userInfo
         console.log(this.globalData.userInfo)
         return requestPromisify({
-          url: '/login',
+          url: '/party/login',
           data: {
             code: this.globalData.code,
             encryptedData: res.encryptedData,

@@ -17,8 +17,8 @@ Page({
     trackSeed: '',
     joinQunQrcode: '',
     promoNum: 0,
-    currentCursor: null
-  }, 
+    currentCursor: 0
+  },
   close: function (e) {
     this.setData({
       isJoinQun: false
@@ -113,14 +113,18 @@ Page({
       return
     }
     request({
-      url: '/citysocial/groups'
+      url: '/citysocial/groups',
+      data: {
+        cursor: this.data.currentCursor,
+        limit: 10
+      }
     }).then((res) => {
       if (res.succ && res.data) {
         console.log(res.data)
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,
-          promoNum: res.data && res.data.act_num ||  0,
+          promoNum: res.data && res.data.act_num || 0,
           currentCursor: this.data.current_cursor || null
         })
         let self = this

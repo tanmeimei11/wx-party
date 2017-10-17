@@ -1,7 +1,8 @@
-const DOMAIN = 'https://activity.in66.com'
+// const DOMAIN = 'https://activity.in66.com'
+const DOMAIN = 'http://10.10.106.127:30929'
 var Promise = require('../lib/es6-promise');
 var mockConfig = require('../mock/mockConfig')
-var isMock = true
+var isMock = false
 var globalCode = ''
 var globalUserInfo = null
 var userInfo = null
@@ -28,12 +29,12 @@ var requestPromisify = (() => {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
       // 添加DOMAIN
-      console.log(obj.url)
       if (!/^http/.test(obj.url)) {
         obj.url = DOMAIN + obj.url
       }
       // 添加token
       var _token = wx.getStorageSync('token')
+      console.log(obj.url, _token)
       if (_token) {
         if (!obj.data) {
           obj.data = {}
