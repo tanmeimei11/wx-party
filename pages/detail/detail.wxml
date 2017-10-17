@@ -1,5 +1,6 @@
 <!--detail.wxml-->
 <view class="container">
+
   <!-- 详情页面swipe-->
   <swiper indicator-dots="{{indicatorDots}}" class="c-main-swiper" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
     circular="{{circular}}" bindchange="swiperChange">

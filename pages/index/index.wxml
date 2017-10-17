@@ -1,3 +1,9 @@
+<!-- <contact-button 
+  type="default-dark" 
+  size="20"
+  session-from="weapp"
+> -->
+<!-- </contact-button> -->
 <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
 <include src="promoList.wxml" wx:if="{{currentList=='promoList'}}" />
 <view class="list-tabs">
@@ -13,7 +19,7 @@
   <view class="tab-2">
     <image src="/images/tab2-active.png" class="icon-person" bindtap="switchTab2" wx:if="{{currentList == 'promoList'}}"></image>
     <image src="/images/tab2.png" class="icon-person" bindtap="switchTab2" wx:else></image>
-    <text class="promo-num">123</text>
+    <text class="promo-num">{{promoNum}}</text>
     <text class="{{ currentList == 'promoList'? 'active' : ''}}" bindtap="switchTab2">活动</text>
   </view>
 </view>
@@ -22,12 +28,11 @@
 <view class="c-modal" wx:if="{{ isJoinQun }}">
   <view class="c-wrap c-book-wrap">
     <view class="s-close" bindtap="close"></view>
-    <view class="s-top-text">长按添加小助手</view>
+    <view class="s-top-text">添加小助手</view>
     <view class="s-qun">
     <image src="{{joinQunQrcode}}" class="qrcode"></image>
     </view>
-    <view class="s-bottom-text">长按添加小助手，小助手会
-自动拉你进群</view>
+    <view class="s-bottom-text">保存二维码到相册，使用微信“扫一扫”添加小助手</view>
   </view>
 </view>
 <image src="{{trackSeed}}" class="" wx:if="{{trackSeed.length}}"></image>

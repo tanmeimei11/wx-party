@@ -276,5 +276,5 @@
   justify-content: center;
 }
 .c-wrap .s-bottom-text {
-    width: 300rpx;
+    /* width: 300rpx; */
 }
