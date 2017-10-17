@@ -116,7 +116,7 @@ var loginSession = function (option) {
           if (option) {
             requestPromisify(option)
           }
-          reject()
+          // reject()
         }
       })
     }).catch((error) => {
