@@ -17,8 +17,8 @@ Page({
     trackSeed: '',
     joinQunQrcode: '',
     promoNum: 0,
-    currentCursorQun: null,
-    currentCursorPromo: null
+    currentCursorQun: 0,
+    currentCursorPromo: 0
   }, 
   close: function (e) {
     this.setData({
@@ -98,12 +98,10 @@ Page({
     let params = {
       url: '/activity/groups',
       data: {
-        limit: 10
+        limit: 10,
+        cursor: this.data.currentCursorPromo
       }
-    }
-    if (this.data.currentCursorPromo) {
-      params.data.cursor = this.data.currentCursorPromo
-    }
+    }    
     request(params).then((res) => {
       if (res.succ && res.data) {
         // console.log(res.data)
@@ -130,13 +128,15 @@ Page({
     let params = {
       url: '/citysocial/groups',
       data: {
-        limit: 10
+        limit: 10,
+        cursor: this.data.currentCursorQun
       }
-    }
-    if (this.data.currentCursorQun) {
-      params.data.cursor = this.data.currentCursorQun
-    }
+    }    
     request(params).then((res) => {
+      console.log('---------------')
+      console.log(res)
+      console.log('---------------')
+
       if (res.succ && res.data) {
         // console.log(res.data)
         this.setData({

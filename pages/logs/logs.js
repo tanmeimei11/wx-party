@@ -7,7 +7,9 @@ Page({
     access_token: '',
     qrImg: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg'
   },
-  onLoad: function (e) {},
+  onLoad: function (e) {
+    this.getAccessToken()
+  },
   getQrImage: function () {
     // wx.request({
     //   url: `https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=${this.data.access_token}`,
@@ -27,10 +29,13 @@ Page({
         path: '../index/index'
       },
       success: res => {
+        console.log('===')
         console.log(res)
-        // this.setData({
-        //   qrImg: res.data
-        // })
+        console.log('===')
+
+        this.setData({
+          // qrImg: res.data
+        })
       }
     })
   },

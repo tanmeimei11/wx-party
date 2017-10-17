@@ -2,6 +2,7 @@
 const DOMAIN = 'http://10.10.106.127:30929'
 var Promise = require('../lib/es6-promise');
 var mockConfig = require('../mock/mockConfig')
+// var isMock = true
 var isMock = false
 var globalCode = ''
 var globalUserInfo = null

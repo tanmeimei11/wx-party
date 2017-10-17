@@ -1,9 +1,9 @@
-<!-- <contact-button 
+ <!-- <contact-button 
   type="default-dark" 
   size="20"
   session-from="weapp"
-> -->
-<!-- </contact-button> -->
+> </contact-button>  -->
+
 <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
 <include src="promoList.wxml" wx:if="{{currentList=='promoList'}}" />
 <view class="list-tabs">
@@ -23,7 +23,7 @@
     <text class="{{ currentList == 'promoList'? 'active' : ''}}" >活动</text>
   </view>
 </view>
-<loading hidden="{{hidden}}">加载中...</loading>
+<loading hidden="{{hidden}}"xx>加载中...</loading>
 
 <view class="c-modal" wx:if="{{ isJoinQun }}">
   <view class="c-wrap c-book-wrap">
