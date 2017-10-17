@@ -292,6 +292,16 @@
 .c-invite-wrap .s-transmit {
   color: #fff;
   background-color: #FF4338;
+  position: relative;
+}
+
+.c-invite-wrap .s-transmit button {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .c-invite-wrap .s-share-img {

@@ -17,7 +17,7 @@ Page({
     id: '',
     userInfo: app.globalData.userInfo,
     isShowIntroAll: false,
-    isShowInviteModal: false,
+    isShowInviteModal: true,
     isShowBookModal: false,
     isShowOtherAct: false,
     isOrgize: false,
@@ -41,6 +41,22 @@ Page({
         src: "",
         local: ""
       },
+    }
+  },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '快来参加活动吧～',
+      path: 'pages/detail/detail?id=123',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
     }
   },
   onLoad: function (option) {
@@ -99,6 +115,9 @@ Page({
 
       })
     }
+  },
+  transferQun: function () {
+
   },
   getQrImage: function () {
     this.getInternetImage(bookQrImg)

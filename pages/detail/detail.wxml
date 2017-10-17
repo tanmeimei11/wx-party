@@ -80,7 +80,9 @@
       <view class="s-desc">参加了一个活动</view>
       <view class="s-title">{{headLine.title}}</view>
       <view class="s-qr" style="background-image:url({{actQrImg}})"></view>
-      <view class="s-transmit s-btn">转发到群聊</view>
+      <view class="s-transmit s-btn">转发到群聊
+        <button type="default" disabled="{{disabled}}" bindtap="default" open-type="share"> </button>
+      </view>
       <view class="s-share-img s-btn" bindtap="compose">生成朋友圈分享图</view>
     </view>
   </view>
