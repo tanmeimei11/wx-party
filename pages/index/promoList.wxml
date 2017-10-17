@@ -14,14 +14,14 @@
         </view>
         <view class="promo-joiners">
           <block wx:for="{{item.joiners}}" wx:key="*this" wx:for-item="joiner" wx:for-index="idx">
-            <view class="joiner">
+            <view class="joiner" wx:if="{{ idx == 1 || idx==2 || idx==3 || idx==4}}">
               <view class="joiner-image" style="background-image: url({{ joiner.avatar_url }})"></view>
               <image class="icon-sex" src="/images/male.png" wx:if="{{ joiner.gender == '1'}}"></image>
               <image class="icon-sex" src="/images/female.png" wx:else></image>
             </view>
           </block>
-          <text class="joiner-tip" wx-if="{{item.joiners.length !== 0}}">已参加</text>
-          <text class="joiner-tip" wx-else>快来参与吧！</text>
+          <text class="joiner-tip" wx-if="{{item.joiners.length != 0}}">已参加</text>
+          <text class="joiner-tip" wx-if="{{item.joiners.length == 0}}">快来参与吧！</text>
           <view class="baoming" bindtap='jumpToDetail' data-id="{{ item.act_id }}">报名</view>
         </view>
       </view>

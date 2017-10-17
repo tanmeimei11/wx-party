@@ -61,9 +61,48 @@ function getLenStr(str, realLen) {
     all: true
   }
 }
+// const DOMAIN = 'http://10.10.106.127:30929'
+const DOMAIN = 'https://activity.in66.com'
+
+var isMock = true
+var mockConfig = require('../mock/mockConfig')
+
+let wxRequestPromise = function (option) {
+  return new Promise((resolve, reject) => {
+    console.log(option)
+    // 添加DOMAIN
+    if (!/^http/.test(option.url)) {
+      option.url = DOMAIN + option.url
+    }
+    // 添加token
+    var _token = wx.getStorageSync('token')
+    if (_token) {
+      if (!option.data) {
+        option.data = {}
+      }
+      // option.data.privateKey = _token
+    }
+    option.data.privateKey = '84f7e69969dea92a925508f7c1f9579a'
+    if (isMock) {
+      console.log('===== Begin mock request =====')
+      console.log(option)
+      console.log(option.data)
+      console.log('============ End =============')
+      resolve(require('../mock/' + mockConfig[option.url]))
+    } else {
+      option.success = function (res) {
+        resolve(res.data)
+      }
+      option.fail = function (res) {
+        reject(res)
+      }
+      wx.request(option)
+    }
+  })
+}
 
 let wxPromise = require('./wxPromise.js').wxPromisify
-let wxRequestPromise = require('./wxPromise.js').requestPromisify
+// let wxRequestPromise = require('./wxPromise.js').requestPromisify
 let wxPromisify = require('./wxPromise.js').wxPromisify
 let wxLoginPromise = wxPromisify(wx.login)
 let wxCheckSessionPromise = wxPromisify(wx.checkSession)
@@ -73,10 +112,14 @@ function wxLogin(next) {
   let code, encryptedData, iv, userInfo, token
   wxLoginPromise()
     .then(res => {
+      console.log('wxLoginPromise')
+      console.log(res)
       code = res.code
       return wxGetUserInfoPromise()
     })
     .then(res => {
+      console.log('wxGetUserInfoPromise')
+      console.log(res)
       userInfo = res.userInfo
       encryptedData = res.encryptedData
       iv = res.iv
@@ -90,12 +133,14 @@ function wxLogin(next) {
       })
     })
     .then(res => {
+      console.log('wxRequestPromise login')
+      console.log(res)
       if (res.succ && res.data) {
         wx.setStorageSync("token", res.data.token)
       }
       if (next) {
         console.log('===next===')
-        return next()
+        return next
       }
       // return true
     }).catch((error) => {
@@ -104,32 +149,35 @@ function wxLogin(next) {
 }
 
 function wxCheck(next) {
-  wxCheckSessionPromise()
-    .then(() => {
-      wx.getStorage({
-        key: 'token',
-        success: function (res) {
-          // console.log(res)
-          if (res.data && res.data.length) {
+  console.log('11')
+  // console.log(next)
+  return wxCheckSessionPromise()
+    .then((res) => {
+      // wx.getStorage({
+      //   key: 'token',
+      //   success: function (res) {
+      console.log(res)
+      //     if (res.data && res.data.length) {
             console.log('token check success ~')
+            // console.log(next)
             return next()
-          } else {
-            return wxLogin(next)
-          }
-        },
-        fail: function (err) {
-          console.log("storageerr", err)
-          return wxLogin(next)
-        }
-      })
+          // } else {
+          //   return wxLogin(next)
+          // }
+        // },
+        // fail: function (err) {
+        //   console.log("storageerr", err)
+        //   return wxLogin(next)
+        // }
+      // })
+    }, function () {
+      console.log("=== check fail ~")
+      return wxLogin(next)
     })
 }
 
-function request(options) {
-  return wxCheck(function (options) {
-    console.log(options)
-    return wxRequestPromise(options)
-  })
+function request() {
+  return wxCheck(wxRequestPromise)
 }
 
 module.exports = {

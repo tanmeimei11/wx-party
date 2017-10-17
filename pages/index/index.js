@@ -1,6 +1,7 @@
 const app = getApp()
 let util = require('../../utils/util.js')
-let request = util.request //require('../../utils/wxPromise.js').requestPromisify
+// let request = util.request 
+let request = require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
 Page({
   data: {
@@ -55,7 +56,8 @@ Page({
     }
     this.setData({
       currentList: 'qunList',
-      hidden: false
+      hidden: false,
+      currentCursorQun: 0
     })
     this.loadMoreQun()
   },
@@ -65,7 +67,8 @@ Page({
     }
     this.setData({
       currentList: 'promoList',
-      hidden: false
+      hidden: false,
+      currentCursorPromo: 0
     })
     this.loadMorePromo()
   },
@@ -103,20 +106,29 @@ Page({
       }
     }
     request(params).then((res) => {
-      if (res.succ && res.data) {
+      if (res.succ && res.data && res.data.list) {
         // console.log(res.data)
+        if (!res.data.list.length) {
+          this.setData({
+            noMorePromo: true
+          })
+        }
         this.setData({
           promoList: this.data.promoList.concat(res.data.list),
           promoListLoaded: true,
           currentCursorPromo: res.data.current_cursor || null
         })
-        let self = this
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          })
-        }, 300)
+      } else {
+        this.setData({
+          noMorePromo: true
+        })
       }
+      let self = this
+      setTimeout(function () {
+        self.setData({
+          hidden: true
+        })
+      }, 300)
     })
   },
   loadMoreQun: function () {
@@ -132,24 +144,40 @@ Page({
         cursor: this.data.currentCursorQun
       }
     }
+    // console.log('00000')
+    // request(params).then((res)=>{
+    //   console.log('====111111111')
+    //   console.log(res)
+    //   // cosnole.log(res)
+    // })
+    // return 
     request(params).then((res) => {
       console.log('---------------')
       console.log(res)
       console.log('---------------')
-      if (res.succ && res.data) {
+      if (res.succ && res.data && res.data.list) {
+        if (!res.data.list.length) {
+          this.setData({
+            noMoreQun: true
+          })
+        }
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,
           promoNum: res.data && res.data.act_num || 0,
           currentCursorQun: res.data.current_cursor || null
         })
-        let self = this
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          })
-        }, 300)
+      } else {
+        this.setData({
+          noMoreQun: true
+        })
       }
+      let self = this
+      setTimeout(function () {
+        self.setData({
+          hidden: true
+        })
+      }, 300)
     })
   },
   onLoad() {
@@ -164,6 +192,14 @@ Page({
     wx.setNavigationBarTitle({
       title: 'in 同城趴'
     })
+    // console.log(request({
+    //   url: '/citysocial/groups',
+    //   data: {
+    //     limit: 10,
+    //     cursor: this.data.currentCursorQun
+    //   }
+    // })
+    // )
     this.switchTab1()
   }
 })
