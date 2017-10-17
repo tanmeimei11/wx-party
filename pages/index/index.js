@@ -96,6 +96,9 @@ Page({
     console.log('loadMorePromo')
     if (this.data.noMorePromo) {
       console.log('noMorePromo')
+      this.setData({
+        hidden: true
+      })
       return
     }
     let params = {
@@ -135,6 +138,9 @@ Page({
     console.log('loadMoreQun')
     if (this.data.noMoreQun) {
       console.log('noMoreQun')
+      this.setData({
+        hidden: true
+      })
       return
     }
     let params = {
@@ -152,9 +158,6 @@ Page({
     // })
     // return 
     request(params).then((res) => {
-      console.log('---------------')
-      console.log(res)
-      console.log('---------------')
       if (res.succ && res.data && res.data.list) {
         if (!res.data.list.length) {
           this.setData({

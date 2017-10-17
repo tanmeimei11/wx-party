@@ -14,7 +14,7 @@
         </view>
         <view class="promo-joiners">
           <block wx:for="{{item.joiners}}" wx:key="*this" wx:for-item="joiner" wx:for-index="idx">
-            <view class="joiner" wx:if="{{ idx == 1 || idx==2 || idx==3 || idx==4}}">
+            <view class="joiner" wx:if="{{ idx == 0 || idx==1 || idx==2 || idx==3}}">
               <view class="joiner-image" style="background-image: url({{ joiner.avatar_url }})"></view>
               <image class="icon-sex" src="/images/male.png" wx:if="{{ joiner.gender == '1'}}"></image>
               <image class="icon-sex" src="/images/female.png" wx:else></image>
