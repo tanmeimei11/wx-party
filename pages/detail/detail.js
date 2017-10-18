@@ -152,7 +152,7 @@ Page({
   },
   goBack: function () {
     wx.redirectTo({
-      url: '../index/index'
+      url: '../index/index?tab=2'
     })
   },
   getLenStr: function (str) {

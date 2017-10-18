@@ -6,7 +6,7 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('－') + ' ' + [hour, minute].map(formatNumber).join(':')
+  return formatNumber(month) + '月' + formatNumber(day) + '日' + ' ' + [hour, minute].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
@@ -64,7 +64,7 @@ function getLenStr(str, realLen) {
 // 本地
 let DOMAIN = 'http://10.10.106.127:30929'
 // qa
-DOMAIN = 'http://10.10.106.127:30245/'
+DOMAIN = 'http://qaactivity.in66.com/'
 let isMock = false
 // const DOMAIN = 'http://activity.in66.com:30929'
 // let isMock = true
@@ -162,7 +162,7 @@ let wxLogin = function (next) {
         wx.setStorageSync("token", res.data.token)
       }
       if (next) {
-        return next(code, res.data.token, userInfo, encryptedData, iv)
+        return next(code, res.data && res.data.token || 'testToken' , userInfo, encryptedData, iv)
       }
       return res.succ
     }).catch((err) => {

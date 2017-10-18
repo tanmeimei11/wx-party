@@ -1,15 +1,16 @@
 <scroll-view scroll-y="true" class="container " bindscrolltoupper="promoUpper" upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower"
   style="height:{{scrollHeight}}px;">
   <view class="list">
-    <block wx:for="{{promoList}}" wx:key="id">
-      <view class="promo" index="{{index}}" id="{{item.id}}">
+    <block wx:for="{{promoList}}" wx:key="act_id">
+      <view class="promo" index="{{index}}" id="{{item.act_id}}" bindtap='jumpToDetail' data-id="{{ item.act_id }}">
         <view class="promo-image" style="background-image: url({{ item.act_url }})">
+          <image class="promo-cover" src="/images/promo-cover.png"></image>
           <text class="promo-name">{{item.act_name}}</text>
           <view class="promo-info">
             <image class="icon-promo-area" src="/images/promo-area.png"></image>
-            <text class="promo-area">{{item.act_location}}</text>
+            <text class="promo-area">{{item.city_district}}</text>
             <image class="icon-promo-time" src="/images/promo-time.png"></image>
-            <text class="promo-time">{{item.start_time}}</text>
+            <text class="promo-time">{{item.time}}</text>
           </view>
         </view>
         <view class="promo-joiners">
