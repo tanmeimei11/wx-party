@@ -114,7 +114,7 @@
   border-radius: 50%;
   background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/1C51CF46-3F39-78F7-1972-C33785B2D124.jpg);
   background-repeat: no-repeat;
-  background-size: 32rpx 32rpx;
+  background-size: 28rpx 28rpx;
   background-position: center;
 }
 
@@ -140,6 +140,7 @@
   font-size: 36rpx;
   color: #FF4338;
 }
+
 contact-button {
   position: absolute;
   bottom: 0;
