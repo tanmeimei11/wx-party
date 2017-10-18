@@ -47,7 +47,7 @@ Page({
   },
   onShareAppMessage: function (res) {
     return {
-      title: '快来参加活动吧～',
+      title: `"${getLenStr(this.data.headLine.title,30).str}"火热报名中,快来加入吧～`,
       path: `pages/detail/detail?id=${this.data.id}`,
       imageUrl: this.data.transferImageUrl,
       success: function (res) {
