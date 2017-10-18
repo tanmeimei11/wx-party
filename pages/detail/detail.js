@@ -45,10 +45,6 @@ Page({
     }
   },
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
     return {
       title: '快来参加活动吧～',
       path: `pages/detail/detail?id=${this.data.id}`,
@@ -67,7 +63,7 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id || '10201'
+      id: option.id
     })
 
     if (option.prepage == 'apply') {
@@ -101,18 +97,9 @@ Page({
           id: this.data.id
         }
       }).then((res) => {
-        console.log('详情页面请求成功')
-        console.log(res)
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
-        } else {
-          // wx.showToast({
-          //   title: '网络开小差了',
-          //   image: '../../images/toast-fail.png',
-          //   duration: 2000
-          // })
         }
-        return 'a'
       })
     }
   },
@@ -158,7 +145,6 @@ Page({
 
   },
   lookMore: function () {
-    console.log('more')
     this.setData({
       tempIntro: this.data.infos.intro,
       isShowIntroAll: false
@@ -205,15 +191,15 @@ Page({
       }
     }).then((res) => {
       if (res.succ) {
-        console.log(res.data)
         if (res.data == '1') {
           this.setData({
-            isShowBookModal: true
+            isShowBookModal: true,
+            bookStatus: '1'
           })
           return
         }
         wx.redirectTo({
-          url: '../apply/apply?prepage=detail'
+          url: `../apply/apply?prepage=detail&id=${this.data.id}`
         })
       }
     })
@@ -280,7 +266,6 @@ Page({
     this.loadImages(this.data.images)
       .then(() => {
         console.log('loadimg finish')
-        console.log(this.data.images)
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
 
@@ -309,7 +294,7 @@ Page({
           wxPromisify(wx.canvasToTempFilePath)({
             canvasId: 'firstCanvas',
           }).then(res => {
-            console.log('saveImage start')
+            console.log('saveImage')
             this.saveImage(res.tempFilePath)
           })
         }, 100)
@@ -326,14 +311,13 @@ Page({
     wxPromisify(wx.authorize)({
       scope: 'scope.writePhotosAlbum'
     }).then(() => {
-      console.log('授权成功')
       wxPromisify(wx.saveImageToPhotosAlbum)({
           filePath: file
         })
         .then(res => {
           wx.hideLoading()
           wx.showToast({
-            title: '保存成功',
+            title: '图片已保存到相册',
             duration: 2000
           })
         })

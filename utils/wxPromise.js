@@ -40,8 +40,6 @@ var requestMock = (option) => {
     console.log(option.data)
     console.log('============ End =============')
     option.success(require('../mock/' + mockConfig[option.url]))
-    console.log('返回数据')
-    console.log(require('../mock/' + mockConfig[option.url]))
     return
   }
   wx.request(option)
@@ -49,7 +47,6 @@ var requestMock = (option) => {
 
 var request = (option) => {
   checkLoginSession(option).then(() => {
-    console.log('开始实际的请求')
     // 添加token
     var _token = wx.getStorageSync('token')
     if (_token) {
@@ -58,21 +55,18 @@ var request = (option) => {
       }
       option.data.privateKey = _token
     }
+    option.data.privateKey = 'cd2560dea123b4cfea2df2c5233d85c2'
     requestMock(option)
   }, () => {
     loginSession(option)
   })
 }
 
-
 // 检查登陆态
 var checkLoginSession = function (option) {
   return wxPromisify(wx.checkSession)()
     .then((res) => {
-      console.log('--------------')
-      console.log(res)
       if (!wx.getStorageSync('token')) {
-        console.log('token 过期')
         return loginSession(option)
       } else {
         return wxPromisify(wx.getUserInfo)()
@@ -92,8 +86,6 @@ var loginSession = function (option) {
       return wxPromisify(wx.getUserInfo)()
     })
     .then(res => {
-      console.log('get userInfo')
-      console.log('请求token')
       return wxPromisify(wx.request)({
         url: DOMAIN + '/party/login',
         data: {
@@ -103,11 +95,8 @@ var loginSession = function (option) {
         }
       })
     }).then((res) => {
-      console.log(res)
       if (res.succ && res.data) {
-        console.log('拿到token')
         wx.setStorageSync("token", res.data)
-        console.log('重新请求')
       }
       return '1'
     }).catch((error) => {
