@@ -3,7 +3,8 @@
   <view class="c-wrap c-book-wrap">
     <view class="s-close" bindtap="close"></view>
     <view class="s-bottom-text">点击下方按钮联系小助手回复“报名”获取活动二维码</view>
-    <view class="s-bottom-btn">联系小助手
+    <view class="s-bottom-btn">
+    <text>联系小助手</text>
       <contact-button type="default-dark" size="20" session-from="weapp">
       </contact-button>
       <!-- <button open-type="contact" session-from="weapp"></button> -->

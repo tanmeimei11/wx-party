@@ -140,3 +140,11 @@
   font-size: 36rpx;
   color: #FF4338;
 }
+contact-button {
+  position: absolute;
+  bottom: 0;
+  transform: scale(10, 3);
+  opacity: 0;
+  margin-left: -120rpx;
+  /* padding: 25rpx 0 */
+}
