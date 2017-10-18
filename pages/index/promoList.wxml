@@ -3,7 +3,7 @@
   <view class="list">
     <block wx:for="{{promoList}}" wx:key="act_id">
       <view class="promo" index="{{index}}" id="{{item.act_id}}" bindtap='jumpToDetail' data-id="{{ item.act_id }}">
-        <view class="promo-image" style="background-image: url({{ item.act_url }})">
+        <view class="promo-image" style="background-image: url({{ item.act_url[0] }})">
           <image class="promo-cover" src="/images/promo-cover.png"></image>
           <text class="promo-name">{{item.act_name}}</text>
           <view class="promo-info">

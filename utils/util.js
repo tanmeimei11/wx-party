@@ -111,9 +111,9 @@ let wxRequestPromise = function (option) {
       if (!option.data) {
         option.data = {}
       }
-      // option.data.privateKey = _token
+      option.data.privateKey = _token
     }
-    option.data.privateKey = '84f7e69969dea92a925508f7c1f9579a'
+    // option.data.privateKey = '84f7e69969dea92a925508f7c1f9579a'
     if (isMock) {
       // wxLog('===== Begin mock request')
       // wxLog(option)
@@ -159,10 +159,10 @@ let wxLogin = function (next) {
       wxLog('===== wxRequestPromise login')
       wxLog(res)
       if (res.succ && res.data) {
-        wx.setStorageSync("token", res.data.token)
+        wx.setStorageSync("token", res.data)
       }
       if (next) {
-        return next(code, res.data && res.data.token || 'testToken' , userInfo, encryptedData, iv)
+        return next(code, res.data, userInfo, encryptedData, iv)
       }
       return res.succ
     }).catch((err) => {
