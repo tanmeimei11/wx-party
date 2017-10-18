@@ -60,6 +60,7 @@ var request = (option) => {
       }
       option.data.privateKey = _token
     }
+    // option.data.privateKey = '8d3c12936d21114f3fe218af9bf9ce76'
     requestMock(option)
   }, () => {
     loginSession(option)
@@ -73,7 +74,9 @@ var checkLoginSession = function (option) {
       if (!wx.getStorageSync('token')) {
         return loginSession(option)
       } else {
-        return wxPromisify(wx.getUserInfo)()
+        return wxPromisify(wx.getUserInfo)({
+          lang: 'zh_CN'
+        })
       }
     }, () => {
       loginSession(option)

@@ -13,7 +13,7 @@
     <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
       <view class='num'>{{idx+1}}</view>
       <view class="user-avatar" style="background-image:url({{item.avatar_url}})">
-        <view class="sex {{item.sex === 'male' ? 'male': 'female'}}"></view>
+        <view class="sex {{item.gender === '男' ? 'male': 'female'}}"></view>
       </view>
       <view class="user-info">
         <view class="user-nick">{{item.name}}</view>
