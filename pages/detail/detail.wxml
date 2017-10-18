@@ -75,8 +75,8 @@
     <block wx:else>
       <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
       <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
-      <view class="s-btn btn-sign" wx:elif="{{bookStatus != '1'}}" bindtap="openBook">立即报名</view>
-      <view class="s-btn btn-sign" wx:elif="{{bookStatus == '1'}}" bindtap="openBookModal">已报名</view>
+      <view class="s-btn btn-sign" wx:elif="{{bookStatus == '0'}}" bindtap="openBook">立即报名</view>
+      <view class="s-btn btn-sign" wx:elif="{{bookStatus != '0'}}" bindtap="openBookModal">已报名</view>
     </block>
   </view>
 
