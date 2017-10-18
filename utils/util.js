@@ -171,7 +171,7 @@ let wxLogout = function () {
   }
 }
 let wxRelogin = function (next) {
-  wxLogout()
+  // wxLogout()
   return wxLogin(next)
 }
 let wxTimeout = function (fn) {}
