@@ -54,6 +54,7 @@
 }
 
 .name {
+  font-weight: bold;
   font-size: 34rpx;
   color: #333;
   letter-spacing: 0;
