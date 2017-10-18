@@ -18,3 +18,9 @@
 完成：h5_tcpa_apply_finish
 
 ##首页
+进入：h5_tcpa_index_entry
+群加入：h5_tcpa_index_group_join 参数id=111
+活动加入：h5_tcpa_index_active_join 参数id=111
+点击群tab: h5_tcpa_index_group_tab_click
+点击活动tab: h5_tcpa_index_active_tab_click 
+联系小助手：h5_tcpa_index_contact

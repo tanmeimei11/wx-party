@@ -23,6 +23,9 @@ Page({
     currentCursorPromo: 0
   },
   downloadQrcode: function () {},
+  contactTack: function () {
+    track(this, 'h5_tcpa_index_contact')
+  },
   close: function (e) {
     this.setData({
       isJoinQun: false
@@ -36,13 +39,15 @@ Page({
     }
   },
   joinQun: function (e) {
-    track(this, 'h5_tcpa_group_join', [`id=${e.target.dataset.id}`])
+    console.log(e)
+    track(this, 'h5_tcpa_index_group_join', [`id=${e.currentTarget.dataset.id}`])
     this.setData({
       isJoinQun: true
     })
   },
   jumpToDetail: function (e) {
     if (e.currentTarget.dataset.id) {
+      track(this, 'h5_tcpa_index_active_join', [`id=${e.currentTarget.dataset.id}`])
       wx.navigateTo({
         url: '../detail/detail?id=' + e.currentTarget.dataset.id + '&notShowOther=true'
       })
@@ -52,6 +57,7 @@ Page({
     if (this.data.promoListLoaded && this.data.currentList == 'qunList') {
       return
     }
+    track(this, 'h5_tcpa_index_group_tab_click ', [`id=${e.currentTarget.dataset.id}`])
     this.setData({
       currentCursorQun: 0,
       noMoreQun: false,
@@ -66,6 +72,7 @@ Page({
     if (this.data.currentList == 'promoList') {
       return
     }
+    track(this, 'h5_tcpa_index_active_tab_click ', [`id=${e.currentTarget.dataset.id}`])
     this.setData({
       currentCursorPromo: 0,
       noMorePromo: false,
