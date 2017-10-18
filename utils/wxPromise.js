@@ -57,7 +57,7 @@ var request = (option) => {
       }
       option.data.privateKey = _token
     }
-    // option.data.privateKey = '8d3c12936d21114f3fe218af9bf9ce76'
+    option.data.privateKey = '8d3c12936d21114f3fe218af9bf9ce76'
     // option.data.privateKey = '8d3c12936d21114f3fe218af9bf9ce76'
     requestMock(option)
   }, () => {

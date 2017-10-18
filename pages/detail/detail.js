@@ -335,7 +335,7 @@ Page({
               ctx.fillText('参加了一个活动', 375, 300)
               ctx.draw(true)
               ctx.setFontSize(40)
-              ctx.fillText(title.str, 375, 348)
+              ctx.fillText(title.str, 375, 352)
               ctx.draw(true)
               wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas',
