@@ -132,7 +132,7 @@ let wxLogin = function (next) {
       wxLog('===== wxLoginPromise')
       wxLog(res)
       code = res.code
-      return wxGetUserInfoPromise()
+      return wxGetUserInfoPromise({lang:'zh_CN'})
     })
     .then(res => {
       wxLog('===== wxGetUserInfoPromise')
