@@ -61,9 +61,12 @@ function getLenStr(str, realLen) {
     all: true
   }
 }
-const DOMAIN = 'http://10.10.106.127:30929'
+// 本地
+let DOMAIN = 'http://10.10.106.127:30929'
+// qa
+DOMAIN = 'http://10.10.106.127:30245/'
 let isMock = false
-// const DOMAIN = 'https://activity.in66.com'
+// const DOMAIN = 'http://activity.in66.com:30929'
 // let isMock = true
 let debug = true
 let mockConfig = require('../mock/mockConfig')
@@ -192,7 +195,8 @@ let wxCheck = function (next) {
       wxLog("===== check fail ~")
       return wxRelogin(next)
     }).catch(function (err) {
-      wxLog()
+      wxLog("===== throw err ~")
+      wxLog(err)
     })
 }
 let wxInit = function (app) {

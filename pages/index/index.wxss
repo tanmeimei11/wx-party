@@ -296,3 +296,13 @@
   line-height: 100rpx;
   text-align: center;
 }
+.c-modal .c-book-wrap {
+  padding: 50rpx 0;
+  padding-top: 43prx;
+  padding-bottom: 0px;
+  position: absolute;
+  top: 50%;
+  left: 95rpx;
+  transform: translate(0, -50%);
+  margin: 0 auto;
+}

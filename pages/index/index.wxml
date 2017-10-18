@@ -25,8 +25,10 @@
   </view>
 </view>
  <loading hidden="{{hidden}}"xx>加载中...</loading> 
+<include src="../modals/contact.wxml" />
 
-<view class="c-modal" wx:if="{{ isJoinQun }}">
+
+<!-- <view class="c-modal" wx:if="{{ isJoinQun }}">
   <view class="c-wrap c-book-wrap">
     <view class="s-close" bindtap="close"></view>
     <view class="s-top-text">添加小助手</view>
@@ -36,5 +38,5 @@
     <view class="s-bottom-text">保存二维码到相册，使用微信“扫一扫”添加小助手</view>
     <view class="saveQrcode" bindtap="downloadQrcode">保存二维码</view>
   </view>
-</view>
+</view> -->
 <image src="{{trackSeed}}" class="" wx:if="{{trackSeed.length}}"></image>
