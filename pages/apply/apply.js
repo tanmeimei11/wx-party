@@ -140,11 +140,14 @@ Page({
     }).then((res) => {
       if (res.succ) {
         this.toastSucc('提交成功')
-        if (this.data.id) {
-          wx.redirectTo({
-            url: `../${this.data.prepage}/${this.data.prepage}?prepage=apply&id=${this.data.id}`
-          })
-        }
+        setTimeout(() => {
+          if (this.data.id) {
+            wx.redirectTo({
+              url: `../${this.data.prepage}/${this.data.prepage}?prepage=apply&id=${this.data.id}`
+            })
+          }
+        }, 2000)
+
       } else {
         this.toast('fail', '提交失败')
       }
