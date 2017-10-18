@@ -73,7 +73,7 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id || '10502'
+      id: option.id || '10601'
     })
 
 
@@ -266,7 +266,7 @@ Page({
       siginInUsers: data.joiners.map(this.getDescCollect),
       // bookQrImg: this.getOneQrByRandom(data.assistants),
       actQrImg: data.share_qrcode_url,
-      otherAct: `in同城趴更多${data.other_act_count}个活动正在报名中`,
+      otherAct: `in同城趴更多${data.other_act_count==0 ? "":data.other_act_coun+"个"}活动正在报名中`,
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
