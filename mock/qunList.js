@@ -15,12 +15,9 @@ module.exports = Mock.mock({
         '90后', '活动丰富', '90后', '活动丰富', '90后', '活动丰富', '活动丰富活动丰富活动丰富活动丰富活动丰富活动丰富活动丰富', '90后', '活动丰富', '90后'
       ],
       "assistants": [
-        {
-          "assistant_url": "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!"
-        },
-        {
-          "assistant_url": "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!"
-        }
+        { "assistant_name": "助手1", "assistant_url": "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80", "created_at": "1508229599", "group_id": "10101", "group_type": "1", "id": "4", "updated_at": 1508229599000 },
+        { "assistant_name": "助手2", "assistant_url": "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80", "created_at": "1508237723", "group_id": "10101", "group_type": "1", "id": "9", "updated_at": 1508237723000 },
+        { "assistant_name": "助手3", "assistant_url": "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80", "created_at": "1508237723", "group_id": "10101", "group_type": "1", "id": "10", "updated_at": 1508237723000 }
       ]
     }]
   },

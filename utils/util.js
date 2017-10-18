@@ -61,15 +61,43 @@ function getLenStr(str, realLen) {
     all: true
   }
 }
-// const DOMAIN = 'http://10.10.106.127:30929'
-const DOMAIN = 'https://activity.in66.com'
+const DOMAIN = 'http://10.10.106.127:30929'
+let isMock = false
+// const DOMAIN = 'https://activity.in66.com'
+// let isMock = true
+let debug = true
+let mockConfig = require('../mock/mockConfig')
 
-var isMock = true
-var mockConfig = require('../mock/mockConfig')
-
+let wxPromisify = require('./wxPromise.js').wxPromisify
+let wxLoginPromise = wxPromisify(wx.login)
+let wxCheckSessionPromise = wxPromisify(wx.checkSession)
+let wxGetUserInfoPromise = wxPromisify(wx.getUserInfo)
+let wxLog = function (msg) {
+  if (debug) {
+    console.log(msg)
+  }
+}
+let getStoragePromise = function () {
+  return new Promise((resolve, reject) => {
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        if (res.data && res.data.length) {
+          wxLog('===== getStorage token success token:' + res.data)
+          resolve(res.data)
+        } else {
+          reject('===== getStorage token is empty')
+        }
+      },
+      fail: function (err) {
+        return reject(err)
+      }
+    })
+  })
+}
 let wxRequestPromise = function (option) {
   return new Promise((resolve, reject) => {
-    console.log(option)
+    // wxLog(option)
     // 添加DOMAIN
     if (!/^http/.test(option.url)) {
       option.url = DOMAIN + option.url
@@ -84,10 +112,10 @@ let wxRequestPromise = function (option) {
     }
     option.data.privateKey = '84f7e69969dea92a925508f7c1f9579a'
     if (isMock) {
-      console.log('===== Begin mock request =====')
-      console.log(option)
-      console.log(option.data)
-      console.log('============ End =============')
+      // wxLog('===== Begin mock request')
+      // wxLog(option)
+      // wxLog(option.data)
+      // wxLog('===== End')
       resolve(require('../mock/' + mockConfig[option.url]))
     } else {
       option.success = function (res) {
@@ -100,26 +128,18 @@ let wxRequestPromise = function (option) {
     }
   })
 }
-
-let wxPromise = require('./wxPromise.js').wxPromisify
-// let wxRequestPromise = require('./wxPromise.js').requestPromisify
-let wxPromisify = require('./wxPromise.js').wxPromisify
-let wxLoginPromise = wxPromisify(wx.login)
-let wxCheckSessionPromise = wxPromisify(wx.checkSession)
-let wxGetUserInfoPromise = wxPromisify(wx.getUserInfo)
-
-function wxLogin(next) {
+let wxLogin = function (next) {
   let code, encryptedData, iv, userInfo, token
-  wxLoginPromise()
+  return wxLoginPromise()
     .then(res => {
-      console.log('wxLoginPromise')
-      console.log(res)
+      wxLog('===== wxLoginPromise')
+      wxLog(res)
       code = res.code
       return wxGetUserInfoPromise()
     })
     .then(res => {
-      console.log('wxGetUserInfoPromise')
-      console.log(res)
+      wxLog('===== wxGetUserInfoPromise')
+      wxLog(res)
       userInfo = res.userInfo
       encryptedData = res.encryptedData
       iv = res.iv
@@ -133,55 +153,97 @@ function wxLogin(next) {
       })
     })
     .then(res => {
-      console.log('wxRequestPromise login')
-      console.log(res)
+      wxLog('===== wxRequestPromise login')
+      wxLog(res)
       if (res.succ && res.data) {
         wx.setStorageSync("token", res.data.token)
       }
       if (next) {
-        console.log('===next===')
-        return next
+        return next(code, res.data.token, userInfo, encryptedData, iv)
       }
-      // return true
-    }).catch((error) => {
-      console.log(error)
+      return res.succ
+    }).catch((err) => {
+      wxLog(err)
     })
 }
-
-function wxCheck(next) {
-  console.log('11')
-  // console.log(next)
+let wxLogout = function () {
+  try {
+    return wx.removeStorageSync('token')
+  } catch (e) {
+    wxLog('===== logout error:' + e)
+  }
+}
+let wxRelogin = function (next) {
+  wxLogout()
+  return wxLogin(next)
+}
+let wxTimeout = function (fn) { }
+let wxCheck = function (next) {
   return wxCheckSessionPromise()
     .then((res) => {
-      // wx.getStorage({
-      //   key: 'token',
-      //   success: function (res) {
-      console.log(res)
-      //     if (res.data && res.data.length) {
-            console.log('token check success ~')
-            // console.log(next)
-            return next()
-          // } else {
-          //   return wxLogin(next)
-          // }
-        // },
-        // fail: function (err) {
-        //   console.log("storageerr", err)
-        //   return wxLogin(next)
-        // }
-      // })
+      wxLog('===== wxCheckSessionPromise success ~')
+      return getStoragePromise()
+        .then(function (token) {
+          return next()
+        }, function () {
+          return wxRelogin(next)
+        })
     }, function () {
-      console.log("=== check fail ~")
-      return wxLogin(next)
+      wxLog("===== check fail ~")
+      return wxRelogin(next)
+    }).catch(function (err) {
+      wxLog()
     })
 }
+let wxInit = function (app) {
+  if (app.globalData.inited) {
+    return true
+  }
+  wxLogin(function (code, token, userInfo) {
+    app.globalData.inited = true
+    app.globalData.code = code
+    app.globalData.token = token
+    app.globalData.userInfo = userInfo
+    wx.setStorageSync('token', token)
+  })
 
-function request() {
-  return wxCheck(wxRequestPromise)
+  return true
 }
-
+let wxRequest = function (options) {
+  return wxCheck(function (code, token, userInfo) {
+    // wxLog(code, token, userInfo)
+    return wxRequestPromise(options)
+  })
+}
+let downLoadInternetImage = function (url) {
+  wxPromisify(wx.authorize)({
+    scope: 'scope.writePhotosAlbum'
+  }).then(() => {
+    wxPromisify(wx.downloadFile)({
+      url: url
+    }).then(res => {
+      wxPromisify(wx.saveImageToPhotosAlbum)({
+        filePath: res.tempFilePath
+      })
+        .then(res => {
+          wx.showToast({
+            title: '保存成功',
+            duration: 2000
+          })
+        })
+    })
+  })
+}
+let getOneQrByRandom = function (arr) {
+  var len = arr.length;
+  var _idx = Math.floor(Math.random() * (len - 1))
+  return arr[_idx]
+}
 module.exports = {
-  request: request,
+  getOneQrByRandom: getOneQrByRandom,
+  downLoadInternetImage: downLoadInternetImage,
+  wxRequest: wxRequest,
+  wxInit: wxInit,
   wxCheck: wxCheck,
   wxLogin: wxLogin,
   getTimeObj: getTimeObj,

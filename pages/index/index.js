@@ -1,7 +1,7 @@
 const app = getApp()
 let util = require('../../utils/util.js')
-// let request = util.request 
-let request = require('../../utils/wxPromise.js').requestPromisify
+let request = util.wxRequest 
+// let request = require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
 Page({
   data: {
@@ -20,6 +20,9 @@ Page({
     promoNum: 0,
     currentCursorQun: 0,
     currentCursorPromo: 0
+  },
+  downloadQrcode: function() {
+
   },
   close: function (e) {
     this.setData({
@@ -96,6 +99,9 @@ Page({
     console.log('loadMorePromo')
     if (this.data.noMorePromo) {
       console.log('noMorePromo')
+      this.setData({
+        hidden: true
+      })
       return
     }
     let params = {
@@ -135,6 +141,9 @@ Page({
     console.log('loadMoreQun')
     if (this.data.noMoreQun) {
       console.log('noMoreQun')
+      this.setData({
+        hidden: true
+      })
       return
     }
     let params = {
@@ -144,17 +153,8 @@ Page({
         cursor: this.data.currentCursorQun
       }
     }
-    // console.log('00000')
-    // request(params).then((res)=>{
-    //   console.log('====111111111')
-    //   console.log(res)
-    //   // cosnole.log(res)
-    // })
-    // return 
     request(params).then((res) => {
-      console.log('---------------')
       console.log(res)
-      console.log('---------------')
       if (res.succ && res.data && res.data.list) {
         if (!res.data.list.length) {
           this.setData({
@@ -192,20 +192,6 @@ Page({
     wx.setNavigationBarTitle({
       title: 'in 同城趴'
     })
-    // console.log(request({
-    //   url: '/citysocial/groups',
-    //   data: {
-    //     limit: 10,
-    //     cursor: this.data.currentCursorQun
-    //   }
-    // })
-    // )
     this.switchTab1()
   }
 })
-// checkString(str, len, tag) {
-//   if (str && str.length > len) {
-//     return str.substring(0, len) + tag
-//   }
-//   return str
-// },
