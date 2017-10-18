@@ -1,6 +1,7 @@
 // const DOMAIN = 'https://activity.in66.com'
 // const DOMAIN = 'http://10.10.106.127:30929'
-const DOMAIN = 'http://10.10.106.127:30245/' //qa
+// const DOMAIN = 'http://10.10.106.127:30245/' //qa
+let DOMAIN = 'http://qaactivity.in66.com'
 var Promise = require('../lib/es6-promise');
 var mockConfig = require('../mock/mockConfig')
 // var isMock = true

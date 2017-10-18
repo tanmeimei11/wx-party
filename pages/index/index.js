@@ -31,8 +31,8 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: 'in打印照片',
-      desc: '和我一起0.01元抢1人高熊公仔',
+      title: 'in同城趴本周活动报名中，点击查看',
+      desc: 'in同城趴，出门一起玩，认识新朋友',
       path: '/pages/index/index'
     }
   },
