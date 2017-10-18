@@ -273,23 +273,38 @@ Page({
       var _imgH = res.height
       var targetW = 750
       var targetH = 545
-      var clipW = targetW
-      var clipH = targetH
+      var clipW = _imgW
+      var clipH = _imgH
       var scale = 1
       var x = 0
       var y = 0
       //长图
-      if (_imgW / _imgH < targetW / targetH) {
-        console.log('chang')
+      // if (_imgW / _imgH < targetW / targetH) {
+      //   console.log('chang')
+      //   scale = targetH / _imgH
+      //   x = (targetW - clipW) / 2
+      // } else {
+      //   scale = _imgW / targetW
+      //   y = (targetH - clipH) / 2
+      // }
+
+      // 长图
+      if (_imgW / _imgH > targetW / targetH) {
         scale = targetH / _imgH
+        clipH = _imgH * scale
+        clipW = _imgW * scale
         x = (targetW - clipW) / 2
       } else {
-        scale = _imgW / targetW
+        scale = targetW / _imgW
+        clipH = _imgH * scale
+        clipW = _imgW * scale
         y = (targetH - clipH) / 2
       }
+
       // 画头上的背景
       ctx.save()
       ctx.scale(scale, scale)
+      console.log(x, y, _imgW, clipH)
       ctx.drawImage(res.path, x, y, clipW, clipH)
       ctx.restore()
       ctx.draw()
