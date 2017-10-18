@@ -139,7 +139,19 @@ Page({
       }
     }).then((res) => {
       if (res.succ) {
-        this.toastSucc('提交成功')
+        // this.toastSucc('提交成功')
+        return requestPromisify({
+          url: "/activity/join",
+          data: {
+            id: this.data.id
+          }
+        })
+      } else {
+        this.toast('fail', '提交失败')
+      }
+    }).then((res) => {
+      if (res.succ) {
+        this.toastSucc('报名成功')
         setTimeout(() => {
           if (this.data.id) {
             wx.redirectTo({
@@ -147,9 +159,6 @@ Page({
             })
           }
         }, 2000)
-
-      } else {
-        this.toast('fail', '提交失败')
       }
     })
   }

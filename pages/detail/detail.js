@@ -328,7 +328,7 @@ Page({
     track(this, 'h5_tcpa_active_compose_click', [`id=${this.data.id}`])
     this.loadImages(this.data.images)
       .then(() => {
-        // console.log('loadimg finish')
+        console.log('loadimg finish')
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
         this.getActFirstImg(ctx, _images.head.local)
