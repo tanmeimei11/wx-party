@@ -6,6 +6,7 @@ var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 Page({
   data: {
+    title: '',
     logs: [],
     id: '',
     userInfo: app.globalData.userInfo,
@@ -20,8 +21,10 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id
+      id: option.id,
+      title: option.title
     })
+
 
     if (!this.data.userInfo) {
       wxPromisify(wx.getUserInfo)()

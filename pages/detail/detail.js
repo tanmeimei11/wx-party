@@ -176,7 +176,7 @@ Page({
   },
   openSign: function () {
     wx.redirectTo({
-      url: `../sign/sign?id=${this.data.id}`
+      url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
   openBook: function () {
