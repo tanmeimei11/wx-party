@@ -13,7 +13,7 @@
 	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 0,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,

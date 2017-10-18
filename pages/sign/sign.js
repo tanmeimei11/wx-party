@@ -10,7 +10,8 @@ Page({
     id: '',
     userInfo: app.globalData.userInfo,
     siginInUsers: [],
-    qrImage: ''
+    qrImage: '',
+    requestInyerval: 3000
   },
   onLoad: function (option) {
     wx.setNavigationBarTitle({
@@ -33,23 +34,30 @@ Page({
     // 数据
     console.log(this.data.id)
     if (this.data.id) {
-      requestPromisify({
-        url: "/activity/prepare",
-        data: {
-          id: this.data.id
-        }
-      }).then((res) => {
-        if (res.succ && res.data) {
-          this.getListInfo(res.data)
-        } else {
-          wx.showToast({
-            title: '网络开小差了',
-            image: '../../images/toast-fail.png',
-            duration: 2000
-          })
-        }
-      })
+      this.getRequest()
     }
+  },
+  getRequest: function () {
+    return requestPromisify({
+      url: "/activity/prepare",
+      data: {
+        id: this.data.id
+      }
+    }).then((res) => {
+      if (res.succ && res.data) {
+        this.getListInfo(res.data)
+      } else {
+        wx.showToast({
+          title: '网络开小差了',
+          image: '../../images/toast-fail.png',
+          duration: 2000
+        })
+      }
+    }).then(() => {
+      setTimeout(() => {
+        this.getRequest()
+      }, this.data.requestInyerval)
+    })
   },
   getListInfo: function (data) {
     this.setData({
@@ -67,7 +75,6 @@ Page({
       item.district && (_desc += ` ${item.district}`)
     }
     item.work && (_desc += ` ${item.work}`)
-    console.log('2222')
     return {
       avatar_url: item.avatar_url,
       name: item.name,

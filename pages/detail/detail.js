@@ -101,6 +101,7 @@ Page({
           id: this.data.id
         }
       }).then((res) => {
+        console.log('详情页面请求成功')
         console.log(res)
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
@@ -125,7 +126,6 @@ Page({
       item.district && (_desc += ` ${item.district}`)
     }
     item.work && (_desc += ` ${item.work}`)
-    console.log('2222')
     return {
       avatar_url: item.avatar_url,
       name: item.name,
