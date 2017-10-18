@@ -47,9 +47,10 @@ Page({
     // }
   },
   jumpToDetail: function (e) {
-    if (e.target.dataset.id) {
+    if (e.currentTarget.dataset.id) {
       wx.navigateTo({
-        url: '../detail/detail?id=' + e.target.dataset.id + '&notShowOther=true'
+        // url: '../index/index?tab=2'
+        url: '../detail/detail?id=' + e.currentTarget.dataset.id + '&notShowOther=true'
       })
     }
   },
@@ -119,6 +120,14 @@ Page({
             noMorePromo: true
           })
         }
+        for (let i = 0; i < res.data.list.length; i++) {
+          res.data.list[i].end_time = null
+          if (res.data.list[i].start_time && res.data.list[i].end_time) {
+          res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
+          } else {
+            res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time))
+          }
+        }
         this.setData({
           promoList: this.data.promoList.concat(res.data.list),
           promoListLoaded: true,
@@ -161,10 +170,11 @@ Page({
             noMoreQun: true
           })
         }
+        
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,
-          promoNum: res.data && res.data.act_num || 0,
+          promoNum: res.data && res.data.promo_num || 0,
           currentCursorQun: res.data.current_cursor || null
         })
       } else {
@@ -180,18 +190,28 @@ Page({
       }, 300)
     })
   },
-  onLoad() {
+  onLoad(options) {
+    let currentList = (options.tab == '2' && 'promoList') || 'qunList'
+    console.log(currentList)
+    // this.setData({
+    //   currentList: currentList
+    // })
+
     let self = this
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
-          scrollHeight: res.windowHeight - 50
+          scrollHeight: res.windowHeight - 80
         });
       }
     })
     wx.setNavigationBarTitle({
       title: 'in 同城趴'
     })
-    this.switchTab1()
+    if (currentList == 'qunList') {
+      this.switchTab1()
+    } else {
+      this.switchTab2()
+    }
   }
 })

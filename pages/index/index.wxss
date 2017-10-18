@@ -49,7 +49,7 @@
 }
 
 .icon-person {
-  height: 24rpx;
+  height: 21rpx;
   width: 24rpx;
 }
 
@@ -79,11 +79,16 @@
 }
 
 .total-num {
+  margin-top: 5rpx;
   display: flex;
   flex-direction: row;
   font-size: 24rpx;
   color: #666;
   align-items: center;
+}
+.num {
+  display: block;
+  margin-top: 5rpx;
 }
 
 .total-num image {
@@ -95,11 +100,12 @@
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
-  padding-top: 15rpx;
+  /* padding-top: 15rpx; */
   flex-wrap: wrap;
 }
 
 .tag {
+  padding-top:4rpx;
   border: 1px solid #fb91c9;
   color: #fb91c9;
   border-radius: 6rpx;
@@ -109,7 +115,7 @@
   font-size: 24rpx;
   line-height: 42rpx;
   padding-left: 14rpx;
-  padding-right: 20rpx;
+  padding-right: 14rpx;
   margin-top: 15rpx;
   max-width: 300rpx;
   white-space: nowrap;
@@ -153,7 +159,12 @@
   background-position: center;
   background-size: cover;
 }
-
+.promo-cover {
+  width: 670rpx;
+  height: 200rpx;
+  position: absolute;
+  bottom: 0;
+}
 .promo-info {
   position: absolute;
   bottom: 30rpx;
@@ -259,6 +270,7 @@
   text-align: center;
   position: absolute;
   right: 30rpx;
+  top: 40rpx;
 }
 
 .icon-sex {
