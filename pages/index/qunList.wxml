@@ -13,7 +13,7 @@
               <text class="num">{{item.female_count + item.male_count }}人</text>
             </view>
           </view>
-          <view class="join" bindtap='joinQun' data-qrcode-url="/images/ex.png">加入</view>
+          <view class="join" bindtap='joinQun' data-id="{{item.city_social_id}}">加入</view>
         </view>
         <view class="qun-tags">
           <!-- <view class="tag front2">哈哈</view>

@@ -1,11 +1,15 @@
-// const DOMAIN = 'https://activity.in66.com'
-// const DOMAIN = 'http://10.10.106.127:30929'
-// const DOMAIN = 'http://10.10.106.127:30245/' //qa
-let DOMAIN = 'http://qaactivity.in66.com'
+
+// 本地
+let DOMAIN = 'http://10.10.106.127:30929'
+// qa
+DOMAIN = 'http://qaactivity.in66.com'
+let isMock = false
+// const DOMAIN = 'http://activity.in66.com:30929'
+// let isMock = true
+let debug = true
+let mockConfig = require('../mock/mockConfig');
 var Promise = require('../lib/es6-promise');
-var mockConfig = require('../mock/mockConfig')
-// var isMock = true
-var isMock = false
+
 var globalCode = ''
 var globalUserInfo = null
 var userInfo = null
@@ -106,6 +110,9 @@ var loginSession = function (option) {
 }
 
 module.exports = {
+  mockConfig, mockConfig,
+  DOMAIN: DOMAIN,
+  isMock: isMock,
   requestPromisify: wxPromisify(request),
   wxPromisify: wxPromisify,
   userInfo: userInfo

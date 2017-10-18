@@ -14,16 +14,15 @@ Page({
     currentList: 'qunList',
     qunListLoaded: false,
     promoListLoaded: false,
+    loadingMoreQun: false,
+    loadingMorePromo: false,
     isJoinQun: false,
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_index_entry',
-    joinQunQrcode: '',
     promoNum: 0,
     currentCursorQun: 0,
     currentCursorPromo: 0
   },
-  downloadQrcode: function () {
-
-  },
+  downloadQrcode: function () {},
   close: function (e) {
     this.setData({
       isJoinQun: false
@@ -37,20 +36,14 @@ Page({
     }
   },
   joinQun: function (e) {
-    track(this, 'h5_tcpa_group_join', [`id=${this.data.id}`])
-    // track(this, '------------------')
+    track(this, 'h5_tcpa_group_join', [`id=${e.target.dataset.id}`])
     this.setData({
-      isJoinQun: true,
-      joinQunQrcode: e.target.dataset.qrcodeUrl
+      isJoinQun: true
     })
-    // if (e.target.dataset.qrcodeUrl) {
-    //   console.log(e.target.dataset.qrcodeUrl)
-    // }
   },
   jumpToDetail: function (e) {
     if (e.currentTarget.dataset.id) {
       wx.navigateTo({
-        // url: '../index/index?tab=2'
         url: '../detail/detail?id=' + e.currentTarget.dataset.id + '&notShowOther=true'
       })
     }
@@ -60,6 +53,9 @@ Page({
       return
     }
     this.setData({
+      currentCursorQun: 0,
+      noMoreQun: false,
+      qunList: [],
       currentList: 'qunList',
       hidden: false,
       currentCursorQun: 0
@@ -71,6 +67,9 @@ Page({
       return
     }
     this.setData({
+      currentCursorPromo: 0,
+      noMorePromo: false,
+      promoList: [],
       currentList: 'promoList',
       hidden: false,
       currentCursorPromo: 0
@@ -98,7 +97,12 @@ Page({
     console.log("scroll")
   },
   loadMorePromo: function () {
+    if (this.data.loadingMorePromo) {
+      return
+    }
+    this.data.loadingMorePromo = true
     console.log('loadMorePromo')
+
     if (this.data.noMorePromo) {
       console.log('noMorePromo')
       this.setData({
@@ -139,6 +143,7 @@ Page({
           noMorePromo: true
         })
       }
+      this.data.loadingMorePromo = false
       let self = this
       setTimeout(function () {
         self.setData({
@@ -148,6 +153,10 @@ Page({
     })
   },
   loadMoreQun: function () {
+    if (this.data.loadingMoreQun) {
+      return
+    }
+    this.data.loadingMoreQun = true
     console.log('loadMoreQun')
     if (this.data.noMoreQun) {
       console.log('noMoreQun')
@@ -183,6 +192,7 @@ Page({
           noMoreQun: true
         })
       }
+      this.data.loadingMoreQun = false
       let self = this
       setTimeout(function () {
         self.setData({
@@ -192,12 +202,8 @@ Page({
     })
   },
   onLoad(options) {
-    let currentList = (options.tab == '2' && 'promoList') || 'qunList'
     console.log(currentList)
-    // this.setData({
-    //   currentList: currentList
-    // })
-
+    let currentList = (options.tab == '2' && 'promoList') || 'qunList'
     let self = this
     wx.getSystemInfo({
       success: function (res) {
