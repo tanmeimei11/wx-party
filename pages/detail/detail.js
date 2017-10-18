@@ -63,7 +63,7 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id
+      id: option.id || '10502'
     })
 
     if (option.prepage == 'apply') {
@@ -220,9 +220,11 @@ Page({
     return arr[_idx].assistant_url
   },
   getActiveInfo: function (data) {
-    // this.data.images.logo.src = data.share_qrcode_url
-    this.data.images.logo.src = 'https://inimg01.jiuyan.info/in/2017/10/15/7F0C1C09-F71E-F0D9-45E8-A00C102CF065.jpg'
-    this.data.images.head.src = data.act_url[0]
+    this.data.images.logo.src = data.share_qrcode_url
+    // this.data.images.logo.src = 'https://inimg01.jiuyan.info/in/2017/10/15/7F0C1C09-F71E-F0D9-45E8-A00C102CF065.jpg'
+    if (data.act_url.length) {
+      this.data.images.head.src = data.act_url[0]
+    }
     this.setData({
       imgUrls: data.act_url,
       headLine: {
@@ -239,7 +241,7 @@ Page({
       siginInUsers: data.joiners.map(this.getDescCollect),
       // bookQrImg: this.getOneQrByRandom(data.assistants),
       actQrImg: data.share_qrcode_url,
-      otherAct: `同城趴其他${data.other_act_count}个活动`,
+      otherAct: `in同城趴更多${data.other_act_count}个活动正在报名中`,
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
@@ -259,6 +261,37 @@ Page({
     })
     return Promise.all(imgPromiseList)
   },
+  getActFirstImg: function (ctx, url) {
+    return wxPromisify(wx.getImageInfo)({
+      src: url
+    }).then((res) => {
+      console.log(res)
+      var _imgW = res.width
+      var _imgH = res.height
+      var targetW = 750
+      var targetH = 545
+      var clipW = targetW
+      var clipH = targetH
+      var scale = 1
+      var x = 0
+      var y = 0
+      //长图
+      if (_imgW / _imgH < targetW / targetH) {
+        console.log('chang')
+        scale = targetH / _imgH
+        x = (targetW - clipW) / 2
+      } else {
+        scale = _imgW / targetW
+        y = (targetH - clipH) / 2
+      }
+      // 画头上的背景
+      ctx.save()
+      ctx.scale(scale, scale)
+      ctx.drawImage(res.path, x, y, clipW, clipH)
+      ctx.restore()
+      ctx.draw()
+    })
+  },
   compose: function () {
     wx.showLoading({
       title: '正在生成图片...',
@@ -268,36 +301,37 @@ Page({
         console.log('loadimg finish')
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
+        this.getActFirstImg(ctx, _images.head.local)
+          .then(() => {
+            // 画底部背景
+            ctx.drawImage(_images.bottom.local, 0, 545, 750, 321)
+            // 画头像
+            ctx.drawImage(_images.avatar.local, 311, 132, 128, 128)
+            // 画二维码
+            ctx.drawImage(_images.logo.local, 275, 444, 200, 200)
 
-        // 画头上的背景
-        ctx.drawImage(_images.head.local, 0, 0, 750, 545)
-        // 画底部背景
-        ctx.drawImage(_images.bottom.local, 0, 545, 750, 321)
-        // 画头像
-        ctx.drawImage(_images.avatar.local, 311, 132, 128, 128)
-        // 画二维码
-        ctx.drawImage(_images.logo.local, 275, 444, 200, 200)
+            // 画文字
+            var title = getLenStr(this.data.headLine.title, 20)
+            ctx.draw(true)
 
-        // 画文字
-        var title = getLenStr(this.data.headLine.title, 20)
-        ctx.draw()
-
-        setTimeout(() => {
-          ctx.setTextAlign('center')
-          ctx.setFillStyle('white')
-          ctx.setFontSize(24)
-          ctx.fillText('参加了一个活动', 375, 300)
-          ctx.draw(true)
-          ctx.setFontSize(40)
-          ctx.fillText(title.str, 375, 348)
-          ctx.draw(true)
-          wxPromisify(wx.canvasToTempFilePath)({
-            canvasId: 'firstCanvas',
-          }).then(res => {
-            console.log('saveImage')
-            this.saveImage(res.tempFilePath)
+            setTimeout(() => {
+              ctx.setTextAlign('center')
+              ctx.setFillStyle('white')
+              ctx.setFontSize(24)
+              ctx.fillText('参加了一个活动', 375, 300)
+              ctx.draw(true)
+              ctx.setFontSize(40)
+              ctx.fillText(title.str, 375, 348)
+              ctx.draw(true)
+              wxPromisify(wx.canvasToTempFilePath)({
+                canvasId: 'firstCanvas',
+              }).then(res => {
+                console.log('saveImage')
+                console.log(res.tempFilePath)
+                // this.saveImage(res.tempFilePath)
+              })
+            }, 100)
           })
-        }, 100)
       }).catch((error) => {
         wx.hideLoading()
         wx.showToast({

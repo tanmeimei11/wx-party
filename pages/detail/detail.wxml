@@ -10,7 +10,7 @@
       </swiper-item>
     </block>
 
-    <view class="IndicatorDots">
+    <view class="IndicatorDots" wx:if="{{imgUrls.length >1}}">
       <view wx:for="{{imgUrls.length}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" class="dot {{idx== curSwiperIdx ? 'active':''}}"></view>
     </view>
 

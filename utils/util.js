@@ -180,7 +180,7 @@ let wxRelogin = function (next) {
   wxLogout()
   return wxLogin(next)
 }
-let wxTimeout = function (fn) { }
+let wxTimeout = function (fn) {}
 let wxCheck = function (next) {
   return wxCheckSessionPromise()
     .then((res) => {
@@ -227,8 +227,8 @@ let downLoadInternetImage = function (url) {
       url: url
     }).then(res => {
       wxPromisify(wx.saveImageToPhotosAlbum)({
-        filePath: res.tempFilePath
-      })
+          filePath: res.tempFilePath
+        })
         .then(res => {
           wx.showToast({
             title: '保存成功',

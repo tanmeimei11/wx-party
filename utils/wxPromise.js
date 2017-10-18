@@ -1,5 +1,6 @@
 // const DOMAIN = 'https://activity.in66.com'
-const DOMAIN = 'http://10.10.106.127:30929'
+// const DOMAIN = 'http://10.10.106.127:30929'
+const DOMAIN = 'http://10.10.106.127:30245/' //qa
 var Promise = require('../lib/es6-promise');
 var mockConfig = require('../mock/mockConfig')
 // var isMock = true
@@ -55,6 +56,7 @@ var request = (option) => {
       }
       option.data.privateKey = _token
     }
+    // option.data.privateKey = '8d3c12936d21114f3fe218af9bf9ce76'
     option.data.privateKey = 'cd2560dea123b4cfea2df2c5233d85c2'
     requestMock(option)
   }, () => {
