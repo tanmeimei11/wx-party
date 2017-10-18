@@ -25,7 +25,7 @@
 
   <!-- 职业选择 -->
   <view class="c-line">
-    <input placeholder="请输入职业" type="number" value="{{job}}" bindinput="getJob" placeholder-style="color:#B0B0B0" />
+    <input placeholder="请输入职业" type="text" value="{{job}}" bindinput="getJob" placeholder-style="color:#B0B0B0" />
   </view>
 
   <!-- 手机号输入 -->

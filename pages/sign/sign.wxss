@@ -24,6 +24,7 @@
   width: 408rpx;
   height: 48rpx;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin: 40rpx auto 0 auto;
