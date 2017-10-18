@@ -1,4 +1,4 @@
-<view class="lower-loading">
+<view class="lower-loading" wx:if="{{ currentList=='qunList' && qunList.length > 3 || currentList=='promoList' && promoList.length > 2}}">
   <block wx:if="{{ currentList=='qunList' && !noMoreQun || currentList=='promoList' && !noMorePromo}}">
     <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
     <text class="lower-loading-txt">加载中...</text>
