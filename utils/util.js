@@ -61,20 +61,15 @@ function getLenStr(str, realLen) {
     all: true
   }
 }
-// 本地
-let DOMAIN = 'http://10.10.106.127:30929'
-// qa
-DOMAIN = 'http://qaactivity.in66.com/'
-let isMock = false
-// const DOMAIN = 'http://activity.in66.com:30929'
-// let isMock = true
-let debug = true
-let mockConfig = require('../mock/mockConfig')
-
-let wxPromisify = require('./wxPromise.js').wxPromisify
+let wxP = require('./wxPromise.js')
+let wxPromisify = wxP.wxPromisify
 let wxLoginPromise = wxPromisify(wx.login)
 let wxCheckSessionPromise = wxPromisify(wx.checkSession)
 let wxGetUserInfoPromise = wxPromisify(wx.getUserInfo)
+let DOMAIN = wxP.DOMAIN
+let isMock = wxP.isMock
+let debug = true
+let mockConfig = wxP.mockConfig
 let wxLog = function (msg) {
   if (debug) {
     console.log(msg)
@@ -244,6 +239,8 @@ let getOneQrByRandom = function (arr) {
   return arr[_idx]
 }
 module.exports = {
+ 
+  debug: debug,
   getOneQrByRandom: getOneQrByRandom,
   downLoadInternetImage: downLoadInternetImage,
   wxRequest: wxRequest,
