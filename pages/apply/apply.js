@@ -143,7 +143,7 @@ Page({
         setTimeout(() => {
           if (this.data.id) {
             wx.redirectTo({
-              url: `../${this.data.prepage}/${this.data.prepage}?prepage=apply&id=${this.data.id}`
+              url: `../${this.data.prepage}/${this.data.prepage}?prepage=apply&id=${this.data.id}&notShowOther=true'`
             })
           }
         }, 2000)
