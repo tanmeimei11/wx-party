@@ -278,16 +278,6 @@ Page({
       var scale = 1
       var x = 0
       var y = 0
-      //长图
-      // if (_imgW / _imgH < targetW / targetH) {
-      //   console.log('chang')
-      //   scale = targetH / _imgH
-      //   x = (targetW - clipW) / 2
-      // } else {
-      //   scale = _imgW / targetW
-      //   y = (targetH - clipH) / 2
-      // }
-
       // 长图
       if (_imgW / _imgH > targetW / targetH) {
         scale = targetH / _imgH
@@ -303,11 +293,10 @@ Page({
 
       // 画头上的背景
       ctx.save()
-      ctx.scale(scale, scale)
-      console.log(x, y, _imgW, clipH)
+      console.log(x, y, clipW, clipH)
       ctx.drawImage(res.path, x, y, clipW, clipH)
-      ctx.restore()
       ctx.draw()
+      ctx.restore()
     })
   },
   compose: function () {
