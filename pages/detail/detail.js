@@ -331,7 +331,7 @@ Page({
               }).then(res => {
                 console.log('saveImage')
                 console.log(res.tempFilePath)
-                // this.saveImage(res.tempFilePath)
+                this.saveImage(res.tempFilePath)
               })
             }, 100)
           })
@@ -348,18 +348,17 @@ Page({
     wxPromisify(wx.authorize)({
       scope: 'scope.writePhotosAlbum'
     }).then(() => {
+      wx.hideLoading()
       wxPromisify(wx.saveImageToPhotosAlbum)({
           filePath: file
         })
         .then(res => {
-          wx.hideLoading()
           wx.showToast({
             title: '图片已保存到相册',
             duration: 2000
           })
         })
     }, () => {
-      wx.hideLoading()
       wx.showToast({
         title: '保存失败',
         image: '../../images/toast-fail.png',
