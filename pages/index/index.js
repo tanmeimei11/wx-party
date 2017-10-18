@@ -58,7 +58,7 @@ Page({
       return
     }
     if (e) {
-      track(this, 'h5_tcpa_index_group_tab_click ', [`id=${e.currentTarget.dataset.id}`])
+      track(this, 'h5_tcpa_index_group_tab_click ')
     }
     this.setData({
       currentCursorQun: 0,
@@ -75,7 +75,7 @@ Page({
       return
     }
     if (e) {
-      track(this, 'h5_tcpa_index_active_tab_click ', [`id=${e.currentTarget.dataset.id}`])
+      track(this, 'h5_tcpa_index_active_tab_click ')
     }
     this.setData({
       currentCursorPromo: 0,
@@ -113,7 +113,7 @@ Page({
     }
     this.data.loadingMorePromo = true
     console.log('loadMorePromo')
-    
+
     // if (this.data.noMorePromo) {
     //   console.log('noMorePromo')
     //   this.setData({
