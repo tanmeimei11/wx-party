@@ -23,6 +23,7 @@ Page({
     isOrgize: false,
     actStatus: '0',
     bookStatus: 0,
+    transferImageUrl: '',
     // bookQrImg: '',
     actQrImg: '',
     images: {
@@ -48,6 +49,7 @@ Page({
     return {
       title: '快来参加活动吧～',
       path: `pages/detail/detail?id=${this.data.id}`,
+      imageUrl: this.data.transferImageUrl,
       success: function (res) {
         // 转发成功
       },
@@ -245,7 +247,8 @@ Page({
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
-      actStatus: data.act_status
+      actStatus: data.act_status,
+      transferImageUrl: data.act_url[0]
     })
   },
   loadImages: function (images) {
