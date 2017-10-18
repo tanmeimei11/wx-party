@@ -201,7 +201,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
-          scrollHeight: res.windowHeight - 80
+          scrollHeight: res.windowHeight - 50
         });
       }
     })
