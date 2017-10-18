@@ -39,4 +39,4 @@
     <view class="saveQrcode" bindtap="downloadQrcode">保存二维码</view>
   </view>
 </view> -->
-<image src="{{trackSeed}}" class="" wx:if="{{trackSeed.length}}"></image>
+<image src="{{trackSeed}}" style="width:0;height:0;" wx:if="{{trackSeed.length}}"></image>
