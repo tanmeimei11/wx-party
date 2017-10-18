@@ -74,7 +74,9 @@ Page({
     if (this.data.currentList == 'promoList') {
       return
     }
-    track(this, 'h5_tcpa_index_active_tab_click ', [`id=${e.currentTarget.dataset.id}`])
+    if (e) {
+      track(this, 'h5_tcpa_index_active_tab_click ', [`id=${e.currentTarget.dataset.id}`])
+    }
     this.setData({
       currentCursorPromo: 0,
       noMorePromo: false,
@@ -111,14 +113,15 @@ Page({
     }
     this.data.loadingMorePromo = true
     console.log('loadMorePromo')
-
-    if (this.data.noMorePromo) {
-      console.log('noMorePromo')
-      this.setData({
-        hidden: true
-      })
-      return
-    }
+    
+    // if (this.data.noMorePromo) {
+    //   console.log('noMorePromo')
+    //   this.setData({
+    //     hidden: true,
+    //     loadingMoreQun: false
+    //   })
+    //   return
+    // }
     let params = {
       url: '/activity/groups',
       data: {
@@ -166,14 +169,15 @@ Page({
       return
     }
     this.data.loadingMoreQun = true
-    console.log('loadMoreQun')
-    if (this.data.noMoreQun) {
-      console.log('noMoreQun')
-      this.setData({
-        hidden: true
-      })
-      return
-    }
+    // console.log('loadMoreQun')
+    // if (this.data.noMoreQun) {
+    //   console.log('noMoreQun')
+    //   this.setData({
+    //     hidden: true,
+    //     loadingMoreQun: false
+    //   })
+    //   return
+    // }
     let params = {
       url: '/citysocial/groups',
       data: {
@@ -211,7 +215,6 @@ Page({
     })
   },
   onLoad(options) {
-    console.log(currentList)
     let currentList = (options.tab == '2' && 'promoList') || 'qunList'
     let self = this
     wx.getSystemInfo({

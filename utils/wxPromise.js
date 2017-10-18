@@ -1,7 +1,7 @@
 // 本地
 let DOMAIN = 'http://10.10.106.127:30929'
 // qa
-DOMAIN = 'http://qaactivity.in66.com'
+DOMAIN = 'http://activity.in66.com'
 let isMock = false
 // const DOMAIN = 'http://activity.in66.com:30929'
 // let isMock = true
