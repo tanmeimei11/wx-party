@@ -58,7 +58,11 @@ Page({
       }
     }).then(() => {
       setTimeout(() => {
-        this.getRequest()
+        var pageRouter = getCurrentPages()
+        var len = pageRouter.length
+        if (pageRouter[len - 1].route == 'pages/sign/sign') {
+          this.getRequest()
+        }
       }, this.data.requestInyerval)
     })
   },
