@@ -149,3 +149,7 @@ contact-button {
   margin-left: -120rpx;
   /* padding: 25rpx 0 */
 }
+
+.join-txt {
+  color: red;
+}

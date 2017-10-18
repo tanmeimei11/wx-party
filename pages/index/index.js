@@ -22,7 +22,7 @@ Page({
     currentCursorQun: 0,
     currentCursorPromo: 0
   },
-  downloadQrcode: function () {},
+  downloadQrcode: function () { },
   contactTack: function () {
     track(this, 'h5_tcpa_index_contact')
   },
@@ -31,10 +31,29 @@ Page({
       isJoinQun: false
     })
   },
+  setShare: function (tab) {
+    if (tab == 1) {
+      this.onShareAppMessage = function () {
+        return {
+          title: 'in同城趴，出门一起玩，认识新朋友',
+          desc: 'in同城趴本周活动报名中，点击查看',
+          path: '/pages/index/index'
+        }
+      }
+    } else {
+      this.onShareAppMessage = function () {
+        return {
+          title: 'in同城趴本周活动报名中，点击查看',
+          desc: 'in同城趴，出门一起玩，认识新朋友',
+          path: '/pages/index/index'
+        }
+      }
+    }
+  },
   onShareAppMessage: function () {
     return {
-      title: 'in同城趴本周活动报名中，点击查看',
-      desc: 'in同城趴，出门一起玩，认识新朋友',
+      title: 'in同城趴，出门一起玩，认识新朋友',
+      desc: 'in同城趴本周活动报名中，点击查看',
       path: '/pages/index/index'
     }
   },
@@ -58,6 +77,7 @@ Page({
       return
     }
     if (e) {
+      this.setShare(1)
       track(this, 'h5_tcpa_index_group_tab_click ')
     }
     this.setData({
@@ -75,6 +95,7 @@ Page({
       return
     }
     if (e) {
+      this.setShare(2)
       track(this, 'h5_tcpa_index_active_tab_click ')
     }
     this.setData({
@@ -193,7 +214,11 @@ Page({
             noMoreQun: true
           })
         }
-
+        for (let i = 0; i < res.data.list.length; i++) {
+          if (res.data.list[i].male_count && res.data.list[i].female_count) {
+            res.data.list[i].count = parseInt(res.data.list[i].male_count) + parseInt(res.data.list[i].female_count)
+          }
+        }
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,

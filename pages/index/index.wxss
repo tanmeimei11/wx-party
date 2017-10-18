@@ -319,3 +319,6 @@
   transform: translate(0, -50%);
   margin: 0 auto;
 }
+ .c-wrap .s-bottom-text {
+  font-size: 28rpx;
+}
