@@ -35,6 +35,10 @@ Page({
         src: "https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg",
         local: ""
       },
+      curtain: {
+        src: "https://inimg01.jiuyan.info/in/2017/10/18/B29CD73D-7BA7-7EC6-5176-9EB0263BF8B0.jpg",
+        local: ""
+      },
       logo: {
         src: '',
         local: ""
@@ -306,12 +310,15 @@ Page({
     this.loadImages(this.data.images)
       .then(() => {
         console.log('loadimg finish')
+        console.log(this.data.images)
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
         this.getActFirstImg(ctx, _images.head.local)
           .then(() => {
             // 画底部背景
             ctx.drawImage(_images.bottom.local, 0, 545, 750, 321)
+            // 画蒙层
+            ctx.drawImage(_images.curtain.local, 0, 0, 750, 545)
             // 画头像
             ctx.drawImage(_images.avatar.local, 311, 132, 128, 128)
             // 画二维码
