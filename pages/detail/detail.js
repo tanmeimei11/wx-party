@@ -291,7 +291,6 @@ Page({
     return wxPromisify(wx.getImageInfo)({
       src: url
     }).then((res) => {
-      console.log(res)
       var _imgW = res.width
       var _imgH = res.height
       var targetW = 750
@@ -316,7 +315,7 @@ Page({
 
       // 画头上的背景
       ctx.save()
-      console.log(x, y, clipW, clipH)
+      // console.log(x, y, clipW, clipH)
       ctx.drawImage(res.path, x, y, clipW, clipH)
       ctx.draw()
       ctx.restore()
@@ -329,8 +328,7 @@ Page({
     track(this, 'h5_tcpa_active_compose_click', [`id=${this.data.id}`])
     this.loadImages(this.data.images)
       .then(() => {
-        console.log('loadimg finish')
-        console.log(this.data.images)
+        // console.log('loadimg finish')
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
         this.getActFirstImg(ctx, _images.head.local)
@@ -360,8 +358,6 @@ Page({
               wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas',
               }).then(res => {
-                console.log('saveImage')
-                console.log(res.tempFilePath)
                 this.saveImage(res.tempFilePath)
               })
             }, 100)

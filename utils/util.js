@@ -41,7 +41,6 @@ const formatTimeToTime = (startTime, endTime) => {
 // 截取固定长度的字符串
 function getLenStr(str, realLen) {
   var len = str.length
-  console.log(len)
   var truelen = 0
   for (var x = 0; x < len; x++) {
     var s = str.charCodeAt(x)
@@ -239,7 +238,7 @@ let getOneQrByRandom = function (arr) {
   return arr[_idx]
 }
 module.exports = {
- 
+
   debug: debug,
   getOneQrByRandom: getOneQrByRandom,
   downLoadInternetImage: downLoadInternetImage,

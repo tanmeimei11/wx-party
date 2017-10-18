@@ -110,7 +110,6 @@ Page({
       !type && this.toast('error', errorText['birth'])
       return
     }
-    console.log(/^\s*$/g.test(this.data.job.replace(/\s+/g, '')))
     if (/^\s*$/g.test(this.data.job.replace(/\s+/g, ''))) {
       !type && this.toast('error', errorText['job'])
       return

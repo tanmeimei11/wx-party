@@ -1,4 +1,3 @@
-
 // 本地
 let DOMAIN = 'http://10.10.106.127:30929'
 // qa
@@ -77,7 +76,6 @@ var checkLoginSession = function (option) {
         return wxPromisify(wx.getUserInfo)()
       }
     }, () => {
-      console.log('not login')
       loginSession(option)
     })
 }
@@ -85,8 +83,6 @@ var checkLoginSession = function (option) {
 var loginSession = function (option) {
   return wxPromisify(wx.login)()
     .then(res => {
-      console.log('get code')
-      console.log(res)
       code = res.code
       return wxPromisify(wx.getUserInfo)()
     })
@@ -110,7 +106,8 @@ var loginSession = function (option) {
 }
 
 module.exports = {
-  mockConfig, mockConfig,
+  mockConfig,
+  mockConfig,
   DOMAIN: DOMAIN,
   isMock: isMock,
   requestPromisify: wxPromisify(request),

@@ -35,7 +35,7 @@ Page({
         })
     }
     // 数据
-    console.log(this.data.id)
+    // console.log(this.data.id)
     if (this.data.id) {
       this.getRequest()
     }

@@ -57,7 +57,9 @@ Page({
     if (this.data.promoListLoaded && this.data.currentList == 'qunList') {
       return
     }
-    track(this, 'h5_tcpa_index_group_tab_click ', [`id=${e.currentTarget.dataset.id}`])
+    if (e) {
+      track(this, 'h5_tcpa_index_group_tab_click ', [`id=${e.currentTarget.dataset.id}`])
+    }
     this.setData({
       currentCursorQun: 0,
       noMoreQun: false,
