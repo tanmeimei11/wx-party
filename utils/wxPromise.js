@@ -1,9 +1,9 @@
-const DOMAIN = 'https://activity.in66.com'
-// const DOMAIN = 'http://10.10.106.127:30929'
+// const DOMAIN = 'https://activity.in66.com'
+const DOMAIN = 'http://10.10.106.127:30929'
 var Promise = require('../lib/es6-promise');
 var mockConfig = require('../mock/mockConfig')
-var isMock = true
-// var isMock = false
+// var isMock = true
+var isMock = false
 var globalCode = ''
 var globalUserInfo = null
 var userInfo = null
@@ -16,6 +16,9 @@ function wxPromisify(fn) {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
       obj.success = function (res) {
+        if (res.data) {
+          resolve(res.data)
+        }
         resolve(res)
       }
       obj.fail = function (res) {
@@ -84,26 +87,26 @@ var loginSession = function (option) {
   return wxPromisify(wx.login)()
     .then(res => {
       console.log('get code')
+      console.log(res)
       code = res.code
       return wxPromisify(wx.getUserInfo)()
     })
     .then(res => {
       console.log('get userInfo')
       console.log('请求token')
-      // return wxPromisify(wx.request)({
-      //   url: DOMAIN + '/party/login',
-      //   data: {
-      //     code: code,
-      //     encryptedData: res.encryptedData,
-      //     iv: res.iv
-      //   }
-      // })
-      return require('../mock/login')
+      return wxPromisify(wx.request)({
+        url: DOMAIN + '/party/login',
+        data: {
+          code: code,
+          encryptedData: res.encryptedData,
+          iv: res.iv
+        }
+      })
     }).then((res) => {
-      console.log(res.data.succ)
-      if (res.data.succ && res.data.data) {
+      console.log(res)
+      if (res.succ && res.data) {
         console.log('拿到token')
-        wx.setStorageSync("token", res.data.data)
+        wx.setStorageSync("token", res.data)
         console.log('重新请求')
       }
       return '1'
