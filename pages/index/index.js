@@ -45,7 +45,7 @@ Page({
         return {
           title: 'in同城趴本周活动报名中，点击查看',
           desc: 'in同城趴，出门一起玩，认识新朋友',
-          path: '/pages/index/index'
+          path: '/pages/index/index?tab=2'
         }
       }
     }
