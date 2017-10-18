@@ -1,8 +1,9 @@
 <!--apply.wxml-->
-<view class=""></view>
 <view class="container">
-  <view class="c-title">请先填写信息</view>
+  <!-- 埋点 -->
+  <image src="{{trackSeed}}" style="width:0;height:0;" />
 
+  <view class="c-title">请先填写信息</view>
   <!-- 省市选择 -->
   <view class="c-line">
     <view class="triangle"></view>

@@ -1,5 +1,7 @@
 <!--detail.wxml-->
 <view class="container">
+  <!-- 埋点 -->
+  <image src="{{trackSeed}}" style="width:0;height:0;" />
 
   <!-- 详情页面swipe-->
   <swiper indicator-dots="{{indicatorDots}}" class="c-main-swiper" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
@@ -87,7 +89,7 @@
       <view class="s-title">{{headLine.title}}</view>
       <view class="s-qr" style="background-image:url({{actQrImg}})"></view>
       <view class="s-transmit s-btn">转发给好友
-        <button type="default" disabled="{{disabled}}" bindtap="default" open-type="share"> </button>
+        <button type="default" disabled="{{disabled}}" bindtap="transferTrack" open-type="share"> </button>
       </view>
       <view class="s-share-img s-btn" bindtap="compose">生成朋友圈分享图</view>
     </view>
@@ -98,9 +100,9 @@
     <view class="c-wrap c-book-wrap">
       <view class="s-close" bindtap="closeBookModal"></view>
       <view class="s-bottom-text">点击下方按钮联系小助手回复“报名”获取活动二维码</view>
-      <view class="s-bottom-btn">联系小助手
-         <contact-button type="default-dark" size="20" session-from="weapp"> 
-         </contact-button> 
+      <view class="s-bottom-btn" bindtap="contactTrack">联系小助手
+        <contact-button type="default-dark" size="20" session-from="weapp">
+        </contact-button>
       </view>
     </view>
   </view>

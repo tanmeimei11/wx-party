@@ -2,7 +2,6 @@
 const U_TRACK = 'http://stats1.jiuyan.info/onepiece/router.html'
 // const U_TRACK = 'http://10.10.109.253:8018/index.html'
 
-
 export default function track(app, seed, query = []) {
   // let img = new Image()
   // img.src = combineQuery(seed, query)
@@ -10,7 +9,7 @@ export default function track(app, seed, query = []) {
   console.log(trackSeed)
   app.setData({
     trackSeed: trackSeed
-  })  
+  })
 }
 
 export function combineQuery(seed, query = []) {
@@ -25,7 +24,7 @@ export function combineQuery(seed, query = []) {
     // `_s=${common.source}`,
     // `_v=${common.version}`,
     // `_ig=${common.query._ig || common.query.ig}`,
-    `_=${+new Date()}`
+    `_time=${+new Date()}`
   ]).join('&')
 }
 

@@ -6,8 +6,11 @@ let getLenStr = require('../../utils/util.js').getLenStr
 var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
+import track from '../../utils/track.js'
+
 Page({
   data: {
+    trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,
     autoplay: true,
     interval: 2000,
@@ -56,6 +59,7 @@ Page({
       imageUrl: this.data.transferImageUrl,
       success: function (res) {
         // 转发成功
+        track(this, 'h5_tcpa_active_transfer_succ', [`id=${this.data.id}`])
       },
       fail: function (res) {
         // 转发失败
@@ -72,6 +76,7 @@ Page({
       id: option.id || '10502'
     })
 
+
     if (option.prepage == 'apply') {
       this.setData({
         isShowBookModal: true
@@ -79,9 +84,12 @@ Page({
     }
 
     if (!option.notShowOther) {
+      track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
       this.setData({
         isShowOtherAct: true
       })
+    } else {
+      track(this, 'h5_tcpa_active_detail_entry_byindex', [`id=${this.data.id}`])
     }
 
     if (!this.data.userInfo) {
@@ -108,6 +116,12 @@ Page({
         }
       })
     }
+  },
+  transferTrack: function () {
+    track(this, 'h5_tcpa_active_transfer_friend', [`id=${this.data.id}`])
+  },
+  contactTrack: function () {
+    track(this, 'h5_tcpa_active_contact', [`id=${this.data.id}`])
   },
   getDescCollect: function (item) {
     var _desc = ''
@@ -157,6 +171,7 @@ Page({
     })
   },
   goBack: function () {
+    track(this, 'h5_tcpa_other_act')
     wx.redirectTo({
       url: '../index/index?tab=2'
     })
@@ -169,6 +184,7 @@ Page({
     return obj.str
   },
   openInviteModal: function () {
+    track(this, 'h5_tcpa_active_invite_click', [`id=${this.data.id}`])
     this.setData({
       isShowInviteModal: true
     })
@@ -179,11 +195,13 @@ Page({
     })
   },
   openSign: function () {
+    track(this, 'h5_tcpa_active_signup_click', [`id=${this.data.id}`])
     wx.redirectTo({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
   openBook: function () {
+    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`])
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       this.setData({
         isShowBookModal: true
@@ -211,6 +229,7 @@ Page({
     })
   },
   openBookModal: function () {
+    track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
     this.setData({
       isShowBookModal: true
     })
@@ -307,6 +326,7 @@ Page({
     wx.showLoading({
       title: '正在生成图片...',
     })
+    track(this, 'h5_tcpa_active_compose_click', [`id=${this.data.id}`])
     this.loadImages(this.data.images)
       .then(() => {
         console.log('loadimg finish')

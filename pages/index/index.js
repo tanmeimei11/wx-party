@@ -1,6 +1,6 @@
 const app = getApp()
 let util = require('../../utils/util.js')
-let request = util.wxRequest 
+let request = util.wxRequest
 // let request = require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
 Page({
@@ -15,13 +15,13 @@ Page({
     qunListLoaded: false,
     promoListLoaded: false,
     isJoinQun: false,
-    trackSeed: '',
+    trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_index_entry',
     joinQunQrcode: '',
     promoNum: 0,
     currentCursorQun: 0,
     currentCursorPromo: 0
   },
-  downloadQrcode: function() {
+  downloadQrcode: function () {
 
   },
   close: function (e) {
@@ -37,6 +37,7 @@ Page({
     }
   },
   joinQun: function (e) {
+    track(this, 'h5_tcpa_group_join', [`id=${this.data.id}`])
     // track(this, '------------------')
     this.setData({
       isJoinQun: true,
@@ -123,7 +124,7 @@ Page({
         for (let i = 0; i < res.data.list.length; i++) {
           res.data.list[i].end_time = null
           if (res.data.list[i].start_time && res.data.list[i].end_time) {
-          res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
+            res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
           } else {
             res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time))
           }
@@ -170,7 +171,7 @@ Page({
             noMoreQun: true
           })
         }
-        
+
         this.setData({
           qunList: this.data.qunList.concat(res.data.list),
           qunListLoaded: true,
