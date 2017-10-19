@@ -40,15 +40,17 @@
     <!-- 详细地址 -->
     <view class="s-line">
       <view class="title">详细地址</view>
-      <view class="m-text">{{infos.detailAddr}}</view>
+      <text class="m-text" decode="true" space="nbsp">{{infos.detailAddr}}</text>
     </view>
 
     <!-- 活动介绍 -->
     <view class="s-line">
       <view class="title">活动介绍</view>
-      <view class="m-text m-intro">{{tempIntro}}
-        <view class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</view>
+      <view class="m-text">
+        <text class="m-intro" decode="true">{{tempIntro}}</text>
+        <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
       </view>
+
     </view>
 
     <!-- 报名用户 -->
@@ -96,16 +98,7 @@
   </view>
 
   <!-- 报名弹窗 -->
-  <view class="c-modal" wx:if="{{isShowBookModal}}">
-    <view class="c-wrap c-book-wrap">
-      <view class="s-close" bindtap="closeBookModal"></view>
-      <view class="s-bottom-text">点击下方按钮联系小助手回复“<text class="join-txt">报名</text>”获取活动二维码</view>
-      <view class="s-bottom-btn" bindtap="contactTrack">联系小助手
-        <contact-button type="default-dark" size="20" session-from="weapp">
-        </contact-button>
-      </view>
-    </view>
-  </view>
+  <include src="../modals/contact.wxml" />
 
   <!-- canvas -->
   <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>

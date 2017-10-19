@@ -20,6 +20,7 @@ Page({
     region: ['浙江省', '杭州市', '西湖区'],
     birth: [],
     job: '',
+    originText: originText,
     regionText: originText.region,
     birthText: originText.birth,
     phoneNum: '',

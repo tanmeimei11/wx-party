@@ -16,19 +16,25 @@ Page({
     promoListLoaded: false,
     loadingMoreQun: false,
     loadingMorePromo: false,
-    isJoinQun: false,
+    isJoin: false,
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_index_entry',
     promoNum: 0,
     currentCursorQun: 0,
-    currentCursorPromo: 0
+    currentCursorPromo: 0,
+    joinTips: [
+      '1、点击下方按钮联系小助手',
+      '2、回复“加群”，获取二维码链接',
+      '3、选择对应群二维码，长按识别',
+      '4、小助手邀请你进群'
+    ]
   },
-  downloadQrcode: function () { },
+  downloadQrcode: function () {},
   contactTack: function () {
     track(this, 'h5_tcpa_index_contact')
   },
-  close: function (e) {
+  closeJoin: function (e) {
     this.setData({
-      isJoinQun: false
+      isJoin: false
     })
   },
   setShare: function (tab) {
@@ -61,7 +67,7 @@ Page({
     console.log(e)
     track(this, 'h5_tcpa_index_group_join', [`id=${e.currentTarget.dataset.id}`])
     this.setData({
-      isJoinQun: true
+      isJoin: true
     })
   },
   jumpToDetail: function (e) {

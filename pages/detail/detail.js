@@ -21,7 +21,7 @@ Page({
     userInfo: app.globalData.userInfo,
     isShowIntroAll: false,
     isShowInviteModal: false,
-    isShowBookModal: false,
+    isJoin: false,
     notShowOther: false,
     isOrgize: false,
     actStatus: '0',
@@ -29,6 +29,12 @@ Page({
     transferImageUrl: '',
     // bookQrImg: '',
     actQrImg: '',
+    joinTips: [
+      '1、点击下方按钮联系小助手',
+      '2、回复“报名”，获取二维码链接',
+      '3、选择对应活动二维码，长按识别',
+      '4、进群，报名成功'
+    ],
     images: {
       head: {
         src: "",
@@ -79,7 +85,7 @@ Page({
 
     if (option.prepage == 'apply') {
       this.setData({
-        isShowBookModal: true
+        isJoin: true
       })
     }
 
@@ -204,7 +210,7 @@ Page({
     track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`])
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       this.setData({
-        isShowBookModal: true
+        isJoin: true
       })
       return
     }
@@ -217,7 +223,7 @@ Page({
       if (res.succ) {
         if (res.data == '1') {
           this.setData({
-            isShowBookModal: true,
+            isJoin: true,
             bookStatus: '1'
           })
           return
@@ -231,12 +237,12 @@ Page({
   openBookModal: function () {
     track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
     this.setData({
-      isShowBookModal: true
+      isJoin: true
     })
   },
-  closeBookModal: function () {
+  closeJoin: function () {
     this.setData({
-      isShowBookModal: false
+      isJoin: false
     })
   },
   getOneQrByRandom: function (arr) {
@@ -314,11 +320,8 @@ Page({
       }
 
       // 画头上的背景
-      ctx.save()
-      // console.log(x, y, clipW, clipH)
       ctx.drawImage(res.path, x, y, clipW, clipH)
       ctx.draw()
-      ctx.restore()
     })
   },
   compose: function () {
