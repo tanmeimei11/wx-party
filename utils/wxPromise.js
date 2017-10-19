@@ -1,9 +1,9 @@
 // 本地
 let DOMAIN = 'http://10.10.106.127:30929'
 // qa
-DOMAIN = 'https://qaactivity.in66.com'
+DOMAIN = 'http://qaactivity.in66.com'
 let isMock = false
-// const DOMAIN = 'http://activity.in66.com:30929'
+// DOMAIN = 'https://activity.in66.com:30929'
 // let isMock = true
 let debug = true
 let mockConfig = require('../mock/mockConfig');
@@ -110,10 +110,9 @@ var loginSession = function (option) {
 
 module.exports = {
   mockConfig,
-  mockConfig,
-  DOMAIN: DOMAIN,
-  isMock: isMock,
-  requestPromisify: wxPromisify(request),
-  wxPromisify: wxPromisify,
-  userInfo: userInfo
+  DOMAIN,
+  isMock,
+  wxPromisify,
+  userInfo,
+  requestPromisify: wxPromisify(request)
 }

@@ -16,13 +16,6 @@
           <view class="join" bindtap='joinQun' data-id="{{item.city_social_id}}">加入</view>
         </view>
         <view class="qun-tags">
-          <!-- <view class="tag front2">哈哈</view>
-          <view class="tag front2">哈哈</view>
-          <view class="tag front2">哈哈哈哈哈哈哈哈哈哈哈哈</view>
-          <view class="tag front2">哈哈</view>
-          <view class="tag front2">哈哈</view>
-          <view class="tag front2">哈哈</view> -->
-
           <block wx:for="{{item.tag}}" wx:key="*this" wx:for-item="tag" wx:for-index="idx">
             <view class="tag {{ idx == 0 || idx == 1 ? 'front2' : ''}}">
               {{ tag }}

@@ -240,16 +240,15 @@ let getOneQrByRandom = function (arr) {
   return arr[_idx]
 }
 module.exports = {
-
-  debug: debug,
-  getOneQrByRandom: getOneQrByRandom,
-  downLoadInternetImage: downLoadInternetImage,
-  wxRequest: wxRequest,
-  wxInit: wxInit,
-  wxCheck: wxCheck,
-  wxLogin: wxLogin,
-  getTimeObj: getTimeObj,
-  formatTime: formatTime,
-  getLenStr: getLenStr,
-  formatTimeToTime: formatTimeToTime
+  debug,
+  getOneQrByRandom,
+  downLoadInternetImage,
+  wxRequest,
+  wxInit,
+  wxCheck,
+  wxLogin,
+  getTimeObj,
+  formatTime,
+  getLenStr,
+  formatTimeToTime
 }
