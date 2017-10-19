@@ -65,9 +65,32 @@ Page({
   },
   joinQun: function (e) {
     console.log(e)
-    track(this, 'h5_tcpa_index_group_join', [`id=${e.currentTarget.dataset.id}`])
+    var _qunId = e.currentTarget.dataset.id
+    track(this, 'h5_tcpa_index_group_join', [`id=${_qunId}`])
     this.setData({
       isJoin: true
+    })
+    // 加群人数＋1
+    let params = {
+      url: '/citysocial/join',
+      data: {
+        id: _qunId,
+      }
+    }
+    request(params).then((res) => {
+      if (res.succ) {
+        // 遍历群
+        var _qun = this.data.qunList
+        _qun.forEach((item, idx) => {
+          if (item.city_social_id == _qunId) {
+            item.count = parseInt(item.count) + 1
+          }
+        })
+        this.setData({
+          qunList: _qun
+        })
+
+      }
     })
   },
   jumpToDetail: function (e) {

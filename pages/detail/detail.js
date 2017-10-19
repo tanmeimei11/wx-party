@@ -250,11 +250,14 @@ Page({
     var _idx = Math.floor(Math.random() * (len - 1))
     return arr[_idx].assistant_url
   },
+  changeHttpUrl: function (httpUrl) {
+    return httpUrl.replace(/^http:\/\//, 'https://')
+  },
   getActiveInfo: function (data) {
-    this.data.images.logo.src = data.share_qrcode_url
+    this.data.images.logo.src = this.changeHttpUrl(data.share_qrcode_url)
     // this.data.images.logo.src = 'https://inimg01.jiuyan.info/in/2017/10/15/7F0C1C09-F71E-F0D9-45E8-A00C102CF065.jpg'
     if (data.act_url.length) {
-      this.data.images.head.src = data.act_url[0]
+      this.data.images.head.src = this.changeHttpUrl(data.act_url[0])
     }
     this.setData({
       imgUrls: data.act_url,
