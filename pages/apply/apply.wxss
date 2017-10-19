@@ -21,6 +21,11 @@
   position: relative;
 }
 
+.c-line input,
+.c-line picker.active {
+  color: #333333;
+}
+
 .c-line picker {
   position: absolute;
   top: 0;

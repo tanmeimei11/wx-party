@@ -7,7 +7,7 @@
   <!-- 省市选择 -->
   <view class="c-line">
     <view class="triangle"></view>
-    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" class="{{regionText!=originText.region ? 'active':''}}">
       <view class="picker">
         {{regionText}}
       </view>
@@ -17,7 +17,7 @@
   <!-- 生日选择 -->
   <view class="c-line">
     <view class="triangle"></view>
-    <picker mode="date" bindchange="bindDateChange" value="{{birth}}">
+    <picker mode="date" bindchange="bindDateChange" value="{{birth}}" class="{{birthText != originText.birth ? 'active':''}}">
       <view class="picker" end="{{endTime}}">
         {{birthText}}
       </view>

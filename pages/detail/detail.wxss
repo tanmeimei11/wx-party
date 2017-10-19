@@ -199,7 +199,7 @@
 }
 
 .c-infos .m-intro {
-  display: -webkit-box;
+  word-wrap: break-word;
 }
 
 .mm-user:last-child {
@@ -341,8 +341,9 @@
   font-size: 28rpx;
 }
 
-.s-bottom-btn {
+.c-book-wrap .s-bottom-btn {
   position: relative;
+  margin-top: 50rpx;
 }
 
 .c-book-wrap .s-qun {

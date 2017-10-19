@@ -118,6 +118,22 @@
   background-position: center;
 }
 
+.c-wrap .s-title {
+  text-align: center;
+  color: #333333;
+  font-size: 36rpx;
+  margin-bottom: 40rpx;
+}
+
+.c-wrap .s-list-text>view {
+  padding-left: 52rpx;
+  margin: 5rpx 0;
+  text-align: left;
+  color: #666666;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+}
+
 .c-wrap .s-top-text {
   text-align: center;
   color: #333333;
@@ -132,6 +148,11 @@
   margin: 0 auto;
 }
 
+.c-wrap.c-book-wrap .s-bottom-btn {
+  position: relative;
+  margin-top: 50rpx;
+}
+
 .c-wrap .s-bottom-btn {
   border-top: solid 1rpx #E0E0E0;
   text-align: center;
@@ -143,10 +164,10 @@
 
 contact-button {
   position: absolute;
-  bottom: 0;
-  transform: scale(10, 3);
+  bottom: 25rpx;
+  left: 46%;
+  transform: scale(12, 2.5);
   opacity: 0;
-  margin-left: -120rpx;
   /* padding: 25rpx 0 */
 }
 
