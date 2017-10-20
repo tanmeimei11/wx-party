@@ -38,6 +38,9 @@
   <view class="c-tips">*手机号码不会对其他用户显示</view>
 
   <!-- 完成 -->
-  <view class="c-finish {{isVerify ? 'active':''}}" bindtap="verify">完成</view>
+  <view class="c-finish {{isVerify ? 'active':''}}" bindtap="verify">完成
+    <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+    </contact-button>
+  </view>
 
 </view>

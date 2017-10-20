@@ -1,4 +1,5 @@
-<scroll-view scroll-y="true" class="container " bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" style="height:{{scrollHeight}}px;">
+<scroll-view scroll-y="true" class="container " bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"
+  style="height:{{scrollHeight}}px;">
   <view class="list">
     <block wx:for="{{qunList}}" wx:key="city_social_id">
       <view class="qun" index="{{index}}" id="{{item.city_social_id}}">
@@ -13,7 +14,10 @@
               <text class="num">{{ item.count }}人</text>
             </view>
           </view>
-          <view class="join" bindtap='joinQun' data-id="{{item.city_social_id}}">加入</view>
+          <view class="join" bindtap='joinQun' data-id="{{item.city_social_id}}">加入
+            <contact-button type="default-dark" size="20" session-from="group_{{item.city_social_id}}">
+            </contact-button>
+          </view>
         </view>
         <view class="qun-tags">
           <block wx:for="{{item.tag}}" wx:key="*this" wx:for-item="tag" wx:for-index="idx">
@@ -24,6 +28,6 @@
         </view>
       </view>
     </block>
-    <include src="lowerLoading"/>
+    <include src="lowerLoading" />
   </view>
 </scroll-view>

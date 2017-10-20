@@ -16,7 +16,6 @@ Page({
     promoListLoaded: false,
     loadingMoreQun: false,
     loadingMorePromo: false,
-    isJoin: false,
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_index_entry',
     promoNum: 0,
     currentCursorQun: 0,
@@ -31,11 +30,6 @@ Page({
   downloadQrcode: function () {},
   contactTack: function () {
     track(this, 'h5_tcpa_index_contact')
-  },
-  closeJoin: function (e) {
-    this.setData({
-      isJoin: false
-    })
   },
   setShare: function (tab) {
     if (tab == 1) {
@@ -64,12 +58,8 @@ Page({
     }
   },
   joinQun: function (e) {
-    console.log(e)
     var _qunId = e.currentTarget.dataset.id
     track(this, 'h5_tcpa_index_group_join', [`id=${_qunId}`])
-    this.setData({
-      isJoin: true
-    })
     // 加群人数＋1
     let params = {
       url: '/citysocial/join',
@@ -78,7 +68,7 @@ Page({
       }
     }
     request(params).then((res) => {
-      if (res.succ) {
+      if (res.succ && res.data == '1') {
         // 遍历群
         var _qun = this.data.qunList
         _qun.forEach((item, idx) => {
@@ -89,7 +79,6 @@ Page({
         this.setData({
           qunList: _qun
         })
-
       }
     })
   },

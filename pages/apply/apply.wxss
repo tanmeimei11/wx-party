@@ -60,6 +60,8 @@
   line-height: 98rpx;
   margin-top: 70px;
   text-align: center;
+  position: relative;
+  overflow: hidden
 }
 
 .c-finish.active {
@@ -76,4 +78,8 @@
   border-left: 10rpx solid transparent;
   border-right: 10rpx solid transparent;
   border-top: 14rpx solid #333333;
+}
+
+contact-button {
+  transform: scale(17, 4);
 }

@@ -40,14 +40,14 @@
     <!-- 详细地址 -->
     <view class="s-line">
       <view class="title">详细地址</view>
-      <text class="m-text" decode="true" space="nbsp">{{infos.detailAddr}}</text>
+      <text class="m-text" space="nbsp">{{infos.detailAddr}}</text>
     </view>
 
     <!-- 活动介绍 -->
     <view class="s-line">
       <view class="title">活动介绍</view>
       <view class="m-text">
-        <text class="m-intro" decode="true">{{tempIntro}}</text>
+        <text class="m-intro">{{tempIntro}}</text>
         <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
       </view>
 
@@ -77,8 +77,17 @@
     <block wx:else>
       <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
       <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
-      <view class="s-btn btn-sign" wx:elif="{{bookStatus == '0'}}" bindtap="openBook">立即报名</view>
-      <view class="s-btn btn-sign" wx:elif="{{bookStatus != '0'}}" bindtap="openBookModal">已报名</view>
+      <block wx:elif="{{bookStatus == '0'}}">
+        <view class="s-btn btn-sign btn-sign-again" wx:if="{{isNeedInfo == '0'}}" bindtap="openBook">立即报名
+          <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+          </contact-button>
+        </view>
+        <view class="s-btn btn-sign" wx:else bindtap="redirectApply">立即报名 </view>
+      </block>
+      <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" bindtap="openBookTrack">已报名
+        <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+        </contact-button>
+      </view>
     </block>
   </view>
 
@@ -96,9 +105,6 @@
       <view class="s-share-img s-btn" bindtap="compose">生成朋友圈分享图</view>
     </view>
   </view>
-
-  <!-- 报名弹窗 -->
-  <include src="../modals/contact.wxml" />
 
   <!-- canvas -->
   <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>

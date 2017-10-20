@@ -6,7 +6,9 @@
   justify-content: center;
 }
 
+
 /**qunList**/
+
 .qun {
   box-sizing: border-box;
   display: flex;
@@ -76,6 +78,8 @@
   line-height: 60rpx;
   text-align: center;
   margin-left: 25rpx;
+  position: relative;
+  overflow: hidden
 }
 
 .total-num {
@@ -86,6 +90,7 @@
   color: #666;
   align-items: center;
 }
+
 .num {
   display: block;
   margin-top: 5rpx;
@@ -100,12 +105,12 @@
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
-  padding-top: 15rpx; 
+  padding-top: 15rpx;
   flex-wrap: wrap;
 }
 
 .tag {
-  padding-top:4rpx;
+  padding-top: 4rpx;
   border: 1px solid #fb91c9;
   color: #fb91c9;
   border-radius: 6rpx;
@@ -134,7 +139,6 @@
 }
 
 
-
 /**promoList**/
 
 .promo {
@@ -159,12 +163,14 @@
   background-position: center;
   background-size: cover;
 }
+
 .promo-cover {
   width: 670rpx;
   height: 200rpx;
   position: absolute;
   bottom: 0;
 }
+
 .promo-info {
   position: absolute;
   bottom: 30rpx;
@@ -287,17 +293,21 @@
   margin-top: 50rpx;
   margin-bottom: 50rpx;
 }
+
 .s-qun {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
 .c-wrap .s-bottom-text {
-    /* width: 300rpx; */
+  /* width: 300rpx; */
 }
+
 .c-modal .c-wrap {
   padding-bottom: 0;
 }
+
 .saveQrcode {
   margin-top: 10rpx;
   width: 100%;
@@ -308,6 +318,7 @@
   line-height: 100rpx;
   text-align: center;
 }
+
 .c-modal .c-book-wrap {
   padding: 50rpx 0;
   padding-top: 43prx;
@@ -318,6 +329,11 @@
   transform: translate(0, -50%);
   margin: 0 auto;
 }
- .c-wrap .s-bottom-text {
+
+.c-wrap .s-bottom-text {
   font-size: 28rpx;
+}
+
+contact-button {
+  transform: scale(5, 2);
 }

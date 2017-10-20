@@ -66,6 +66,7 @@ let wxLoginPromise = wxPromisify(wx.login)
 let wxCheckSessionPromise = wxPromisify(wx.checkSession)
 let wxGetUserInfoPromise = wxPromisify(wx.getUserInfo)
 let DOMAIN = wxP.DOMAIN
+console.log(wxP.DOMAIN)
 let isMock = wxP.isMock
 let debug = true
 let mockConfig = wxP.mockConfig
@@ -154,6 +155,8 @@ let wxLogin = function (next) {
     .then(res => {
       wxLog('===== wxRequestPromise login')
       wxLog(res)
+      wxLog('===== token')
+      wxLog(res.data)
       if (res.succ && res.data) {
         wx.setStorageSync("token", res.data)
       }

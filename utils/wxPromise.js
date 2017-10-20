@@ -1,10 +1,11 @@
 // 本地
 let DOMAIN = 'http://10.10.106.127:30929'
 // qa
-DOMAIN = 'http://qaactivity.in66.com'
-let isMock = false
+DOMAIN = 'https://activity.in66.com'
+// DOMAIN = 'http://qaactivity.in66.com'
 // DOMAIN = 'https://activity.in66.com:30929'
 // let isMock = true
+let isMock = false
 let debug = true
 let mockConfig = require('../mock/mockConfig');
 var Promise = require('../lib/es6-promise');

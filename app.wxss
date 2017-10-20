@@ -1,176 +1,177 @@
-/**app.wxss**/
+  /**app.wxss**/
 
-.hide {
-  display: none;
-}
+  .hide {
+    display: none;
+  }
 
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: space-between; */
-  padding: 0;
-  box-sizing: border-box;
-}
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-.lower-loading {
-  display: flex;
-  height: 100rpx;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: 22rpx;
-  color: #B0B0B0;
-  letter-spacing: 0;
-}
+  .lower-loading {
+    display: flex;
+    height: 100rpx;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 22rpx;
+    color: #B0B0B0;
+    letter-spacing: 0;
+  }
 
-.lower-loading-txt {
-  margin-left: 12rpx;
-}
+  .lower-loading-txt {
+    margin-left: 12rpx;
+  }
 
-.lower-loading-gif {
-  width: 48rpx;
-  height: 48rpx;
-}
+  .lower-loading-gif {
+    width: 48rpx;
+    height: 48rpx;
+  }
 
-.list-tabs {
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100rpx;
-  bottom: 0;
-  left: 0;
-  background: #FFFFFF;
-  box-shadow: 0 -2rpx 10rpx 0 rgba(0, 0, 0, 0.10);
-  font-size: 20rpx;
-  color: #666666;
-  letter-spacing: 0;
-}
+  .list-tabs {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100rpx;
+    bottom: 0;
+    left: 0;
+    background: #FFFFFF;
+    box-shadow: 0 -2rpx 10rpx 0 rgba(0, 0, 0, 0.10);
+    font-size: 20rpx;
+    color: #666666;
+    letter-spacing: 0;
+  }
 
-.list-tabs .tab-1,
-.list-tabs .tab-2 {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
+  .list-tabs .tab-1,
+  .list-tabs .tab-2 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
 
-.promo-num {
-  position: absolute;
-  left: 51%;
-  top: 4rpx;
-  background: #FF4338;
-  border-radius: 100rpx;
-  font-size: 22rpx;
-  line-height: 22rpx;
-  color: #FFFFFF;
-  padding: 5rpx 10rpx;
-}
+  .promo-num {
+    position: absolute;
+    left: 51%;
+    top: 4rpx;
+    background: #FF4338;
+    border-radius: 100rpx;
+    font-size: 22rpx;
+    line-height: 22rpx;
+    color: #FFFFFF;
+    padding: 5rpx 10rpx;
+  }
 
-.list-tabs .active {
-  color: #FF4338;
-}
+  .list-tabs .active {
+    color: #FF4338;
+  }
 
-.list-tabs image {
-  margin-top: 9rpx;
-  margin-bottom: 8rpx;
-  width: 54rpx;
-  height: 54rpx;
-}
+  .list-tabs image {
+    margin-top: 9rpx;
+    margin-bottom: 8rpx;
+    width: 54rpx;
+    height: 54rpx;
+  }
+  /* 弹窗 */
 
+  .c-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 
-/* 弹窗 */
+  .c-modal .c-wrap {
+    width: 560rpx;
+    background-color: #fff;
+    margin: 130rpx auto 0;
+    padding: 60rpx 0;
+    border-radius: 8rpx;
+    position: relative;
+  }
 
-.c-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+  .c-wrap .s-close {
+    width: 44rpx;
+    height: 44rpx;
+    position: absolute;
+    right: 10rpx;
+    top: 10rpx;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/1C51CF46-3F39-78F7-1972-C33785B2D124.jpg);
+    background-repeat: no-repeat;
+    background-size: 28rpx 28rpx;
+    background-position: center;
+  }
 
-.c-modal .c-wrap {
-  width: 560rpx;
-  background-color: #fff;
-  margin: 130rpx auto 0;
-  padding: 60rpx 0;
-  border-radius: 8rpx;
-  position: relative;
-}
+  .c-wrap .s-title {
+    text-align: center;
+    color: #333333;
+    font-size: 36rpx;
+    margin-bottom: 40rpx;
+  }
 
-.c-wrap .s-close {
-  width: 44rpx;
-  height: 44rpx;
-  position: absolute;
-  right: 10rpx;
-  top: 10rpx;
-  margin: 0 auto;
-  border-radius: 50%;
-  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/1C51CF46-3F39-78F7-1972-C33785B2D124.jpg);
-  background-repeat: no-repeat;
-  background-size: 28rpx 28rpx;
-  background-position: center;
-}
+  .c-wrap .s-list-text>view {
+    padding-left: 52rpx;
+    margin: 5rpx 0;
+    text-align: left;
+    color: #666666;
+    font-size: 30rpx;
+    letter-spacing: 2rpx;
+  }
 
-.c-wrap .s-title {
-  text-align: center;
-  color: #333333;
-  font-size: 36rpx;
-  margin-bottom: 40rpx;
-}
+  .c-wrap .s-top-text {
+    text-align: center;
+    color: #333333;
+    font-size: 36prx;
+  }
 
-.c-wrap .s-list-text>view {
-  padding-left: 52rpx;
-  margin: 5rpx 0;
-  text-align: left;
-  color: #666666;
-  font-size: 30rpx;
-  letter-spacing: 2rpx;
-}
+  .c-wrap .s-bottom-text {
+    color: #888888;
+    font-size: 24rpx;
+    width: 400rpx;
+    text-align: center;
+    margin: 0 auto;
+  }
 
-.c-wrap .s-top-text {
-  text-align: center;
-  color: #333333;
-  font-size: 36prx;
-}
+  .c-wrap.c-book-wrap .s-bottom-btn {
+    position: relative;
+    margin-top: 50rpx;
+  }
 
-.c-wrap .s-bottom-text {
-  color: #888888;
-  font-size: 24rpx;
-  width: 400rpx;
-  text-align: center;
-  margin: 0 auto;
-}
+  .c-wrap .s-bottom-btn {
+    border-top: solid 1rpx #E0E0E0;
+    text-align: center;
+    margin-top: 31rpx;
+    padding: 25rpx 0;
+    font-size: 36rpx;
+    color: #FF4338;
+  }
 
-.c-wrap.c-book-wrap .s-bottom-btn {
-  position: relative;
-  margin-top: 50rpx;
-}
+  .join-txt {
+    color: red;
+  }
 
-.c-wrap .s-bottom-btn {
-  border-top: solid 1rpx #E0E0E0;
-  text-align: center;
-  margin-top: 31rpx;
-  padding: 25rpx 0;
-  font-size: 36rpx;
-  color: #FF4338;
-}
+  .join {
+    position: relative;
+  }
 
-contact-button {
-  position: absolute;
-  bottom: 25rpx;
-  left: 46%;
-  transform: scale(12, 2.5);
-  opacity: 0;
-  /* padding: 25rpx 0 */
-}
-
-.join-txt {
-  color: red;
-}
+  contact-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+    opacity: 0;
+  }

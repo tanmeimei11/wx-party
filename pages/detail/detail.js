@@ -79,15 +79,9 @@ Page({
 
     // 取页面上的id
     this.setData({
-      id: option.id || '10601'
+      id: option.id || '11001',
+      sessionFrom: `activity_${option.id}`,
     })
-
-
-    if (option.prepage == 'apply') {
-      this.setData({
-        isJoin: true
-      })
-    }
 
     if (!option.notShowOther) {
       track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
@@ -131,7 +125,9 @@ Page({
   },
   getDescCollect: function (item) {
     var _desc = ''
-    item.age && (_desc += `${item.age}岁`)
+    if (item.age && item.age != 0) {
+      _desc += `${item.age}岁`
+    }
     if (item.city) {
       _desc += ` ${item.city}`
       item.district && (_desc += `.${item.district}`)
@@ -187,7 +183,7 @@ Page({
     this.setData({
       isShowIntroAll: obj.all ? false : true
     })
-    return obj.str
+    return obj.str.replace(/\\n/g, '\n')
   },
   openInviteModal: function () {
     track(this, 'h5_tcpa_active_invite_click', [`id=${this.data.id}`])
@@ -209,35 +205,28 @@ Page({
   openBook: function () {
     track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`])
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
-      this.setData({
-        isJoin: true
-      })
       return
     }
+
     requestPromisify({
       url: "/activity/join",
       data: {
         id: this.data.id
       }
     }).then((res) => {
-      if (res.succ) {
-        if (res.data == '1') {
-          this.setData({
-            isJoin: true,
-            bookStatus: '1'
-          })
-          return
-        }
-        wx.redirectTo({
-          url: `../apply/apply?prepage=detail&id=${this.data.id}`
+      if (res.succ && res.data == '1') {
+        this.setData({
+          bookStatus: '1'
         })
       }
     })
   },
-  openBookModal: function () {
+  openBookTrack: function () {
     track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
-    this.setData({
-      isJoin: true
+  },
+  redirectApply: function () {
+    wx.redirectTo({
+      url: `../apply/apply?prepage=detail&id=${this.data.id}`
     })
   },
   closeJoin: function () {
@@ -254,6 +243,7 @@ Page({
     return httpUrl.replace(/^http:\/\//, 'https://')
   },
   getActiveInfo: function (data) {
+    console.log(data.share_qrcode_url)
     this.data.images.logo.src = this.changeHttpUrl(data.share_qrcode_url)
     // this.data.images.logo.src = 'https://inimg01.jiuyan.info/in/2017/10/15/7F0C1C09-F71E-F0D9-45E8-A00C102CF065.jpg'
     if (data.act_url.length) {
@@ -269,18 +259,18 @@ Page({
         sAddr: data.city_district,
         time: formatTimeToTime(data.start_time, data.end_time),
         detailAddr: data.act_location,
-        intro: data.act_desc
+        intro: data.act_desc.replace(/\\n/g, '\n')
       },
       tempIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joiners.map(this.getDescCollect),
-      // bookQrImg: this.getOneQrByRandom(data.assistants),
       actQrImg: data.share_qrcode_url,
       otherAct: `in同城趴更多${data.other_act_count==0 ? "":`${data.other_act_count}个`}活动正在报名中`,
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
       actStatus: data.act_status,
-      transferImageUrl: data.act_url[0]
+      transferImageUrl: data.act_url[0],
+      isNeedInfo: data.is_need_info
     })
   },
   loadImages: function (images) {

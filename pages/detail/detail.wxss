@@ -8,6 +8,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
+  font-size: 0;
   height: 100rpx;
   width: 100%;
   font-size: 0;
@@ -31,12 +32,18 @@
   display: inline-block;
   text-align: center;
   color: #333333;
+  height: 100%;
   line-height: 100rpx;
+  vertical-align: middle;
 }
 
 .c-bottom-nav .s-btn.btn-sign {
   background-color: #FF4338;
   color: #fff;
+}
+
+.c-bottom-nav .s-btn.btn-sign-again {
+  position: relative;
 }
 
 .c-main-swiper {
@@ -353,4 +360,12 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+
+.btn-sign-again {
+  overflow: hidden
+}
+
+.btn-sign-again contact-button {
+  transform: scale(10, 3);
 }

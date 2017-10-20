@@ -26,7 +26,7 @@ module.exports = {
       "creator_name": "犀牛",
       "start_time": 1507651200000,
       "end_time": 1507737600000,
-      "join_status": "1", //0:未参与 1:已参与  2:已签到
+      "join_status": "0", //0:未参与 1:已参与  2:已签到
       "joiners": [{
           "age": "11",
           "avatar_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
@@ -44,8 +44,10 @@ module.exports = {
           "work": "程序员"
         }
       ],
+      "share_qrcode_url": "http://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
       "other_act_count": "61",
       "act_qrcode_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
+      "is_need_info": 0
     },
     "timestamp": "1508137733"
   }

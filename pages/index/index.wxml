@@ -1,4 +1,4 @@
-  <!-- <contact-button 
+<!-- <contact-button 
   type="default-dark" 
   size="20"
   session-from="weapp"
@@ -12,19 +12,19 @@
   <image src="/images/tab2.png" class="icon-person hide"></image>
   <image src="/images/tab2-active.png" class="icon-person hide"></image>
   <view class="tab-1" bindtap="switchTab1">
-    <image src="/images/tab1-active.png" class="icon-person"  wx:if="{{currentList == 'qunList'}}"></image>
+    <image src="/images/tab1-active.png" class="icon-person" wx:if="{{currentList == 'qunList'}}"></image>
     <image src="/images/tab1.png" class="icon-person" wx:else></image>
     <text class="{{ currentList == 'qunList'? 'active' : ''}}">同城群</text>
   </view>
   <view class="tab-2" bindtap="switchTab2">
     <image src="/images/tab2-active.png" class="icon-person" wx:if="{{currentList == 'promoList'}}"></image>
-    <image src="/images/tab2.png" class="icon-person"  wx:else></image>
+    <image src="/images/tab2.png" class="icon-person" wx:else></image>
     <text class="promo-num" wx-if="{{!promoListLoaded && promoNum != 0}}">{{promoNum}}</text>
-    <text class="{{ currentList == 'promoList'? 'active' : ''}}" >活动</text>
+    <text class="{{ currentList == 'promoList'? 'active' : ''}}">活动</text>
   </view>
 </view>
- <loading hidden="{{hidden}}">加载中...</loading> 
-<include src="../modals/contact.wxml" />
+<loading hidden="{{hidden}}">加载中...</loading>
+<!-- <include src="../modals/contact.wxml" /> -->
 
 <!-- <view class="c-modal" wx:if="{{ isJoinQun }}">
   <view class="c-wrap c-book-wrap">

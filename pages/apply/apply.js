@@ -38,7 +38,8 @@ Page({
 
     if (option.id) {
       this.setData({
-        id: option.id
+        id: option.id,
+        sessionFrom: `activity_${option.id}`
       })
     }
 
@@ -140,7 +141,9 @@ Page({
       }
     }).then((res) => {
       if (res.succ) {
-        // this.toastSucc('提交成功')
+        wx.redirectTo({
+          url: `../${this.data.prepage}/${this.data.prepage}?prepage=apply&id=${this.data.id}&notShowOther=true`
+        })
         return requestPromisify({
           url: "/activity/join",
           data: {
