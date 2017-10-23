@@ -234,11 +234,6 @@ Page({
       isJoin: false
     })
   },
-  getOneQrByRandom: function (arr) {
-    var len = arr.length;
-    var _idx = Math.floor(Math.random() * (len - 1))
-    return arr[_idx].assistant_url
-  },
   changeHttpUrl: function (httpUrl) {
     return httpUrl.replace(/^http:\/\//, 'https://')
   },

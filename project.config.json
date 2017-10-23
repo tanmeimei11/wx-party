@@ -44,6 +44,12 @@
 					"name": "sign",
 					"pathName": "pages/sign/sign",
 					"query": "id=1233"
+				},
+				{
+					"id": -1,
+					"name": "launch",
+					"pathName": "pages/launch/launch",
+					"query": ""
 				}
 			]
 		},

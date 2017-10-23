@@ -8,10 +8,8 @@ DOMAIN = 'https://activity.in66.com'
 let isMock = false
 let debug = true
 let mockConfig = require('../mock/mockConfig');
-var Promise = require('../lib/es6-promise');
+// var Promise = require('../lib/es6-promise');
 
-var globalCode = ''
-var globalUserInfo = null
 var userInfo = null
 var code = ''
 
@@ -35,62 +33,58 @@ function wxPromisify(fn) {
   }
 }
 
-var requestMock = (option) => {
-  // 添加DOMAIN
-  if (!/^http/.test(option.url)) {
-    option.url = DOMAIN + option.url
-  }
-  if (isMock) {
-    console.log('===== Begin mock request =====')
-    console.log(option)
-    console.log(option.data)
-    console.log('============ End =============')
-    option.success(require('../mock/' + mockConfig[option.url]))
-    return
-  }
-  wx.request(option)
-}
-
 var request = (option) => {
-  checkLoginSession(option).then(() => {
-    // 添加token
-    var _token = wx.getStorageSync('token')
-    if (_token) {
-      if (!option.data) {
-        option.data = {}
-      }
-      option.data.privateKey = _token
+  console.log('-------before request------')
+  checkLoginSession(option).then((token) => {
+    console.log(token)
+    console.log('-------start request------')
+    if (!option.data) {
+      option.data = {}
     }
-    // option.data.privateKey = '8d3c12936d21114f3fe218af9bf9ce76'
-    requestMock(option)
-  }, () => {
-    loginSession(option)
+    option.data.privateKey = token
+    // 添加DOMAIN
+    if (!/^http/.test(option.url)) {
+      option.url = DOMAIN + option.url
+    }
+    if (isMock) {
+      console.log('===== Begin mock request =====')
+      console.log(option.data)
+      console.log('============ End =============')
+      option.success(require('../mock/' + mockConfig[option.url]))
+      return
+    }
+    wx.request(option)
   })
 }
 
-// 检查登陆态
+// 检查登陆态和token
 var checkLoginSession = function (option) {
+  console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
     .then((res) => {
       if (!wx.getStorageSync('token')) {
-        return loginSession(option)
+        console.log('-------登录------')
+        return wxLoginSession()
       } else {
-        return wxPromisify(wx.getUserInfo)({
-          lang: 'zh_CN'
-        })
+        console.log('-------获取 token------')
+        return wx.getStorageSync('token')
       }
     }, () => {
-      loginSession(option)
+      wxLoginSession(option)
     })
 }
+
 // 授权登录
-var loginSession = function (option) {
+var wxLoginSession = function (option) {
+  console.log('-------获取 code------')
   return wxPromisify(wx.login)()
     .then(res => {
       code = res.code
+      console.log('-------获取 UserInfo------')
       return wxPromisify(wx.getUserInfo)()
     })
     .then(res => {
+      console.log('-------login request------')
       return wxPromisify(wx.request)({
         url: DOMAIN + '/party/login',
         data: {
@@ -101,9 +95,14 @@ var loginSession = function (option) {
       })
     }).then((res) => {
       if (res.succ && res.data) {
+        console.log('-------login succ------')
         wx.setStorageSync("token", res.data)
+        if (option) {
+          console.log('-------登陆后重新请求------')
+          request(option)
+        }
       }
-      return '1'
+      return res.data
     }).catch((error) => {
       console.log(error)
     })

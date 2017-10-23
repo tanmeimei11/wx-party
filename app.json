@@ -4,7 +4,8 @@
     "pages/detail/detail",
     "pages/apply/apply",
     "pages/logs/logs",
-    "pages/sign/sign"
+    "pages/sign/sign",
+    "pages/launch/launch"
   ],
   "window": {
     "backgroundTextStyle": "light",
