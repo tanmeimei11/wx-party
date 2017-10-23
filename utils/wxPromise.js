@@ -1,16 +1,11 @@
 // 本地
 let DOMAIN = 'http://10.10.106.127:30929'
-// qa
-DOMAIN = 'https://activity.in66.com'
-// DOMAIN = 'http://qaactivity.in66.com'
-// DOMAIN = 'https://activity.in66.com:30929'
-// let isMock = true
-let isMock = false
+// DOMAIN = 'https://activity.in66.com'
+DOMAIN = 'http://qaactivity.in66.com'
+let isMock = true
+isMock = false
 let debug = true
 let mockConfig = require('../mock/mockConfig');
-// var Promise = require('../lib/es6-promise');
-
-var userInfo = null
 var code = ''
 
 /**
@@ -35,7 +30,8 @@ function wxPromisify(fn) {
 
 var request = (option) => {
   console.log('-------before request------')
-  checkLoginSession(option).then((token) => {
+  wxCheckLogin(option).then((token) => {
+    console.log('-------get token------')
     console.log(token)
     console.log('-------start request------')
     if (!option.data) {
@@ -58,30 +54,31 @@ var request = (option) => {
 }
 
 // 检查登陆态和token
-var checkLoginSession = function (option) {
+var wxCheckLogin = function (option) {
   console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
     .then((res) => {
       if (!wx.getStorageSync('token')) {
-        console.log('-------登录------')
-        return wxLoginSession()
+        console.log('-------login------')
+        return wxLogin()
       } else {
-        console.log('-------获取 token------')
         return wx.getStorageSync('token')
       }
     }, () => {
-      wxLoginSession(option)
+      wxLogin(option)
     })
 }
 
-// 授权登录
-var wxLoginSession = function (option) {
-  console.log('-------获取 code------')
+
+var wxLogin = function (option) {
+  console.log('-------get code------')
   return wxPromisify(wx.login)()
     .then(res => {
       code = res.code
-      console.log('-------获取 UserInfo------')
-      return wxPromisify(wx.getUserInfo)()
+      console.log('-------get UserInfo------')
+      return wxPromisify(wx.getUserInfo)({
+        lang: 'zh_CN'
+      })
     })
     .then(res => {
       console.log('-------login request------')
@@ -113,6 +110,5 @@ module.exports = {
   DOMAIN,
   isMock,
   wxPromisify,
-  userInfo,
   requestPromisify: wxPromisify(request)
 }

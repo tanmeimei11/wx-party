@@ -1,6 +1,7 @@
 //logs.js
 const util = require('../../utils/util.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
+var request = require('../../utils/wxPromise.js').requestPromisify
 var Promise = require('../../lib/es6-promise');
 Page({
   data: {
@@ -8,7 +9,22 @@ Page({
     qrImg: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg'
   },
   onLoad: function (e) {
-    this.getAccessToken()
+    // this.getAccessToken()
+  },
+  formSubmit: function (e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.formId)
+    request({
+      url: '/wechat/formid/submit',
+      data: {
+        formId: e.detail.formId
+      }
+    }).then(res => {
+      console.log('发送成功')
+    })
+
+  },
+  formReset: function () {
+    console.log('form发生了reset事件')
   },
   getQrImage: function () {
     // wx.request({
