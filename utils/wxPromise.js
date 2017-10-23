@@ -95,7 +95,7 @@ var wxLogin = function (option) {
         console.log('-------login succ------')
         wx.setStorageSync("token", res.data)
         if (option) {
-          console.log('-------登陆后重新请求------')
+          console.log('-------re request------')
           request(option)
         }
       }
