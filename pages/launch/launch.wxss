@@ -1,24 +1,79 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/**launch.wxss**/
+
+.container {
+  text-align: left;
+  width: 100%;
+  padding: 0 40rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
+.c-line {
+  border-bottom: 1rpx solid #E0E0E0;
   height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+  color: #B0B0B0;
+  font-size: 34rpx;
+  position: relative;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.c-line input,
+.c-line picker.active {
+  color: #333333;
 }
 
-.usermotto {
-  margin-top: 200px;
+.c-line picker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-.test {
-  color:aqua;
+
+.c-line picker view {
+  line-height: 128rpx;
+}
+
+.c-line input {
+  width: 100%;
+  height: 100%;
+  line-height: 128rpx;
+}
+
+.c-line input {}
+
+.c-tips {
+  color: #B0B0B0;
+  font-size: 24rpx;
+  margin-top: 26rpx;
+}
+
+.c-finish {
+  background-color: #E0E0E0;
+  color: #fff;
+  border-radius: 8rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  margin-top: 70px;
+  margin-bottom: 40rpx;
+  text-align: center;
+  position: relative;
+  overflow: hidden
+}
+
+.c-finish.active {
+  background-color: #FF4338;
+  color: #fff;
+}
+
+.triangle {
+  position: absolute;
+  right: 5rpx;
+  top: 60rpx;
+  width: 0;
+  height: 0;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-top: 14rpx solid #333333;
+}
+
+contact-button {
+  transform: scale(17, 4);
 }

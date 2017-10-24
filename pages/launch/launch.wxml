@@ -1,4 +1,72 @@
-<!--index.wxml-->
+<!--apply.wxml-->
 <view class="container">
+  <!-- 埋点 -->
+  <image src="{{trackSeed}}" style="width:0;height:0;" />
+
+  <!-- 图片 -->
+  <view class="c-picture">
+    <view class="s-title">活动介绍图片</view>
+    <view class="s-pic-wrap">
+      <view class="pic"></view>
+      <view class="add"></view>
+    </view>
+  </view>
+
+  <!-- 活动名称 -->
+  <view class="c-line">
+    <input placeholder="{{name}}" type="text" bindinput="getName" placeholder-style="color:#B0B0B0" />
+  </view>
+
+  <!-- 省市选择 -->
+  <view class="c-line">
+    <view class="triangle"></view>
+    <picker mode="region" bindchange="bindRegionChange" value="{{addr}}" custom-item="{{customItem}}" class="{{addr!=originText.addr ? 'active':''}}">
+      <view class="picker">
+        {{addr}}
+      </view>
+    </picker>
+  </view>
+
+  <!-- 详细地址 -->
+  <view class="c-line">
+    <input placeholder="{{detailAddr}}" type="text" bindinput="getAetailAddr" placeholder-style="color:#B0B0B0" />
+  </view>
+
+  <!-- 开始时间选择 -->
+  <view class="c-line">
+    <view class="triangle"></view>
+    <picker mode="date" bindchange="bindDateChange" class="{{begin != originText.begin ? 'active':''}}">
+      <view class="picker" end="{{endTime}}">
+        {{begin}}
+      </view>
+    </picker>
+  </view>
+
+  <!-- 结束时间选择 -->
+  <view class="c-line">
+    <view class="triangle"></view>
+    <picker mode="date" bindchange="bindDateChange" class="{{end != originText.end ? 'active':''}}">
+      <view class="picker" end="{{endTime}}">
+        {{end}}
+      </view>
+    </picker>
+  </view>
+
+  <!-- 活动详细介绍以及其他要点 -->
+  <view class="c-line">
+    <input placeholder="{{detailDesc}}" type="text" value="{{job}}" bindinput="getJob" placeholder-style="color:#B0B0B0" />
+  </view>
+
+  <!-- 微信号输入 -->
+  <view class="c-line">
+    <input placeholder="{{wechat}}" type="number" value="{{phoneNum}}" maxlength="11" bindinput="getPhoneNum" placeholder-style="color:#B0B0B0"
+    />
+  </view>
+
+  <view class="c-tips">*微信号不会对其他用户显示</view>
+
+  <!-- 完成 -->
+  <view class="c-finish {{isVerify ? 'active':''}}" bindtap="verify">提交
+  </view>
 
 </view>

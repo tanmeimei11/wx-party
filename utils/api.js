@@ -3,9 +3,13 @@ var wxPromisify = require('wxPromise.js').wxPromisify
 
 const qnTokenUrl = "https://www.in66.com/promo/commonapi/qiniutoken"
 const qnUploadUrl = "http://up.qiniu.com"
-const qnResUrl = "http://up.qiniu.com"
+const qnResUrl = "https://inimg07.jiuyan.info/"
 
 
+/**
+ * 上传文件到七牛
+ * @param {*} file 
+ */
 const uploadImageToQiniu = (file) => {
   request({
     url: qnTokenUrl
@@ -27,13 +31,11 @@ const uploadImageToQiniu = (file) => {
     return wxPromisify(wx.uploadFile)(uploadData)
   }).then(res => {
     res = JSON.parse(res)
-    console.log(`https://inimg07.jiuyan.info/${res.key}`)
-    return `https://inimg07.jiuyan.info/${res.key}`
+    console.log(`${qnResUrl}${res.key}`)
+    return `${qnResUrl}${res.key}`
   })
 }
-const chooseImg = () => {
 
-}
 module.exports = {
   uploadImageToQiniu
 }

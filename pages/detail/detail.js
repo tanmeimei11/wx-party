@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var Promise = require('../../lib/es6-promise');
 let getLenStr = require('../../utils/util.js').getLenStr
 var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
