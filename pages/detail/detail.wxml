@@ -71,10 +71,16 @@
 
   <!-- 底部导航 -->
   <view class="c-bottom-nav">
+    <!-- 审核中 -->
+    <block wx:if="{{actStatus == '2'}}">
+      <view class="btn-end-act">审核中 </view>
+    </block>
+    <!-- 已结束 -->
     <block wx:if="{{actStatus == '1'}}">
       <view class="btn-end-act">已结束 </view>
     </block>
-    <block wx:else>
+    <!-- 邀请好友 签到  -->
+    <block wx:if="{{actStatus == '0'}}">
       <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
       <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
       <block wx:elif="{{bookStatus == '0'}}">
@@ -103,6 +109,25 @@
         <button type="default" disabled="{{disabled}}" bindtap="transferTrack" open-type="share"> </button>
       </view>
       <view class="s-share-img s-btn" bindtap="compose">生成朋友圈分享图</view>
+    </view>
+  </view>
+
+  <!-- 审核弹窗 -->
+  <view class="c-modal" wx:if="{{isShowVerifyModal}}">
+    <view class="c-wrap c-Verify-wrap">
+      <view class="s-close" bindtap="closeVerifyModal"></view>
+      <view class="s-title">提交成功，还剩最后一步</view>
+      <view class="s-list">
+        <view class="s-list-text">
+          <view>1. 点击下方按钮获取小助手二维码</view>
+          <view>2. 添加小助手好友，活动审核通过之后，小助手会主动联系您 </view>
+        </view>
+      </view>
+      <view class="s-get-qr s-btn">获取小助手二维码
+        <contact-button type="default-dark" size="20" session-from="{{sessionFromQr}}">
+        </contact-button>
+      </view>
+      <view class="s-get-look s-btn" bindtap="closeVerifyModal">查看活动页面</view>
     </view>
   </view>
 

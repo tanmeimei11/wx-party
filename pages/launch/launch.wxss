@@ -6,6 +6,49 @@
   padding: 0 40rpx;
 }
 
+.c-picture,
+.c-textarea {
+  padding: 50rpx 0;
+  border-bottom: 1rpx solid #E0E0E0;
+  font-size: 34rpx;
+}
+
+.c-textarea textarea {
+  width: 100%;
+  box-sizing: border0box;
+  min-height: 200rpx;
+  padding: 0 10rpx 0 0;
+}
+
+.c-picture .s-title {
+  color: #333333;
+  font-size: 34rpx;
+  padding: 40rpx 0;
+}
+
+.s-pic-wrap {
+  font-size: 0;
+}
+
+.s-pic-wrap .pic {
+  width: 158rpx;
+  height: 158rpx;
+  display: inline-block;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  border: 1rpx solid #CCCCCC;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.s-pic-wrap .pic.add {
+  border: 1rpx solid #CCCCCC;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/10/24/2450F8E9-3DE8-ABC4-9F0E-9FFF3E9A7A2A.jpg');
+  background-size: 88rpx 88rpx;
+}
+
 .c-line {
   border-bottom: 1rpx solid #E0E0E0;
   height: 128rpx;

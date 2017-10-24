@@ -38,6 +38,7 @@ var request = (option) => {
       option.data = {}
     }
     option.data.privateKey = token
+    // option.data.privateKey = '57819e690e696de86db7bb646b4766d1'
     // 添加DOMAIN
     if (!/^http/.test(option.url)) {
       option.url = DOMAIN + option.url
@@ -81,6 +82,7 @@ var wxLogin = function (option) {
       })
     })
     .then(res => {
+      console.log(res)
       console.log('-------login request------')
       return wxPromisify(wx.request)({
         url: DOMAIN + '/party/login',
@@ -91,8 +93,10 @@ var wxLogin = function (option) {
         }
       })
     }).then((res) => {
+      console.log(res)
       if (res.succ && res.data) {
         console.log('-------login succ------')
+        console.log('-------set token------')
         wx.setStorageSync("token", res.data)
         if (option) {
           console.log('-------re request------')

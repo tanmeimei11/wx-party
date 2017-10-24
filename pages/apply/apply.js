@@ -89,38 +89,31 @@ Page({
     })
     this.verify('', true)
   },
-  toast: function (type, text) {
-    wx.showToast({
+  toast: function (text, type = "") {
+    var _data = {
       title: text,
-      image: type == 'error' ? '../../images/toast-error.png' : '../../images/toast-fail.png',
       duration: 2000
-    })
-  },
-  toastSucc: function (text) {
-    wx.showToast({
-      title: text,
-      icon: 'success',
-      duration: 2000
-    })
+    }
+    type && (_data.image = `../../images/toast-${type}.png`)
+    wx.showToast(_data)
   },
   verify: function (e, type) {
     if (this.data.regionText == originText.region) {
-      !type && this.toast('error', errorText['region'])
+      !type && this.toast(errorText['region'], 'error')
       return
     }
     if (this.data.birthText == originText.birth) {
-      !type && this.toast('error', errorText['birth'])
+      !type && this.toast(errorText['birth'], 'error')
       return
     }
     if (/^\s*$/g.test(this.data.job.replace(/\s+/g, ''))) {
-      !type && this.toast('error', errorText['job'])
+      !type && this.toast(errorText['job'], 'error')
       return
     }
     if (!(/\d{11}/.test(this.data.phoneNum))) {
-      !type && this.toast('error', errorText['phone'])
+      !type && this.toast(errorText['phone'], 'error')
       return
     }
-
     this.setData({
       isVerify: true
     })

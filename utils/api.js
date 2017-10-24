@@ -11,7 +11,7 @@ const qnResUrl = "https://inimg07.jiuyan.info/"
  * @param {*} file 
  */
 const uploadImageToQiniu = (file) => {
-  request({
+  return request({
     url: qnTokenUrl
   }).then(res => {
     var data = {
@@ -31,7 +31,7 @@ const uploadImageToQiniu = (file) => {
     return wxPromisify(wx.uploadFile)(uploadData)
   }).then(res => {
     res = JSON.parse(res)
-    console.log(`${qnResUrl}${res.key}`)
+    // console.log(`${qnResUrl}${res.key}`)
     return `${qnResUrl}${res.key}`
   })
 }

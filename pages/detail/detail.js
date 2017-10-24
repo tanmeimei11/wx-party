@@ -28,12 +28,14 @@ Page({
     transferImageUrl: '',
     // bookQrImg: '',
     actQrImg: '',
+    isShowVerifyModal: true,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',
       '3、选择对应活动二维码，长按识别',
       '4、进群，报名成功'
     ],
+    sessionFromQr: "111",
     images: {
       head: {
         src: "",
@@ -193,6 +195,11 @@ Page({
   closeInviteModal: function () {
     this.setData({
       isShowInviteModal: false
+    })
+  },
+  closeVerifyModal: function () {
+    this.setData({
+      isShowVerifyModal: false
     })
   },
   openSign: function () {

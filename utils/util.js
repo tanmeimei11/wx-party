@@ -50,6 +50,22 @@ const formatTimeToTime = (startTime, endTime) => {
   return `${_sDate.month}月${_sDate.day}日 ${[_sDate.hour, _sDate.minute].join(':')}~${_eDate.month}月${_eDate.day}日 ${[_eDate.hour, _eDate.minute].join(':')}`
 }
 
+const getFutureYearArray = (num) => {
+  var _thisYear = parseInt(getTimeObj().year)
+  var _arr = []
+  for (var i = 0; i < num; i++) {
+    _arr.push(`${_thisYear + i}年`)
+  }
+  return _arr
+}
+const getFullNumArray = (num, str = "", start = 0) => {
+  var _arr = []
+  for (var i = start; i <= num; i++) {
+    _arr.push(`${formatNumber(i)}${str}`)
+  }
+  return _arr
+}
+
 /**
  * 截取固定长度的字符串
  * @param {*} str  截取的字符串
@@ -248,5 +264,8 @@ module.exports = {
   getTimeObj,
   formatTime,
   getLenStr,
-  formatTimeToTime
+  formatNumber,
+  formatTimeToTime,
+  getFullNumArray,
+  getFutureYearArray
 }

@@ -300,6 +300,7 @@
   background-position: center;
 }
 
+.c-Verify-wrap .s-btn,
 .c-invite-wrap .s-btn {
   width: 460rpx;
   height: 80rpx;
@@ -308,8 +309,10 @@
   text-align: center;
   margin: 0 auto;
   border-radius: 200rpx;
+  overflow: hidden;
 }
 
+.c-Verify-wrap .s-get-qr,
 .c-invite-wrap .s-transmit {
   color: #fff;
   background-color: #FF4338;
@@ -325,6 +328,7 @@
   height: 100%;
 }
 
+.c-Verify-wrap .s-get-look,
 .c-invite-wrap .s-share-img {
   background-color: #fff;
   color: #333333;
@@ -367,5 +371,28 @@
 }
 
 .btn-sign-again contact-button {
+  transform: scale(10, 3);
+}
+
+.c-Verify-wrap .s-list-text>view {
+  padding-left: 80rpx;
+  padding-right: 40rpx;
+  text-indent: -35rpx
+}
+
+.c-wrap.c-Verify-wrap {
+  margin-top: 268rpx;
+}
+
+.c-Verify-wrap .s-get-qr {
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+}
+
+.c-Verify-wrap .s-get-look {
+  margin-top: 0rpx;
+}
+
+.s-get-qr contact-button {
   transform: scale(10, 3);
 }
