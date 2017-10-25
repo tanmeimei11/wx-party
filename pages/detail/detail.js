@@ -2,9 +2,9 @@
 //获取应用实例
 const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
-let system = require('../../utils/system.js')
-let requestPromisify = system.wxRequest
-// var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
+// let system = require('../../utils/system.js')
+// let requestPromisify = system.wxRequest
+var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 import track from '../../utils/track.js'
@@ -257,7 +257,6 @@ Page({
     return httpUrl.replace(/^http:\/\//, 'https://')
   },
   getActiveInfo: function (data) {
-    console.log(data.share_qrcode_url)
     this.data.images.logo.src = this.changeHttpUrl(data.share_qrcode_url)
     // this.data.images.logo.src = 'https://inimg01.jiuyan.info/in/2017/10/15/7F0C1C09-F71E-F0D9-45E8-A00C102CF065.jpg'
     if (data.act_url.length) {
@@ -338,7 +337,6 @@ Page({
     track(this, 'h5_tcpa_active_compose_click', [`id=${this.data.id}`])
     this.loadImages(this.data.images)
       .then(() => {
-        console.log('loadimg finish')
         var ctx = wx.createCanvasContext('firstCanvas')
         var _images = this.data.images
         this.getActFirstImg(ctx, _images.head.local)
