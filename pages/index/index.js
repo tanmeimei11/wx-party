@@ -1,10 +1,10 @@
 const app = getApp()
 let util = require('../../utils/util.js')
 // let request = util.wxRequest
-// let request = require('../../utils/wxPromise.js').requestPromisify
+let request = require('../../utils/wxPromise.js').requestPromisify
 
-let system = require('../../utils/system.js')
-let request = system.wxRequest
+// let system = require('../../utils/system.js')
+// let request = system.wxRequest
 import track from '../../utils/track.js'
 Page({
   data: {
