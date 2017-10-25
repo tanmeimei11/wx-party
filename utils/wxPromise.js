@@ -4,6 +4,7 @@ var config = require('config')
 var isMock = config.isMock
 var DOMAIN = config.DOMAIN
 var code = ''
+var Promise = require('../lib/es6-promise')
 
 /**
  * 封装wxPromisefy
@@ -12,7 +13,11 @@ function wxPromisify(fn) {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
       obj.success = function (res) {
+        console.log('--------请求回来的res－－－－－－')
+        console.log(res)
         if (res.data) {
+          console.log('--------回调了－－－－－－')
+          console.log(resolve.name)
           resolve(res.data)
         }
         resolve(res)
@@ -28,9 +33,9 @@ function wxPromisify(fn) {
 var request = (option) => {
   console.log('-------before request------')
   wxCheckLogin(option).then((token) => {
-
+    console.log(token);
     !option.data && (option.data = {});
-    !option.method == 'POST' && (option.data.privateKey = token);
+    (option.method != 'POST') && (option.data.privateKey = token);
     !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
     option.header = {
       'Cookie': `tg_auth=${token};_v=${config._v}`
@@ -87,7 +92,7 @@ var wxLogin = function (option) {
       if (res.succ && res.data) {
         console.log('-------login succ------')
         wx.setStorageSync("token", res.data)
-        app.globalData.token = token
+        console.log(option)
         option && request(option)
       }
       return res.data

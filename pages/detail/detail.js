@@ -2,7 +2,9 @@
 //获取应用实例
 const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
-var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
+let system = require('../../utils/system.js')
+let requestPromisify = system.wxRequest
+// var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 import track from '../../utils/track.js'
@@ -81,7 +83,10 @@ Page({
     this.setData({
       id: option.id || '11001',
       sessionFrom: `activity_${option.id}`,
+      sessionFromQr: `activitymanager_${option.id}`
     })
+
+
 
     // 是否显示导航条
     if (!option.isShowOtherAct) {
@@ -119,6 +124,7 @@ Page({
           id: this.data.id
         }
       }).then((res) => {
+        console.log('获取数据成功')
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
         }

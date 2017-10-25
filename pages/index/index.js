@@ -1,7 +1,10 @@
 const app = getApp()
 let util = require('../../utils/util.js')
 // let request = util.wxRequest
-let request = require('../../utils/wxPromise.js').requestPromisify
+// let request = require('../../utils/wxPromise.js').requestPromisify
+
+let system = require('../../utils/system.js')
+let request = system.wxRequest
 import track from '../../utils/track.js'
 Page({
   data: {
@@ -262,6 +265,9 @@ Page({
     wx.redirectTo({
       url: _url
     })
+  },
+  formSubmit: function () {
+    console.log('11111')
   },
   onLoad(options) {
     let currentList = (options.tab == '2' && 'promoList') || 'qunList'

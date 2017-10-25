@@ -97,9 +97,9 @@ Page({
     })
 
   },
-  loadingIn: function () {
+  loadingIn: function (text) {
     wx.showLoading({
-      title: '正在上传',
+      title: text,
     })
   },
   loadingOut: function () {
@@ -111,7 +111,7 @@ Page({
       success: function (res) {}
     }).then(res => {
       var tempFilePaths = res.tempFilePaths
-      this.loadingIn()
+      this.loadingIn('正在上传')
       return this.loadImages(tempFilePaths)
 
     }).then(() => {
@@ -193,42 +193,42 @@ Page({
     // var _data = this.data
     // // 验证图片
     // if (!_data.images.length) {
-    //   !type && this.toast(errorText['image'], 'error')
+    //   !type && this.toast(errorText['image'], 'warn')
     //   return
     // }
     // // 活动名称
     // if (this.verifyKong(_data.name) || _data.name == originText.name) {
-    //   !type && this.toast(errorText['name'], 'error')
+    //   !type && this.toast(errorText['name'], 'warn')
     //   return
     // }
     // // 活动地点
     // if (_data.addr == originText.addr) {
-    //   !type && this.toast(errorText['addr'], 'error')
+    //   !type && this.toast(errorText['addr'], 'warn')
     //   return
     // }
     // // 详细地址
     // if (this.verifyKong(_data.detailAddr) || _data.detailAddr == originText.detailAddr) {
-    //   !type && this.toast(errorText['detailAddr'], 'error')
+    //   !type && this.toast(errorText['detailAddr'], 'warn')
     //   return
     // }
     // // 开始时间
     // if (_data.beginText == originText.beginText) {
-    //   !type && this.toast(errorText['beginText'], 'error')
+    //   !type && this.toast(errorText['beginText'], 'warn')
     //   return
     // }
-    // // 结束时间 填写完就检查
-    // if (_data.endText == originText.endText || (+new Date(originText.endText) - +new Date(originText.endText)) <= 100) {
-    //   !type && this.toast(errorText['endText'], 'error')
+    // // 结束时间 
+    // if (_data.endText == originText.endText || (+new Date(_data.endText) - +new Date(_data.beginText)) <= 100) {
+    //   !type && (this.toast(errorText['endText'], 'warn'))
     //   return
     // }
     // // 描述
     // if (this.verifyKong(_data.detailDesc) || _data.detailDesc == originText.detailDesc) {
-    //   !type && this.toast(errorText['detailDesc'], 'error')
+    //   !type && this.toast(errorText['detailDesc'], 'warn')
     //   return
     // }
     // // 微信号
     // if (this.verifyKong(_data.wechat) || _data.wechat == originText.wechat) {
-    //   !type && this.toast(errorText['wechat'], 'error')
+    //   !type && this.toast(errorText['wechat'], 'warn')
     //   return
     // }
 
@@ -242,6 +242,7 @@ Page({
   },
   submit: function () {
     track(this, 'h5_tcpa_apply_finish')
+    this.loadingIn('正在创建')
     var _data = this.data
     // var requestData = {
     //   actName: _data.name,
@@ -269,14 +270,21 @@ Page({
       method: 'POST',
       data: requestData
     }).then((res) => {
+      this.loadingOut()
       if (res.succ) {
+        this.loadingOut()
         this.toast('创建成功')
         setTimeout(() => {
           wx.redirectTo({
             url: `../detail/detail?prepage=launch&id=${res.data}&isShowOtherAct=false`
           })
         }, 2000)
+      } else {
+        this.toast('创建失败', 'error')
       }
+    }, () => {
+      this.loadingOut()
+      this.toast('创建失败', 'error')
     })
   }
 })
