@@ -1,11 +1,8 @@
 // 本地
-let DOMAIN = 'http://10.10.106.127:30929'
-// DOMAIN = 'https://activity.in66.com'
-DOMAIN = 'http://qaactivity.in66.com'
-let isMock = true
-isMock = false
-let debug = true
 let mockConfig = require('../mock/mockConfig');
+var config = require('config')
+var isMock = config.isMock
+var DOMAIN = config.DOMAIN
 var code = ''
 
 /**
@@ -31,18 +28,14 @@ function wxPromisify(fn) {
 var request = (option) => {
   console.log('-------before request------')
   wxCheckLogin(option).then((token) => {
-    console.log('-------get token------')
-    console.log(token)
-    console.log('-------start request------')
-    if (!option.data) {
-      option.data = {}
+
+    !option.data && (option.data = {});
+    !option.method == 'POST' && (option.data.privateKey = token);
+    !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
+    option.header = {
+      'Cookie': `tg_auth=${token};_v=${config._v}`
     }
-    option.data.privateKey = token
     // option.data.privateKey = '57819e690e696de86db7bb646b4766d1'
-    // 添加DOMAIN
-    if (!/^http/.test(option.url)) {
-      option.url = DOMAIN + option.url
-    }
     if (isMock) {
       console.log('===== Begin mock request =====')
       console.log(option.data)
@@ -50,6 +43,8 @@ var request = (option) => {
       option.success(require('../mock/' + mockConfig[option.url]))
       return
     }
+    console.log('-------start request------')
+    console.log(option)
     wx.request(option)
   })
 }
@@ -59,12 +54,8 @@ var wxCheckLogin = function (option) {
   console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
     .then((res) => {
-      if (!wx.getStorageSync('token')) {
-        console.log('-------login------')
-        return wxLogin()
-      } else {
-        return wx.getStorageSync('token')
-      }
+      let _token = wx.getStorageSync('token')
+      return _token ? _token : wxLogin()
     }, () => {
       wxLogin(option)
     })
@@ -82,26 +73,22 @@ var wxLogin = function (option) {
       })
     })
     .then(res => {
-      console.log(res)
       console.log('-------login request------')
-      return wxPromisify(wx.request)({
+      let _data = {
         url: DOMAIN + '/party/login',
         data: {
           code: code,
           encryptedData: res.encryptedData,
           iv: res.iv
         }
-      })
+      }
+      return wxPromisify(wx.request)(_data)
     }).then((res) => {
-      console.log(res)
       if (res.succ && res.data) {
         console.log('-------login succ------')
-        console.log('-------set token------')
         wx.setStorageSync("token", res.data)
-        if (option) {
-          console.log('-------re request------')
-          request(option)
-        }
+        app.globalData.token = token
+        option && request(option)
       }
       return res.data
     }).catch((error) => {

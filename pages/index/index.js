@@ -20,6 +20,7 @@ Page({
     promoNum: 0,
     currentCursorQun: 0,
     currentCursorPromo: 0,
+    isNeedFillInfo: true,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -28,9 +29,6 @@ Page({
     ]
   },
   downloadQrcode: function () {},
-  contactTack: function () {
-    track(this, 'h5_tcpa_index_contact')
-  },
   setShare: function (tab) {
     if (tab == 1) {
       this.onShareAppMessage = function () {
@@ -86,7 +84,7 @@ Page({
     if (e.currentTarget.dataset.id) {
       track(this, 'h5_tcpa_index_active_join', [`id=${e.currentTarget.dataset.id}`])
       wx.navigateTo({
-        url: '../detail/detail?id=' + e.currentTarget.dataset.id + '&notShowOther=true'
+        url: '../detail/detail?id=' + e.currentTarget.dataset.id + '&isShowOtherAct=false'
       })
     }
   },
@@ -187,7 +185,8 @@ Page({
         this.setData({
           promoList: this.data.promoList.concat(res.data.list),
           promoListLoaded: true,
-          currentCursorPromo: res.data.current_cursor || null
+          currentCursorPromo: res.data.current_cursor || null,
+          isNeedFillInfo: res.data.is_need_info == 1
         })
       } else {
         this.setData({
@@ -255,6 +254,13 @@ Page({
           hidden: true
         })
       }, 300)
+    })
+  },
+  launchPromo: function () {
+    track(this, 'h5_tcpa_goto_launch_promo')
+    var _url = this.data.isNeedFillInfo ? '../apply/apply?nextpage=launch&prepage=index' : '../launch/launch'
+    wx.redirectTo({
+      url: _url
     })
   },
   onLoad(options) {

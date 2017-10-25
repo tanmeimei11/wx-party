@@ -94,13 +94,14 @@ const getLenStr = (str, realLen) => {
 }
 
 // 别删
+var config = require('config')
 let wxP = require('./wxPromise.js')
 let wxPromisify = wxP.wxPromisify
 let wxLoginPromise = wxPromisify(wx.login)
 let wxCheckSessionPromise = wxPromisify(wx.checkSession)
 let wxGetUserInfoPromise = wxPromisify(wx.getUserInfo)
-let DOMAIN = wxP.DOMAIN
-let isMock = wxP.isMock
+let DOMAIN = config.DOMAIN
+let isMock = config.isMock
 let debug = true
 let mockConfig = wxP.mockConfig
 let wxLog = function (msg) {
@@ -129,17 +130,15 @@ let getStoragePromise = function () {
 let wxRequestPromise = function (option) {
   return new Promise((resolve, reject) => {
     // wxLog(option)
-    // 添加DOMAIN
-    if (!/^http/.test(option.url)) {
-      option.url = DOMAIN + option.url
-    }
     // 添加token
     var _token = wx.getStorageSync('token')
     if (_token) {
-      if (!option.data) {
-        option.data = {}
+      !option.data && (option.data = {});
+      !option.method == 'POST' && (option.data.privateKey = token);
+      !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
+      option.header = {
+        'Cookie': `tg_auth=${token};_v=${config._v}`
       }
-      option.data.privateKey = _token
     }
     // option.data.privateKey = '84f7e69969dea92a925508f7c1f9579a'
     if (isMock) {

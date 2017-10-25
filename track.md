@@ -9,6 +9,7 @@
 转发到好友：h5_tcpa_active_transfer_friend 参数id=111
 转发成功：h5_tcpa_active_transfer_succ 参数id=111
 联系小助手：h5_tcpa_active_contact 参数id=111
+发起活动：h5_tcpa_goto_launch_promo
 
 从首页进来的详情页面的 h5_tcpa_active_detail_entry_byindex 参数id=111
 从其他渠道进来详情页的 （分享 转发等）  h5_tcpa_active_detail_entry_byshare 参数id=111

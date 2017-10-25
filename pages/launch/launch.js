@@ -1,5 +1,4 @@
 //launch.js
-//获取应用实例
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
@@ -161,6 +160,7 @@ Page({
     _data[`${_type}Index`] = _val
     _data[`${_type}Text`] = _timeText
     this.setData(_data)
+    this.verify('', true)
   },
   bindMultiPickerColumnChange: function (e) {
     console.log(e)
@@ -171,6 +171,10 @@ Page({
     var _data = {}
     _data[`${_type}`] = _val
     this.setData(_data)
+    if (_type == 'end') {
+      this.verify('', false)
+      return
+    }
     this.verify('', true)
   },
   toast: function (text, type = "") {
@@ -186,80 +190,90 @@ Page({
   },
   verify: function (e, type) {
 
-    var _data = this.data
-    // 验证图片
-    if (!_data.images.length) {
-      !type && this.toast(errorText['image'], 'error')
-      return
-    }
-    // 活动名称
-    if (this.verifyKong(_data.name) || _data.name == originText.name) {
-      !type && this.toast(errorText['name'], 'error')
-      return
-    }
-    // 活动地点
-    if (_data.addr == originText.addr) {
-      !type && this.toast(errorText['addr'], 'error')
-      return
-    }
-    // 详细地址
-    if (this.verifyKong(_data.detailAddr) || _data.detailAddr == originText.detailAddr) {
-      !type && this.toast(errorText['detailAddr'], 'error')
-      return
-    }
-    // 开始时间
-    if (_data.beginText == originText.beginText) {
-      !type && this.toast(errorText['beginText'], 'error')
-      return
-    }
-    // 结束时间
-    if (_data.endText == originText.endText) {
-      !type && this.toast(errorText['endText'], 'error')
-      return
-    }
-    // 描述
-    if (this.verifyKong(_data.detailDesc) || _data.detailDesc == originText.detailDesc) {
-      !type && this.toast(errorText['detailDesc'], 'error')
-      return
-    }
-    // 微信号
-    if (this.verifyKong(_data.wechat) || _data.wechat == originText.wechat) {
-      !type && this.toast(errorText['wechat'], 'error')
-      return
-    }
+    // var _data = this.data
+    // // 验证图片
+    // if (!_data.images.length) {
+    //   !type && this.toast(errorText['image'], 'error')
+    //   return
+    // }
+    // // 活动名称
+    // if (this.verifyKong(_data.name) || _data.name == originText.name) {
+    //   !type && this.toast(errorText['name'], 'error')
+    //   return
+    // }
+    // // 活动地点
+    // if (_data.addr == originText.addr) {
+    //   !type && this.toast(errorText['addr'], 'error')
+    //   return
+    // }
+    // // 详细地址
+    // if (this.verifyKong(_data.detailAddr) || _data.detailAddr == originText.detailAddr) {
+    //   !type && this.toast(errorText['detailAddr'], 'error')
+    //   return
+    // }
+    // // 开始时间
+    // if (_data.beginText == originText.beginText) {
+    //   !type && this.toast(errorText['beginText'], 'error')
+    //   return
+    // }
+    // // 结束时间 填写完就检查
+    // if (_data.endText == originText.endText || (+new Date(originText.endText) - +new Date(originText.endText)) <= 100) {
+    //   !type && this.toast(errorText['endText'], 'error')
+    //   return
+    // }
+    // // 描述
+    // if (this.verifyKong(_data.detailDesc) || _data.detailDesc == originText.detailDesc) {
+    //   !type && this.toast(errorText['detailDesc'], 'error')
+    //   return
+    // }
+    // // 微信号
+    // if (this.verifyKong(_data.wechat) || _data.wechat == originText.wechat) {
+    //   !type && this.toast(errorText['wechat'], 'error')
+    //   return
+    // }
 
     this.setData({
       isVerify: true
     })
 
-    // if (!type) {
-    //   this.submit()
-    // }
+    if (!type) {
+      this.submit()
+    }
   },
   submit: function () {
     track(this, 'h5_tcpa_apply_finish')
     var _data = this.data
+    // var requestData = {
+    //   actName: _data.name,
+    //   actUrls: _data.images,
+    //   district: _data.addr,
+    //   actLocation: _data.detailAddr,
+    //   startTime: +new Date(_data.beginText),
+    //   endTime: +new Date(_data.endText),
+    //   actDesc: _data.detailDesc,
+    //   wxNo: _data.wechat
+    // }
     var requestData = {
-      actName: _data.name, // 活动名称
-      actUrls: _data.images, // 活动照片
-      district: _data.addr, //地区
-      actLocation: _data.detailAddr, // 详细地点
-      startTime: +new Date(_data.beginText), //开始时间 （穿时间戳）
-      endTime: +new Date(_data.endTime), //结束时间 （穿时间戳）
-      actDesc: _data.detailDesc, // 活动描述
-      wxNo: _data.wechat
+      actName: 'ceshi',
+      actUrls: ['http://inimg02.jiuyan.info/in/2015/08/13/999D6165-C074-7176-B939-3A26C28C19C9.jpg'],
+      district: '浙江省杭州市西湖区',
+      actLocation: '22222',
+      startTime: 1509089640000,
+      endTime: 1509262440000,
+      actDesc: '3333',
+      wxNo: '4444'
     }
     console.log(requestData)
     requestPromisify({
       url: `/activity/create`,
-      // method: 'POST',
+      method: 'POST',
       data: requestData
     }).then((res) => {
       if (res.succ) {
         this.toast('创建成功')
         setTimeout(() => {
           wx.redirectTo({
-            url: `../detail/detail?prepage=apply&id=${res.data}&notShowOther=true`
+            url: `../detail/detail?prepage=launch&id=${res.data}&isShowOtherAct=false`
           })
         }, 2000)
       }

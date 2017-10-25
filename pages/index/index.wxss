@@ -337,3 +337,30 @@
 contact-button {
   transform: scale(5, 2);
 }
+
+.launch-promo {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30rpx auto 0;
+  width: 670rpx;
+  height: 100rpx;
+  color: #333333;
+  font-size: 34rpx;
+  box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 8rpx;
+  margin-bottom: 40rpx;
+  overflow: hidden;
+}
+
+.launch-promo>view {
+  display: inline-block;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/10/25/93F5427E-875E-9E41-AB5B-CC9E4ECC202E.jpg');
+  width: 26rpx;
+  height: 27rpx;
+  margin-right: 10rpx;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

@@ -13,7 +13,7 @@
 	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 6,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -55,7 +55,13 @@
 					"id": 6,
 					"name": "detail id",
 					"pathName": "pages/detail/detail",
-					"query": "id=13203"
+					"query": "id=10902&prepage=launch&isShowOtherAct=false"
+				},
+				{
+					"id": -1,
+					"name": "index tab＝2",
+					"pathName": "pages/index/index",
+					"query": "tab=2"
 				}
 			]
 		},

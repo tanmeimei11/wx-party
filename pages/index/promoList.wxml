@@ -1,5 +1,10 @@
 <scroll-view scroll-y="true" class="container " bindscrolltoupper="promoUpper" upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower"
   style="height:{{scrollHeight}}px;">
+  <!-- 发起活动 -->
+  <view class="launch-promo" bindtap="launchPromo">
+    <view></view>
+    <text>发起活动</text>
+  </view>
   <view class="list">
     <block wx:for="{{promoList}}" wx:key="act_id">
       <view class="promo" index="{{index}}" id="{{item.act_id}}" bindtap='jumpToDetail' data-id="{{ item.act_id }}">

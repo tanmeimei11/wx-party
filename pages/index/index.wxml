@@ -1,9 +1,3 @@
-<!-- <contact-button 
-  type="default-dark" 
-  size="20"
-  session-from="weapp"
-> 哈哈</contact-button>   -->
-
 <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
 <include src="promoList.wxml" wx:if="{{currentList=='promoList'}}" />
 <view class="list-tabs">

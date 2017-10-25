@@ -30,8 +30,9 @@ Page({
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_apply_entry')
-    if (option.prepage) {
+    if (option.nextpage || option.prepage) {
       this.setData({
+        nextpage: option.nextpage,
         prepage: option.prepage
       })
     }
@@ -69,14 +70,6 @@ Page({
     })
     this.verify('', true)
   },
-  // bindJobChange: function (e) {
-  //   var _text = e.detail.value
-  //   this.setData({
-  //     job: _text,
-  //     jobText: this.data.jobList[_text]
-  //   })
-  //   this.verify('', true)
-  // },
   getPhoneNum: function (e) {
     this.setData({
       phoneNum: e.detail.value
@@ -134,25 +127,29 @@ Page({
       }
     }).then((res) => {
       if (res.succ) {
-        wx.redirectTo({
-          url: `../${this.data.prepage}/${this.data.prepage}?prepage=apply&id=${this.data.id}&notShowOther=true`
-        })
-        return requestPromisify({
-          url: "/activity/join",
-          data: {
-            id: this.data.id
-          }
-        })
-      } else {
-        this.toast('fail', '提交失败')
+        if (this.data.prepage == 'detail') {
+          return requestPromisify({
+            url: "/activity/join",
+            data: {
+              id: this.data.id
+            }
+          })
+        } else if (this.data.prepage == 'index') {
+          wx.redirectTo({
+            url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&nextpage=detail&id=${this.data.id}&isShowOtherAct=false`
+          })
+          return false
+        } else {
+          this.toast('提交失败', 'fail')
+        }
       }
     }).then((res) => {
       if (res.succ) {
-        this.toastSucc('报名成功')
+        this.toast('报名成功')
         setTimeout(() => {
           if (this.data.id) {
             wx.redirectTo({
-              url: `../${this.data.prepage}/${this.data.prepage}?prepage=apply&id=${this.data.id}&notShowOther=true`
+              url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false`
             })
           }
         }, 2000)

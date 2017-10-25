@@ -21,21 +21,20 @@ Page({
     isShowIntroAll: false,
     isShowInviteModal: false,
     isJoin: false,
-    notShowOther: false,
+    isShowOtherAct: false,
     isOrgize: false,
     actStatus: '0',
     bookStatus: 0,
     transferImageUrl: '',
-    // bookQrImg: '',
     actQrImg: '',
-    isShowVerifyModal: true,
+    isShowVerifyModal: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',
       '3、选择对应活动二维码，长按识别',
       '4、进群，报名成功'
     ],
-    sessionFromQr: "111",
+    sessionFromQr: wx.getStorageSync('token'),
     images: {
       head: {
         src: "",
@@ -84,13 +83,21 @@ Page({
       sessionFrom: `activity_${option.id}`,
     })
 
-    if (!option.notShowOther) {
+    // 是否显示导航条
+    if (!option.isShowOtherAct) {
       track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
       this.setData({
         isShowOtherAct: true
       })
     } else {
       track(this, 'h5_tcpa_active_detail_entry_byindex', [`id=${this.data.id}`])
+    }
+
+    // 审核中
+    if (option.prepage == 'launch') {
+      this.setData({
+        isShowVerifyModal: true
+      })
     }
 
     if (!this.data.userInfo) {
@@ -232,7 +239,7 @@ Page({
   },
   redirectApply: function () {
     wx.redirectTo({
-      url: `../apply/apply?prepage=detail&id=${this.data.id}`
+      url: `../apply/apply?nextpage=detail&prepage=detail&id=${this.data.id}`
     })
   },
   closeJoin: function () {
