@@ -12,11 +12,9 @@ function wxPromisify(fn) {
     return new Promise((resolve, reject) => {
       obj.success = function (res) {
         if (res.data) {
-          console.log(res.data)
           resolve(res.data)
         }
         resolve(res)
-        console.log('----finish----')
       }
       obj.fail = function (res) {
         reject(res)
@@ -75,7 +73,6 @@ var wxLogin = function (option) {
       })
     })
     .then(res => {
-      console.log('-------login request------')
       let _data = {
         url: DOMAIN + '/party/login',
         data: {

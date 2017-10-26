@@ -2,7 +2,7 @@
 const util = require('../../utils/util.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var request = require('../../utils/wxPromise.js').requestPromisify
-var Promise = require('../../lib/es6-promise');
+// var Promise = require('../../lib/es6-promise');
 Page({
   data: {
     access_token: '',

@@ -24,6 +24,7 @@ Page({
     currentCursorQun: 0,
     currentCursorPromo: 0,
     isNeedFillInfo: true,
+    isSubmitFormId: true,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -227,7 +228,6 @@ Page({
       }
     }
     request(params).then((res) => {
-      console.log(res)
       if (res.succ && res.data && res.data.list) {
         if (!res.data.list.length) {
           this.setData({
@@ -266,8 +266,22 @@ Page({
       url: _url
     })
   },
-  formSubmit: function () {
-    console.log('11111')
+  formSubmit: function (e) {
+    if (this.data.isSubmitFormId) {
+      console.log('form发生了submit事件，携带数据为：', e.detail.formId)
+      request({
+        url: '/tmpl/formid/submit',
+        data: {
+          formId: e.detail.formId
+        }
+      }).then(res => {
+        if (res.succ) {
+          console.log('发送成功')
+        } else {
+          this.data.isSubmitFormId = false
+        }
+      })
+    }
   },
   onLoad(options) {
     let currentList = (options.tab == '2' && 'promoList') || 'qunList'

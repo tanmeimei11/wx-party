@@ -1,137 +1,141 @@
 <!--detail.wxml-->
-<view class="container">
-  <!-- 埋点 -->
-  <image src="{{trackSeed}}" style="width:0;height:0;" />
+<form bindsubmit="formSubmit" report-submit="true" class="submit-from">
+  <button formType="submit" class="submit-btn">
+    <view class="container">
+      <!-- 埋点 -->
+      <image src="{{trackSeed}}" style="width:0;height:0;" />
 
-  <!-- 详情页面swipe-->
-  <swiper indicator-dots="{{indicatorDots}}" class="c-main-swiper" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
-    circular="{{circular}}" bindchange="swiperChange">
-    <block wx:for="{{imgUrls}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
-      <swiper-item>
-        <view class="slide-image" width="355" height="150" style="background-image:url({{item}})"></view>
-      </swiper-item>
-    </block>
+      <!-- 详情页面swipe-->
+      <swiper indicator-dots="{{indicatorDots}}" class="c-main-swiper" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+        circular="{{circular}}" bindchange="swiperChange">
+        <block wx:for="{{imgUrls}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+          <swiper-item>
+            <view class="slide-image" width="355" height="150" style="background-image:url({{item}})"></view>
+          </swiper-item>
+        </block>
 
-    <view class="IndicatorDots" wx:if="{{imgUrls.length >1}}">
-      <view wx:for="{{imgUrls.length}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" class="dot {{idx== curSwiperIdx ? 'active':''}}"></view>
-    </view>
-
-    <!-- 其他活动 -->
-    <view class="c-other" bindtap="goBack" wx:if="{{isShowOtherAct}}">
-      <view class="s-logo"></view>
-      <view class="s-text">{{otherAct}}</view>
-      <view class="s-look">查看</view>
-    </view>
-
-    <!-- 大标题 -->
-    <view class="c-headLine">
-      <view class="s-title">{{headLine.title}}</view>
-      <view class="s-desc">{{headLine.desc}}</view>
-    </view>
-  </swiper>
-
-  <view class="c-infos">
-    <!-- 地点 时间 -->
-    <view class="s-line s-header">
-      <view class="s-addr">{{infos.sAddr}}</view>
-      <view class="s-time">{{infos.time}}</view>
-    </view>
-
-    <!-- 详细地址 -->
-    <view class="s-line">
-      <view class="title">详细地址</view>
-      <text class="m-text" space="nbsp">{{infos.detailAddr}}</text>
-    </view>
-
-    <!-- 活动介绍 -->
-    <view class="s-line">
-      <view class="title">活动介绍</view>
-      <view class="m-text">
-        <text class="m-intro">{{tempIntro}}</text>
-        <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
-      </view>
-
-    </view>
-
-    <!-- 报名用户 -->
-    <view class="s-line">
-      <view class="title">已报名用户</view>
-      <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
-        <view class="user-avatar" style="background-image:url({{item.avatar_url}})">
-          <view class="sex {{item.gender=='男' ? 'male': 'female'}}"></view>
+        <view class="IndicatorDots" wx:if="{{imgUrls.length >1}}">
+          <view wx:for="{{imgUrls.length}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" class="dot {{idx== curSwiperIdx ? 'active':''}}"></view>
         </view>
-        <view class="user-info">
-          <view class="user-nick">{{item.name}}</view>
-          <view class="user-desc">{{item.personDesc}}</view>
+
+        <!-- 其他活动 -->
+        <view class="c-other" bindtap="goBack" wx:if="{{isShowOtherAct}}">
+          <view class="s-logo"></view>
+          <view class="s-text">{{otherAct}}</view>
+          <view class="s-look">查看</view>
         </view>
-      </view>
-    </view>
-  </view>
 
-
-  <!-- 底部导航 -->
-  <view class="c-bottom-nav">
-    <!-- 审核中 -->
-    <block wx:if="{{actStatus == '2'}}">
-      <view class="btn-end-act">审核中 </view>
-    </block>
-    <!-- 已结束 -->
-    <block wx:if="{{actStatus == '1'}}">
-      <view class="btn-end-act">已结束 </view>
-    </block>
-    <!-- 邀请好友 签到  -->
-    <block wx:if="{{actStatus == '0'}}">
-      <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
-      <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
-      <block wx:elif="{{bookStatus == '0'}}">
-        <view class="s-btn btn-sign btn-sign-again" wx:if="{{isNeedInfo == '0'}}" bindtap="openBook">立即报名
-          <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
-          </contact-button>
+        <!-- 大标题 -->
+        <view class="c-headLine">
+          <view class="s-title">{{headLine.title}}</view>
+          <view class="s-desc">{{headLine.desc}}</view>
         </view>
-        <view class="s-btn btn-sign" wx:else bindtap="redirectApply">立即报名 </view>
-      </block>
-      <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" bindtap="openBookTrack">已报名
-        <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
-        </contact-button>
-      </view>
-    </block>
-  </view>
+      </swiper>
 
-  <!-- 邀请弹窗 -->
-  <view class="c-modal" wx:if="{{isShowInviteModal}}">
-    <view class="c-wrap c-invite-wrap">
-      <view class="s-close" bindtap="closeInviteModal"></view>
-      <view class="s-avatar" style="background-image:url({{userInfo.avatarUrl}})"></view>
-      <view class="s-desc">参加了一个活动</view>
-      <view class="s-title">{{headLine.title}}</view>
-      <view class="s-qr" style="background-image:url({{actQrImg}})"></view>
-      <view class="s-transmit s-btn">转发给好友
-        <button type="default" disabled="{{disabled}}" bindtap="transferTrack" open-type="share"> </button>
-      </view>
-      <view class="s-share-img s-btn" bindtap="compose">生成朋友圈分享图</view>
-    </view>
-  </view>
+      <view class="c-infos">
+        <!-- 地点 时间 -->
+        <view class="s-line s-header">
+          <view class="s-addr">{{infos.sAddr}}</view>
+          <view class="s-time">{{infos.time}}</view>
+        </view>
 
-  <!-- 审核弹窗 -->
-  <view class="c-modal" wx:if="{{isShowVerifyModal}}">
-    <view class="c-wrap c-Verify-wrap">
-      <view class="s-close" bindtap="closeVerifyModal"></view>
-      <view class="s-title">提交成功，还剩最后一步</view>
-      <view class="s-list">
-        <view class="s-list-text">
-          <view>1. 点击下方按钮获取小助手二维码</view>
-          <view>2. 添加小助手好友，活动审核通过之后，小助手会主动联系您 </view>
+        <!-- 详细地址 -->
+        <view class="s-line">
+          <view class="title">详细地址</view>
+          <text class="m-text" space="nbsp">{{infos.detailAddr}}</text>
+        </view>
+
+        <!-- 活动介绍 -->
+        <view class="s-line">
+          <view class="title">活动介绍</view>
+          <view class="m-text">
+            <text class="m-intro">{{tempIntro}}</text>
+            <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
+          </view>
+
+        </view>
+
+        <!-- 报名用户 -->
+        <view class="s-line">
+          <view class="title">已报名用户</view>
+          <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+            <view class="user-avatar" style="background-image:url({{item.avatar_url}})">
+              <view class="sex {{item.gender=='男' ? 'male': 'female'}}"></view>
+            </view>
+            <view class="user-info">
+              <view class="user-nick">{{item.name}}</view>
+              <view class="user-desc">{{item.personDesc}}</view>
+            </view>
+          </view>
         </view>
       </view>
-      <view class="s-get-qr s-btn">获取小助手二维码
-        <contact-button type="default-dark" size="20" session-from="{{sessionFromQr}}">
-        </contact-button>
+
+
+      <!-- 底部导航 -->
+      <view class="c-bottom-nav">
+        <!-- 审核中 -->
+        <block wx:if="{{actStatus == '2'}}">
+          <view class="btn-end-act">审核中 </view>
+        </block>
+        <!-- 已结束 -->
+        <block wx:if="{{actStatus == '1'}}">
+          <view class="btn-end-act">已结束 </view>
+        </block>
+        <!-- 邀请好友 签到  -->
+        <block wx:if="{{actStatus == '0'}}">
+          <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
+          <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
+          <block wx:elif="{{bookStatus == '0'}}">
+            <view class="s-btn btn-sign btn-sign-again" wx:if="{{isNeedInfo == '0'}}" bindtap="openBook">立即报名
+              <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+              </contact-button>
+            </view>
+            <view class="s-btn btn-sign" wx:else bindtap="redirectApply">立即报名 </view>
+          </block>
+          <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" bindtap="openBookTrack">已报名
+            <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+            </contact-button>
+          </view>
+        </block>
       </view>
-      <view class="s-get-look s-btn" bindtap="closeVerifyModal">查看活动页面</view>
+
+      <!-- 邀请弹窗 -->
+      <view class="c-modal" wx:if="{{isShowInviteModal}}">
+        <view class="c-wrap c-invite-wrap">
+          <view class="s-close" bindtap="closeInviteModal"></view>
+          <view class="s-avatar" style="background-image:url({{userInfo.avatarUrl}})"></view>
+          <view class="s-desc">参加了一个活动</view>
+          <view class="s-title">{{headLine.title}}</view>
+          <view class="s-qr" style="background-image:url({{actQrImg}})"></view>
+          <view class="s-transmit s-btn">转发给好友
+            <button type="default" disabled="{{disabled}}" bindtap="transferTrack" open-type="share"> </button>
+          </view>
+          <view class="s-share-img s-btn" bindtap="compose">生成朋友圈分享图</view>
+        </view>
+      </view>
+
+      <!-- 审核弹窗 -->
+      <view class="c-modal" wx:if="{{isShowVerifyModal}}">
+        <view class="c-wrap c-Verify-wrap">
+          <view class="s-close" bindtap="closeVerifyModal"></view>
+          <view class="s-title">提交成功，还剩最后一步</view>
+          <view class="s-list">
+            <view class="s-list-text">
+              <view>1. 点击下方按钮获取小助手二维码</view>
+              <view>2. 添加小助手好友，活动审核通过之后，小助手会主动联系您 </view>
+            </view>
+          </view>
+          <view class="s-get-qr s-btn">获取小助手二维码
+            <contact-button type="default-dark" size="20" session-from="{{sessionFromQr}}">
+            </contact-button>
+          </view>
+          <view class="s-get-look s-btn" bindtap="closeVerifyModal">查看活动页面</view>
+        </view>
+      </view>
+
+      <!-- canvas -->
+      <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
+
     </view>
-  </view>
-
-  <!-- canvas -->
-  <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
-
-</view>
+  </button>
+</form>

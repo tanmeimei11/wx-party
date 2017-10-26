@@ -30,6 +30,7 @@ Page({
     transferImageUrl: '',
     actQrImg: '',
     isShowVerifyModal: false,
+    isSubmitFormId: true,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',
@@ -75,6 +76,9 @@ Page({
     }
   },
   onLoad: function (option) {
+    wx.showLoading({
+      title: '加载中...'
+    })
     wx.setNavigationBarTitle({
       title: '活动详情'
     })
@@ -285,6 +289,7 @@ Page({
       transferImageUrl: data.act_url[0],
       isNeedInfo: data.is_need_info
     })
+    wx.hideLoading()
   },
   loadImages: function (images) {
     var imgPromiseList = []
@@ -406,5 +411,22 @@ Page({
     this.setData({
       curSwiperIdx: e.detail.current
     })
+  },
+  formSubmit: function (e) {
+    if (this.data.isSubmitFormId) {
+      console.log('form发生了submit事件，携带数据为：', e.detail.formId)
+      requestPromisify({
+        url: '/tmpl/formid/submit',
+        data: {
+          formId: e.detail.formId
+        }
+      }).then(res => {
+        if (res.succ) {
+          console.log('发送成功')
+        } else {
+          this.data.isSubmitFormId = false
+        }
+      })
+    }
   }
 })
