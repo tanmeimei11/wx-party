@@ -1,5 +1,5 @@
 module.exports = {
-  _v: '0.0.10',
+  _v: '0.1.0',
   // DOMAIN: 'http://qaactivity.in66.com',
   DOMAIN: 'https://actxivity.in66.com',
   // isMock: true
