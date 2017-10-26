@@ -73,6 +73,10 @@
 
       <!-- 底部导航 -->
       <view class="c-bottom-nav">
+        <!-- 审核未通过 -->
+        <block wx:if="{{actStatus == '3'}}">
+          <view class="btn-end-act">审核未通过 </view>
+        </block>
         <!-- 审核中 -->
         <block wx:if="{{actStatus == '2'}}">
           <view class="btn-end-act">审核中 </view>
@@ -125,11 +129,11 @@
               <view>2. 添加小助手好友，活动审核通过之后，小助手会主动联系您 </view>
             </view>
           </view>
-          <view class="s-get-qr s-btn">获取小助手二维码
+          <view class="s-get-qr s-btn" bindtap="getAsisstantQrTrack">获取小助手二维码
             <contact-button type="default-dark" size="20" session-from="{{sessionFromQr}}">
             </contact-button>
           </view>
-          <view class="s-get-look s-btn" bindtap="closeVerifyModal">查看活动页面</view>
+          <!-- <view class="s-get-look s-btn" bindtap="closeVerifyModal">查看活动页面</view> -->
         </view>
       </view>
 

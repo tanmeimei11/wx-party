@@ -262,7 +262,7 @@ Page({
   launchPromo: function () {
     track(this, 'h5_tcpa_goto_launch_promo')
     var _url = this.data.isNeedFillInfo ? '../apply/apply?nextpage=launch&prepage=index' : '../launch/launch'
-    wx.redirectTo({
+    wx.navigateTo({
       url: _url
     })
   },

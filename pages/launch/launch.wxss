@@ -70,6 +70,13 @@
   height: 100%;
 }
 
+.c-line .picker {
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .c-line picker view {
   line-height: 128rpx;
 }

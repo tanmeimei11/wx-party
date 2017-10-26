@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true
@@ -34,10 +34,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "apply",
 					"pathName": "pages/apply/apply",
-					"query": ""
+					"query": "prepage=index"
 				},
 				{
 					"id": 4,
@@ -55,7 +55,7 @@
 					"id": 6,
 					"name": "detail id",
 					"pathName": "pages/detail/detail",
-					"query": "id=11406&prepage=detail&isShowOtherAct=false"
+					"query": "id=13515&prepage=launch&isShowOtherAct=false"
 				},
 				{
 					"id": -1,

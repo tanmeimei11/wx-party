@@ -95,7 +95,7 @@ Page({
       !type && this.toast(errorText['region'], 'error')
       return
     }
-    if (this.data.birthText == originText.birth) {
+    if (this.data.birthText == originText.birth || (+new Date(this.data.birthText.replace(/-/g, '/')) - +new Date() > 100)) {
       !type && this.toast(errorText['birth'], 'error')
       return
     }

@@ -20,7 +20,7 @@ export function combineQuery(seed, query = []) {
   query = query.concat(_track)
   return `${U_TRACK}?` + query.concat([
     // `_host=${location.host}`,
-    // `_token=${common.token}`,
+    `_token=${wx.getStorageSync('token')}`,
     // `_s=${common.source}`,
     // `_v=${common.version}`,
     // `_ig=${common.query._ig || common.query.ig}`,

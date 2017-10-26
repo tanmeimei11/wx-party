@@ -381,7 +381,7 @@
 }
 
 .c-wrap.c-Verify-wrap {
-  margin-top: 268rpx;
+  margin-top: 298rpx;
 }
 
 .c-Verify-wrap .s-get-qr {

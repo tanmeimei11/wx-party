@@ -215,9 +215,13 @@ Page({
     })
   },
   closeVerifyModal: function () {
+    track(this, 'h5_tcpa_active_box_cancel')
     this.setData({
       isShowVerifyModal: false
     })
+  },
+  getAsisstantQrTrack: function () {
+    track(this, 'h5_tcpa_active_box_astcode')
   },
   openSign: function () {
     track(this, 'h5_tcpa_active_signup_click', [`id=${this.data.id}`])
@@ -266,6 +270,7 @@ Page({
     if (data.act_url.length) {
       this.data.images.head.src = this.changeHttpUrl(data.act_url[0])
     }
+    wx.hideLoading()
     this.setData({
       imgUrls: data.act_url,
       headLine: {
@@ -289,7 +294,6 @@ Page({
       transferImageUrl: data.act_url[0],
       isNeedInfo: data.is_need_info
     })
-    wx.hideLoading()
   },
   loadImages: function (images) {
     var imgPromiseList = []

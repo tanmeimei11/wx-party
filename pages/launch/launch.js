@@ -4,7 +4,9 @@ var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var formatNumber = require('../../utils/util.js').formatNumber
 var getTimeObj = require('../../utils/util.js').getTimeObj
-var getFutureYearArray = require('../../utils/util.js').getFutureYearArray
+var monthDayWeekArr = require('../../utils/util.js').getMonthDayWeekArr()
+var weekdays = require('../../utils/util.js').weekdays
+var year = require('../../utils/util.js').year
 var getFullNumArray = require('../../utils/util.js').getFullNumArray
 var uploadImageToQiniu = require('../../utils/api.js').uploadImageToQiniu
 import track from '../../utils/track.js'
@@ -29,15 +31,14 @@ const errorText = {
 }
 Page({
   data: {
-    trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_apply_entry',
+    trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_launch_enter',
     jobList: [],
     birth: [],
     job: '',
     initAddrVal: ['浙江省', '杭州市', '西湖区'],
+    monthDayWeekArr: monthDayWeekArr,
     multiArray: [
-      getFutureYearArray(5),
-      getFullNumArray(12, '月', 1),
-      getFullNumArray(31, '日', 1),
+      monthDayWeekArr,
       getFullNumArray(24, '时'),
       getFullNumArray(60, '分')
     ],
@@ -58,7 +59,7 @@ Page({
   },
   onLoad: function (option) {
     console.log(new Date('2017-10-26 12:00:00'))
-    track(this, 'h5_tcpa_apply_entry')
+    track(this, 'h5_tcpa_launch_entry')
     if (option.prepage) {
       this.setData({
         prepage: option.prepage
@@ -107,6 +108,7 @@ Page({
     wx.hideLoading()
   },
   chooseImage: function () {
+    track(this, 'h5_tcpa_active_photo_add')
     wxPromisify(wx.chooseImage)({
       count: 9,
       success: function (res) {}
@@ -144,8 +146,15 @@ Page({
       day: date.getDate(),
       hour: date.getHours(),
       minute: date.getMinutes(),
+      weekDay: date.getDay()
     }
-    var _index = [_timeObj.year, _timeObj.month, _timeObj.day - 1, _timeObj.hour, _timeObj.minute]
+    var _idx = 0
+    for (var i = 0; i < monthDayWeekArr.length; i++) {
+      if (monthDayWeekArr[i] == `${_timeObj.month +1}月${_timeObj.day}日${weekdays[_timeObj.weekDay]}`) {
+        _idx = i
+      }
+    }
+    var _index = [_idx, _timeObj.hour, _timeObj.minute]
     this.setData({
       beginIndex: _index,
       endIndex: _index
@@ -154,12 +163,14 @@ Page({
   changeTime: function (e) {
     // begin end
     var _val = e.detail.value
+    console.log(_val)
     var _type = e.target.dataset.type
-    var _year = this.data.multiArray[0][_val[0]]
-    var _timeText = `${_year.split(_year.slice(-1))[0]}-${formatNumber(_val[1]+1)}-${formatNumber(_val[2]+1)} ${formatNumber(_val[3])}:${formatNumber(_val[4])}`
+    var _md = this.data.multiArray[0][_val[0]].split('日')[0].split('月')
+    var _timeText = `${year}-${formatNumber(_md[0])}-${formatNumber(_md[1])} ${formatNumber(_val[1])}:${formatNumber(_val[2])}`
     var _data = {}
     _data[`${_type}Index`] = _val
     _data[`${_type}Text`] = _timeText
+    _data[`${_type}Md`] = _md
     this.setData(_data)
     this.verify('', true)
   },
@@ -192,6 +203,7 @@ Page({
   verify: function (e, type) {
 
     var _data = this.data
+
     // 验证图片
     if (!_data.images.length) {
       !type && this.toast(errorText['image'], 'warn')
@@ -213,12 +225,12 @@ Page({
       return
     }
     // 开始时间
-    if (_data.beginText == originText.beginText) {
+    if (_data.beginText == originText.beginText || (+new Date(_data.beginText.replace(/-/g, '/')) - +new Date() < 100)) {
       !type && this.toast(errorText['beginText'], 'warn')
       return
     }
     // 结束时间 
-    if (_data.endText == originText.endText || (+new Date(_data.endText) - +new Date(_data.beginText)) <= 100) {
+    if (_data.endText == originText.endText || (+new Date(_data.endText.replace(/-/g, '/')) - +new Date(_data.beginText.replace(/-/g, '/'))) < 100) {
       !type && (this.toast(errorText['endText'], 'warn'))
       return
     }
@@ -242,7 +254,7 @@ Page({
     }
   },
   submit: function () {
-    track(this, 'h5_tcpa_apply_finish')
+    track(this, 'h5_tcpa_active_submit')
     this.loadingIn('正在创建')
     var _data = this.data
     var requestData = {
@@ -250,12 +262,11 @@ Page({
       actUrls: _data.images,
       district: _data.addr,
       actLocation: _data.detailAddr,
-      startTime: new Date(_data.beginText.split(' ').join('T')).getTime(),
-      endTime: new Date(_data.endText.split(' ').join('T')).getTime(),
+      startTime: +new Date(_data.beginText.replace(/-/g, '/')),
+      endTime: +new Date(_data.endText.replace(/-/g, '/')),
       actDesc: _data.detailDesc,
       wxNo: _data.wechat
     }
-    // console.log().getTime()
     // var requestData = {
     //   actName: 'ceshi',
     //   actUrls: ['http://inimg02.jiuyan.info/in/2015/08/13/999D6165-C074-7176-B939-3A26C28C19C9.jpg'],
@@ -270,7 +281,7 @@ Page({
     requestPromisify({
       url: `/activity/create`,
       method: 'POST',
-      data: requestData
+      data: requestData,
     }).then((res) => {
       this.loadingOut()
       if (res.succ) {

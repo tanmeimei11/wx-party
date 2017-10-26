@@ -98,6 +98,24 @@ let getOneQrByRandom = function (arr) {
   var _idx = Math.floor(Math.random() * (len - 1))
   return arr[_idx]
 }
+
+const weekdays = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+const year = getTimeObj().year
+let getMonthDayWeekArr = () => {
+  var monthNum = 12
+  var perMonthDay = []
+
+  for (var i = 1; i <= monthNum; i++) {
+    var _day = new Date(year, i, 0).getDate()
+    for (var j = 1; j <= _day; j++) {
+      var weekDay = new Date(`${year}/${formatNumber(i)}/${formatNumber(j)}`).getDay()
+      perMonthDay.push(`${i}月${j}日${weekdays[weekDay]}`)
+    }
+  }
+  return perMonthDay
+}
+
+getMonthDayWeekArr()
 module.exports = {
   getOneQrByRandom,
   getTimeObj,
@@ -106,5 +124,8 @@ module.exports = {
   formatNumber,
   formatTimeToTime,
   getFullNumArray,
-  getFutureYearArray
+  getFutureYearArray,
+  getMonthDayWeekArr,
+  weekdays,
+  year
 }

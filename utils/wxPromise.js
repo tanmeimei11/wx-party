@@ -73,6 +73,7 @@ var wxLogin = function (option) {
       })
     })
     .then(res => {
+      console.log('-------logins------')
       let _data = {
         url: DOMAIN + '/party/login',
         data: {

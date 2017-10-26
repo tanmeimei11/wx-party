@@ -21,6 +21,13 @@
   position: relative;
 }
 
+.c-line .picker {
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .c-line input,
 .c-line picker.active {
   color: #333333;
