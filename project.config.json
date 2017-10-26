@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true
@@ -13,7 +13,7 @@
 	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 5,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
