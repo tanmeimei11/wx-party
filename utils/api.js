@@ -1,10 +1,10 @@
 var request = require('wxPromise.js').requestPromisify
 var wxPromisify = require('wxPromise.js').wxPromisify
+var config = require('config.js')
 
-const qnTokenUrl = "https://www.in66.com/promo/commonapi/qiniutoken"
-// const qnUploadUrl = "http://up.qiniu.com"
-const qnUploadUrl = "https://up.qbox.me"
-const qnResUrl = "https://inimg07.jiuyan.info/"
+const qnTokenUrl = config.qnTokenUrl
+const qnUploadUrl = config.qnUploadUrl
+const qnResUrl = config.qnResUrl
 
 
 /**
