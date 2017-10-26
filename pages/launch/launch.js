@@ -57,6 +57,7 @@ Page({
     isAddImg: true
   },
   onLoad: function (option) {
+    console.log(new Date('2017-10-26 12:00:00'))
     track(this, 'h5_tcpa_apply_entry')
     if (option.prepage) {
       this.setData({
@@ -249,11 +250,12 @@ Page({
       actUrls: _data.images,
       district: _data.addr,
       actLocation: _data.detailAddr,
-      startTime: +new Date(_data.beginText),
-      endTime: +new Date(_data.endText),
+      startTime: new Date(_data.beginText.split(' ').join('T')).getTime(),
+      endTime: new Date(_data.endText.split(' ').join('T')).getTime(),
       actDesc: _data.detailDesc,
       wxNo: _data.wechat
     }
+    // console.log().getTime()
     // var requestData = {
     //   actName: 'ceshi',
     //   actUrls: ['http://inimg02.jiuyan.info/in/2015/08/13/999D6165-C074-7176-B939-3A26C28C19C9.jpg'],
