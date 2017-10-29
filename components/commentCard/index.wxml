@@ -1,0 +1,27 @@
+<template name="comment">
+  <view class="c-comment">
+    <!-- header -->
+    <text>8分钟前</text>
+    <view class="comment-btn">评论</view>
+    <!-- 一级评论 -->
+    <view class="s-comment">
+      <view class="comment-detail">
+        <view class="nick">香香
+          <text class="reply">
+            我想买iphonex
+          </text>
+        </view>
+      </view>
+      <view class="second-comment">
+        <view class="nick">
+          <text class="second-nick">
+            点滴回复香香
+          </text>
+          <text class="second-reply">
+            你买不起
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

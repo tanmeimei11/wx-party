@@ -42,8 +42,10 @@ const getTimeObj = time => {
  */
 const formatTimeToTime = (startTime, endTime) => {
   var _sDate = getTimeObj(startTime)
+  if (!endTime) {
+    return `${_sDate.month}月${_sDate.day}日 ${[_sDate.hour, _sDate.minute].join(':')}`
+  }
   var _eDate = getTimeObj(endTime)
-
   if (_sDate.day == _eDate.day) {
     return `${_sDate.month}月${_sDate.day}日 ${[_sDate.hour, _sDate.minute].join(':')}~${[_eDate.hour, _eDate.minute].map(formatNumber).join(':')}`
   }
@@ -115,6 +117,27 @@ let getMonthDayWeekArr = () => {
   return perMonthDay
 }
 
+var mutulPage = (data) => {
+  var realData = data
+  var _mixins = realData.mixins
+  if (_mixins) {
+    _mixins.forEach((item) => {
+      realData.data = { ...realData.data,
+        ...item.data
+      }
+      delete item.data;
+      delete item.onLoad;
+      var _methods = item
+      realData = {
+        ...realData,
+        ...item
+      }
+    })
+  }
+  Page(realData)
+}
+
+
 getMonthDayWeekArr()
 module.exports = {
   getOneQrByRandom,
@@ -127,5 +150,6 @@ module.exports = {
   getFutureYearArray,
   getMonthDayWeekArr,
   weekdays,
-  year
+  year,
+  mutulPage
 }

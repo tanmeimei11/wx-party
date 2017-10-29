@@ -5,7 +5,8 @@
     "pages/apply/apply",
     "pages/logs/logs",
     "pages/sign/sign",
-    "pages/launch/launch"
+    "pages/launch/launch",
+    "pages/circle/circle"
   ],
   "window": {
     "backgroundTextStyle": "light",

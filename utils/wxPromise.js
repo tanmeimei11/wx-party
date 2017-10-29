@@ -29,13 +29,11 @@ var request = (option) => {
   wxCheckLogin(option).then((token) => {
     console.log(token);
     if (token) {
+      token = 'ce090a429cfcaf7dc1bcf4b8c19d9a25';
       !option.data && (option.data = {});
       !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
-      option.header = {
-        'Cookie': `tg_auth=${token};_v=${config._v}`
-      };
+      option.header.Cookie = `tg_auth=${token};_v=${config._v}`;
       (option.method != 'POST') && (option.data.privateKey = token);
-      // option.data.privateKey = '57819e690e696de86db7bb646b4766d1'
       if (isMock) {
         console.log('===== Begin mock request =====')
         console.log(option.data)

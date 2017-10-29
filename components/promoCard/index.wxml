@@ -1,0 +1,28 @@
+<template name="promo">
+  <view class="promo" index="{{index}}" id="{{creatPromo.act_id}}" bindtap='jumpToDetail' data-id="{{ creatPromo.act_id }}">
+    <view class="promo-image" style="background-image: url({{ creatPromo.act_url[0] }})">
+      <image class="promo-cover" src="/images/promo-cover.png"></image>
+      <text class="promo-name">{{creatPromo.act_name}}</text>
+      <view class="promo-info">
+        <image class="icon-promo icon-promo-area" src="/images/promo-area.png"></image>
+        <text class="icon-promo-text">{{creatPromo.city_district}}</text>
+        <image class="icon-promo icon-promo-time" src="/images/promo-time.png"></image>
+        <text class="icon-promo-text">{{creatPromo.time}}</text>
+        <image class="icon-promo icon-promo-charge" src="/images/promo-charge.png"></image>
+        <text class="icon-promo-text">{{creatPromo.act_charge}}元</text>
+      </view>
+    </view>
+    <view class="promo-joiners">
+      <block wx:for="{{creatPromo.joiners}}" wx:key="index" wx:for-item="joiner" wx:for-index="idx">
+        <view class="joiner" wx:if="{{ idx == 0 || idx==1 || idx==2 || idx==3}}">
+          <view class="joiner-image" style="background-image: url({{ joiner.avatar_url }})"></view>
+          <image class="icon-sex" src="/images/male.png" wx:if="{{ joiner.gender == '男'}}"></image>
+          <image class="icon-sex" src="/images/female.png" wx:else></image>
+        </view>
+      </block>
+      <text class="joiner-tip" wx-if="{{creatPromo.joiners.length != 0}}">已参加</text>
+      <text class="joiner-tip" wx-if="{{creatPromo.joiners.length == 0}}">快来参与吧！</text>
+      <view class="baoming" data-id="{{ creatPromo.act_id }}">一起报名</view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,16 @@
+/**circle.wxss**/
+
+@import 'user.wxss';
+@import '../../components/promoCard/index.wxss';
+@import '../../components/photosCard/index.wxss';
+@import '../../components/commentCard/index.wxss';
+.c-block {
+  padding: 70rpx 40rpx 10rpx;
+}
+
+.c-create-text {
+  display: block;
+  padding: 24rpx 0;
+  color: #333333;
+  font-size: 28rpx;
+}

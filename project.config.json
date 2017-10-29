@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true
@@ -13,7 +13,7 @@
 	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 0,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
@@ -55,13 +55,19 @@
 					"id": 6,
 					"name": "detail id",
 					"pathName": "pages/detail/detail",
-					"query": "id=11901&prepage=launch&isShowOtherAct=false"
+					"query": "id=13604&prepage=launch&isShowOtherAct=false"
 				},
 				{
 					"id": -1,
 					"name": "index tab＝2",
 					"pathName": "pages/index/index",
 					"query": "tab=2"
+				},
+				{
+					"id": -1,
+					"name": "circle",
+					"pathName": "pages/circle/circle",
+					"query": ""
 				}
 			]
 		},

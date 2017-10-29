@@ -1,0 +1,11 @@
+<template name="photos">
+  <view class="photos">
+    <view class="c-picture">
+      <view class="s-pic-wrap">
+        <view class="pic" wx:for="{{photos}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" style="background-image:url('{{item.url}}')"></view>
+        <view class="add pic" bindtap="chooseImage" wx:if="{{isAddImg}}"></view>
+      </view>
+      <view class="s-pic-from">图片来自in同城趴举办的“摄影采风零基础训练班”</view>
+    </view>
+  </view>
+</template>

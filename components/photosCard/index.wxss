@@ -1,0 +1,28 @@
+.c-picture {
+  padding: 0 0;
+  border-bottom: 1rpx solid #E0E0E0;
+  font-size: 34rpx;
+}
+
+.s-pic-wrap {
+  font-size: 0;
+}
+
+.s-pic-wrap .pic {
+  width: 216rpx;
+  height: 216rpx;
+  display: inline-block;
+  margin-right: 9rpx;
+  margin-bottom: 9rpx;
+  border: 1rpx solid #CCCCCC;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.s-pic-from {
+  color: #B0B0B0;
+  font-size: 22rpx;
+  margin: 30rpx 0;
+}
