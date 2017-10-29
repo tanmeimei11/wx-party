@@ -1,10 +1,26 @@
 module.exports = {
   data: {
-    a: 1,
-    b: 2
+    swiperIndex: 1,
+    isShowSwiper: false
   },
-  onLoad: function () {
-    this.getPromoCard()
+  swiperChange: function (e) {
+    this.setData({
+      swiperIndex: e.detail.current
+    })
   },
-  getPromoCard: () => {}
+  openSwiper: function (e) {
+    var _curPhotos = e.currentTarget.dataset.photos
+    var _idx = e.currentTarget.dataset.idx
+    this.setData({
+      isShowSwiper: true,
+      swiperIndex: _idx,
+      curPhotos: _curPhotos
+    })
+  },
+  closeSwiper: function () {
+    this.setData({
+      isShowSwiper: false,
+      swiperIndex: 1,
+    })
+  },
 }

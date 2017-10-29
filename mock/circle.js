@@ -8,27 +8,54 @@ module.exports = {
       "list": [{
         "feed_type": "publish", //feed类型  create_activity、join_activity、publish(图片)
         "feed_user_name": "犀牛",
-        "feed_user_id": 122321,
+        "feed_user_id": 11111,
         "join_together": "一起参加过\"龙井户外徒步\"等5次活动",
         "hasJoin": true, //如果当前用户参与过任何一次活动，但是好友们没有一条动态，则显示【你的趴友们什么都没发】
         "photo_info": {
           "id": 1234321,
           "photos": [{
-              "img_width": "5584",
-              "img_height": "3864",
-              "url": "http:\/\/inimg07.jiuyan.info\/in\/2017\/10\/24\/95DDD93F-1BF5-B2A7-314B-E6E2A88D97E0-1PbpPWw.jpg?imageMogr2\/format\/jpg\/thumbnail\/720x%3E\/quality\/90!"
-            },
-            {
-              "img_width": "5584",
-              "img_height": "3864",
-              "url": "http:\/\/inimg07.jiuyan.info\/in\/2017\/10\/24\/95DDD93F-1BF5-B2A7-314B-E6E2A88D97E0-1PbpPWw.jpg?imageMogr2\/format\/jpg\/thumbnail\/720x%3E\/quality\/90!"
-            },
-            {
-              "img_width": "5584",
-              "img_height": "3864",
-              "url": "http:\/\/inimg07.jiuyan.info\/in\/2017\/10\/24\/95DDD93F-1BF5-B2A7-314B-E6E2A88D97E0-1PbpPWw.jpg?imageMogr2\/format\/jpg\/thumbnail\/720x%3E\/quality\/90!"
-            }
-          ],
+            "img_width": "5584",
+            "img_height": "4864",
+            "url": "http:\/\/inimg07.jiuyan.info\/in\/2017\/10\/24\/95DDD93F-1BF5-B2A7-314B-E6E2A88D97E0-1PbpPWw.jpg?imageMogr2\/format\/jpg\/thumbnail\/720x%3E\/quality\/90!"
+          }, {
+            "img_width": "5584",
+            "img_height": "4864",
+            "url": "http://inimg01.jiuyan.info/in/2015/06/08/77DD52AF-B9ED-7A6F-8912-DB7313F50D7A.jpg"
+          }, {
+            "img_width": "5584",
+            "img_height": "4864",
+            "url": "http:\/\/inimg07.jiuyan.info\/in\/2017\/10\/24\/95DDD93F-1BF5-B2A7-314B-E6E2A88D97E0-1PbpPWw.jpg?imageMogr2\/format\/jpg\/thumbnail\/720x%3E\/quality\/90!"
+          }],
+          "desc": "这里是图片的描述",
+          "comment_info": {
+            "comment_count": "1",
+            "comment_items": [{
+              "content": "\u8fd9\u989c\u8272\u6211\u559c\u6b22\ud83d\udc95",
+              "id": "22542236",
+              "user_avatar": "http:\/\/res.jiuyan.info\/in66v2\/src\/images\/default_50x50.png",
+              "user_id": "343426785",
+              "user_name": "\u5a77\u5b50",
+              "pic_height": "0",
+              "pic_width": "0",
+              "content_pic": "",
+              "created_at": "",
+              "at_users": []
+            }]
+          }
+        }
+      }, {
+        "feed_type": "publish", //feed类型  create_activity、join_activity、publish(图片)
+        "feed_user_name": "犀牛",
+        "feed_user_id": 11111,
+        "join_together": "一起参加过\"龙井户外徒步\"等5次活动",
+        "hasJoin": true, //如果当前用户参与过任何一次活动，但是好友们没有一条动态，则显示【你的趴友们什么都没发】
+        "photo_info": {
+          "id": 1234321,
+          "photos": [{
+            "img_width": "5584",
+            "img_height": "8864",
+            "url": "http://inimg01.jiuyan.info/in/2015/06/08/77DD52AF-B9ED-7A6F-8912-DB7313F50D7A.jpg"
+          }],
           "desc": "这里是图片的描述",
           "comment_info": {
             "comment_count": "1",

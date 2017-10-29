@@ -122,10 +122,14 @@ var mutulPage = (data) => {
   var _mixins = realData.mixins
   if (_mixins) {
     _mixins.forEach((item) => {
-      realData.data = { ...realData.data,
-        ...item.data
+      if (item.data) {
+        console.log(item.data)
+        realData.data = { ...realData.data,
+          ...item.data
+        }
+        delete item.data
       }
-      delete item.data;
+
       delete item.onLoad;
       var _methods = item
       realData = {

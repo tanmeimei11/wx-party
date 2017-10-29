@@ -1,26 +1,31 @@
 <template name="comment">
   <view class="c-comment">
     <!-- header -->
-    <text>8分钟前</text>
-    <view class="comment-btn">评论</view>
+    <text class="s-comment-time">8分钟前</text>
+    <view class="s-comment-btn" bindtap="comment" data-photo-id="{{photoId}}"></view>
+    <view class="inner" wx:if="{{commentId == photoId}}">
+      <input type="text" class="ip" placeholder="说点什么吧" placeholder-style="color:#B0B0B0;" focus="{{focus}}" />
+      <view class="submit" bindtap="submitComment" data-comment-id="{{commentId}}" data-photo-id="{{photoId}}">发送</view>
+    </view>
     <!-- 一级评论 -->
     <view class="s-comment">
-      <view class="comment-detail">
-        <view class="nick">香香
-          <text class="reply">
-            我想买iphonex
-          </text>
-        </view>
+      <view class="first-comment detail" data-user="">
+        <text class="nick">香香 : </text>
+        <text class="reply">
+          我想买iphonex
+        </text>
       </view>
-      <view class="second-comment">
+      <view class="second-comment detail" data-user="">
         <view class="nick">
-          <text class="second-nick">
-            点滴回复香香
-          </text>
-          <text class="second-reply">
-            你买不起
+          <text class="second-nick nick">
+            <text>点滴</text>
+            <text class="reply-text">回复</text>
+            <text>点滴 : </text>
           </text>
         </view>
+        <text class="second-reply reply">
+          你买不起
+        </text>
       </view>
     </view>
   </view>

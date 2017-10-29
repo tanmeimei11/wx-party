@@ -1,10 +1,16 @@
 var request = require('../../utils/wxPromise.js').requestPromisify
 module.exports = {
   data: {
-    a: 1,
-    b: 2
+    commentId: ''
   },
-  comment: function () {
+  comment: function (e) {
+    var id = e.currentTarget.dataset.photoId
+    this.setData({
+      commentId: id
+    })
+  },
+  submitComment: function (e) {
+    var id = e.currentTarget.dataset.commentId
     request({
       url: 'http://dev.in66.com/h5/photo/comment',
       header: {
@@ -12,7 +18,7 @@ module.exports = {
       },
       method: 'POST',
       data: {
-        pid: '1LVLa',
+        pid: id,
         uid: '1KVvK',
         content: '评论内容'
       }

@@ -1,7 +1,7 @@
 /**circle.wxss**/
 
-@import 'user.wxss';
 @import '../../components/promoCard/index.wxss';
+@import '../../components/userCard/index.wxss';
 @import '../../components/photosCard/index.wxss';
 @import '../../components/commentCard/index.wxss';
 .c-block {

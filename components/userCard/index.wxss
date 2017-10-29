@@ -1,3 +1,7 @@
+.s-user {
+  position: relative;
+}
+
 .mm-user .user-avatar {
   width: 80rpx;
   height: 80rpx;
@@ -44,4 +48,19 @@
   font-size: 22rpx;
   margin-top: 4rpx;
   color: #B0B0B0
+}
+
+.s-concern {
+  width: 124rpx;
+  height: 56rpx;
+  background: #ff4338;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 60rpx;
+  text-align: center;
+  position: absolute;
+  right: 0rpx;
+  top: 15rpx;
 }

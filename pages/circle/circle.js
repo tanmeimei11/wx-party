@@ -6,8 +6,10 @@ var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var mutulPage = require('../../utils/util.js').mutulPage
 var promo = require('../../components/promoCard/index.js')
 var commont = require('../../components/commentCard/index.js')
+var user = require('../../components/userCard/index.js')
+var photos = require('../../components/photosCard/index.js')
 mutulPage({
-  mixins: [promo, commont],
+  mixins: [promo, commont, user, photos],
   data: {
     siginInUsers: [{
       avatar_url: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg',
