@@ -11,8 +11,8 @@
   width: 216rpx;
   height: 216rpx;
   display: inline-block;
-  margin-right: 9rpx;
-  margin-bottom: 9rpx;
+  margin-right: 7rpx;
+  margin-bottom: 7rpx;
   box-sizing: border-box;
 }
 

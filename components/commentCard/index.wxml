@@ -8,11 +8,11 @@
       <view class="submit" bindtap="submitComment" data-comment-id="{{commentId}}" data-photo-id="{{photoId}}">发送</view>
     </view>
     <!-- 一级评论 -->
-    <view class="s-comment">
-      <view class="first-comment detail" data-user="">
-        <text class="nick">香香 : </text>
+    <view class="s-comment" wx:for="{{commentList.comment_items}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+      <view class="first-comment detail" data-user-id="{{item.user_id}}">
+        <text class="nick">{{item.user_name}} : </text>
         <text class="reply">
-          我想买iphonex
+          {{item.content}}你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起
         </text>
       </view>
       <view class="second-comment detail" data-user="">
@@ -24,9 +24,11 @@
           </text>
         </view>
         <text class="second-reply reply">
-          你买不起
+          你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起
         </text>
       </view>
     </view>
+    <!-- 更多评论 -->
+    <text class="m-more">更多评论</text>
   </view>
 </template>

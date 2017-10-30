@@ -11,8 +11,9 @@
       </view>
     </view>
     <!-- 关注 -->
-    <view class="s-concern" data-uid="{{id}}" bindtap="getConcern">
-      关注
+    <view wx:if="{{isOther}}" class="s-concern {{isConcern ? 'disabled':''}}" data-uid="{{id}}" data-concern="{{isConcern ? true : fasle}}"
+      data-status-idx="{{statusIdx}}" bindtap="getConcern">
+      {{isConcern ? '已关注':'关注'}}
     </view>
   </view>
 

@@ -64,3 +64,10 @@
   right: 0rpx;
   top: 15rpx;
 }
+
+.s-concern.disabled {
+  background: #fff;
+  border: 1rpx solid #EEEEEE;
+  color: #B0B0B0;
+  cursor: none;
+}

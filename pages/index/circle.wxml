@@ -1,0 +1,91 @@
+<!--ciecle.wxml-->
+<scroll-view class="container" scroll-y="true" bindscrolltoupper="scrollChange" upper-threshold="10" lower-threshold="55"
+  bindscrolltolower="scrollChange" style="height:{{scrollHeight}}px">
+  <view class="launch-status" wx:if="{{circleStatus != 'notjoin'}}">
+    <view></view>
+    <text>发布状态</text>
+  </view>
+  <view class="launch-status" wx:if="{{circleStatus != 'notjoin'}}">
+    <view></view>
+    <text>调试客服</text>
+    <contact-button type="default-dark" size="20" session-from="downloadin_">
+    </contact-button>
+  </view>
+
+  <!-- 自己的趴友圈 -->
+  <view>
+    <view class="c-block" wx:for="{{allStatus}}" wx:for-index="statusIdx" wx:for-item="status" wx:key="{{statusIdx}}">
+      <!-- user -->
+      <import src="../../components/userCard/index.wxml" />
+      <template is="user" data="{{nick:allStatus[statusIdx].feed_user_name,avatar:allStatus[statusIdx].feed_user_avatar,id:allStatus[statusIdx].feed_user_id,personDesc:allStatus[statusIdx].join_together,isConcern:allStatus[statusIdx].has_in_watch,statusIdx:statusIdx}}"
+      />
+
+      <!-- publish -->
+      <view class="c-create-promo" wx:if="{{allStatus[statusIdx].feed_type == 'publish'}}">
+        <text class="c-create-text">{{allStatus[statusIdx].photo_info.isTempDesc ? allStatus[statusIdx].photo_info.tempDesc : allStatus[statusIdx].photo_info.desc}}</text>
+        <!-- 展开全部 -->
+        <view class="m-more-desc" wx:if="{{allStatus[statusIdx].photo_info.tempDesc}}" bindtap="getMorePicDesc" data-idx="{{statusIdx}}">{{ allStatus[statusIdx].photo_info.isTempDesc ? '展开全部':'收起全部'}}</view>
+        <import src="../../components/photosCard/index.wxml" />
+        <template is="photos" data="{{photos:allStatus[statusIdx].photo_info.photos}}" />
+        <import src="../../components/commentCard/index.wxml" />
+        <template is="comment" data="{{photoId:allStatus[statusIdx].photo_info.id, commentList:allStatus[statusIdx].photo_info.comment_info,commentId:commentId}}"
+        />
+      </view>
+
+      <!-- create_activity  book_activity-->
+      <view class="c-create-promo" wx:else>
+        <text class="c-create-text"> {{allStatus[statusIdx].feed_type == 'create_activity'? '创建':'报名'}}了活动</text>
+        <import src="../../components/promoCard/index.wxml" />
+        <template is="promo" data="{{creatPromo:allStatus[statusIdx].activity_info}}" />
+        <!-- <template is="comment" data="{{commentList:allStatus[statusIdx].comment_info}}" /> -->
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐 -->
+  <block wx:if="{{circleStatus == 'joinnostatus'}}">
+    <view class="no-status-img"></view>
+    <view class="no-status-text">您的趴友们尚未发布状态</view>
+  </block>
+
+  <view class="other-status-text" wx:if="{{ isShowOtherCircle == true}}">以下是附近参加活动的人，快报名活动认识他们</view>
+  <view>
+    <view class="c-block" wx:for="{{otherStatus}}" wx:for-index="statusIdx" wx:for-item="status" wx:key="{{statusIdx}}">
+      <!-- user -->
+      <import src="../../components/userCard/index.wxml" />
+      <template is="user" data="{{nick:otherStatus[statusIdx].feed_user_name,avatar:otherStatus[statusIdx].feed_user_avatar,id:otherStatus[statusIdx].feed_user_id,personDesc:otherStatus[statusIdx].userDesc,isConcern:otherStatus[statusIdx].has_in_watch,statusIdx:statusIdx,isOther:true}}"
+      />
+
+      <!-- publish -->
+      <view class="c-create-promo" wx:if="{{otherStatus[statusIdx].feed_type == 'publish'}}">
+        <text class="c-create-text">{{otherStatus[statusIdx].photo_info.desc}}</text>
+        <import src="../../components/photosCard/index.wxml" />
+        <template is="photos" data="{{photos:otherStatus[statusIdx].photo_info.photos}}" />
+        <import src="../../components/commentCard/index.wxml" />
+        <template is="comment" data="{{photoId:otherStatus[statusIdx].photo_info.id, commentList:otherStatus[statusIdx].photo_info.comment_info,commentId:commentId}}"
+        />
+      </view>
+
+      <!-- create_activity  book_activity-->
+      <view class="c-create-promo" wx:else>
+        <text class="c-create-text"> {{otherStatus[statusIdx].feed_type == 'create_activity'? '创建':'报名'}}了活动</text>
+        <import src="../../components/promoCard/index.wxml" />
+        <template is="promo" data="{{creatPromo:otherStatus[statusIdx].activity_info}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="lower-loading-no-more" wx:if="{{!noMoreCircle}}">{{isLoadingCircle ? '加载中...': ''}}</view>
+  <view class="lower-loading-no-more" wx:if="{{noMoreCircle}}">没有更多了</view>
+
+</scroll-view>
+
+<!-- 预览图片 -->
+<swiper class="c-main-swiper" wx:if="{{isShowSwiper}}" bindchange="swiperChange" current="{{swiperIndex}}">
+  <block wx:for="{{curPhotos}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+    <swiper-item bindtap="closeSwiper">
+      <view class="slide-image" width="355" height="150" style="background-image:url({{item.url}})"></view>
+    </swiper-item>
+  </block>
+  <view class="swiper-index" wx:if="{{curPhotos.length >1}}">{{swiperIndex +1}}/{{curPhotos.length}}</view>
+</swiper>

@@ -6,7 +6,16 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 // let system = require('../../utils/system.js')
 // let request = system.wxRequest
 import track from '../../utils/track.js'
-Page({
+// 组件
+var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
+var mutulPage = require('../../utils/util.js').mutulPage
+var promo = require('../../components/promoCard/index.js')
+var commont = require('../../components/commentCard/index.js')
+var user = require('../../components/userCard/index.js')
+var photos = require('../../components/photosCard/index.js')
+
+mutulPage({
+  mixins: [promo, commont, user, photos],
   data: {
     qunList: [],
     promoList: [],
@@ -25,12 +34,19 @@ Page({
     currentCursorPromo: 0,
     isNeedFillInfo: true,
     isSubmitFormId: true,
-    joinTips: [
-      '1、点击下方按钮联系小助手',
-      '2、回复“加群”，获取二维码链接',
-      '3、选择对应群二维码，长按识别',
-      '4、小助手邀请你进群'
-    ]
+    isShowOtherCircle: false,
+    circleStatus: 'join', // join joinnostatus notjoin
+    allStatus: [],
+    otherStatus: [],
+    isLoadingCircle: false,
+    noMoreCircle: false,
+    lists: [
+      'qunList',
+      'promoList',
+      'circleList'
+    ],
+    currentCursorCircle: 0,
+    currentCursorOtherCircle: 0,
   },
   downloadQrcode: function () {},
   setShare: function (tab) {
@@ -127,6 +143,32 @@ Page({
       currentCursorPromo: 0
     })
     this.loadMorePromo()
+  },
+  switchTab3: function (e) {
+
+    if (this.data.currentList == 'circleList') {
+      return
+    }
+
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    if (e) {
+      this.setShare(2)
+      track(this, 'h5_tcpa_index_active_tab_click ')
+    }
+    this.setData({
+      currentList: 'circleList',
+      isShowOtherCircle: false,
+      circleStatus: 'join',
+      allStatus: [],
+      otherStatus: [],
+      isLoadingCircle: false,
+      noMoreCircle: false,
+      hidden: true
+    })
+    this.getPageData('loading')
   },
   upper: function () {
     console.log("upper");
@@ -283,8 +325,165 @@ Page({
       })
     }
   },
+  loading: function () {
+    this.setData({
+      isLoadingCircle: true
+    })
+  },
+  loadingOut: function () {
+    setTimeout(() => {
+      this.setData({
+        isLoadingCircle: false
+      })
+    }, 300)
+  },
+  getPageData: function (loading) {
+
+    request({
+      url: '/friend/feed',
+      data: {
+        cursor: this.data.currentCursorCircle,
+        limit: 10
+      }
+    }).then((res) => {
+      if (res.succ) {
+        if (!res.data.hasJoin || this.data.noMoreCircle) {
+          this.getOtherData()
+          this.setData({
+            isShowOtherCircle: true,
+          })
+        } else {
+          this.initCircleData(res.data)
+        }
+        loading && wx.hideLoading()
+      } else {
+        this.loadingOut()
+      }
+    }, () => {
+      this.loadingOut()
+      wx.showToast({
+        title: '网路错误',
+        icon: 'fail',
+        duration: 2000
+      })
+    })
+  },
+  getDescCollect: function (age, city, district, work) {
+    var _desc = ''
+    if (age && age != 0) {
+      _desc += `${age}岁`
+    }
+    if (city) {
+      _desc += ` ${city}`
+      district && (_desc += `.${district}`)
+    } else {
+      district && (_desc += ` ${district}`)
+    }
+    work && (_desc += ` ${work}`)
+    return _desc
+  },
+  getOtherData: function () {
+    request({
+      url: '/friend/rec',
+      data: {
+        cursor: this.data.currentCursorOtherCircle,
+        limit: 10
+      }
+    }).then((res) => {
+      if (res.succ) {
+        this.initOtherData(res.data)
+      }
+    })
+  },
+  initOtherData: function (data) { // 推荐
+    // 没有数据了
+    if (!data.list.length) {
+      this.setData({
+        noMoreCircle: true
+      })
+    }
+
+    this.setData({
+      currentCursorOtherCircle: data.current_cursor
+    })
+    var otherStatus = data.list
+    otherStatus.forEach((item, idx) => {
+      if (item.feed_type != 'publish') {
+        var _promo = item.activity_info
+        _promo.time = formatTimeToTime(_promo.start_time)
+      } else {
+        var _descObj = util.getLenStr(item.photo_info.desc, 100);
+        !_descObj.all && (item.photo_info.tempDesc = _descObj.str, item.photo_info.isTempDesc = true)
+      }
+
+      // 组合描述
+      item.userDesc = this.getDescCollect(item.feed_user_age, item.feed_user_city, item.feed_user_district, item.feed_user_work)
+    })
+    var _otherStatus = this.data.otherStatus
+    this.setData({
+      otherStatus: [..._otherStatus, ...otherStatus],
+    })
+    this.loadingOut()
+    // del
+    this.setData({
+      noMoreCircle: true
+    })
+  },
+  initCircleData: function (data) { // 趴友圈
+    // 显示推荐
+    if (!data.list.length) {
+      this.setData({
+        isShowOtherCircle: true
+      })
+    }
+
+    this.setData({
+      currentCursorCircle: data.current_cursor
+    })
+    var allStatus = data.list
+    allStatus.forEach((item, idx) => {
+      if (item.feed_type != 'publish') {
+        var _promo = item.activity_info
+        _promo.time = formatTimeToTime(_promo.start_time)
+      } else {
+        var _descObj = util.getLenStr(item.photo_info.desc, 100);
+        !_descObj.all && (item.photo_info.tempDesc = _descObj.str, item.photo_info.isTempDesc = true)
+      }
+    })
+    var _allStatus = this.data.allStatus
+    this.setData({
+      allStatus: [..._allStatus, ...allStatus]
+    })
+    this.loadingOut()
+    // del
+    this.setData({
+      isShowOtherCircle: true
+    })
+  },
+  scrollChange: function (e) {
+    if (this.data.isLoadingCircle || this.data.noMoreCircle) {
+      return
+    }
+    if (!this.data.isShowOtherCircle) {
+      this.getPageData()
+    } else {
+      this.getOtherData()
+    }
+    this.loading()
+  },
+  getMorePicDesc: function (e) {
+    var _idx = e.currentTarget.dataset.idx
+    var _allStatus = this.data.allStatus
+    _allStatus[_idx].photo_info.isTempDesc = !_allStatus[_idx].photo_info.isTempDesc
+    this.setData({
+      allStatus: _allStatus
+    })
+  },
+  lookMoreInStatus: function () {
+
+  },
   onLoad(options) {
-    let currentList = (options.tab == '2' && 'promoList') || 'qunList'
+    let currentList = this.data.lists[options.tab - 1]
     let self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -298,8 +497,10 @@ Page({
     })
     if (currentList == 'qunList') {
       this.switchTab1()
-    } else {
+    } else if (currentList == 'promoList') {
       this.switchTab2()
+    } else {
+      this.switchTab3()
     }
   }
 })

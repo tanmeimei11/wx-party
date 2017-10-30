@@ -83,3 +83,10 @@
   text-decoration: none;
   background: #FF4338;
 }
+
+.m-more {
+  display: inline-block;
+  color: #43DDF5;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}

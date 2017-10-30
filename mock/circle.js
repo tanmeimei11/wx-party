@@ -5,14 +5,16 @@ module.exports = {
     "succ": true,
     "data": {
       "current_cursor": "3",
+      "hasJoin": true,
       "list": [{
         "feed_type": "publish", //feed类型  create_activity、join_activity、publish(图片)
         "feed_user_name": "犀牛",
         "feed_user_id": 11111,
+        "has_in_watch": false,
         "join_together": "一起参加过\"龙井户外徒步\"等5次活动",
         "hasJoin": true, //如果当前用户参与过任何一次活动，但是好友们没有一条动态，则显示【你的趴友们什么都没发】
         "photo_info": {
-          "id": 1234321,
+          "id": 111,
           "photos": [{
             "img_width": "5584",
             "img_height": "4864",
@@ -26,7 +28,7 @@ module.exports = {
             "img_height": "4864",
             "url": "http:\/\/inimg07.jiuyan.info\/in\/2017\/10\/24\/95DDD93F-1BF5-B2A7-314B-E6E2A88D97E0-1PbpPWw.jpg?imageMogr2\/format\/jpg\/thumbnail\/720x%3E\/quality\/90!"
           }],
-          "desc": "这里是图片的描述",
+          "desc": "这里是图片的描述这里是图片的描述这里这里\n是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是\n图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这里是图片的描述这\n里是图片的描述这里是图片的描述是图片的描述这里是图片的描述",
           "comment_info": {
             "comment_count": "1",
             "comment_items": [{
@@ -46,11 +48,12 @@ module.exports = {
       }, {
         "feed_type": "publish", //feed类型  create_activity、join_activity、publish(图片)
         "feed_user_name": "犀牛",
-        "feed_user_id": 11111,
+        "feed_user_id": 22222,
+        "has_in_watch": true,
         "join_together": "一起参加过\"龙井户外徒步\"等5次活动",
         "hasJoin": true, //如果当前用户参与过任何一次活动，但是好友们没有一条动态，则显示【你的趴友们什么都没发】
         "photo_info": {
-          "id": 1234321,
+          "id": 2222,
           "photos": [{
             "img_width": "5584",
             "img_height": "8864",

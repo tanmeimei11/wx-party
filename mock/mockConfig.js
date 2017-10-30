@@ -7,5 +7,7 @@ module.exports = {
   "https://activity.in66.com/activity/prepare": "prepare",
   "https://activity.in66.com/activity/add_info": "submit",
   "https://activity.in66.com/activity/join": "join",
-  "https://activity.in66.com/friend/feed": "circle"
+  "https://activity.in66.com/friend/feed": "circle",
+  "https://activity.in66.com/friend/rec": "circlemore",
+  "https://activity.in66.com/friend/inwatch": "watch"
 }
