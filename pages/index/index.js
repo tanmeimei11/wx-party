@@ -13,9 +13,11 @@ var promo = require('../../components/promoCard/index.js')
 var commont = require('../../components/commentCard/index.js')
 var user = require('../../components/userCard/index.js')
 var photos = require('../../components/photosCard/index.js')
+var concernModal = require('../../components/concernModal/index.js')
+var userModal = require('../../components/userModal/index.js')
 
 mutulPage({
-  mixins: [promo, commont, user, photos],
+  mixins: [promo, commont, user, photos, concernModal, userModal],
   data: {
     qunList: [],
     promoList: [],

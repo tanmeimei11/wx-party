@@ -22,11 +22,10 @@ module.exports = {
         var _otherStatus = this.data.otherStatus
         _otherStatus[idx].has_in_watch = true
         this.setData({
-          otherStatus: _otherStatus
+          otherStatus: _otherStatus,
+          isShowConcernModal: true
         })
-
       }
     })
-
   }
 }

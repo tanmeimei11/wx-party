@@ -5,12 +5,6 @@
     <view></view>
     <text>发布状态</text>
   </view>
-  <view class="launch-status" wx:if="{{circleStatus != 'notjoin'}}">
-    <view></view>
-    <text>调试客服</text>
-    <contact-button type="default-dark" size="20" session-from="downloadin_">
-    </contact-button>
-  </view>
 
   <!-- 自己的趴友圈 -->
   <view>
@@ -89,3 +83,11 @@
   </block>
   <view class="swiper-index" wx:if="{{curPhotos.length >1}}">{{swiperIndex +1}}/{{curPhotos.length}}</view>
 </swiper>
+
+<!-- 关注弹窗 -->
+<import src="../../components/concernModal/index.wxml" />
+<template is="concernModal" data="{{isShowConcernModal:isShowConcernModal}}" />
+
+<!-- 好友动态弹窗 -->
+<import src="../../components/userModal/index.wxml" />
+<template is="userModal" data="{{isShowUserModal:isShowUserModal,photos:photos}}" />

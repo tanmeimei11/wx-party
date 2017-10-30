@@ -1,0 +1,34 @@
+<template name="userModal">
+  <!-- 关注弹窗 -->
+  <view class="c-modal" wx:if="{{isShowUserModal}}">
+    <view class="c-wrap c-user-modal-wrap">
+      <!-- 用户 -->
+      <view class="mm-user">
+        <view class="user-avatar" style="background-image:url({{avatar}})">
+          <view class="sex {{gender=='男' ? 'male': 'female'}}"></view>
+        </view>
+        <view class="user-info">
+          <view class="user-nick">nick</view>
+          <view class="user-desc">personDes</view>
+        </view>
+      </view>
+      <!-- 行程 -->
+      <view class="s-pic-text">和Ta一起参加过的活动</view>
+      <view class="s-travel-wrap" wx:if="{{photos.length > 1}}">
+        <view class="text"> 2017.10.14</view>
+      </view>
+      <!-- 动态 -->
+      <view class="s-pic-text">Ta的最新动态</view>
+      <view class="s-pic-wrap" wx:if="{{photos.length > 1}}">
+        <image class="pic" wx:for="{{photos}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" mode="aspectFill" src="http://inimg01.jiuyan.info/in/2015/06/08/77DD52AF-B9ED-7A6F-8912-DB7313F50D7A.jpg"></image>
+      </view>
+      <!-- 按钮 -->
+      <view class="s-close" bindtap="closeUserModal"></view>
+      <view class="s-share-img s-btn">去in app查看更多Ta的动态
+        <contact-button type="default-dark" size="20" session-from="downloadin_">
+        </contact-button>
+      </view>
+    </view>
+  </view>
+
+</template>

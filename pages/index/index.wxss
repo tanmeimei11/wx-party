@@ -305,10 +305,6 @@
   /* width: 300rpx; */
 }
 
-.c-modal .c-wrap {
-  padding-bottom: 0;
-}
-
 .saveQrcode {
   margin-top: 10rpx;
   width: 100%;
