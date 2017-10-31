@@ -1,0 +1,19 @@
+<!--detail.wxml-->
+<view class="container">
+      <!-- 埋点 -->
+      <image src="{{trackSeed}}" style="width:0;height:0;" />
+
+        <!-- 其他活动 -->
+      <view class="c-other" bindtap="goBack" wx:if="{{isShowOtherAct}}">
+        <view class="s-logo"></view>
+        <view class="s-text">{{otherAct}}</view>
+        <view class="s-look">立即查看</view>
+      </view>
+
+      <view class="r-txt">
+        <view class="r-img"></view>
+        <view class="r-suc-txt">报名成功</view>
+        <view class="r-img"></view>
+        <view class="r-img"></view>
+      </view>
+</view>

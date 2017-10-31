@@ -5,6 +5,7 @@
     "pages/apply/apply",
     "pages/logs/logs",
     "pages/sign/sign",
+    "pages/result/result",
     "pages/launch/launch"
   ],
   "window": {
