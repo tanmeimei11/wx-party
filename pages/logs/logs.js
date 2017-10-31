@@ -1,5 +1,6 @@
 //logs.js
 const util = require('../../utils/util.js')
+const auth = require('../../utils/auth.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var request = require('../../utils/wxPromise.js').requestPromisify
 // var Promise = require('../../lib/es6-promise');
@@ -10,6 +11,14 @@ Page({
   },
   onLoad: function (e) {
     // this.getAccessToken()
+    // this.pay()
+
+  },
+  auth: function () {
+    auth.get('invoiceTitle')
+      .then(() => {
+        console.log('succ')
+      })
   },
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.formId)
@@ -77,5 +86,60 @@ Page({
     wx.previewImage({
       urls: ['https://inimg07.jiuyan.info/in/2017/07/07/B0382243-8A7C-32B2-8D0E-E68CC8AD6AA0.jpg']
     })
+  },
+  pay: function () {
+    console.log('pay')
+    request({
+      url: '/activity/join_order',
+      data: {
+        id: '14101'
+      }
+    }).then(Res => {
+      console.log(Res)
+      if (Res.succ) {
+        request({
+          url: 'http://qainlove.in66.com/api/payment/signature',
+          data: {
+            payment_channel: "weapppay",
+            business_party: "activitycenter",
+            order_detail: Res.data.order_detail,
+            extend_params: JSON.stringify({
+              open_id: Res.data.open_id
+            })
+          }
+        }).then((res) => {
+          if (res.succ && res.data.sign) {
+            var _data = res.data.sign
+            console.log(_data)
+            var payData = {
+              'timeStamp': String(_data.timeStamp),
+              'nonceStr': _data.nonceStr,
+              'package': _data.package,
+              'signType': 'MD5',
+              'paySign': _data.paySign,
+              // ..._data,
+              success: function (errMsg) {
+                console.log('succ')
+                console.log(errMsg)
+              },
+              fail: function (errMsg) {
+                console.log('faild')
+                console.log(errMsg)
+              },
+              complete: function (errMsg) {
+                console.log(errMsg)
+                console.log('complete')
+              }
+            }
+            wx.requestPayment(payData)
+          } else {
+            console.error('error')
+          }
+        })
+      }
+
+    })
+
+
   }
 })

@@ -2,14 +2,17 @@
 //获取应用实例
 const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
+var mutulPage = require('../../utils/util.js').mutulPage
 // let system = require('../../utils/system.js')
 // let requestPromisify = system.wxRequest
 var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
+var payModal = require('../../components/payModal/index.js')
 import track from '../../utils/track.js'
 
-Page({
+mutulPage({
+  mixins: [payModal],
   data: {
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,
@@ -235,18 +238,24 @@ Page({
       return
     }
 
-    requestPromisify({
-      url: "/activity/join",
-      data: {
-        id: this.data.id
-      }
-    }).then((res) => {
-      if (res.succ && res.data == '1') {
-        this.setData({
-          bookStatus: '1'
-        })
-      }
+    this.setData({
+      isShowPayModal: true
     })
+    // @xiangxiang
+    // 犀牛修改流程
+    // 不跳客服 去支付
+    // requestPromisify({
+    //   url: "/activity/join",
+    //   data: {
+    //     id: this.data.id
+    //   }
+    // }).then((res) => {
+    //   if (res.succ && res.data == '1') {
+    //     this.setData({
+    //       bookStatus: '1'
+    //     })
+    //   }
+    // })
   },
   openBookTrack: function () {
     track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
@@ -278,21 +287,24 @@ Page({
         desc: `发起人：${data.creator_name}`
       },
       infos: {
+        charge: `活动费用: ¥${ data.charge || 0}`,
         sAddr: data.city_district,
-        time: formatTimeToTime(data.start_time, data.end_time),
+        time: formatTimeToTime(data.start_time, data.end_time, true),
         detailAddr: data.act_location,
         intro: data.act_desc.replace(/\\n/g, '\n')
       },
       tempIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joiners.map(this.getDescCollect),
       actQrImg: data.share_qrcode_url,
-      otherAct: `in同城趴更多${data.other_act_count==0 ? "":`${data.other_act_count}个`}活动正在报名中`,
+      otherAct: `本周在你附近举办的${data.other_act_count==0 ? "":`${data.other_act_count}个`}活动`,
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
       actStatus: data.act_status,
       transferImageUrl: data.act_url[0],
-      isNeedInfo: data.is_need_info
+      isNeedInfo: data.is_need_info,
+      promoMoney: data.charge || 0,
+      promoDelayMoney: data.booking_charge || 0
     })
   },
   loadImages: function (images) {

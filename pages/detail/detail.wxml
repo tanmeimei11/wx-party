@@ -22,7 +22,7 @@
         <view class="c-other" bindtap="goBack" wx:if="{{isShowOtherAct}}">
           <view class="s-logo"></view>
           <view class="s-text">{{otherAct}}</view>
-          <view class="s-look">查看</view>
+          <view class="s-look">立即查看</view>
         </view>
 
         <!-- 大标题 -->
@@ -37,6 +37,7 @@
         <view class="s-line s-header">
           <view class="s-addr">{{infos.sAddr}}</view>
           <view class="s-time">{{infos.time}}</view>
+          <view class="s-charge">{{infos.charge}}</view>
         </view>
 
         <!-- 详细地址 -->
@@ -91,8 +92,8 @@
           <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
           <block wx:elif="{{bookStatus == '0'}}">
             <view class="s-btn btn-sign btn-sign-again" wx:if="{{isNeedInfo == '0'}}" bindtap="openBook">立即报名
-              <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
-              </contact-button>
+              <!-- <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+              </contact-button> -->
             </view>
             <view class="s-btn btn-sign" wx:else bindtap="redirectApply">立即报名 </view>
           </block>
@@ -140,6 +141,10 @@
       <!-- canvas -->
       <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
 
+      <!-- 好友动态弹窗 -->
+      <import src="../../components/payModal/index.wxml" />
+      <template is="payModal" data="{{isShowPayModal:isShowPayModal,promoMoney:promoMoney,promoDelayMoney,promoDelayMoney,id:id}}"
+      />
     </view>
   </button>
 </form>

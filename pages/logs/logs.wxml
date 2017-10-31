@@ -1,7 +1,7 @@
 <!--logs.wxml-->
 <view class="container">
-  <!-- <button type="default" size="defaultSize" bindtap="goDetail" hover-class="defaultTap">Button</button>
-  <block wx:for="{{logs}}" wx:for-item="log">
+  <button type="default" size="defaultSize" bindtap="pay" hover-class="defaultTap">Button</button>
+  <!-- <block wx:for="{{logs}}" wx:for-item="log">
     <text class="log-item">{{index + 1}}. {{log}}</text>
   </block> -->
 
@@ -9,7 +9,7 @@
   <button type="default" size="defaultSize" bindtap="compose" hover-class="defaultTap">Button</button> -->
   <!-- <button type="default" size="defaultSize" bindtap="getAccessToken" hover-class="defaultTap">获取二维码</button> -->
 
-  <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true" action="/replay">
+  <!-- <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true" action="/replay">
     <button formType="submit">Submit</button>
-  </form>
+  </form> -->
 </view>

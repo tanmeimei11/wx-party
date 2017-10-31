@@ -183,7 +183,7 @@ Page({
           if (res.data.list[i].start_time && res.data.list[i].end_time) {
             res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
           } else {
-            res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time))
+            res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time), true)
           }
         }
         this.setData({
@@ -284,7 +284,7 @@ Page({
     }
   },
   onLoad(options) {
-    let currentList = (options.tab == '2' && 'promoList') || 'qunList'
+    let currentList = (options.tab == '1' && 'qunList') || 'promoList'
     let self = this
     wx.getSystemInfo({
       success: function (res) {

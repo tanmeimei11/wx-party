@@ -1,0 +1,64 @@
+.c-wrap.c-pay-wrap {
+  margin-top: 360rpx;
+  padding-top: 52rpx;
+  padding-bottom: 60rpx;
+  overflow: hidden;
+}
+
+.c-pay-wrap .s-desc {
+  width: 292rpx;
+  color: #333333;
+  font-size: 28rpx;
+  margin: 40rpx auto 0;
+  padding-bottom: 26rpx;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+
+.c-pay-wrap .s-tip {
+  width: 300rpx;
+  margin: 24rpx auto 0;
+  font-size: 20rpx;
+  color: #666666;
+  text-align: center;
+}
+
+.s-desc-text+.s-desc-text {
+  margin: 30rpx auto 0 auto;
+}
+
+.c-pay-wrap .s-desc-text {
+  overflow: hidden;
+}
+
+.c-pay-wrap .s-desc-text text {
+  float: right;
+}
+
+.c-pay-wrap .s-title {
+  color: #333333;
+  font-size: 36rpx;
+  text-align: center;
+  margin: 0 auto 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 360rpx;
+}
+
+.c-pay-wrap .s-btn {
+  width: 460rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 40rpx auto 0;
+  border-radius: 200rpx;
+  overflow: hidden;
+  color: #fff;
+  background-color: #FF4338;
+  position: relative;
+}
+
+.c-pay-wrap .s-btn contact-button {
+  transform: scale(15, 3);
+}

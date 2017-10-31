@@ -37,6 +37,45 @@ const uploadImageToQiniu = (file) => {
   })
 }
 
+// 支付接口
+var payMoney = (id) => {
+  request({
+    url: '/activity/join_order',
+    data: {
+      id: id
+    }
+  }).then(Res => {
+    console.log(Res)
+    if (Res.succ) {
+      request({
+        url: config.payUrl,
+        data: {
+          payment_channel: "weapppay",
+          business_party: "activitycenter",
+          order_detail: Res.data.order_detail,
+          extend_params: JSON.stringify({
+            open_id: Res.data.open_id
+          })
+        }
+      }).then((res) => {
+        if (res.succ && res.data.sign) {
+          var _data = res.data.sign
+          return wxPromisify(wx.requestPayment)(_data)
+        } else {
+          throw 'error'
+        }
+      }).then(() => {
+        console.log('succ')
+
+      }).catch((e) => {
+
+      })
+    }
+
+  })
+}
+
 module.exports = {
-  uploadImageToQiniu
+  uploadImageToQiniu,
+  payMoney
 }
