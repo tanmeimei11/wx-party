@@ -141,7 +141,7 @@
       <!-- canvas -->
       <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
 
-      <!-- 好友动态弹窗 -->
+      <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
       <template is="payModal" data="{{isShowPayModal:isShowPayModal,promoMoney:promoMoney,promoDelayMoney,promoDelayMoney,id:id}}"
       />

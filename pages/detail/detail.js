@@ -93,8 +93,6 @@ mutulPage({
       sessionFromQr: `activitymanager_${option.id}`
     })
 
-
-
     // 是否显示导航条
     if (!option.isShowOtherAct) {
       track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
@@ -109,6 +107,10 @@ mutulPage({
     if (option.prepage == 'launch') {
       this.setData({
         isShowVerifyModal: true
+      })
+    } else if (option.prepage == 'apply') { // 支付
+      this.setData({
+        promoDelayMoney: true
       })
     }
 
@@ -304,7 +306,8 @@ mutulPage({
       transferImageUrl: data.act_url[0],
       isNeedInfo: data.is_need_info,
       promoMoney: data.charge || 0,
-      promoDelayMoney: data.booking_charge || 0
+      promoDelayMoney: data.booking_charge || 0,
+      otherPromoNum: data.other_act_count
     })
   },
   loadImages: function (images) {

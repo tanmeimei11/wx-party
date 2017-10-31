@@ -34,6 +34,7 @@
 
   <!-- 价格 -->
   <view class="c-line">
+    <view class="money-icon"></view>
     <input type="digit" placeholder="{{amount}}" data-type="amount" bindinput="getText" placeholder-style="color:#B0B0B0" />
   </view>
 

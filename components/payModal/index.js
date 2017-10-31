@@ -3,9 +3,8 @@ var payMoney = require('../../utils/api.js').payMoney
 module.exports = {
   data: {
     isShowPayModal: false,
-    photos: ['', '', ''],
-    promoMoney: '9.9',
-    promoDelayMoney: '123'
+    promoMoney: 0,
+    promoDelayMoney: 0
   },
   closeUserModal: function () {
     this.setData({
@@ -17,6 +16,9 @@ module.exports = {
     payMoney(id)
       .then(() => {
         console.log('paySucc')
+        wx.redirectTo({
+          url: `../result/result?prepage=apply&promonum=${this.data.otherPromoNum}&id=${id}`
+        })
       })
   }
 }

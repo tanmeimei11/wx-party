@@ -39,15 +39,14 @@ const uploadImageToQiniu = (file) => {
 
 // 支付接口
 var payMoney = (id) => {
-  request({
+  return request({
     url: '/activity/join_order',
     data: {
       id: id
     }
   }).then(Res => {
-    console.log(Res)
     if (Res.succ) {
-      request({
+      return request({
         url: config.payUrl,
         data: {
           payment_channel: "weapppay",
@@ -64,14 +63,10 @@ var payMoney = (id) => {
         } else {
           throw 'error'
         }
-      }).then(() => {
-        console.log('succ')
-
-      }).catch((e) => {
-
       })
+    } else {
+      throw 'error'
     }
-
   })
 }
 

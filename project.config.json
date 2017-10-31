@@ -13,7 +13,7 @@
 	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 8,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
@@ -25,7 +25,7 @@
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=14101"
+					"query": "id=14101&prepage=apply"
 				},
 				{
 					"id": -1,
@@ -43,7 +43,7 @@
 					"id": 4,
 					"name": "sign",
 					"pathName": "pages/sign/sign",
-					"query": "id=14101"
+					"query": "id=12506"
 				},
 				{
 					"id": -1,
@@ -64,10 +64,10 @@
 					"query": "tab=2"
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "result",
 					"pathName": "pages/result/result",
-					"query": ""
+					"query": "promonum=2&id=120"
 				}
 			]
 		},

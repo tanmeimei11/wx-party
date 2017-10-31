@@ -128,31 +128,28 @@ Page({
     }).then((res) => {
       if (res.succ) {
         if (this.data.prepage == 'detail') {
-          return requestPromisify({
-            url: "/activity/join",
-            data: {
-              id: this.data.id
+          this.toast('提交成功')
+          setTimeout(() => {
+            if (this.data.id) {
+              wx.redirectTo({
+                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false`
+              })
             }
-          })
+          }, 2000)
+          // return requestPromisify({
+          //   url: "/activity/join",
+          //   data: {
+          //     id: this.data.id
+          //   }
+          // })
+
         } else if (this.data.prepage == 'index') {
           wx.redirectTo({
-            url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&nextpage=detail&id=${this.data.id}&isShowOtherAct=false`
+            url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&nextpage=detail`
           })
-          return false
         } else {
           this.toast('提交失败', 'fail')
         }
-      }
-    }).then((res) => {
-      if (res.succ) {
-        this.toast('报名成功')
-        setTimeout(() => {
-          if (this.data.id) {
-            wx.redirectTo({
-              url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false`
-            })
-          }
-        }, 2000)
       }
     })
   }
