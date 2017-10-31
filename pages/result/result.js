@@ -286,7 +286,7 @@ Page({
       tempIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joiners.map(this.getDescCollect),
       actQrImg: data.share_qrcode_url,
-      otherAct: `in同城趴更多${data.other_act_count==0 ? "":`${data.other_act_count}个`}活动正在报名中`,
+      otherAct: `本周在你附近举办的${data.other_act_count==0 ? "":`${data.other_act_count}个`}活动`,
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
