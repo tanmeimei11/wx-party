@@ -9,6 +9,7 @@ var weekdays = require('../../utils/util.js').weekdays
 var year = require('../../utils/util.js').year
 var getFullNumArray = require('../../utils/util.js').getFullNumArray
 var uploadImageToQiniu = require('../../utils/api.js').uploadImageToQiniu
+var getAuth = require('../../utils/auth.js').get
 import track from '../../utils/track.js'
 const originText = {
   'name': "活动名称",
@@ -308,5 +309,15 @@ Page({
       this.loadingOut()
       this.toast('创建失败', 'error')
     })
+  },
+  chooseMap: function () {
+    getAuth('userLocation')
+      .then(() => {
+        wxPromisify(wx.chooseLocation)({
+
+        }).then(res => {
+          console.log(res)
+        })
+      })
   }
 })

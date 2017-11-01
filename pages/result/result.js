@@ -9,7 +9,7 @@ Page({
     // 取页面上的id
     this.setData({
       promoText: `本周在你附近举办的${option.promonum==0 ? "":`${option.promonum}个`}活动`,
-      sessionFrom: `activity_${option.id}`
+      sessionFrom: `activityassistant_${option.id}`
     })
   },
   goBack: function () {
