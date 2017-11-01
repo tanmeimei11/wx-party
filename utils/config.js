@@ -9,5 +9,6 @@ module.exports = {
   // qnUploadUrl: "http://up.qiniu.com",
   qnUploadUrl: "https://up.qbox.me",
   qnResUrl: "https://inimg07.jiuyan.info/",
-  payUrl: 'http://qainlove.in66.com/api/payment/signature'
+  // payUrl: 'http://qainlove.in66.com/api/payment/signature'
+  payUrl: 'https://love.in66.com/api/payment/signature'
 }

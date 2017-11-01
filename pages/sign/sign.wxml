@@ -5,7 +5,7 @@
       <view class='text'>{{title}}</view>
     </view>
     <image class="code-box" wx:if="{{qrImage}}" src="{{qrImage}}"></image>
-    <view class="code-txt">用in app扫码获取编号</view>
+    <view class="code-txt">到场用户使用in app扫码签到</view>
     <view class="get-code-txt">签到后用户会获得自己的编号</view>
   </view>
   <!-- 报名用户 -->

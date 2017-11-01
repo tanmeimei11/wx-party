@@ -138,6 +138,7 @@ Page({
   changeAddr: function (e) {
     var _val = e.detail.value.join('');
     this.setData({
+      addrJson: e.detail.value,
       addr: _val,
     })
     this.verify('', true)
@@ -269,7 +270,7 @@ Page({
     var requestData = {
       actName: _data.name,
       actUrls: _data.images,
-      district: _data.addr,
+      district: JSON.stringify(_data.addrJson),
       actLocation: _data.detailAddr,
       startTime: +new Date(_data.beginText.replace(/-/g, '/')),
       endTime: +new Date(_data.endText.replace(/-/g, '/')),
@@ -280,11 +281,13 @@ Page({
     // var requestData = {
     //   actName: 'ceshi',
     //   actUrls: ['http://inimg02.jiuyan.info/in/2015/08/13/999D6165-C074-7176-B939-3A26C28C19C9.jpg'],
-    //   district: '浙江省杭州市西湖区',
+    //   // district: '浙江省杭州市西湖区',
+    //   district: JSON.stringify(['浙江省','杭州市','西湖区']),
     //   actLocation: '22222',
     //   startTime: 1509089640000,
     //   endTime: 1509262440000,
     //   actDesc: '3333',
+    //   amount: 12,
     //   wxNo: '4444'
     // }
     console.log(requestData)
