@@ -227,7 +227,7 @@ mutulPage({
           if (res.data.list[i].start_time && res.data.list[i].end_time) {
             res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
           } else {
-            res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time))
+            res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time), true)
           }
         }
         this.setData({

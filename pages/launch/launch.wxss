@@ -34,8 +34,8 @@
   width: 158rpx;
   height: 158rpx;
   display: inline-block;
-  margin-right: 10rpx;
-  margin-bottom: 10rpx;
+  margin-right: 9rpx;
+  margin-bottom: 9rpx;
   border: 1rpx solid #CCCCCC;
   box-sizing: border-box;
   background-repeat: no-repeat;
@@ -122,6 +122,18 @@
   border-left: 10rpx solid transparent;
   border-right: 10rpx solid transparent;
   border-top: 14rpx solid #333333;
+}
+
+.money-icon {
+  position: absolute;
+  right: 5rpx;
+  top: 0rpx;
+  width: 30rpx;
+  height: 100%;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/10/31/FB5F45BD-C4D8-3F32-E500-1B68D835D650.jpg');
+  background-size: 21rpx 25rpx;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 contact-button {

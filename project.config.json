@@ -14,18 +14,17 @@
 	"condition": {
 		"weapp": {
 			"current": 0,
-			"list": [
-				{
+			"list": [{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": ""
+					"query": "id=14101&prepage=apply"
 				},
 				{
 					"id": -1,
@@ -43,7 +42,7 @@
 					"id": 4,
 					"name": "sign",
 					"pathName": "pages/sign/sign",
-					"query": "id=1233"
+					"query": "id=12506"
 				},
 				{
 					"id": -1,
@@ -68,6 +67,11 @@
 					"name": "circle",
 					"pathName": "pages/circle/circle",
 					"query": ""
+				}, {
+					"id": 8,
+					"name": "result",
+					"pathName": "pages/result/result",
+					"query": "promonum=2&id=120"
 				}
 			]
 		},

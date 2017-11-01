@@ -1,6 +1,7 @@
 /**index.wxss**/
 
 @import 'user.wxss';
+@import '../../components/payModal/index.wxss';
 .container {
   padding-bottom: 150rpx;
 }
@@ -181,6 +182,11 @@
 
 .c-infos .s-header .s-time {
   background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/39306798-92E8-A50F-72AF-60850E71041E.jpg)
+}
+
+.c-infos .s-header .s-charge {
+  margin-top: 28rpx;
+  background-image: url(https://inimg07.jiuyan.info/in/2017/10/31/D70C9CA0-CD48-4C45-F7C1-78D36FB5B705.jpg)
 }
 
 .c-infos .s-line:last-child {

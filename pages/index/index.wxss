@@ -280,6 +280,10 @@
   top: 40rpx;
 }
 
+.baoming.disabled {
+  opacity: 0.3;
+}
+
 .icon-sex {
   width: 24rpx;
   height: 24rpx;

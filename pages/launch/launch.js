@@ -17,7 +17,8 @@ const originText = {
   'beginText': "活动开始时间",
   'endText': "活动结束时间",
   'detailDesc': "活动详细介绍及其他要点",
-  'wechat': "微信号"
+  'wechat': "微信号",
+  'amount': "活动价格"
 }
 const errorText = {
   'image': "请上传图片",
@@ -27,7 +28,8 @@ const errorText = {
   'beginText': "请选择开始时间",
   'endText': "请选择结束时间",
   'detailDesc': "请填写活动详细介绍及其他要点",
-  'wechat': "请填写微信号"
+  'wechat': "请填写微信号",
+  'amount': "请填写活动价格"
 }
 Page({
   data: {
@@ -51,6 +53,7 @@ Page({
     endText: originText.endText,
     detailDesc: originText.detailDesc,
     wechat: originText.wechat,
+    amount: originText.amount,
     phoneNum: '',
     images: [],
     isVerify: false,
@@ -224,6 +227,11 @@ Page({
       !type && this.toast(errorText['detailAddr'], 'warn')
       return
     }
+    // 活动价格
+    if (this.verifyKong(_data.amount) || _data.amount == originText.amount) {
+      !type && this.toast(errorText['amount'], 'warn')
+      return
+    }
     // 开始时间
     if (_data.beginText == originText.beginText || (+new Date(_data.beginText.replace(/-/g, '/')) - +new Date() < 100)) {
       !type && this.toast(errorText['beginText'], 'warn')
@@ -265,6 +273,7 @@ Page({
       startTime: +new Date(_data.beginText.replace(/-/g, '/')),
       endTime: +new Date(_data.endText.replace(/-/g, '/')),
       actDesc: _data.detailDesc,
+      amount: _data.amount,
       wxNo: _data.wechat
     }
     // var requestData = {

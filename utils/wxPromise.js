@@ -26,15 +26,27 @@ function wxPromisify(fn) {
 
 var request = (option) => {
   console.log('-------before request------')
-  wxCheckLogin(option).then((token) => {
+  // 登陆失败的loginFailCallback
+  var loginFailCallback = () => {
+    console.log('进入了loginFailCallback')
+    request(option)
+  }
+  wxCheckLogin(loginFailCallback).then((token) => {
+    console.log('-------------------------token-----------');
     console.log(token);
+    // token = 'ce090a429cfcaf7dc1bcf4b8c19d9a25';
     if (token) {
-      // token = 'ce090a429cfcaf7dc1bcf4b8c19d9a25';
       !option.data && (option.data = {});
       !/^http/.test(option.url) && (option.url = DOMAIN + option.url);
       !option.header && (option.header = {});
       option.header.Cookie = `tg_auth=${token};_v=${config._v}`;
-      (option.method != 'POST') && (option.data.privateKey = token);
+      if (typeof option.data == 'object') {
+        // java 支付网关必须加上必要字段_token
+        if (/payment\/signature/.test(option.url)) {
+          option.data._token = token
+        }
+        (option.method != 'POST') && (option.data.privateKey = token);
+      }
       if (isMock) {
         console.log('===== Begin mock request =====')
         console.log(option.data)
@@ -49,19 +61,19 @@ var request = (option) => {
 }
 
 // 检查登陆态和token
-var wxCheckLogin = function (option) {
+var wxCheckLogin = function (loginFailCallback) {
   console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
     .then((res) => {
       let _token = wx.getStorageSync('token')
       return _token ? _token : wxLogin()
     }, () => {
-      wxLogin(option)
+      wxLogin(loginFailCallback)
     })
 }
 
 
-var wxLogin = function (option) {
+var wxLogin = function (loginFailCallback) {
   console.log('-------get code------')
   return wxPromisify(wx.login)()
     .then(res => {
@@ -86,8 +98,11 @@ var wxLogin = function (option) {
       if (res.succ && res.data) {
         console.log('-------login succ------')
         wx.setStorageSync("token", res.data)
-        option && request(option)
+        loginFailCallback && loginFailCallback()
+      } else {
+        throw ''
       }
+      console.log(res.data)
       return res.data
     }).catch((error) => {
       console.log(error)

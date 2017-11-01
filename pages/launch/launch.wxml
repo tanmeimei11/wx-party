@@ -32,6 +32,13 @@
     <input placeholder="{{detailAddr}}" data-type="detailAddr" bindinput="getText" placeholder-style="color:#B0B0B0" />
   </view>
 
+  <!-- 价格 -->
+  <view class="c-line">
+    <view class="money-icon"></view>
+    <input type="digit" placeholder="{{amount}}" data-type="amount" bindinput="getText" placeholder-style="color:#B0B0B0" />
+  </view>
+
+
   <!-- 开始时间选择 -->
   <view class="c-line">
     <view class="triangle"></view>
