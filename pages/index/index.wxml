@@ -1,13 +1,22 @@
+<!-- 埋点 -->
+<image src="{{trackSeed}}" style="width:0;height:0;" wx:if="{{trackSeed.length}}"></image>
 <form bindsubmit="formSubmit" report-submit="true" class="submit-from">
   <button formType="submit" class="submit-btn">
+    <!-- include html -->
     <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
     <include src="promoList.wxml" wx:if="{{currentList=='promoList'}}" />
     <include src="circle.wxml" wx:if="{{currentList=='circleList'}}" />
+    <!-- tab -->
     <view class="list-tabs">
-      <image src="/images/tab1.png" class="icon-person hide"></image>
-      <image src="/images/tab1-active.png" class="icon-person hide"></image>
+      <!-- <image src="/images/tab1.png" class="icon-person hide"></image> -->
+      <!-- <image src="/images/tab1-active.png" class="icon-person hide"></image> -->
       <image src="/images/tab2.png" class="icon-person hide"></image>
       <image src="/images/tab2-active.png" class="icon-person hide"></image>
+      <!-- <view class="tab-1" bindtap="switchTab1">
+        <image src="/images/tab1-active.png" class="icon-person" wx:if="{{currentList == 'qunList'}}"></image>
+        <image src="/images/tab1.png" class="icon-person" wx:else></image>
+        <text class="{{ currentList == 'qunList'? 'active' : ''}}">同城群</text>
+      </view> -->
       <view class="tab-2" bindtap="switchTab2">
         <image src="/images/tab2-active.png" class="icon-person" wx:if="{{currentList == 'promoList'}}"></image>
         <image src="/images/tab2.png" class="icon-person" wx:else></image>
@@ -18,26 +27,9 @@
         <image src="/images/tab2-active.png" class="icon-person" wx:if="{{currentList == 'circleList'}}"></image>
         <image src="/images/tab2.png" class="icon-person" wx:else></image>
         <text class="{{ currentList == 'circleList'? 'active' : ''}}">趴友圈</text>
-        <view class="tab-1" bindtap="switchTab1">
-          <image src="/images/tab1-active.png" class="icon-person" wx:if="{{currentList == 'qunList'}}"></image>
-          <image src="/images/tab1.png" class="icon-person" wx:else></image>
-          <text class="{{ currentList == 'qunList'? 'active' : ''}}">同城群</text>
-        </view>
       </view>
       <loading hidden="{{hidden}}">加载中...</loading>
-      <!-- <include src="../modals/contact.wxml" /> -->
-
-      <!-- <view class="c-modal" wx:if="{{ isJoinQun }}">
-  <view class="c-wrap c-book-wrap">
-    <view class="s-close" bindtap="close"></view>
-    <view class="s-top-text">添加小助手</view>
-    <view class="s-qun">
-    <image src="{{joinQunQrcode}}" class="qrcode"></image>
     </view>
-    <view class="s-bottom-text">保存二维码到相册，使用微信“扫一扫”添加小助手</view>
-    <view class="saveQrcode" bindtap="downloadQrcode">保存二维码</view>
-  </view>
-</view> -->
-      <image src="{{trackSeed}}" style="width:0;height:0;" wx:if="{{trackSeed.length}}"></image>
+    <image src="{{trackSeed}}" style="width:0;height:0;" wx:if="{{trackSeed.length}}"></image>
   </button>
 </form>

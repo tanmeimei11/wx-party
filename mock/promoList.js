@@ -12,11 +12,16 @@ module.exports = Mock.mock({
       start_time: "2017-10-12 14:00",
       end_time: "2017-10-12 17:00",
       act_status: 0, //0：未开始 //1：进行中 //2：已结束
-      joiners: [
-        { avatar_url: "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!", gender: 1, },
-        { avatar_url: "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!", gender: 0 }
-        ],
-      join_status: 1  //0:未参与 1:已参与  2:已签到
+      joiners: [{
+          avatar_url: "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!",
+          gender: 1,
+        },
+        {
+          avatar_url: "http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!",
+          gender: 0
+        }
+      ],
+      join_status: 1 //0:未参与 1:已参与  2:已签到
     }]
   },
   'time': 1502261173

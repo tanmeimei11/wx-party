@@ -312,18 +312,13 @@ mutulPage({
   },
   formSubmit: function (e) {
     if (this.data.isSubmitFormId) {
-      console.log('form发生了submit事件，携带数据为：', e.detail.formId)
       request({
         url: '/tmpl/formid/submit',
         data: {
           formId: e.detail.formId
         }
       }).then(res => {
-        if (res.succ) {
-          console.log('发送成功')
-        } else {
-          this.data.isSubmitFormId = false
-        }
+        !res.succ && (this.data.isSubmitFormId = false)
       })
     }
   },
@@ -340,7 +335,6 @@ mutulPage({
     }, 300)
   },
   getPageData: function (loading) {
-
     request({
       url: '/friend/feed',
       data: {
