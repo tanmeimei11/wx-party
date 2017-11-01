@@ -57,6 +57,7 @@ var payMoney = (id) => {
           })
         }
       }).then((res) => {
+        wx.hideLoading()
         if (res.succ && res.data.sign) {
           var _data = res.data.sign
           return wxPromisify(wx.requestPayment)(_data)

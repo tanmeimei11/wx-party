@@ -21,7 +21,7 @@
     <view class="r-link-img"></view>
     <view class="r-link-name">同城趴-小in</view>
     <view class="r-link-wxid">微信号:pabeidaren</view>
-    <view class="r-link-btn">获取小助手二维码
+    <view class="r-link-btn" bindtap="getQrTrack">获取小助手二维码
       <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
       </contact-button>
     </view>

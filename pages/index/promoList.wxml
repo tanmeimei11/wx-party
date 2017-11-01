@@ -28,7 +28,7 @@
           </block>
           <text class="joiner-tip" wx-if="{{item.joiners.length != 0}}">已参加</text>
           <text class="joiner-tip" wx-if="{{item.joiners.length == 0}}">快来参与吧！</text>
-          <view class="baoming" data-id="{{ item.act_id }}">报名</view>
+          <view class="baoming {{item.act_status == 0 ? '':'disabled'}}" data-id="{{ item.act_id }}">{{ item.act_status == 0 ? '报名':'已结束'}}</view>
         </view>
       </view>
     </block>

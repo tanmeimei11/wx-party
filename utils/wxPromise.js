@@ -101,6 +101,8 @@ var wxLogin = function (loginFailCallback) {
         console.log('-------login succ------')
         wx.setStorageSync("token", res.data)
         loginFailCallback && loginFailCallback()
+      } else {
+        throw ''
       }
       console.log(res.data)
       return res.data
