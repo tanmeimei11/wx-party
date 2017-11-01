@@ -28,8 +28,14 @@
   </view>
 
   <!-- 详细地址 -->
-  <view class="c-line">
+  <!-- <view class="c-line">
     <input placeholder="{{detailAddr}}" data-type="detailAddr" bindinput="getText" placeholder-style="color:#B0B0B0" />
+  </view> -->
+
+
+  <!-- 修改城选择地图 -->
+  <view class="c-line" bindtap="chooseMap">
+    选择地点
   </view>
 
   <!-- 价格 -->
