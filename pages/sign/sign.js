@@ -74,7 +74,9 @@ Page({
   },
   getDescCollect: function (item) {
     var _desc = ''
-    item.age && (_desc += `${item.age}岁`)
+    if (item.age && item.age != 0) {
+      _desc += `${item.age}岁`
+    }
     if (item.city) {
       _desc += ` ${item.city}`
       item.district && (_desc += `.${item.district}`)

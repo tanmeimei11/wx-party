@@ -7,7 +7,7 @@
 
 .sign-wrap .code-wrap {
   width: 520rpx;
-  height: 536rpx;
+  /* height: 536rpx; */
   box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.10);
   border-radius: 8rpx;
   margin: 120rpx auto 0 auto;
@@ -174,4 +174,12 @@
   font-size: 28rpx;
   color: #B0B0B0;
   margin-top: 27rpx;
+}
+
+.code-wrap .get-code-txt {
+  margin: 27rpx 0;
+  text-align: center;
+  font-size: 28rpx;
+  color: #43DDF5;
+  line-height: 32rpx;
 }
