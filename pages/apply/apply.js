@@ -132,17 +132,10 @@ Page({
           setTimeout(() => {
             if (this.data.id) {
               wx.redirectTo({
-                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false`
+                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true`
               })
             }
           }, 2000)
-          // return requestPromisify({
-          //   url: "/activity/join",
-          //   data: {
-          //     id: this.data.id
-          //   }
-          // })
-
         } else if (this.data.prepage == 'index') {
           wx.redirectTo({
             url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&nextpage=detail`

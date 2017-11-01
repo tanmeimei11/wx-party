@@ -13,7 +13,7 @@
 	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -37,7 +37,7 @@
 					"id": 3,
 					"name": "apply",
 					"pathName": "pages/apply/apply",
-					"query": "prepage=index"
+					"query": "prepage=detail&id=15001&nextpage=detail"
 				},
 				{
 					"id": 4,
