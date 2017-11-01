@@ -309,15 +309,5 @@ Page({
       this.loadingOut()
       this.toast('创建失败', 'error')
     })
-  },
-  chooseMap: function () {
-    getAuth('userLocation')
-      .then(() => {
-        wxPromisify(wx.chooseLocation)({
-
-        }).then(res => {
-          console.log(res)
-        })
-      })
   }
 })
