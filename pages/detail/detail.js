@@ -91,7 +91,8 @@ mutulPage({
     this.setData({
       id: option.id || '11001',
       sessionFrom: `activity_${option.id}`,
-      sessionFromQr: `activitymanager_${option.id}`
+      sessionFromQr: `activitymanager_${option.id}`,
+      isShowPayModal: option.isShowPayModal ? true : false
     })
 
     // 是否显示导航条
