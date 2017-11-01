@@ -97,9 +97,9 @@
             </view>
             <view class="s-btn btn-sign" wx:else bindtap="redirectApply">立即报名 </view>
           </block>
-          <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" bindtap="openBookTrack">已报名
-            <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
-            </contact-button>
+          <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" bindtap="openBookAlready">已报名
+            <!-- <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+            </contact-button> -->
           </view>
         </block>
       </view>

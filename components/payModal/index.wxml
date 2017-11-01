@@ -12,7 +12,7 @@
           <text>¥{{promoDelayMoney}}</text>
         </view>
       </view>
-      <view class="s-tip">{{ promoMoney == 0 ? '＊鸽子费在活动现场签到之后退回':'＊如果不到场会扣除'+promoDelayMoney+'元鸽子费 剩余部分将会退回'}}
+      <view class="s-tip">{{ promoMoney == 0 ? '*鸽子费在活动现场签到之后退回，报名不参加活动则不退回鸽子费':'＊如果不到场会扣除'+promoDelayMoney+'元鸽子费 剩余部分将会退回'}}
       </view>
       <view class="s-share-img s-btn" bindtap="pay" data-id="{{id}}">去支付 ¥{{ promoMoney
         <=0 ? promoDelayMoney:promoMoney}} </view>
