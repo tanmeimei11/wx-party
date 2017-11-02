@@ -72,7 +72,7 @@ const getFutureYearArray = (num) => {
 }
 const getFullNumArray = (num, str = "", start = 0) => {
   var _arr = []
-  for (var i = start; i <= num; i++) {
+  for (var i = start; i < num; i++) {
     _arr.push(`${formatNumber(i)}${str}`)
   }
   return _arr

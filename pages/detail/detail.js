@@ -312,7 +312,7 @@ mutulPage({
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
-      actStatus: data.is_org == 1 ? 0 : data.act_status, // 如果是创建者 那么永远都不会结束
+      actStatus: (data.is_org == 1 && data.act_status == 1) ? 0 : data.act_status, // 如果是创建者 那么永远都不会结束
       transferImageUrl: data.act_url[0],
       isNeedInfo: data.is_need_info,
       promoMoney: data.charge || 0,
@@ -461,8 +461,8 @@ mutulPage({
   openMap: function () {
     track(this, 'h5_tcpa_active_detail_place', [`id=${this.data.id}`])
     var _data = {
-      latitude: this.data.infos.mapLatitude,
-      longitude: this.data.infos.mapLongitude,
+      latitude: Number(this.data.infos.mapLatitude),
+      longitude: Number(this.data.infos.mapLongitude),
       address: this.data.infos.mapAddress,
       name: this.data.infos.mapName
     }
