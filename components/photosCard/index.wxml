@@ -1,0 +1,15 @@
+<template name="photos">
+  <view class="photos">
+    <view class="c-picture">
+      <!-- 多张图片 -->
+      <view class="s-pic-wrap" wx:if="{{photos.length > 1}}">
+        <image class="pic" wx:for="{{photos}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}" mode="aspectFill" src="{{item.url}}"
+          data-photos="{{photos}}" bindtap="openSwiper" data-idx="{{idx}}"></image>
+      </view>
+      <!-- 单张图 -->
+      <image wx:else class="sigle-pic" style="width:{{photos[0].img_width>photos[0].img_height ? '384rpx' : photos[0].img_width / photos[0].img_height * 384+'rpx'}};height:{{photos[0].img_width>photos[0].img_height ? photos[0].img_height /photos[0].img_width  * 384+'rpx' : '384rpx' }}"
+        src="{{photos[0].url}}" bindtap="openSwiper" data-photos="{{photos}}" data-idx="0"></image>
+    </view>
+    <view class="s-pic-from">图片来自in同城趴举办的“摄影采风零基础训练班”</view>
+  </view>
+</template>

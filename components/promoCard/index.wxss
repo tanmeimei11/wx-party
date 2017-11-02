@@ -1,0 +1,140 @@
+.promo {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: 670rpx;
+  /* height: 582rpx;  */
+  box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 8rpx;
+  margin-bottom: 40rpx;
+  overflow: hidden;
+}
+
+.promo-image {
+  position: relative;
+  width: 670rpx;
+  height: 446rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.promo-cover {
+  width: 670rpx;
+  height: 200rpx;
+  position: absolute;
+  bottom: 0;
+}
+
+.promo-info {
+  position: absolute;
+  bottom: 30rpx;
+  left: 0;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.promo-name {
+  position: absolute;
+  display: block;
+  width: 90%;
+  font-size: 40rpx;
+  color: #fff;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+  left: 30rpx;
+  top: 311rpx;
+}
+
+.promo-area {
+  opacity: 0.9;
+  font-size: 24rpx;
+  color: #fff;
+  letter-spacing: 0;
+  margin-left: 5rpx;
+  max-width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.icon-promo {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.icon-promo-text {
+  opacity: 0.9;
+  font-size: 24rpx;
+  color: #fff;
+  letter-spacing: 0;
+  margin-left: 10rpx;
+  margin-right: 42rpx;
+}
+
+.promo-joiners {
+  height: 136rpx;
+  width: 610rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  position: relative;
+}
+
+.joiner {
+  width: 60rpx;
+  height: 60rpx;
+  /* background: #666; */
+  margin-right: 10rpx;
+  position: relative;
+}
+
+.joiner-image {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.joiner-tip {
+  font-size: 24rpx;
+  color: #666;
+  letter-spacing: 0;
+  margin-left: 6rpx;
+}
+
+.baoming {
+  width: 140rpx;
+  height: 60rpx;
+  background: #ff4338;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 60rpx;
+  text-align: center;
+  position: absolute;
+  right: 30rpx;
+  top: 40rpx;
+}
+
+.icon-sex {
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  right: -8%;
+  bottom: -8%;
+}

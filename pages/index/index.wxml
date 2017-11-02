@@ -1,6 +1,6 @@
 <form bindsubmit="formSubmit" report-submit="true" class="submit-from">
   <button formType="submit" class="submit-btn">
-    <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
+    <!-- <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" /> -->
     <include src="promoList.wxml" wx:if="{{currentList=='promoList'}}" />
     <view class="list-tabs">
       <image src="/images/tab1.png" class="icon-person hide"></image>
@@ -13,10 +13,15 @@
         <text class="promo-num" wx-if="{{!promoListLoaded && promoNum != 0}}">{{promoNum}}</text>
         <text class="{{ currentList == 'promoList'? 'active' : ''}}">活动</text>
       </view>
-      <view class="tab-1" bindtap="switchTab1">
+      <!-- <view class="tab-1" bindtap="switchTab1">
         <image src="/images/tab1-active.png" class="icon-person" wx:if="{{currentList == 'qunList'}}"></image>
         <image src="/images/tab1.png" class="icon-person" wx:else></image>
         <text class="{{ currentList == 'qunList'? 'active' : ''}}">同城群</text>
+      </view> -->
+      <view class="tab-2" bindtap="switchTab3">
+        <image src="/images/tab2-active.png" class="icon-person" wx:if="{{currentList == 'circleList'}}"></image>
+        <image src="/images/tab2.png" class="icon-person" wx:else></image>
+        <text class="{{ currentList == 'circleList'? 'active' : ''}}">趴友圈</text>
       </view>
     </view>
     <loading hidden="{{hidden}}">加载中...</loading>

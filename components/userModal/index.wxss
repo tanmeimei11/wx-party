@@ -1,0 +1,55 @@
+.c-wrap.c-user-modal-wrap {
+  box-sizing: border-box;
+  padding: 60rpx 50rpx;
+  margin-top: 360rpx;
+  overflow: hidden;
+}
+
+.c-user-modal-wrap .s-btn {
+  width: 460rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 40rpx auto 0;
+  border-radius: 200rpx;
+  overflow: hidden;
+  color: #fff;
+  background-color: #FF4338;
+  position: relative;
+}
+
+.c-user-modal-wrap .s-btn contact-button {
+  transform: scale(15, 3);
+}
+
+.c-user-modal-wrap .s-pic-text {
+  margin-top: 30rpx;
+  color: #B0B0B0;
+  font-size: 24rpx;
+}
+
+.c-user-modal-wrap .s-pic-wrap {
+  font-size: 0;
+  margin-top: 30rpx;
+}
+
+.c-user-modal-wrap .s-pic-wrap .pic {
+  width: 146rpx;
+  height: 146rpx;
+  display: inline-block;
+  margin-right: 7rpx;
+  margin-bottom: 7rpx;
+  box-sizing: border-box;
+}
+
+.c-user-modal-wrap .s-pic-from {
+  color: #B0B0B0;
+  font-size: 22rpx;
+  margin: 30rpx 0;
+}
+
+.c-user-modal-wrap .s-travel-wrap .text {
+  font-size: 24rpx;
+  color: #333333;
+}

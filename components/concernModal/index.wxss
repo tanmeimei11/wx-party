@@ -1,0 +1,42 @@
+.c-wrap.c-concern-wrap {
+  margin-top: 360rpx;
+  padding-top: 52rpx;
+  padding-bottom: 60rpx;
+  overflow: hidden;
+}
+
+.c-concern-wrap .s-desc {
+  color: #666666;
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 12rpx;
+}
+
+.c-concern-wrap .s-title {
+  color: #333333;
+  font-size: 36rpx;
+  text-align: center;
+  margin: 0 auto 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 360rpx;
+}
+
+.c-concern-wrap .s-btn {
+  width: 460rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 40rpx auto 0;
+  border-radius: 200rpx;
+  overflow: hidden;
+  color: #fff;
+  background-color: #FF4338;
+  position: relative;
+}
+
+.c-concern-wrap .s-btn contact-button {
+  transform: scale(15, 3);
+}

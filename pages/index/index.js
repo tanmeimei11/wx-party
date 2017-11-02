@@ -30,6 +30,11 @@ Page({
       '2、回复“加群”，获取二维码链接',
       '3、选择对应群二维码，长按识别',
       '4、小助手邀请你进群'
+    ],
+    lists: [
+      'qunList',
+      'promoList',
+      'circleList'
     ]
   },
   downloadQrcode: function () {},
@@ -285,7 +290,7 @@ Page({
     }
   },
   onLoad(options) {
-    let currentList = (options.tab == '1' && 'qunList') || 'promoList'
+    let currentList = this.data.lists[options.tab - 1]
     let self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -299,8 +304,10 @@ Page({
     })
     if (currentList == 'qunList') {
       this.switchTab1()
-    } else {
+    } else if (currentList == 'promoList') {
       this.switchTab2()
+    } else {
+      this.switchTab3()
     }
   }
 })

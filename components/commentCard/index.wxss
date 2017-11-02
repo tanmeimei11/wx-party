@@ -1,0 +1,92 @@
+.c-comment {
+  color: #B0B0B0;
+  font-size: 24rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.c-comment .s-comment-time {
+  color: #B0B0B0;
+  font-size: 24rpx;
+}
+
+.c-comment .s-comment-btn {
+  float: right;
+  width: 45rpx;
+  height: 45rpx;
+  margin: 2rpx 2rpx 0 0;
+  background-image: url("https://inimg07.jiuyan.info/in/2017/10/29/8A5EF335-D5B5-6709-2511-FA6351A12333.jpg");
+  background-repeat: no-repeat;
+  background-size: 38rpx 38rpx;
+  background-position: center;
+}
+
+.c-comment .nick {
+  color: #333333;
+  font-size: 28rpx;
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 5rpx;
+}
+
+.c-comment .reply,
+.c-comment .reply-text {
+  color: #666666;
+  display: inline-block;
+  font-size: 28rpx;
+}
+
+.c-comment .detail {
+  width: 100%;
+  margin-top: 5rpx;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+.c-comment .inner {
+  width: 100%;
+  white-space: nowrap;
+  font-size: 0;
+  margin: 30rpx 0;
+}
+
+.c-comment .ip {
+  display: inline-block;
+  vertical-align: middle;
+  word-spacing: 0;
+  width: 550rpx;
+  line-height: normal;
+  padding: 3rpx 5rpx;
+  border: 1px solid #eee;
+  border-radius: 6rpx;
+  background: #eee;
+  -webkit-appearance: none;
+  font-size: 28rpx;
+  color: #666666;
+  height: 72rpx;
+  box-sizing: border-box;
+}
+
+.c-comment .submit {
+  display: inline-block;
+  vertical-align: middle;
+  word-spacing: 0;
+  width: 118rpx;
+  height: 72rpx;
+  margin-left: 9rpx;
+  line-height: 72rpx;
+  text-align: center;
+  background: #64c168;
+  color: #fff;
+  border-radius: 3rpx;
+  font-size: 28rpx;
+  text-decoration: none;
+  background: #FF4338;
+}
+
+.m-more {
+  display: inline-block;
+  color: #43DDF5;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}

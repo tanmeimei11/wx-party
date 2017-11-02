@@ -1,0 +1,15 @@
+<template name="Modal">
+  <!-- 关注弹窗 -->
+  <view class="c-modal" wx:if="{{isShowConcernModal}}">
+    <view class="c-wrap c-concern-wrap">
+      <view class="s-close" bindtap="closeConcernModal"></view>
+      <view class="s-title">关注成功</view>
+      <view class="s-desc">已成为in好友，快去查看Ta的动态吧</view>
+      <view class="s-share-img s-btn">去in app查看更多Ta的动态
+        <contact-button type="default-dark" size="20" session-from="downloadin_">
+        </contact-button>
+      </view>
+    </view>
+  </view>
+
+</template>

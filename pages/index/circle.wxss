@@ -1,0 +1,101 @@
+/**circle.wxss**/
+
+@import '../../components/promoCard/index.wxss';
+@import '../../components/userCard/index.wxss';
+@import '../../components/photosCard/index.wxss';
+@import '../../components/commentCard/index.wxss';
+@import '../../components/concernModal/index.wxss';
+@import '../../components/userModal/index.wxss';
+.c-block {
+  margin: 0 40rpx;
+  padding: 70rpx 0;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+
+.c-block:first-child {
+  padding-top: 60rpx;
+}
+
+.c-block:last-child {
+  border-bottom: none;
+}
+
+.c-create-text {
+  display: block;
+  padding: 24rpx 0;
+  color: #333333;
+  font-size: 28rpx;
+}
+
+.launch-status {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30rpx auto 0;
+  width: 670rpx;
+  height: 100rpx;
+  color: #333333;
+  font-size: 34rpx;
+  box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.launch-status>view {
+  display: inline-block;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/10/29/46292AD7-F2B3-7583-6B22-FE0C3E18529D.jpg');
+  width: 26rpx;
+  height: 27rpx;
+  margin-right: 10rpx;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.no-status-img {
+  display: inline-block;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/10/29/1A0D5B9C-9C5F-758B-E600-12557D74392C.jpg');
+  width: 150rpx;
+  height: 150rpx;
+  margin: 100rpx auto 20rpx auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.no-status-text {
+  text-align: center;
+  font-size: 28rpx;
+  color: #B0B0B0;
+  margin-bottom: 100rpx;
+}
+
+.other-status-text {
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #333333;
+  background-color: #F6F6F6;
+  margin: 0 auto;
+}
+
+.lower-loading-no-more {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #B0B0B0;
+  margin: 20rpx auto 150rpx auto;
+}
+
+.m-more-desc {
+  display: inline-block;
+  color: #43DDF5;
+  font-size: 28rpx;
+  margin-bottom: 24rpx;
+  position: relative;
+  top: -8rpx;
+}

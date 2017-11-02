@@ -1,0 +1,73 @@
+.s-user {
+  position: relative;
+}
+
+.mm-user .user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.mm-user .user-avatar .sex {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24rpx;
+  height: 24rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.mm-user .user-avatar .sex.male {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/AC7CA472-C19B-62EF-952B-97CAAD1C65F0.jpg)
+}
+
+.mm-user .user-avatar .sex.female {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/E72C5ACB-CCD1-7428-FD66-2AD0662288CF.jpg)
+}
+
+.mm-user .user-info {
+  display: inline-block;
+  vertical-align: middle
+}
+
+.mm-user .user-nick {
+  font-size: 28rpx;
+  color: #333333
+}
+
+.mm-user .user-desc {
+  font-size: 22rpx;
+  margin-top: 4rpx;
+  color: #B0B0B0
+}
+
+.s-concern {
+  width: 124rpx;
+  height: 56rpx;
+  background: #ff4338;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 60rpx;
+  text-align: center;
+  position: absolute;
+  right: 0rpx;
+  top: 15rpx;
+}
+
+.s-concern.disabled {
+  background: #fff;
+  border: 1rpx solid #EEEEEE;
+  color: #B0B0B0;
+  cursor: none;
+}

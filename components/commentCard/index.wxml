@@ -1,0 +1,34 @@
+<template name="comment">
+  <view class="c-comment">
+    <!-- header -->
+    <text class="s-comment-time">8分钟前</text>
+    <view class="s-comment-btn" bindtap="comment" data-photo-id="{{photoId}}"></view>
+    <view class="inner" wx:if="{{commentId == photoId}}">
+      <input type="text" class="ip" placeholder="说点什么吧" placeholder-style="color:#B0B0B0;" focus="{{focus}}" />
+      <view class="submit" bindtap="submitComment" data-comment-id="{{commentId}}" data-photo-id="{{photoId}}">发送</view>
+    </view>
+    <!-- 一级评论 -->
+    <view class="s-comment" wx:for="{{commentList.comment_items}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+      <view class="first-comment detail" data-user-id="{{item.user_id}}">
+        <text class="nick">{{item.user_name}} : </text>
+        <text class="reply">
+          {{item.content}}你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起
+        </text>
+      </view>
+      <view class="second-comment detail" data-user="">
+        <view class="nick">
+          <text class="second-nick nick">
+            <text>点滴</text>
+            <text class="reply-text">回复</text>
+            <text>点滴 : </text>
+          </text>
+        </view>
+        <text class="second-reply reply">
+          你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起你买不起
+        </text>
+      </view>
+    </view>
+    <!-- 更多评论 -->
+    <text class="m-more">更多评论</text>
+  </view>
+</template>

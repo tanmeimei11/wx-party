@@ -1,0 +1,20 @@
+<template name="user">
+  <!-- 用户信息 -->
+  <view class="s-user">
+    <view class="mm-user">
+      <view class="user-avatar" style="background-image:url({{avatar}})">
+        <view class="sex {{gender=='男' ? 'male': 'female'}}"></view>
+      </view>
+      <view class="user-info">
+        <view class="user-nick">{{nick}}</view>
+        <view class="user-desc">{{personDesc}}</view>
+      </view>
+    </view>
+    <!-- 关注 -->
+    <view wx:if="{{isOther}}" class="s-concern {{isConcern ? 'disabled':''}}" data-uid="{{id}}" data-concern="{{isConcern ? true : fasle}}"
+      data-status-idx="{{statusIdx}}" bindtap="getConcern">
+      {{isConcern ? '已关注':'关注'}}
+    </view>
+  </view>
+
+</template>
