@@ -298,7 +298,12 @@ mutulPage({
         sAddr: data.city_district,
         time: formatTimeToTime(data.start_time, data.end_time, true),
         detailAddr: data.act_location,
-        intro: data.act_desc.replace(/\\n/g, '\n')
+        intro: data.act_desc.replace(/\\n/g, '\n'),
+        mapName: data.wx_area_name,
+        mapAddress: data.wx_address,
+        mapLatitude: data.latitude,
+        mapLongitude: data.longitude,
+        door: data.house_no
       },
       tempIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joiners.map(this.getDescCollect),
@@ -307,7 +312,7 @@ mutulPage({
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
-      actStatus: data.act_status,
+      actStatus: data.is_org == 1 ? 0 : data.act_status, // 如果是创建者 那么永远都不会结束
       transferImageUrl: data.act_url[0],
       isNeedInfo: data.is_need_info,
       promoMoney: data.charge || 0,
@@ -452,5 +457,14 @@ mutulPage({
         }
       })
     }
+  },
+  openMap: function () {
+    var _data = {
+      latitude: this.data.infos.mapLatitude,
+      longitude: this.data.infos.mapLongitude,
+      address: this.data.infos.mapAddress,
+      name: this.data.infos.mapName
+    }
+    wxPromisify(wx.openLocation)(_data).then(res => {})
   }
 })

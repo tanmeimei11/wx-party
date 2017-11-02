@@ -41,10 +41,15 @@
         </view>
 
         <!-- 详细地址 -->
-        <view class="s-line">
+        <view class="s-line ">
           <view class="title">详细地址</view>
-          <text class="m-text" space="nbsp">{{infos.detailAddr}}</text>
+          <text wx:if="{{infos.detailAddr}}" class="m-text" space="nbsp">{{infos.detailAddr}}</text>
+          <view wx:else class="map-line" bindtap="openMap">
+            <view class="map-name">{{infos.mapName}}({{infos.door}})</view>
+            <view class="map-address">{{infos.mapAddress}}</view>
+          </view>
         </view>
+
 
         <!-- 活动介绍 -->
         <view class="s-line">
