@@ -13,24 +13,28 @@ var getAuth = require('../../utils/auth.js').get
 import track from '../../utils/track.js'
 const originText = {
   'name': "活动名称",
-  'addr': "活动地点",
-  'detailAddr': "详细地址",
+  // 'addr': "活动地点",
+  // 'detailAddr': "详细地址",
+  'mapName': "活动地点",
   'beginText': "活动开始时间",
   'endText': "活动结束时间",
   'detailDesc': "活动详细介绍及其他要点",
   'wechat': "微信号",
-  'amount': "活动价格"
+  'amount': "活动价格",
+  'door': "门牌号，如1幢1单元402"
 }
 const errorText = {
   'image': "请上传图片",
   'name': "请填写活动名称",
-  'addr': "请选择活动地点",
-  'detailAddr': "请填写详细地址",
+  // 'addr': "请选择活动地点",
+  // 'detailAddr': "请填写详细地址",
+  'mapName': "请选择活动地点",
   'beginText': "请选择开始时间",
   'endText': "请选择结束时间",
   'detailDesc': "请填写活动详细介绍及其他要点",
   'wechat': "请填写微信号",
-  'amount': "请填写活动价格"
+  'amount': "请填写活动价格",
+  'door': "请填写门牌号"
 }
 Page({
   data: {
@@ -55,11 +59,14 @@ Page({
     detailDesc: originText.detailDesc,
     wechat: originText.wechat,
     amount: originText.amount,
+    door: originText.door,
+    mapName: originText.mapName,
     phoneNum: '',
     images: [],
     isVerify: false,
     id: '',
-    isAddImg: true
+    isAddImg: true,
+    isShowMapName: false
   },
   onLoad: function (option) {
     console.log(new Date('2017-10-26 12:00:00'))
@@ -220,15 +227,28 @@ Page({
       return
     }
     // 活动地点
-    if (_data.addr == originText.addr) {
-      !type && this.toast(errorText['addr'], 'warn')
-      return
-    }
+    // if (_data.addr == originText.addr) {
+    //   !type && this.toast(errorText['addr'], 'warn')
+    //   return
+    // }
     // 详细地址
-    if (this.verifyKong(_data.detailAddr) || _data.detailAddr == originText.detailAddr) {
-      !type && this.toast(errorText['detailAddr'], 'warn')
+    // if (this.verifyKong(_data.detailAddr) || _data.detailAddr == originText.detailAddr) {
+    //   !type && this.toast(errorText['detailAddr'], 'warn')
+    //   return
+    // }
+
+    // 地图数据
+    if (!this.data.isShowMapName) {
+      !type && this.toast(errorText['mapName'], 'warn')
       return
     }
+
+    // 门牌号
+    if (this.verifyKong(_data.door) || _data.door == originText.door) {
+      !type && this.toast(errorText['door'], 'warn')
+      return
+    }
+
     // 活动价格
     if (this.verifyKong(_data.amount) || _data.amount == originText.amount) {
       !type && this.toast(errorText['amount'], 'warn')
@@ -263,6 +283,10 @@ Page({
       this.submit()
     }
   },
+  getProviceByString: function (str) {
+    var array = /(.*省)(.*市)(.*区)/g.exec(str)
+    return JSON.stringify([array[1], array[2], array[3]])
+  },
   submit: function () {
     track(this, 'h5_tcpa_active_submit')
     this.loadingIn('正在创建')
@@ -270,13 +294,19 @@ Page({
     var requestData = {
       actName: _data.name,
       actUrls: _data.images,
-      district: JSON.stringify(_data.addrJson),
-      actLocation: _data.detailAddr,
+      district: this.getProviceByString(_data.mapAddress),
+      wxAreaName: _data.mapName,
+      wxAddress: _data.mapAddress,
+      latitude: _data.mapLatitude,
+      longitude: _data.mapLongitude,
+      houseNo: _data.door,
+      // actLocation: _data.detailAddr,
       startTime: +new Date(_data.beginText.replace(/-/g, '/')),
       endTime: +new Date(_data.endText.replace(/-/g, '/')),
       actDesc: _data.detailDesc,
       amount: _data.amount,
-      wxNo: _data.wechat
+      wxNo: _data.wechat,
+
     }
     // var requestData = {
     //   actName: 'ceshi',
@@ -312,5 +342,17 @@ Page({
       this.loadingOut()
       this.toast('创建失败', 'error')
     })
-  }
+  },
+  chooseMap: function () {
+    wxPromisify(wx.chooseLocation)({}).then(res => {
+      this.setData({
+        mapName: res.name,
+        mapAddress: res.address,
+        mapLatitude: res.latitude,
+        mapLongitude: res.longitude,
+        isShowMapName: true
+      })
+    })
+  },
+
 })

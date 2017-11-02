@@ -402,3 +402,32 @@
 .s-get-qr contact-button {
   transform: scale(10, 3);
 }
+
+.s-line .map-line {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  background-image: url('https://inimg01.jiuyan.info/in/2017/11/02/B6B1E633-5B9B-F692-7DA8-420A6A0D58A9.jpg');
+  background-size: 14rpx 22rpx;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.map-line .map-name {
+  color: #333333;
+  font-size: 28rpx;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.map-line .map-address {
+  color: #B0B0B0;
+  font-size: 24rpx;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

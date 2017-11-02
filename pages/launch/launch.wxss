@@ -55,6 +55,7 @@
   color: #B0B0B0;
   font-size: 34rpx;
   position: relative;
+  position: relative;
 }
 
 .c-line input,
@@ -62,19 +63,16 @@
   color: #333333;
 }
 
-.c-line picker {
+.c-line .picker {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
-}
-
-.c-line .picker {
   width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 128rpx;
 }
 
 .c-line picker view {
@@ -87,7 +85,30 @@
   line-height: 128rpx;
 }
 
-.c-line input {}
+.c-line.map-line {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.map-line .map-name {
+  color: #333333;
+  font-size: 28rpx;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.map-line .map-address {
+  color: #B0B0B0;
+  font-size: 24rpx;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .c-tips {
   color: #B0B0B0;
@@ -122,6 +143,17 @@
   border-left: 10rpx solid transparent;
   border-right: 10rpx solid transparent;
   border-top: 14rpx solid #333333;
+}
+
+.triangle-right {
+  position: absolute;
+  right: 5rpx;
+  top: 60rpx;
+  width: 0;
+  height: 0;
+  border-top: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
+  border-left: 14rpx solid #333333;
 }
 
 .money-icon {
