@@ -459,6 +459,7 @@ mutulPage({
     }
   },
   openMap: function () {
+    track(this, 'h5_tcpa_active_detail_place', [`id=${this.data.id}`])
     var _data = {
       latitude: this.data.infos.mapLatitude,
       longitude: this.data.infos.mapLongitude,

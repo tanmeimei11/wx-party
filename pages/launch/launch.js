@@ -330,6 +330,7 @@ Page({
       if (res.succ) {
         this.loadingOut()
         this.toast('创建成功')
+        track(this, 'h5_tcpa_active_submit_succ', [`id=${res.data}`])
         setTimeout(() => {
           wx.redirectTo({
             url: `../detail/detail?prepage=launch&id=${res.data}&isShowOtherAct=false`
@@ -344,15 +345,17 @@ Page({
     })
   },
   chooseMap: function () {
-    wxPromisify(wx.chooseLocation)({}).then(res => {
-      this.setData({
-        mapName: res.name,
-        mapAddress: res.address,
-        mapLatitude: res.latitude,
-        mapLongitude: res.longitude,
-        isShowMapName: true
+    getAuth('userLocation')
+      .then(() => {
+        wxPromisify(wx.chooseLocation)({}).then(res => {
+          this.setData({
+            mapName: res.name,
+            mapAddress: res.address,
+            mapLatitude: res.latitude,
+            mapLongitude: res.longitude,
+            isShowMapName: true
+          })
+        })
       })
-    })
   },
-
 })

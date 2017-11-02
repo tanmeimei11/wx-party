@@ -19,6 +19,8 @@
 支付：h5_tcpa_detail_pay
 支付成功：h5_tcpa_detail_pay_succ
 
+活动地址点击：h5_tcpa_active_detail_place  参数id=111
+
 ## 申请资料
 进入：h5_tcpa_apply_entry
 完成：h5_tcpa_apply_finish
@@ -29,6 +31,7 @@
 活动加入：h5_tcpa_index_active_join 参数id=111
 点击群tab: h5_tcpa_index_group_tab_click
 点击活动tab: h5_tcpa_index_active_tab_click 
+发起活动：h5_tcpa_goto_launch_promo
 
 ## 发起活动页面
 提交：h5_tcpa_active_submit

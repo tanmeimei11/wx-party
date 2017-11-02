@@ -8,7 +8,7 @@ const formatTime = (date, isShowWeek) => {
   const second = date.getSeconds()
   const week = weekdays[date.getDay()]
   if (isShowWeek) {
-    return `${formatNumber(month)}月${formatNumber(day)}日 (${week}) ${[hour, minute].map(formatNumber).join(':')}`
+    return `${formatNumber(month)}月${formatNumber(day)}日 ${week} ${[hour, minute].map(formatNumber).join(':')}`
   }
   return `${formatNumber(month)}月${formatNumber(day)}日 ${[hour, minute].map(formatNumber).join(':')}`
 }
