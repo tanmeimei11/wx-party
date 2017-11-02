@@ -186,6 +186,7 @@ Page({
             res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time), true)
           }
         }
+        console.log(this.data)
         this.setData({
           promoList: this.data.promoList.concat(res.data.list),
           promoListLoaded: true,

@@ -155,6 +155,10 @@
   overflow: hidden;
 }
 
+.promo.done{
+  opacity: 0.55
+}
+
 .promo-image {
   position: relative;
   width: 670rpx;
@@ -164,6 +168,21 @@
   background-size: cover;
 }
 
+.promo-status{
+  width: 100rpx;
+  height: 40rpx;
+  background: #b0b0b0;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  letter-spacing: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 40rpx;
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+}
+
 .promo-cover {
   width: 670rpx;
   height: 200rpx;
@@ -171,36 +190,10 @@
   bottom: 0;
 }
 
-.promo-info {
-  position: absolute;
-  bottom: 30rpx;
-  left: 0;
-  padding-left: 30rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.promo-name {
-  position: absolute;
-  display: block;
-  width: 90%;
-  font-size: 40rpx;
-  color: #fff;
-  letter-spacing: 0;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  overflow: hidden;
-  left: 30rpx;
-  top: 311rpx;
-}
-
 .promo-area {
   opacity: 0.9;
   font-size: 24rpx;
-  color: #fff;
+  color: #666;
   letter-spacing: 0;
   margin-left: 5rpx;
   max-width: 200rpx;
@@ -218,26 +211,43 @@
 .icon-promo-time {
   width: 30rpx;
   height: 30rpx;
-  margin-left: 42rpx;
+  margin-left: 50rpx;
 }
 
 .promo-time {
   opacity: 0.9;
   font-size: 24rpx;
-  color: #fff;
+  color: #666;
   letter-spacing: 0;
   margin-left: 5rpx;
 }
 
 .promo-joiners {
-  height: 136rpx;
   width: 610rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  position: relative;
+}
+
+.promo-info {
+  margin-top: 16rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
-  position: relative;
+}
+
+.promo-name {
+  width: 100%;
+  font-size: 40rpx;
+  color: #333;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
 }
 
 .joiner {
