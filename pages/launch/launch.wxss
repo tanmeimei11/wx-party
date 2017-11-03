@@ -93,12 +93,22 @@
 }
 
 .map-line .map-name {
-  color: #333333;
+  /* color: #333333;
   font-size: 28rpx;
   width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap; */
+  position: absolute;
+  color: #333333;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 128rpx;
 }
 
 .map-line .map-address {
@@ -154,6 +164,17 @@
   border-top: 10rpx solid transparent;
   border-bottom: 10rpx solid transparent;
   border-left: 14rpx solid #333333;
+}
+
+.money-line .money-icon {
+  position: absolute;
+  left: 5rpx;
+  top: -2rpx;
+}
+
+.money-line input {
+  padding-left: 40rpx;
+  box-sizing: border-box;
 }
 
 .money-icon {

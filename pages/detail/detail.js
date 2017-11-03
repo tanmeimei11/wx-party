@@ -78,7 +78,6 @@ mutulPage({
       }
     }
   },
-
   onLoad: function (option) {
     wx.showLoading({
       title: '加载中...'
