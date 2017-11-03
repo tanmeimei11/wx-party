@@ -121,12 +121,12 @@
 .r-link .r-link-btn {
   width: 320rpx;
   height: 80rpx;
-  border: 1rpx solid #e0e0e0;
+  border: 1rpx solid #FF4338;
   border-radius: 100rpx;
-  background: #f9f9f9;
+  background: #fff;
   margin: 60rpx auto 0;
   font-size: 28rpx;
-  color: #333;
+  color: #FF4338;
   line-height: 80rpx;
   position: relative;
   overflow: hidden;
