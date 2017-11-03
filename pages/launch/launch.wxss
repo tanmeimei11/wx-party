@@ -169,7 +169,8 @@
 .money-line .money-icon {
   position: absolute;
   left: 5rpx;
-  top: -2rpx;
+  top: －1rpx;
+  display: block;
 }
 
 .money-line input {
@@ -178,9 +179,7 @@
 }
 
 .money-icon {
-  position: absolute;
-  right: 5rpx;
-  top: 0rpx;
+  display: none;
   width: 30rpx;
   height: 100%;
   background-image: url('https://inimg07.jiuyan.info/in/2017/10/31/FB5F45BD-C4D8-3F32-E500-1B68D835D650.jpg');

@@ -15,7 +15,7 @@
 }
 
 .c-pay-wrap .s-tip {
-  width: 300rpx;
+  width: 320rpx;
   margin: 24rpx auto 0;
   font-size: 20rpx;
   color: #666666;
