@@ -53,6 +53,7 @@ var request = (option) => {
         console.log('===== Begin mock request =====')
         console.log(option.data)
         console.log('============ End =============')
+        console.log(require('../mock/' + mockConfig[option.url]))
         option.success(require('../mock/' + mockConfig[option.url]))
         return
       }

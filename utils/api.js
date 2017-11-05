@@ -37,7 +37,10 @@ const uploadImageToQiniu = (file) => {
   })
 }
 
-// 支付接口
+/**
+ * 支付接口
+ * @param {*} id 
+ */
 var payMoney = (id) => {
   return request({
     url: '/activity/join_order',

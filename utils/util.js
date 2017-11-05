@@ -70,6 +70,13 @@ const getFutureYearArray = (num) => {
   }
   return _arr
 }
+
+/**
+ * 根据数据初始化数组
+ * @param {*} num 
+ * @param {*} str 
+ * @param {*} start 
+ */
 const getFullNumArray = (num, str = "", start = 0) => {
   var _arr = []
   for (var i = start; i < num; i++) {
@@ -126,6 +133,61 @@ let getMonthDayWeekArr = () => {
   return perMonthDay
 }
 
+/**
+ * 加载images
+ * @param {*} images  数组 src为image的url
+ */
+var loadImages = (images) => {
+  var imgPromiseList = []
+  Object.keys(images).forEach((idx) => {
+    var _val = images[idx]
+    imgPromiseList.push(wxPromisify(wx.downloadFile)({
+      url: _val.src
+    }).then(res => {
+      _val.local = res.tempFilePath
+      return _val
+    }))
+  })
+  return Promise.all(imgPromiseList)
+}
+
+
+/**
+ * 画在中心的图片
+ * @param {*} ctx 
+ * @param {*} url 
+ * @param {*} x 
+ * @param {*} y 
+ * @param {*} targetW 
+ * @param {*} targetH 
+ */
+var drawImageInCenter = function (ctx, url, x = 0, y = 0, targetW = 0, targetH = 0) {
+  return wxPromisify(wx.getImageInfo)({
+    src: url
+  }).then((res) => {
+    var _imgW = res.width
+    var _imgH = res.height
+    var clipW = _imgW
+    var clipH = _imgH
+    var scale = 1
+    // 长图
+    if (_imgW / _imgH > targetW / targetH) {
+      scale = targetH / _imgH
+      clipH = _imgH * scale
+      clipW = _imgW * scale
+      x = (targetW - clipW) / 2
+    } else {
+      scale = targetW / _imgW
+      clipH = _imgH * scale
+      clipW = _imgW * scale
+      y = (targetH - clipH) / 2
+    }
+    ctx.drawImage(res.path, x, y, clipW, clipH)
+    ctx.draw()
+  })
+}
+
+
 
 var mutulPage = (data) => {
   var realData = data
@@ -150,9 +212,6 @@ var mutulPage = (data) => {
   }
   Page(realData)
 }
-
-
-getMonthDayWeekArr()
 module.exports = {
   getOneQrByRandom,
   getTimeObj,
