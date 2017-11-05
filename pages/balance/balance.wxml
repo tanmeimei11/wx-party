@@ -3,10 +3,42 @@
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;" />
 
+  <!-- 其他活动 -->
+  <view class="balance">
+    <view class="title">
+      <text>我的鼓励金</text>
+    </view>
+    <text class="money">19.33</text>
+    <text class="time">当前鼓励金2017.10.14(周一) 00:00前可用</text>
+    <view class="btn">转发升值鼓励金，最高¥100</view>
+  </view>
+
+  <view class="tips">
+    <text>鼓励金可以在支付活动费用的时候直接抵扣现金，没有抵扣上限</text>
+    <text>鼓励金一旦使用不退回</text>
+    <text>分享链接给好友，好友扫码之后机会获得一次升值机会，升值金额1～10块不等</text>
+    <text>鼓励金封顶¥100</text>
+    <text>每周一00:00，鼓励金都会重置为¥5</text>
+    <text>鼓励金不适用于秒杀的活动</text>
+    <text>最终解释权归in同城趴所有</text>
+  </view>
+
+  <view class="history">
+    <text class="title">历史记录</text>
+    <block wx:for="{{list}}">
+      <view class="list">
+        <text class="note">{{item.note}}</text>
+        <text class="operation {{ item.operation_amount-0 < 0 ? 'used' : ''}}">
+          <text>+</text>{{item.operation_amount}}</text>
+        <text class="time">{{item.created_at}}</text>
+        <text class="account">余额：￥{{item.account_amount}}</text>
+      </view>
+    </block>
+  </view>
+
   <!-- 分享弹窗 -->
   <import src="../../components/goldMoneyModal/index.wxml" />
   <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,title:title,avatarUrl,avatarUrl,actQrImg:actQrImg}}"
   />
-
 
 </view>
