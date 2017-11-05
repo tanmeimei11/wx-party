@@ -4,7 +4,11 @@ const auth = require('../../utils/auth.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var request = require('../../utils/wxPromise.js').requestPromisify
 // var Promise = require('../../lib/es6-promise');
-Page({
+var mutulPage = require('../../utils/util.js').mutulPage
+var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
+
+mutulPage({
+  mixins: [goldMoneyModal],
   data: {
     access_token: '',
     qrImg: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg'

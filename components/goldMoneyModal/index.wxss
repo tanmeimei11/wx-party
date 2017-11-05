@@ -1,0 +1,61 @@
+.c-gold-money-wrap .s-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/6CD1BC72-FBBB-BC4E-528E-50943934E20F.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.c-gold-money-wrap .s-title {
+  display: block;
+  width: 100%;
+  color: #333333;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 20rpx auto 0;
+  white-space: nowrap;
+}
+
+.c-gold-money-wrap .s-title .red {
+  display: inline-block;
+  color: #FF4338;
+}
+
+.c-gold-money-wrap .s-desc {
+  display: block;
+  width: 100%;
+  color: #B0B0B0;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 0 auto 43rpx;
+}
+
+.c-gold-money-wrap .s-qr {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 40rpx auto 31rpx;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.c-gold-money-wrap .s-btn {
+  width: 460rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 200rpx;
+  overflow: hidden;
+}
+
+.c-gold-money-wrap .s-transmit {
+  color: #fff;
+  background-color: #FF4338;
+  position: relative;
+}
