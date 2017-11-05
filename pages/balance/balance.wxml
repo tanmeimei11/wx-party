@@ -3,27 +3,10 @@
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;" />
 
-  <!-- 其他活动 -->
-  <view class="c-other" bindtap="goBack">
-    <view class="s-logo"></view>
-    <view class="s-text">{{promoText}}</view>
-    <view class="s-look">立即查看</view>
-  </view>
+  <!-- 分享弹窗 -->
+  <import src="../../components/goldMoneyModal/index.wxml" />
+  <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,title:title,avatarUrl,avatarUrl,actQrImg:actQrImg}}"
+  />
 
-  <view class="r-txt">
-    <view class="r-img"></view>
-    <view class="r-suc-txt">报名成功</view>
-    <view class="r-txt1">添加下方小助手好友</view>
-    <view class="r-txt2">活动事项、退还“鸽子费”等都可联系小助手</view>
-  </view>
 
-  <view class="r-link">
-    <view class="r-link-img"></view>
-    <view class="r-link-name">同城趴-小in</view>
-    <view class="r-link-wxid">微信号:pabeidaren</view>
-    <view class="r-link-btn" bindtap="getQrTrack">获取小助手二维码
-      <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
-      </contact-button>
-    </view>
-  </view>
 </view>

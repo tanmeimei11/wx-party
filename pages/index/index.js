@@ -1,12 +1,12 @@
 const app = getApp()
 let util = require('../../utils/util.js')
-// let request = util.wxRequest
 let request = require('../../utils/wxPromise.js').requestPromisify
-
-// let system = require('../../utils/system.js')
-// let request = system.wxRequest
 import track from '../../utils/track.js'
-Page({
+var getMoneyModal = require('../../components/getMoneyModal/index.js')
+var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
+var mutulPage = require('../../utils/util.js').mutulPage
+mutulPage({
+  mixins: [getMoneyModal, riseMoneyModal],
   data: {
     qunList: [],
     promoList: [],

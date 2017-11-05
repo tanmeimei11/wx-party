@@ -13,8 +13,4 @@
     <button formType="submit">Submit</button>
   </form> -->
 
-  <!-- 支付弹窗 -->
-  <import src="../../components/goldMoneyModal/index.wxml" />
-  <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,title:title,avatarUrl,avatarUrl,actQrImg:actQrImg}}"
-  />
 </view>

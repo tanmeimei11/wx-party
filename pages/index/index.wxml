@@ -1,3 +1,4 @@
+<image src="{{trackSeed}}" style="width:0;height:0;" wx:if="{{trackSeed.length}}"></image>
 <form bindsubmit="formSubmit" report-submit="true" class="submit-from">
   <button formType="submit" class="submit-btn">
     <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
@@ -20,19 +21,13 @@
       </view>
     </view>
     <loading hidden="{{hidden}}">加载中...</loading>
-    <!-- <include src="../modals/contact.wxml" /> -->
 
-    <!-- <view class="c-modal" wx:if="{{ isJoinQun }}">
-  <view class="c-wrap c-book-wrap">
-    <view class="s-close" bindtap="close"></view>
-    <view class="s-top-text">添加小助手</view>
-    <view class="s-qun">
-    <image src="{{joinQunQrcode}}" class="qrcode"></image>
-    </view>
-    <view class="s-bottom-text">保存二维码到相册，使用微信“扫一扫”添加小助手</view>
-    <view class="saveQrcode" bindtap="downloadQrcode">保存二维码</view>
-  </view>
-</view> -->
-    <image src="{{trackSeed}}" style="width:0;height:0;" wx:if="{{trackSeed.length}}"></image>
+    <!-- 获得奖励金弹窗 -->
+    <import src="../../components/getMoneyModal/index.wxml" />
+    <template is="getMoneyModal" data="{{isShowGetMoneyModal:isShowGetMoneyModal}}" />
+
+    <!-- 升值奖励金弹窗 -->
+    <import src="../../components/riseMoneyModal/index.wxml" />
+    <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal}}" />
   </button>
 </form>

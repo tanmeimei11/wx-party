@@ -1,16 +1,11 @@
-//index.js
-//获取应用实例
 const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
 var mutulPage = require('../../utils/util.js').mutulPage
-// let system = require('../../utils/system.js')
-// let requestPromisify = system.wxRequest
 var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var payModal = require('../../components/payModal/index.js')
 import track from '../../utils/track.js'
-
 mutulPage({
   mixins: [payModal],
   data: {

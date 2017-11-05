@@ -22,8 +22,9 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
-			"list": [{
+			"current": 0,
+			"list": [
+				{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
@@ -33,7 +34,7 @@
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=15601&prepage=apply"
+					"query": "id=15601"
 				},
 				{
 					"id": -1,
@@ -80,7 +81,8 @@
 				{
 					"id": -1,
 					"name": "balance",
-					"pathName": "pages/balance/balance"
+					"pathName": "pages/balance/balance",
+					"query": ""
 				}
 			]
 		}

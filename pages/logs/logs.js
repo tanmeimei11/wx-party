@@ -6,7 +6,6 @@ var request = require('../../utils/wxPromise.js').requestPromisify
 // var Promise = require('../../lib/es6-promise');
 var mutulPage = require('../../utils/util.js').mutulPage
 var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
-
 mutulPage({
   mixins: [goldMoneyModal],
   data: {

@@ -1,4 +1,12 @@
+var extendAll = require('./extend')
+var wxPromisify = require('./wxPromise.js').wxPromisify
 const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+
+/**
+ * 格式化时间戳
+ * @param {*} date 
+ * @param {*} isShowWeek 
+ */
 const formatTime = (date, isShowWeek) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -138,6 +146,9 @@ let getMonthDayWeekArr = () => {
  * @param {*} images  数组 src为image的url
  */
 var loadImages = (images) => {
+  if (!images) {
+    return Promise.reject()
+  }
   var imgPromiseList = []
   Object.keys(images).forEach((idx) => {
     var _val = images[idx]
@@ -170,32 +181,51 @@ var drawImageInCenter = function (ctx, url, x = 0, y = 0, targetW = 0, targetH =
     var clipW = _imgW
     var clipH = _imgH
     var scale = 1
+    var cliX = 0
+    var cliY = 0
     // 长图
     if (_imgW / _imgH > targetW / targetH) {
       scale = targetH / _imgH
       clipH = _imgH * scale
       clipW = _imgW * scale
-      x = (targetW - clipW) / 2
+      cliX = (targetW - clipW) / 2
     } else {
       scale = targetW / _imgW
       clipH = _imgH * scale
       clipW = _imgW * scale
-      y = (targetH - clipH) / 2
+      cliY = (targetH - clipH) / 2
     }
-    ctx.drawImage(res.path, x, y, clipW, clipH)
-    ctx.draw()
+    console.log(res.path, cliX + x, cliY + y, clipW, clipH)
+    ctx.drawImage(res.path, cliX + x, cliY + y, clipW, clipH)
+    ctx.draw(true)
   })
 }
 
-
-
+var baseMethods = {
+  loadingIn: function (text) {
+    wx.showLoading({
+      title: text,
+    })
+  },
+  loadingOut: function () {
+    wx.hideLoading()
+  },
+  toastFail: function (text) {
+    wx.showToast({
+      title: text,
+      image: '../../images/toast-fail.png',
+      duration: 2000
+    })
+  }
+}
 var mutulPage = (data) => {
   var realData = data
   var _mixins = realData.mixins
   if (_mixins) {
-    _mixins.forEach((item) => {
+    _mixins.forEach((sItem) => {
+      // 这里不能用原来的那个对象 多个组件应用的的时候对象是引用 会出问题
+      var item = extendAll({}, sItem)
       if (item.data) {
-        console.log(item.data)
         realData.data = { ...realData.data,
           ...item.data
         }
@@ -206,10 +236,12 @@ var mutulPage = (data) => {
       var _methods = item
       realData = {
         ...realData,
-        ...item
+        ...item,
+        ...baseMethods
       }
     })
   }
+  console.log(realData)
   Page(realData)
 }
 module.exports = {
@@ -224,5 +256,7 @@ module.exports = {
   getMonthDayWeekArr,
   weekdays,
   year,
-  mutulPage
+  mutulPage,
+  loadImages,
+  drawImageInCenter
 }

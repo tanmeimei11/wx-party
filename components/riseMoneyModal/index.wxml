@@ -1,18 +1,14 @@
 <!-- 鼓励金钱窗 -->
-<template name="goldMoneyModal">
-  <view class="c-modal" wx:if="{{isShowGoldMoneyModal}}">
-    <view class="c-wrap c-gold-money-wrap">
-      <view class="s-close" bindtap="closeGoldMoneyModal"></view>
-      <view class="s-avatar" style="background-image:url({{avatarUrl}})"></view>
-      <view class="s-title">
-        <view>快来扫码和我一起领 </view>
-        <view>in同城趴
-          <text class="red">¥5</text>鼓励金
-        </view>
+<template name="riseMoneyModal">
+  <view class="c-modal" wx:if="{{isShowRiseMoneyModal}}">
+    <view class="c-wrap c-rise-money-wrap">
+      <view class="s-close" bindtap="closeRiseMoneyModal"></view>
+      <view class="s-header">
+        <view class="s-avatar" style="background-image:url({{avatarUrl}})"></view>
+        <view class="s-title">您帮犀牛不太牛升值了¥5.26</view>
       </view>
-      <view class="s-qr" style="background-image:url({{actQrImg}})"></view>
-      <text class="s-desc">长按识别进入小程序\n 即可获得¥5鼓励金
-      </text>
+      <view class="s-desc">您现在拥有鼓励金</view>
+      <view class="s-money">您现在拥有鼓励金</view>
       <view class="s-transmit s-btn">保存分享图片到相册</view>
     </view>
   </view>

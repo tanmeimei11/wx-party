@@ -13,7 +13,9 @@
       <view class="s-qr" style="background-image:url({{actQrImg}})"></view>
       <text class="s-desc">长按识别进入小程序\n 即可获得¥5鼓励金
       </text>
-      <view class="s-transmit s-btn">保存分享图片到相册</view>
+      <view class="s-transmit s-btn" bindtap="compose">保存分享图片到相册</view>
     </view>
+    <!-- canvas -->
+    <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
   </view>
 </template>
