@@ -28,6 +28,7 @@
 
     <!-- 升值奖励金弹窗 -->
     <import src="../../components/riseMoneyModal/index.wxml" />
-    <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal}}" />
+    <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal,avatarUrl:avatarUrl,nick:nick,money:money,riseMoney:riseMoney}}"
+    />
   </button>
 </form>

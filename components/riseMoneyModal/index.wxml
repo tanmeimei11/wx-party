@@ -4,12 +4,15 @@
     <view class="c-wrap c-rise-money-wrap">
       <view class="s-close" bindtap="closeRiseMoneyModal"></view>
       <view class="s-header">
-        <view class="s-avatar" style="background-image:url({{avatarUrl}})"></view>
-        <view class="s-title">您帮犀牛不太牛升值了¥5.26</view>
+        <view class="nick">
+          <view class="s-avatar" style="background-image:url({{avatarUrl}})"></view>
+          {{nick}}
+        </view>
+        <view class="s-title">您帮{{nick}}升值了¥{{riseMoney}}</view>
       </view>
       <view class="s-desc">您现在拥有鼓励金</view>
-      <view class="s-money">您现在拥有鼓励金</view>
-      <view class="s-transmit s-btn">保存分享图片到相册</view>
+      <view class="s-money">¥{{money}}</view>
+      <view class="s-btn">转发好友升值鼓励金</view>
     </view>
   </view>
 </template>

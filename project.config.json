@@ -28,7 +28,7 @@
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": ""
+					"query": "isOtherShare=true"
 				},
 				{
 					"id": 1,

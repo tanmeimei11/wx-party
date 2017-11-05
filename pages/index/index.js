@@ -291,6 +291,23 @@ mutulPage({
       })
     }
   },
+  showMoneyModal: function (sharekey) {
+    request({
+      url: '/bounty/open',
+      data: {
+        share_key: sharekey
+      }
+    }).then(res => {
+      if (res.succ) {
+        let _type = res.data == 'succ' ? 'isGetMoneyModal' : 'isRiseMoneyModal'
+        var _data = {
+
+        }
+        _data[_type] = true
+        this.setData(_data)
+      }
+    })
+  },
   onLoad(options) {
     let currentList = (options.tab == '1' && 'qunList') || 'promoList'
     let self = this
@@ -309,5 +326,8 @@ mutulPage({
     } else {
       this.switchTab2()
     }
+
+    // 好友分享点进来
+    options.sharekey && (this.showMoneyModal(options.sharekey))
   }
 })
