@@ -22,9 +22,8 @@ module.exports = {
   },
   pay: function (e) {
     track(this, 'h5_tcpa_pay_cick', [`amt=${this.data.promoMoney == 0 ? this.data.promoMoney:this.data.promoDelayMoney}`, `type=${this.data.promoMoney == 0 ? 0:1}`])
-    var id = e.target.dataset.id
     this.loadingIn('请稍后...')
-    payMoney(id)
+    payMoney(this.data.id)
       .then(() => {
         console.log('paySucc')
         track(this, 'h5_tcpa_detail_pay_succ')

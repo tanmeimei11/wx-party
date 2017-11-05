@@ -24,11 +24,11 @@
 
     <!-- 获得奖励金弹窗 -->
     <import src="../../components/getMoneyModal/index.wxml" />
-    <template is="getMoneyModal" data="{{isShowGetMoneyModal:isShowGetMoneyModal}}" />
+    <template is="getMoneyModal" data="{{isShowGetMoneyModal:isShowGetMoneyModal,myMoney:myMoney,riseMoney:riseMoney}}" />
 
     <!-- 升值奖励金弹窗 -->
     <import src="../../components/riseMoneyModal/index.wxml" />
-    <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal,avatarUrl:avatarUrl,nick:nick,money:money,riseMoney:riseMoney}}"
+    <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney}}"
     />
   </button>
 </form>

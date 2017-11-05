@@ -1,7 +1,7 @@
 const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
 var mutulPage = require('../../utils/util.js').mutulPage
-var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
+var request = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var payModal = require('../../components/payModal/index.js')
@@ -86,8 +86,9 @@ mutulPage({
       id: option.id || '11001',
       sessionFrom: `activity_${option.id}`,
       sessionFromQr: `activitymanager_${option.id}`,
-      isShowPayModal: option.isShowPayModal ? true : false
     })
+
+    option.isShowPayModal && this.showPayModal()
 
     // 是否显示导航条
     if (!option.isShowOtherAct) {
@@ -123,7 +124,7 @@ mutulPage({
 
     // 数据
     if (this.data.id) {
-      requestPromisify({
+      request({
         url: "/activity/detail",
         data: {
           id: this.data.id
@@ -135,6 +136,31 @@ mutulPage({
         }
       })
     }
+  },
+  showPayModal: function () {
+    request({
+      url: '/activity/cost',
+      data: {
+        act_id: this.data.id
+      }
+    }).then(res => {
+      if (res.succ) {
+
+        // 计算的文案
+        if (res.data.actCharge > res.data.book_charge && res.data.bountySum <= 0) {
+          res.data.desc = `＊如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥${res.data.refund}，一个工作日内退款`
+        } else if (res.data.actCharge > res.data.book_charge && res.data.bountySum > 0) {
+          res.data.desc = `＊如果最终不参加，会扣除鸽子费¥${res.data.refund}，最终退款¥0`
+        } else {
+          res.data.desc `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥19元鸽子费不会退款`
+        }
+
+        this.setData({
+          isShowPayModal: true,
+          priceInfo: res.data
+        })
+      }
+    })
   },
   transferTrack: function () {
     track(this, 'h5_tcpa_active_transfer_friend', [`id=${this.data.id}`])
@@ -242,7 +268,7 @@ mutulPage({
     // @xiangxiang
     // 犀牛修改流程
     // 不跳客服 去支付
-    // requestPromisify({
+    // request({
     //   url: "/activity/join",
     //   data: {
     //     id: this.data.id
@@ -438,7 +464,7 @@ mutulPage({
   formSubmit: function (e) {
     if (this.data.isSubmitFormId) {
       console.log('form发生了submit事件，携带数据为：', e.detail.formId)
-      requestPromisify({
+      request({
         url: '/tmpl/formid/submit',
         data: {
           formId: e.detail.formId

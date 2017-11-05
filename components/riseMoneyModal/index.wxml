@@ -5,13 +5,17 @@
       <view class="s-close" bindtap="closeRiseMoneyModal"></view>
       <view class="s-header">
         <view class="nick">
-          <view class="s-avatar" style="background-image:url({{avatarUrl}})"></view>
-          {{nick}}
+          <view class="s-avatar" style="background-image:url({{friendAvatar}})"></view>
+          <text class="nick-name">{{friendNick}}</text>
         </view>
-        <view class="s-title">您帮{{nick}}升值了¥{{riseMoney}}</view>
+        <view class="s-title">
+          <text>您帮</text>
+          <text class="nick-name">{{friendNick}}</text>
+          <text>升值了¥{{riseMoney}}</text>
+        </view>
       </view>
       <view class="s-desc">您现在拥有鼓励金</view>
-      <view class="s-money">¥{{money}}</view>
+      <view class="s-money">¥{{myMoney}}</view>
       <view class="s-btn">转发好友升值鼓励金</view>
     </view>
   </view>

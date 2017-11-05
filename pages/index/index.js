@@ -299,9 +299,12 @@ mutulPage({
       }
     }).then(res => {
       if (res.succ) {
-        let _type = res.data == 'succ' ? 'isGetMoneyModal' : 'isRiseMoneyModal'
+        let _type = res.data.is_first_amount == true ? 'isShowGetMoneyModal' : 'isShowRiseMoneyModal'
         var _data = {
-
+          myMoney: res.data.my_amount,
+          riseMoney: res.data.friend_amount,
+          friendAvatar: res.data.avatar_url,
+          friendNick: res.data.nick_name
         }
         _data[_type] = true
         this.setData(_data)

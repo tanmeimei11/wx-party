@@ -22,19 +22,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "isOtherShare=true"
+					"query": "sharekey=123"
 				},
 				{
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=15601"
+					"query": "id=15601&isShowPayModal=true"
 				},
 				{
 					"id": -1,

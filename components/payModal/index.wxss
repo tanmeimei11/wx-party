@@ -1,21 +1,21 @@
 .c-wrap.c-pay-wrap {
-  margin-top: 360rpx;
+  margin-top: 330rpx;
   padding-top: 52rpx;
   padding-bottom: 60rpx;
   overflow: hidden;
 }
 
 .c-pay-wrap .s-desc {
-  width: 292rpx;
+  width: 381rpx;
   color: #333333;
-  font-size: 28rpx;
+  font-size: 32rpx;
   margin: 40rpx auto 0;
-  padding-bottom: 26rpx;
+  padding-bottom: 35rpx;
   border-bottom: 1rpx solid #E0E0E0;
 }
 
 .c-pay-wrap .s-tip {
-  width: 320rpx;
+  width: 381rpx;
   margin: 24rpx auto 0;
   font-size: 20rpx;
   color: #666666;
@@ -24,6 +24,7 @@
 
 .s-desc-text+.s-desc-text {
   margin: 30rpx auto 0 auto;
+  position: relative;
 }
 
 .c-pay-wrap .s-desc-text {
@@ -32,6 +33,18 @@
 
 .c-pay-wrap .s-desc-text text {
   float: right;
+}
+
+.c-pay-wrap .s-money-desc {
+  height: 70rpx;
+}
+
+.gold-money-num {
+  position: absolute;
+  bottom: 0rpx;
+  left: 0;
+  color: #B0B0B0;
+  font-size: 24rpx;
 }
 
 .c-pay-wrap .s-title {
@@ -61,4 +74,8 @@
 
 .c-pay-wrap .s-btn contact-button {
   transform: scale(15, 3);
+}
+
+.c-pay-wrap .gold-money {
+  color: #FF4338;
 }

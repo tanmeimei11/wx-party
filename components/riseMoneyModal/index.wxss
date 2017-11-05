@@ -39,10 +39,24 @@
   justify-content: center;
 }
 
+.c-rise-money-wrap .nick-name {
+  display: inline-block;
+  max-width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .c-rise-money-wrap .s-header .s-title {
   font-size: 32rpx;
   color: #fff;
   margin-top: 20rpx;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.c-rise-money-wrap .s-header .s-title text {
+  vertical-align: middle;
 }
 
 .c-rise-money-wrap .s-desc {

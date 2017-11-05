@@ -148,8 +148,7 @@
 
       <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
-      <template is="payModal" data="{{isShowPayModal:isShowPayModal,promoMoney:promoMoney,promoDelayMoney,promoDelayMoney,id:id}}"
-      />
+      <template is="payModal" data="{{isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
     </view>
   </button>
 </form>

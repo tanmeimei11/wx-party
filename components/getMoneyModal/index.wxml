@@ -5,7 +5,7 @@
       <view class="s-close" bindtap="closeGetMoneyModal"></view>
       <view class="s-text-wrap">
         <view class="s-top-tip">恭喜你获得鼓励金</view>
-        <view class="s-money">¥18.42</view>
+        <view class="s-money">¥{{myMoney}}</view>
         <view class="s-bottom-tip">转发好友让鼓励金升值，最高升值20倍</view>
         <view class="s-btn" bindtap="lookBalance">立即查看</view>
       </view>
