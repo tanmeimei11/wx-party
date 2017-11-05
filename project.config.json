@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true
@@ -13,7 +13,7 @@
 	"miniprogramRoot": "./",
 	"condition": {
 		"weapp": {
-			"current": 0,
+			"current": 9,
 			"list": [
 				{
 					"id": 0,
@@ -68,6 +68,11 @@
 					"name": "result",
 					"pathName": "pages/result/result",
 					"query": "promonum=2&id=120"
+				},
+				{
+					"id": -1,
+					"name": "balance",
+					"pathName": "pages/balance/balance"
 				}
 			]
 		},
