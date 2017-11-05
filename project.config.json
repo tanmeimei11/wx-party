@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -23,8 +23,7 @@
 		},
 		"miniprogram": {
 			"current": 2,
-			"list": [
-				{
+			"list": [{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
@@ -77,6 +76,11 @@
 					"name": "result",
 					"pathName": "pages/result/result",
 					"query": "promonum=2&id=120"
+				},
+				{
+					"id": -1,
+					"name": "balance",
+					"pathName": "pages/balance/balance"
 				}
 			]
 		}

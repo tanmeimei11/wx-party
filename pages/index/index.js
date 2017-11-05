@@ -25,6 +25,7 @@ Page({
     currentCursorPromo: 0,
     isNeedFillInfo: true,
     isSubmitFormId: true,
+    balance: '',
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -126,6 +127,12 @@ Page({
       hidden: false,
       currentCursorPromo: 0
     })
+    // request({
+    //   url: '/account/balance'
+    // }).then((res) => {
+    //   this.balance = res.data.balance
+    //   console.log(this.balance)
+    // })
     this.loadMorePromo()
   },
   upper: function () {

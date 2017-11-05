@@ -365,16 +365,45 @@ contact-button {
   box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.10);
   border-radius: 8rpx;
   margin-bottom: 40rpx;
-  overflow: hidden;
+  position: relative;
+  z-index: 1
 }
 
-.launch-promo>view {
-  display: inline-block;
-  background-image: url('https://inimg07.jiuyan.info/in/2017/10/25/93F5427E-875E-9E41-AB5B-CC9E4ECC202E.jpg');
-  width: 26rpx;
-  height: 27rpx;
-  margin-right: 10rpx;
+.launch-shu{
+  position: absolute;
+  top: 36rpx;
+  left: 334rpx;
+  width: 3rpx;
+  height: 28rpx;
+  background: #b0b0b0;
+}
+
+.launch-promo>text {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 34rpx;
+  color: #333;
+  height: 100%;
+}
+
+.launch-balance{
+  font-size: 28rpx;
+  color: #b0b0b0;
+}
+
+.launch-tips{
+  position: absolute;
+  top: 94rpx;
+  left: 312rpx;
+  width: 282rpx;
+  height: 74rpx;
+  background-image: url(http://inimg05.jiuyan.info/in/2017/11/05/82E8B6C7-ACE0-C37E-A336-78A593FE5A01.png);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  background-position: center; 
 }
+
+
+

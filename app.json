@@ -6,7 +6,8 @@
     "pages/logs/logs",
     "pages/sign/sign",
     "pages/result/result",
-    "pages/launch/launch"
+    "pages/launch/launch",
+    "pages/balance/balance"
   ],
   "window": {
     "backgroundTextStyle": "light",
