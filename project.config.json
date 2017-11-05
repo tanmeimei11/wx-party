@@ -72,7 +72,8 @@
 				{
 					"id": -1,
 					"name": "balance",
-					"pathName": "pages/balance/balance"
+					"pathName": "pages/balance/balance",
+					"query": ""
 				}
 			]
 		},

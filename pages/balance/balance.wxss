@@ -4,134 +4,165 @@
   padding-bottom: 150rpx;
 }
 
-.c-other {
+.balance{
+  width: 100%;
+  height: 486rpx;
+  background-image: url(http://inimg05.jiuyan.info/in/2017/11/05/83797657-FB5E-CC5A-AB81-B1412FE62751.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: relative;
+  text-align: center;
+}
+
+.balance .title{
+  margin: 95rpx auto 0;
+  width: 160rpx;
+  height: 30rpx;
+  background-image: url(http://inimg02.jiuyan.info/in/2017/11/05/D643EE1F-C486-9090-F49F-D41B0BDE1D9B.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  position: relative;
+}
+
+.balance .title text{
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  box-sizing: border-box;
-  padding: 20rpx;
-  border-top: solid 1rpx #E0E0E0;
-  box-shadow: rgba(0, 0, 0, 0.1) 0rpx 6rpx 10rpx 0rpx;
-  background: rgba(255, 255, 255, 0.94);
+  left: 40rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #fff;
 }
 
-.c-other view {
-  display: inline-block;
-  vertical-align: middle;
+.balance .money{
+  display: block;
+  margin-top: 11rpx;
+  font-size: 88rpx;
+  color: #fff;
+  line-height: 88rpx;
+  letter-spacing: 0;
 }
 
-.c-other .s-logo {
-  width: 64rpx;
-  height: 64rpx;
-  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/6CD1BC72-FBBB-BC4E-528E-50943934E20F.jpg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  margin-right: 16rpx;
+.balance .time{
+  display: block;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.6);
+  line-height: 24rpx;
+  letter-spacing: 0;
 }
 
-.c-other .s-text {
-  color: #333333;
-  font-size: 28rpx;
-}
-
-.c-other .s-look {
-  width: 140rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  color: #FF4338;
-  font-size: 28rpx;
-  border: solid 1rpx #FF4338;
-  text-align: center;
-  border-radius: 8rpx;
-  float: right;
-}
-
-.r-txt {
-  width: 750rpx;
-  margin-top: 170rpx;
-}
-
-.r-txt .r-img {
-  width: 129rpx;
-  height: 129rpx;
-  background-image: url(https://inimg07.jiuyan.info/in/2017/10/31/1B56058C-0CEE-8710-CB3D-CBCF6D4EC8D9.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  margin: auto;
-}
-
-.r-txt .r-suc-txt {
-  font-size: 40rpx;
-  margin: auto;
-  text-align: center;
-}
-
-.r-txt .r-txt1 {
-  font-size: 28rpx;
-  color: #888;
-  text-align: center;
-  margin-top: 96rpx;
-}
-
-.r-txt .r-txt2 {
-  font-size: 28rpx;
-  color: #888;
-  text-align: center;
-}
-
-.r-link {
-  width: 420rpx;
-  height: 461rpx;
-  border-radius: 8rpx;
-  background: #fff;
-  box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.1);
-  margin: 50rpx auto;
-}
-
-.r-link .r-link-img {
-  width: 120rpx;
-  height: 120rpx;
+.balance .btn{
   margin: 60rpx auto 0;
-  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/6CD1BC72-FBBB-BC4E-528E-50943934E20F.jpg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  font-size: 28rpx;
+  color: #333;
+  background: #fff;
+  border-radius: 100px;
+  width: 600rpx;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
-.r-link {
-  text-align: center;
+.tips{
+  margin: 54rpx 40rpx 0;
+  padding-bottom: 40rpx;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.r-link .r-link-name {
-  margin-top: 16rpx;
+.tips text{
+  font-size: 24rpx;
+  color: #b0b0b0;
+  letter-spacing: 0;
+  line-height: 38rpx;
+  display: block;
+  margin:  0 0 10rpx 28rpx;
+  position: relative;
+}
+
+.tips text:before{
+  content: '';
+  position: absolute;
+  left: -19rpx;
+  top: 14rpx;
+  width: 11rpx;
+  height: 11rpx;
+  background: #ffb67c;
+  display: block;
+  border-radius: 50%;
+}
+
+.history{
+  padding: 50rpx 40rpx;
+}
+
+.history .title{
+  font-size: 34rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.history .list{
+  position: relative;
+  width: 670rpx;
+  height: 156rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.history .note{
+  position: absolute;
+  width: 500rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  top: 30rpx;
+  left: 0;
   font-size: 28rpx;
   color: #333;
 }
 
-.r-link .r-link-wxid {
-  font-size: 24rpx;
-  color: #888;
-  margin-top: 5rpx;
-}
-
-.r-link .r-link-btn {
-  width: 320rpx;
-  height: 80rpx;
-  border: 1rpx solid #FF4338;
-  border-radius: 100rpx;
-  background: #fff;
-  margin: 60rpx auto 0;
+.history .operation{
+  position: absolute;
+  top: 30rpx;
+  right: 0;
   font-size: 28rpx;
-  color: #FF4338;
-  line-height: 80rpx;
-  position: relative;
-  overflow: hidden;
+  color: #36D4B0;
 }
 
-.r-link contact-button {
-  transform: scale(10, 3);
+.history .operation.used{
+  color: #ff4338
 }
+
+.history .operation.used text{
+  display: none;
+}
+
+.history .time{
+  position: absolute;
+  top: 82rpx;
+  left: 0;
+  font-size: 24rpx;
+  color: #b0b0b0;
+}
+
+.history .account{
+  position: absolute;
+  top: 82rpx;
+  right: 0;
+  font-size: 24rpx;
+  color: #b0b0b0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
