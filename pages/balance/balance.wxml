@@ -1,14 +1,14 @@
-<!--detail.wxml-->
-<view class="container">
+<scroll-view scroll-y="true" class="container " upper-threshold="10" lower-threshold="10" bindscrolltolower="promoLower"
+  style="height:{{scrollHeight}}px;">
   <!-- 埋点 -->
-  <image src="{{trackSeed}}" style="width:0;height:0;" />
+  <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
 
   <!-- 其他活动 -->
   <view class="balance">
     <view class="title">
       <text>我的鼓励金</text>
     </view>
-    <text class="money">19.33</text>
+    <text class="money">{{balance}}</text>
     <text class="time">当前鼓励金2017.10.14(周一) 00:00前可用</text>
     <view class="btn">转发升值鼓励金，最高¥100</view>
   </view>
@@ -23,10 +23,10 @@
     <text>最终解释权归in同城趴所有</text>
   </view>
 
-  <view class="history">
+  <view class="history" wx-if="{{list.length > 0}}">
     <text class="title">历史记录</text>
-    <block wx:for="{{list}}">
-      <view class="list">
+    <block wx:for="{{list}}" wx:for-index="idx" wx:key="id">
+      <view class="list {{idx == 0 ? 'first' : ''}}">
         <text class="note">{{item.note}}</text>
         <text class="operation {{ item.operation_amount-0 < 0 ? 'used' : ''}}">
           <text>+</text>{{item.operation_amount}}</text>
@@ -40,5 +40,4 @@
   <import src="../../components/goldMoneyModal/index.wxml" />
   <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,title:title,avatarUrl,avatarUrl,actQrImg:actQrImg}}"
   />
-
-</view>
+</scroll-view>
