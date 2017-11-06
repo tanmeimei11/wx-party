@@ -7,7 +7,7 @@ module.exports = {
   data: {
     images: {
       body: {
-        src: "https://inimg07.jiuyan.info/in/2017/11/05/C0C8F5C0-6BC9-BDC5-D76F-C481EFAE83CA.jpg",
+        src: "https://inimg07.jiuyan.info/in/2017/11/06/A973E8DF-771A-139A-A344-464315E333BF.jpg",
         local: "",
         x: 0,
         y: 0,
@@ -18,7 +18,7 @@ module.exports = {
         src: "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
         local: "",
         x: 311,
-        y: 132,
+        y: 108,
         w: 128,
         h: 128,
       },

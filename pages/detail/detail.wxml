@@ -45,7 +45,7 @@
           <view class="title">详细地址</view>
           <text wx:if="{{infos.detailAddr}}" class="m-text" space="nbsp">{{infos.detailAddr}}</text>
           <view wx:else class="map-line" bindtap="openMap">
-            <view class="map-name">{{infos.mapName}} #{{infos.door}}</view>
+            <view class="map-name">{{infos.mapName}} {{infos.door}}</view>
             <view class="map-address">{{infos.mapAddress}}</view>
           </view>
         </view>
