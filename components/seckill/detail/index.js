@@ -13,6 +13,7 @@ module.exports = {
   setSeckillInfo(data){
     if (data.is_seckill===0) return
     this.setData({
+      is_seckill: data.is_seckill,
       seckill:{
         name:data.share_user_name,
         avatar_url: data.share_user_avatar,

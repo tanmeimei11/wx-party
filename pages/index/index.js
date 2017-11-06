@@ -353,7 +353,7 @@ mutulPage({
     } else {
       this.switchTab2()
     }
-    // 倒计时
-    // this.countdown()
+    // 加在秒杀
+    this.loadSeckill()
   }
 })

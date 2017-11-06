@@ -19,7 +19,7 @@ module.exports = {
       .then(() => {
         track(this, 'h5_tcpa_detail_pay_succ')
         wx.redirectTo({
-          url: `../result/result?prepage=apply&promonum=${this.data.otherPromoNum}&id=${id}`
+          url: `../result/result?prepage=apply&promonum=${this.data.otherPromoNum}&id=${id}&isSeckill=${this.data.is_seckill}&transferImageUrl=${this.data.transferImageUrl}&title=${this.data.headLine.title}`
         })
       }).catch(() => {
         this.loadingOut()

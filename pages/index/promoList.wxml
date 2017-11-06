@@ -9,7 +9,7 @@
   </view>
   <!-- 秒杀入口 -->
   <import src="../../components/seckill/entry/index.wxml" />
-  <template is="entry" data="{{...seckill}}"/>
+  <template is="entry" data="{{seckill}}"/>
   <view class="list">
     <block wx:for="{{promoList}}" wx:key="act_id">
       <view class="promo {{ item.act_status == '1'? 'done' : ''}}" index="{{index}}" id="{{item.act_id}}" bindtap='jumpToDetail'

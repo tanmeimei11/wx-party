@@ -283,7 +283,7 @@ mutulPage({
   openBookAlready: function () {
     track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
     wx.redirectTo({
-      url: `../result/result?nextpage=detail&prepage=detail&id=${this.data.id}&promonum=${this.data.otherPromoNum}&transferImageUrl=${this.data.transferImageUrl}&title=${this.data.headLine.title}`
+      url: `../result/result?nextpage=detail&prepage=detail&id=${this.data.id}&promonum=${this.data.otherPromoNum}&isSeckill=${this.data.is_seckill}&transferImageUrl=${this.data.transferImageUrl}&title=${this.data.headLine.title}`
     })
   },
   redirectApply: function () {
@@ -463,6 +463,7 @@ mutulPage({
     })
   },
   formSubmit: function (e) {
+    
     if (this.data.isSubmitFormId) {
       console.log('form发生了submit事件，携带数据为：', e.detail.formId)
       request({

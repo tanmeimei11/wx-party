@@ -8,8 +8,8 @@ mutulPage({
   },
   onShareAppMessage(options) {
     const _options = options.from === 'buttom' ? {
-      title: `抢到了一次秒杀机会，和他一起参加"${getLenStr(this.data.title, 30).str}",立减`,
-      path: `pages/detail/detail?id=${this.data.id}&shareUserId=${this.data.shareUserId}`,
+      title: `${this.data.seckill.shareUserName}抢到了一次秒杀机会，和他一起参加"${getLenStr(this.data.title, 30).str}",立减¥${this.data.seckill.discount}`,
+      path: `pages/detail/detail?id=${this.data.id}&shareUserId=${this.data.seckill.shareUserId}`,
     } : {
       title: `"${getLenStr(this.data.title, 30).str}"火热报名中,快来加入吧～`,
       path: `pages/detail/detail?id=${this.data.id}`,
