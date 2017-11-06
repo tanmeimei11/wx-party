@@ -8,7 +8,7 @@
     <view class="launch-tips" bindtap="toBalance"></view>
   </view>
   <!-- 秒杀入口 -->
-  <import src="../../components/seckill/entry.wxml" />
+  <import src="../../components/seckill/entry/index.wxml" />
   <template is="entry" data="{{...seckill}}"/>
   <view class="list">
     <block wx:for="{{promoList}}" wx:key="act_id">

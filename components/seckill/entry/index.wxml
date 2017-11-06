@@ -16,7 +16,7 @@
           <text class='se-price'>¥{{price}}</text>
           <text class='se-original'>原价 ¥{{original}}</text>
         </view>
-        <wxs src="./tools.wxs" module="tools" />
+        <wxs src="../tools.wxs" module="tools" />
         <view wx:if="{{time > 0}}" class="se-time">
           <text>{{tools.hour(time)}}</text>:
           <text>{{tools.minute(time)}}</text>:

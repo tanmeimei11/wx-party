@@ -4,7 +4,7 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
 var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
-var seckillEntry = require('../../components/seckill/entry.js')
+var seckillEntry = require('../../components/seckill/entry/index.js')
 var mutulPage = require('../../utils/util.js').mutulPage
 mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry],
