@@ -19,9 +19,9 @@
 .seckill-entry .se-circle-1 {
   position: absolute;
   left: 12rpx;
-  top: 166.85rpx;
-  width: 90rpx;
-  height: 45.91rpx;
+  top: 202rpx;
+  width: 93rpx;
+  height: 93rpx;
   border-radius: 100%;
   background-image: linear-gradient(-142deg, #ffd3c3 0%, #fde4ce 100%);
 }
@@ -29,9 +29,9 @@
 .seckill-entry .se-circle-2 {
   position: absolute;
   left: 530rpx;
-  top: 191rpx;
+  top: 252rpx;
   width: 36rpx;
-  height: 18rpx;
+  height: 36rpx;
   border-radius: 100%;
   background-image: linear-gradient(-142deg, #ffd3c3 0%, #fde4ce 100%);
 }
@@ -39,9 +39,9 @@
 .seckill-entry .se-circle-3 {
   position: absolute;
   left: 636rpx;
-  top: 69.6rpx;
+  top: 0rpx;
   width: 22rpx;
-  height: 10.86rpx;
+  height: 22rpx;
   border-radius: 100%;
   opacity: 0.52;
   background-image: linear-gradient(-142deg, #ffd3c3 0%, #fde4ce 100%);
@@ -50,9 +50,9 @@
 .seckill-entry .se-circle-4 {
   position: absolute;
   left: 646rpx;
-  top: 84.41rpx;
+  top: 30rpx;
   width: 92rpx;
-  height: 45.41rpx;
+  height: 92rpx;
   border-radius: 100%;
   opacity: 0.48;
   background-image: linear-gradient(-142deg, #ffd3c3 0%, #fde4ce 100%);
