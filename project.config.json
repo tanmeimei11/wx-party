@@ -13,8 +13,6 @@
 	"projectname": "wx-party",
 	"miniprogramRoot": "./",
 	"condition": {
-<<<<<<< HEAD
-=======
 		"weapp": {
 			"current": 9,
 			"list": [
@@ -80,7 +78,6 @@
 				}
 			]
 		},
->>>>>>> 39dc4f0b0b01954ee11e85f167af7c922e1b96ee
 		"search": {
 			"current": -1,
 			"list": []
