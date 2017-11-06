@@ -152,9 +152,9 @@ mutulPage({
     }).then(res => {
       if (res.succ) {
         // 计算的文案
-        if (parseInt(res.data.act_charge) > parseInt(res.data.book_charge) && res.data.refund > 0) {
+        if (parseFloat(res.data.act_charge) > parseFloat(res.data.book_charge) && res.data.refund > 0) {
           res.data.desc = `＊如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥${res.data.refund}，一个工作日内退款`
-        } else if (parseInt(res.data.act_charge) > parseInt(res.data.book_charge) && res.data.refund <= 0) {
+        } else if (parseFloat(res.data.act_charge) > parseFloat(res.data.book_charge) && res.data.refund <= 0) {
           res.data.desc = `＊如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥0`
         } else {
           res.data.desc = `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥19元鸽子费不会退款`
@@ -262,7 +262,7 @@ mutulPage({
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       return
     }
-    
+
     this.showPayModal()
     // @xiangxiang
     // 犀牛修改流程
@@ -463,7 +463,7 @@ mutulPage({
     })
   },
   formSubmit: function (e) {
-    
+
     if (this.data.isSubmitFormId) {
       console.log('form发生了submit事件，携带数据为：', e.detail.formId)
       request({

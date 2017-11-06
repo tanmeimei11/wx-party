@@ -27,14 +27,15 @@ function wxPromisify(fn) {
 var request = (option) => {
   console.log('-------before request------')
   // 登陆失败的loginFailCallback
-  var loginFailCallback = () => {
-    console.log('进入了loginFailCallback')
-    request(option)
-  }
-  wxCheckLogin(loginFailCallback).then((token) => {
+  // var loginFailCallback = () => {
+  //   console.log('进入了loginFailCallback')
+  //   request(option)
+  // }
+  // var loginFailCallback = option
+  wxCheckLogin(option).then((token) => {
     console.log('-------------------------token-----------');
     console.log(token);
-    var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
+    // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
     if (token) {
       !option.data && (option.data = {});
       !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
@@ -64,20 +65,28 @@ var request = (option) => {
   })
 }
 
+var isLoginIng = false
+var loginColectOptions = []
 // 检查登陆态和token
-var wxCheckLogin = function (loginFailCallback) {
+var wxCheckLogin = function (option) {
   console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
     .then((res) => {
       let _token = wx.getStorageSync('token')
       return _token ? _token : wxLogin()
     }, () => {
-      wxLogin(loginFailCallback)
+      if (!isLoginIng) {
+        wxLogin(option)
+        loginColectOptions.push(option)
+        isLoginIng = true
+      } else {
+        loginColectOptions.push(option)
+      }
     })
 }
 
 
-var wxLogin = function (loginFailCallback) {
+var wxLogin = function (option) {
   console.log('-------get code------')
   return wxPromisify(wx.login)()
     .then(res => {
@@ -102,10 +111,19 @@ var wxLogin = function (loginFailCallback) {
       if (res.succ && res.data) {
         console.log('-------login succ------')
         wx.setStorageSync("token", res.data)
-        loginFailCallback && loginFailCallback()
+        isLoginIng = false
+        if (loginColectOptions.length) {
+          for (var i = 0; i < loginColectOptions.length; i++) {
+            console.log('1324353465764876586798089')
+            request(loginColectOptions[i])
+          }
+          loginColectOptions = []
+        }
+        // option && loginFailCallback()
       } else {
         throw ''
       }
+
       console.log(res.data)
       return res.data
     }).catch((error) => {
