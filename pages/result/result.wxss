@@ -1,5 +1,5 @@
 /**index.wxss**/
-
+@import '../../components/seckill/result/index.wxss';
 .container {
   padding-bottom: 150rpx;
 }
@@ -85,7 +85,7 @@
 
 .r-link {
   width: 420rpx;
-  height: 461rpx;
+  padding-bottom: 64rpx;
   border-radius: 8rpx;
   background: #fff;
   box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.1);

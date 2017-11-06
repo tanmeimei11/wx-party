@@ -10,5 +10,7 @@ module.exports = {
   [`${DOMAIN}/activity/join`]: "join",
   [`${DOMAIN}/account/details`]: "accountlist",
   [`${DOMAIN}/bounty/open`]: "open",
-  [`${DOMAIN}/activity/cost`]: "cost"
+  [`${DOMAIN}/activity/cost`]: "cost",
+  [`${DOMAIN}/activity/seckill`]: "seckill",
+  [`${DOMAIN}/activity/inventorys`]: "inventorys",
 }

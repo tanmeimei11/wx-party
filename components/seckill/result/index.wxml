@@ -1,0 +1,9 @@
+<template name="result">
+  <view class='seckill-result' wx:if="{{isSeckill}}">
+    <view class="sr-contact" bindtap="getQrTrack">获取小助手二维码
+      <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+      </contact-button>
+    </view>
+     <button open-type="share" class="sr-share" bindtap="getQrTrack">分享邀请好友同行</button>
+  </view>
+</template>

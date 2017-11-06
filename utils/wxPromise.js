@@ -34,7 +34,7 @@ var request = (option) => {
   wxCheckLogin(loginFailCallback).then((token) => {
     console.log('-------------------------token-----------');
     console.log(token);
-    // var token = 'e07b8f089b955aeccccc61e57089c817'
+    var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
     if (token) {
       !option.data && (option.data = {});
       !/^http/.test(option.url) && (option.url = DOMAIN + option.url)

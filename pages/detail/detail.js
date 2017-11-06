@@ -283,7 +283,7 @@ mutulPage({
   openBookAlready: function () {
     track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
     wx.redirectTo({
-      url: `../result/result?nextpage=detail&prepage=detail&id=${this.data.id}&promonum=${this.data.otherPromoNum}`
+      url: `../result/result?nextpage=detail&prepage=detail&id=${this.data.id}&promonum=${this.data.otherPromoNum}&transferImageUrl=${this.data.transferImageUrl}&title=${this.data.headLine.title}`
     })
   },
   redirectApply: function () {

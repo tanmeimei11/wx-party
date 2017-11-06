@@ -1,0 +1,30 @@
+.seckill-result {
+}
+
+.seckill-result .sr-contact {
+  position: relative;
+  margin: 10rpx auto 24rpx;
+  width: 420rpx;
+  line-height: 80rpx;
+  background: #ff4338;
+  border-radius: 100px;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.seckill-result .sr-share {
+  margin: 0 auto;
+  width: 420rpx;
+  line-height: 80rpx;
+  border: 1rpx solid #ff4338;
+  border-radius: 100px;
+  font-size: 28rpx;
+  color: #ff4338;
+  text-align: center;
+  background: #fff;
+}
+
+.seckill-result  contact-button {
+  transform: scale(11, 2);
+}

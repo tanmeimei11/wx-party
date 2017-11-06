@@ -74,6 +74,16 @@ var payMoney = (id) => {
   })
 }
 
+// 秒杀活动 post
+var paySeckill = (id) => {
+  return request({
+    url: '/activity/seckill',
+    data: {
+      id: id
+    }
+  })
+}
+
 module.exports = {
   uploadImageToQiniu,
   payMoney
