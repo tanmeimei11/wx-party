@@ -32,7 +32,6 @@ mutulPage({
     })
     wx.getUserInfo({
       success: function (res) {
-        console.log(res)
         self.setData({
           avatarUrl: res.userInfo.avatarUrl
         });
@@ -58,7 +57,8 @@ mutulPage({
               balance : parseFloat(this.data.balance) + parseFloat(res2.data.bounty),
               share_qrcode_url: res2.data.share_qrcode_url
             })
-          } else if (res2.data.is_get_bouns) {
+          } else if (res.data.is_get_bouns) {
+            console.log(res2.data.share_qrcode_url)
             this.setData({
               share_qrcode_url: res2.data.share_qrcode_url
             })
