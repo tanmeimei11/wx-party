@@ -85,7 +85,7 @@ mutulPage({
 
     // 取页面上的id
     this.setData({
-      shareUserId: option.shareUserId,
+      shareUserId: option.shareUserId || '',
       id: option.id || '11001',
       sessionFrom: `activity_${option.id}`,
       sessionFromQr: `activitymanager_${option.id}`,

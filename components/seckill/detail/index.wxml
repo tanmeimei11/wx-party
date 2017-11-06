@@ -4,7 +4,7 @@
     <view class='seckill-detail-content' wx:else>
       <view class="sd-price">{{price}}元秒杀</view>
       <view class="sd-count">原价{{original}}元，剩余{{count}}个名额</view>
-      <view class='sd-tips'>
+      <view class='sd-tips' wx:if="{{shareUserId}}">
         <view class="sdt-avatar {{gender=='男' ? 'male': 'female'}}" style="background-image:url({{avatar_url}})">
         </view>
         <view class='sdt-name'>{{name}} 邀请你</view>

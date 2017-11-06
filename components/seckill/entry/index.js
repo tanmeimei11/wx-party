@@ -14,10 +14,6 @@ module.exports = {
   loadSeckill() {
     requestPromisify({
       url: "/activity/inventorys",
-      data: {
-        cursor: '',
-        limit: 10
-      }
     }).then(res => {
       if (res.succ) {
         this.setData({
@@ -29,7 +25,7 @@ module.exports = {
             total: item.sum_num,
             price: item.amount,
             original: item.charge,
-            time: (item.end_time - item.start_time)/60000
+            time: (item.end_time - item.start_time)/1000
           }))
         })
         this.countdown()
@@ -43,6 +39,6 @@ module.exports = {
         time: item.time - 1
       }))
     })
-    setTimeout(() => this.countdown(), 60000)
+    setTimeout(() => this.countdown(), 1000)
   }
 }

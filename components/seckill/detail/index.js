@@ -11,7 +11,7 @@ module.exports = {
     }
   },
   setSeckillInfo(data){
-    if (data.is_seckill===0) return
+    if (data.is_seckill!==1) return
     this.setData({
       is_seckill: data.is_seckill,
       seckill:{
