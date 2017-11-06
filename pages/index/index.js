@@ -127,12 +127,14 @@ mutulPage({
       hidden: false,
       currentCursorPromo: 0
     })
-    // request({
-    //   url: '/account/balance'
-    // }).then((res) => {
-    //   this.balance = res.data.balance
-    //   console.log(this.balance)
-    // })
+    request({
+      url: '/account/balance'
+    }).then((res) => {
+      console.log(res)
+      this.setData({
+        balance: res.data
+      })
+    })
     this.loadMorePromo()
   },
   upper: function () {
@@ -272,6 +274,12 @@ mutulPage({
     var _url = this.data.isNeedFillInfo ? '../apply/apply?nextpage=launch&prepage=index' : '../launch/launch'
     wx.navigateTo({
       url: _url
+    })
+  },
+  toBalance: function () {
+    track(this, 'h5_tcpa_gold_incentive_click')
+    wx.navigateTo({
+      url: '../balance/balance'
     })
   },
   formSubmit: function (e) {
