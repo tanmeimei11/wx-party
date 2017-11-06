@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   setSeckillOptions(option){
-    if (option.isSeckill!==1) return 
+    if (option.isSeckill!=1) return 
     requestPromisify({
       url: "/activity/share_info",
       data: {

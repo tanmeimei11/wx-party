@@ -76,7 +76,7 @@
 					"id": 8,
 					"name": "result",
 					"pathName": "pages/result/result",
-					"query": "promonum=2&id=120"
+					"query": "promonum=2&id=120&title=11111111&isSeckill=1"
 				},
 				{
 					"id": -1,
