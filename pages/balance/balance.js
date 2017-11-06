@@ -45,9 +45,11 @@ mutulPage({
     }).then((res) => {
       console.log(res)
       if (res.succ) {
-        this.setData({
-          balance : res.data.balance
-        })
+        if (res.data.is_get_bouns) {
+          this.setData({
+            balance : res.data.balance
+          })
+        }
         request({
           url: '/bounty/get'
         }).then((res2) => {
