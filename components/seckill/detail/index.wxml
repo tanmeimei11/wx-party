@@ -1,0 +1,26 @@
+<template name="detail">
+  <view class="seckill-detail">
+    <view wx:if="{{is_finish}}">立即报名</view>
+    <view class='seckill-detail-content' wx:else>
+      <view class="sd-price">{{price}}元秒杀</view>
+      <view class="sd-count">原价{{original}}元，剩余{{count}}个名额</view>
+      <view class='sd-tips'>
+        <view class="sdt-avatar {{gender=='男' ? 'male': 'female'}}" style="background-image:url({{avatar_url}})">
+        </view>
+        <view class='sdt-name'>{{name}} 邀请你</view>
+        <view class='sdt-desc'>赶快报名，和我一起参加</view>
+      </view>
+    </view>
+    <view class='c-modal' wx:if="{{name && is_finish}}">
+      <view class="c-wrap c-Verify-wrap">
+        <view class="s-close" catchtap="closeSeckillModal"></view>
+        <view class="sdm-header">来晚了一步</view>
+        <view class="sdm-content">
+          <view>很抱歉，秒杀机会已经被人抢走了</view>
+          <view>每天10点上新秒杀</view>
+        </view>
+        <view class="s-get-qr s-btn" catchtap="closeSeckillModal">我知道了</view>
+      </view>
+    </view>
+  </view>
+</template>

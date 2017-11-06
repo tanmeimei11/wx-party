@@ -1,6 +1,7 @@
 /**index.wxss**/
 
 @import '../../components/payModal/index.wxss';
+@import '../../components/seckill/detail/index.wxss';
 .container {
   padding-bottom: 150rpx;
 }

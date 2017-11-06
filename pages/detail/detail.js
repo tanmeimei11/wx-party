@@ -5,9 +5,10 @@ var request = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var payModal = require('../../components/payModal/index.js')
+var seckillDetail = require('../../components/seckill/detail/index.js')
 import track from '../../utils/track.js'
 mutulPage({
-  mixins: [payModal],
+  mixins: [payModal, seckillDetail],
   data: {
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,
@@ -84,6 +85,7 @@ mutulPage({
 
     // 取页面上的id
     this.setData({
+      shareUserId: option.shareUserId,
       id: option.id || '11001',
       sessionFrom: `activity_${option.id}`,
       sessionFromQr: `activitymanager_${option.id}`,
@@ -127,8 +129,11 @@ mutulPage({
     if (this.data.id) {
       request({
         url: "/activity/detail",
-        data: {
+        data: this.data.shareUserId ? {
           id: this.data.id
+        } : {
+          id: this.data.id,
+          shareUserId: this.data.shareUserId
         }
       }).then((res) => {
         console.log('获取数据成功')
@@ -257,7 +262,7 @@ mutulPage({
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       return
     }
-
+    
     this.showPayModal()
     // @xiangxiang
     // 犀牛修改流程
@@ -333,6 +338,8 @@ mutulPage({
       promoDelayMoney: data.booking_charge || 0,
       otherPromoNum: data.other_act_count
     })
+    // 设置秒杀信息
+    this.setSeckillInfo(data)
   },
   loadImages: function (images) {
     var imgPromiseList = []
