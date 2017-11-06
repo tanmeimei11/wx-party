@@ -32,7 +32,6 @@ mutulPage({
     })
     wx.getUserInfo({
       success: function (res) {
-        console.log(res)
         self.setData({
           avatarUrl: res.userInfo.avatarUrl
         });
@@ -46,20 +45,27 @@ mutulPage({
     }).then((res) => {
       console.log(res)
       if (res.succ) {
-        this.setData({
-          balance : res.data
-        })
+        if (res.data.is_get_bouns) {
+          this.setData({
+            balance : res.data.balance
+          })
+        }
         request({
           url: '/bounty/get'
-        }).then((res) => {
-          console.log(res)
-          if (res.succ) {
+        }).then((res2) => {
+          console.log(res2)
+          if (res2.succ && !res.data.is_get_bouns) {
             this.setData({
-              balance : parseFloat(this.data.balance) + parseFloat(res.data.bounty),
-              share_qrcode_url: res.data.share_qrcode_url
+              balance : parseFloat(this.data.balance) + parseFloat(res2.data.bounty),
+              share_qrcode_url: res2.data.share_qrcode_url
             })
-            wx.hideLoading()
+          } else if (res.data.is_get_bouns) {
+            console.log(res2.data.share_qrcode_url)
+            this.setData({
+              share_qrcode_url: res2.data.share_qrcode_url
+            })
           }
+          wx.hideLoading()
         })
       }
     })

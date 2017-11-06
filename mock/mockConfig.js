@@ -13,4 +13,6 @@ module.exports = {
   [`${DOMAIN}/activity/cost`]: "cost",
   [`${DOMAIN}/activity/seckill`]: "seckill",
   [`${DOMAIN}/activity/inventorys`]: "inventorys",
+  [`${DOMAIN}/bounty/get`]: "get",
+  [`${DOMAIN}/account/balance`]: "balance"
 }

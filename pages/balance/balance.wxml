@@ -2,7 +2,6 @@
   style="height:{{scrollHeight}}px;">
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
-
   <view class="balance">
     <view class="title">
       <text>我的鼓励金</text>
@@ -14,10 +13,9 @@
 
   <view class="tips">
     <text>鼓励金可以在支付活动费用的时候直接抵扣现金，没有抵扣上限</text>
-    <text>鼓励金一旦使用不退回</text>
-    <text>分享链接给好友，好友扫码之后机会获得一次升值机会，升值金额1～10块不等</text>
-    <text>鼓励金封顶¥100</text>
-    <text>每周一00:00，鼓励金都会重置为¥5</text>
+    <text>分享链接给好友，好友扫码之后就会获得一次升值机会，每次最高升值￥10，鼓励金每周升值封顶￥100</text>
+    <text>鼓励金当周有效，每周一00:00，鼓励金都会重置为￥5，请在有效期内使用鼓励金</text>
+    <text>鼓励金一旦使用不会退回</text>
     <text>鼓励金不适用于秒杀的活动</text>
     <text>最终解释权归in同城趴所有</text>
   </view>
