@@ -6,8 +6,8 @@
 
 .balance {
   width: 100%;
-  height: 393rpx;
-  background-image: url(http://inimg05.jiuyan.info/in/2017/11/05/83797657-FB5E-CC5A-AB81-B1412FE62751.png);
+  height: 333rpx;
+  background-image: url(http://inimg01.jiuyan.info/in/2017/11/06/C89BAE6D-8871-3040-3C32-7956F9D2AEDD.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -56,18 +56,17 @@
 }
 
 .balance .btn {
-  margin: 60rpx auto 0;
-  font-size: 28rpx;
-  color: #333;
-  background: #fff;
-  border-radius: 100px;
-  width: 600rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+  margin: 30rpx auto 0;
+  width: 270rpx;
+  height: 270rpx;
+  background-image: url(http://inimg07.jiuyan.info/in/2017/11/06/B85955EE-CF79-F0B4-2BC7-37B07CF3D95E.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .tips {
-  margin: 54rpx 40rpx 0;
+  margin: 137rpx 40rpx 0;
   padding-bottom: 30rpx;
 }
 
@@ -84,7 +83,7 @@
 .tips text:before {
   content: '';
   position: absolute;
-  left: -19rpx;
+  left: -25rpx;
   top: 14rpx;
   width: 11rpx;
   height: 11rpx;

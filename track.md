@@ -38,6 +38,9 @@
 提交：h5_tcpa_active_submit
 选择图片：h5_tcpa_active_photo_add
 
+## 我的鼓励金页面
+转发按钮：h5_tcpa_gold_forward
+
 ## 支付成功页面
 活动小助手：：h5_tcpa_paysucc_getqr
 查看其他活动：h5_tcpa_paysucc_look
