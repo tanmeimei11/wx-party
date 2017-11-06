@@ -76,13 +76,25 @@
 					"id": 8,
 					"name": "result",
 					"pathName": "pages/result/result",
-					"query": "promonum=2&id=120"
+					"query": "promonum=2&id=120&title=11111111&isSeckill=1"
 				},
 				{
 					"id": -1,
 					"name": "balance",
 					"pathName": "pages/balance/balance",
 					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "result1",
+					"pathName": "pages/result/result",
+					"query": "prepage=apply&promonum=93&id=15901&isSeckill=1&transferImageUrl=https://inimg07.jiuyan.info/aW4vMjAxNy8xMS8wNi84RTVDNjM0Ni04QTNGLTk2QzQtRjRBQi03MTcyODRFOTRFNTIuanBn&title=12"
+				},
+				{
+					"id": 11,
+					"name": "detail shareUserId",
+					"pathName": "pages/detail/detail",
+					"query": "id=15901&shareUserId=1aRJYn"
 				}
 			]
 		}
