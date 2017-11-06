@@ -1,13 +1,16 @@
+import { DOMAIN } from '../utils/config.js'
 module.exports = {
-  "https://activity.in66.com/party/login": "login",
-  "https://activity.in66.com/activity/detail": "detail",
-  "https://activity.in66.com/citysocial/groups": "qunList",
-  "https://activity.in66.com/activity/groups": "promoList",
-  "https://activity.in66.com/activity/signins": "signins",
-  "https://activity.in66.com/activity/prepare": "prepare",
-  "https://activity.in66.com/activity/add_info": "submit",
-  "https://activity.in66.com/activity/join": "join",
-  "https://activity.in66.com/account/details": "accountlist",
-  "https://activity.in66.com/bounty/open": "open",
-  "https://activity.in66.com/activity/cost": "cost"
+  [`${DOMAIN}/party/login`]: "login",
+  [`${DOMAIN}/activity/detail`]: "detail",
+  [`${DOMAIN}/citysocial/groups`]: "qunList",
+  [`${DOMAIN}/activity/groups`]: "promoList",
+  [`${DOMAIN}/activity/signins`]: "signins",
+  [`${DOMAIN}/activity/prepare`]: "prepare",
+  [`${DOMAIN}/activity/add_info`]: "submit",
+  [`${DOMAIN}/activity/join`]: "join",
+  [`${DOMAIN}/account/details`]: "accountlist",
+  [`${DOMAIN}/bounty/open`]: "open",
+  [`${DOMAIN}/activity/cost`]: "cost",
+  [`${DOMAIN}/bounty/get`]: "get",
+  [`${DOMAIN}/account/balance`]: "balance"
 }

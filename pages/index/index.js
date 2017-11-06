@@ -26,7 +26,9 @@ mutulPage({
     currentCursorPromo: 0,
     isNeedFillInfo: true,
     isSubmitFormId: true,
-    balance: '',
+    myMoney: '',
+    is_get_bouns: true,
+    is_share: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -128,14 +130,17 @@ mutulPage({
       hidden: false,
       currentCursorPromo: 0
     })
-    request({
-      url: '/account/balance'
-    }).then((res) => {
-      console.log(res)
-      this.setData({
-        balance: res.data
+    if (!this.data.is_share) {
+      request({
+        url: '/account/balance'
+      }).then((res) => {
+        console.log(res)
+        this.setData({
+          myMoney: res.data.balance,
+          is_get_bouns: res.data.is_get_bouns
+        })
       })
-    })
+    }
     this.loadMorePromo()
   },
   upper: function () {
@@ -334,6 +339,15 @@ mutulPage({
     wx.setNavigationBarTitle({
       title: 'in 同城趴'
     })
+    // 好友分享点进来
+    if (options.sharekey) {
+      this.setData({
+        is_share: true
+      })
+      track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
+      this.showMoneyModal(options.sharekey)
+    }
+
     if (currentList == 'qunList') {
       this.switchTab1()
     } else {
@@ -341,10 +355,5 @@ mutulPage({
     }
     // 倒计时
     // this.countdown()
-    // 好友分享点进来
-    if (options.sharekey) {
-      track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
-      this.showMoneyModal(options.sharekey)
-    }
   }
 })
