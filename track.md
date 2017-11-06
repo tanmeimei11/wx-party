@@ -32,6 +32,7 @@
 点击群tab: h5_tcpa_index_group_tab_click
 点击活动tab: h5_tcpa_index_active_tab_click 
 发起活动：h5_tcpa_goto_launch_promo
+我的鼓励金：h5_tcpa_gold_incentive_click
 
 ## 发起活动页面
 提交：h5_tcpa_active_submit

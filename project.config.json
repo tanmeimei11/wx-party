@@ -13,6 +13,71 @@
 	"projectname": "wx-party",
 	"miniprogramRoot": "./",
 	"condition": {
+		"weapp": {
+			"current": 9,
+			"list": [
+				{
+					"id": 0,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "detail",
+					"pathName": "pages/detail/detail",
+					"query": "id=15601&prepage=apply"
+				},
+				{
+					"id": -1,
+					"name": "logs",
+					"pathName": "pages/logs/logs",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "apply",
+					"pathName": "pages/apply/apply",
+					"query": "prepage=detail&id=15001&nextpage=detail&isShowPayModal=true"
+				},
+				{
+					"id": 4,
+					"name": "sign",
+					"pathName": "pages/sign/sign",
+					"query": "id=11401"
+				},
+				{
+					"id": -1,
+					"name": "launch",
+					"pathName": "pages/launch/launch",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "detail id",
+					"pathName": "pages/detail/detail",
+					"query": "id=13515&prepage=launch&isShowOtherAct=false"
+				},
+				{
+					"id": -1,
+					"name": "index tab＝2",
+					"pathName": "pages/index/index",
+					"query": "tab=2"
+				},
+				{
+					"id": 8,
+					"name": "result",
+					"pathName": "pages/result/result",
+					"query": "promonum=2&id=120"
+				},
+				{
+					"id": -1,
+					"name": "balance",
+					"pathName": "pages/balance/balance",
+					"query": ""
+				}
+			]
+		},
 		"search": {
 			"current": -1,
 			"list": []

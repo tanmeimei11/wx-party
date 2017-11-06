@@ -13,9 +13,14 @@ mutulPage({
     noMoreNote: false,
     hidden: true,
     listLoaded: false,
+    isShowGoldMoneyModal: false,
+    share_qrcode_url: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_balance_enter'
   },
   onLoad: function (option) {
+    wx.showLoading({
+      title: '加载中...'
+    })
     let self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -27,18 +32,26 @@ mutulPage({
     wx.setNavigationBarTitle({
       title: '我的鼓励金'
     })
-    // 取页面上的id
-    this.setData({
-      list: [],
-      hidden: true,
-      sessionFrom: `activityassistant_${option.id}`
-    })
     request({
       url: '/account/balance'
     }).then((res) => {
       console.log(res)
       if (res.succ) {
-        this.balance = res.data.balance
+        this.setData({
+          balance : res.data
+        })
+        request({
+          url: '/bounty/get'
+        }).then((res) => {
+          console.log(res)
+          if (res.succ) {
+            this.setData({
+              balance : parseFloat(this.data.balance) + parseFloat(res.data.bounty),
+              share_qrcode_url: res.data.share_qrcode_url
+            })
+            wx.hideLoading()
+          }
+        })
       }
     })
     request({
@@ -46,7 +59,7 @@ mutulPage({
       cursor: this.currentCursor,
       limit: 10
     }).then((res) => {
-      console.log(res)
+      // console.log(res)
       this.setData({
         currentCursor: res.data.current_cursor,
         list: res.data.list
@@ -95,6 +108,11 @@ mutulPage({
           hidden: true
         })
       }, 300)
+    })
+  },
+  share: function () {
+    this.setData({
+      isShowGoldMoneyModal : true
     })
   }
 })
