@@ -9,5 +9,7 @@ module.exports = {
   "https://activity.in66.com/activity/join": "join",
   "https://activity.in66.com/account/details": "accountlist",
   "https://activity.in66.com/bounty/open": "open",
-  "https://activity.in66.com/activity/cost": "cost"
+  "https://activity.in66.com/activity/cost": "cost",
+  "https://activity.in66.com/bounty/get": "get",
+  "https://activity.in66.com/account/balance": "balance"
 }
