@@ -3,14 +3,13 @@
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
 
-  <!-- 其他活动 -->
   <view class="balance">
     <view class="title">
       <text>我的鼓励金</text>
     </view>
     <text class="money">{{balance}}</text>
     <text class="time">当前鼓励金2017.10.14(周一) 00:00前可用</text>
-    <view class="btn" bindtap="share">转发升值鼓励金，最高¥100</view>
+    <view class="btn" bindtap="share"></view>
   </view>
 
   <view class="tips">
@@ -23,7 +22,7 @@
     <text>最终解释权归in同城趴所有</text>
   </view>
 
-  <view class="history" wx-if="{{list.length > 0}}">
+  <view class="history" wx:if="{{list.length > 0}}">
     <text class="title">历史记录</text>
     <block wx:for="{{list}}" wx:for-index="idx" wx:key="id">
       <view class="list {{idx == 0 ? 'first' : ''}}">
@@ -38,6 +37,6 @@
 
   <!-- 分享弹窗 -->
   <import src="../../components/goldMoneyModal/index.wxml" />
-  <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,avatarUrl:avatarUrl,actQrImg:actQrImg}}"
+  <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,avatarUrl:avatarUrl,actQrImg:share_qrcode_url}}"
   />
 </scroll-view>

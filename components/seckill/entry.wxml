@@ -1,0 +1,38 @@
+<template name="entry">
+  <view class='seckill-entry'>
+    <view wx:if="{{name}}">
+      <view class='se-circle-1'></view>
+      <view class='se-circle-2'></view>
+      <view class='se-circle-3'></view>
+      <view class='se-circle-4'></view>
+      <view class='se-header'>
+        <text>每天10点上新秒杀</text>
+      </view>
+      <view class='se-content'>
+        <image class='se-cover' mode="aspectFill" src="{{cover}}"></image>
+        <text class='se-name'>{{name}}</text>
+        <view class='se-desc'>
+          <text class='se-tag'>秒杀</text>
+          <text class='se-price'>¥{{price}}</text>
+          <text class='se-original'>原价 ¥{{original}}</text>
+        </view>
+        <wxs src="./tools.wxs" module="tools" />
+        <view wx:if="{{time > 0}}" class="se-time">
+          <text>{{tools.hour(time)}}</text>:
+          <text>{{tools.minute(time)}}</text>:
+          <text>{{tools.second(time)}}</text>后开抢
+        </view>
+        <view wx:else class='se-surplus'>
+          <view class='ses-count'>剩余名额 {{total-people}}位</view>
+          <view class='ses-progress'>
+            <view class='ses-progress-done' style="width:{{people/total*100}}%;"></view>
+          </view>
+          <text>{{people}}</text>/{{total}}
+        </view>
+      </view>
+    </view>
+    <view class='se-header'>
+      <text>同城活动</text>
+    </view>
+  </view>
+</template>

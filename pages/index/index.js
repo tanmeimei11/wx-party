@@ -4,9 +4,10 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
 var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
+var seckillEntry = require('../../components/seckill/entry.js')
 var mutulPage = require('../../utils/util.js').mutulPage
 mutulPage({
-  mixins: [getMoneyModal, riseMoneyModal],
+  mixins: [getMoneyModal, riseMoneyModal, seckillEntry],
   data: {
     qunList: [],
     promoList: [],
@@ -338,7 +339,8 @@ mutulPage({
     } else {
       this.switchTab2()
     }
-
+    // 倒计时
+    // this.countdown()
     // 好友分享点进来
     if (options.sharekey) {
       track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])

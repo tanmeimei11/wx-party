@@ -15,6 +15,7 @@ mutulPage({
     listLoaded: false,
     isShowGoldMoneyModal: false,
     share_qrcode_url: '',
+    avatarUrl: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_balance_enter'
   },
   onLoad: function (option) {
@@ -26,6 +27,14 @@ mutulPage({
       success: function (res) {
         self.setData({
           scrollHeight: res.windowHeight
+        });
+      }
+    })
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res)
+        self.setData({
+          avatarUrl: res.userInfo.avatarUrl
         });
       }
     })
@@ -111,6 +120,7 @@ mutulPage({
     })
   },
   share: function () {
+    track(this, 'h5_tcpa_gold_forward')
     this.setData({
       isShowGoldMoneyModal : true
     })
