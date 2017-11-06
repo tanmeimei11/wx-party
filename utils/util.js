@@ -176,6 +176,7 @@ var drawImageInCenter = function (ctx, url, x = 0, y = 0, targetW = 0, targetH =
   return wxPromisify(wx.getImageInfo)({
     src: url
   }).then((res) => {
+    console.log(res)
     var _imgW = res.width
     var _imgH = res.height
     var clipW = _imgW
@@ -195,9 +196,11 @@ var drawImageInCenter = function (ctx, url, x = 0, y = 0, targetW = 0, targetH =
       clipW = _imgW * scale
       cliY = (targetH - clipH) / 2
     }
-    // console.log(res.path, cliX + x, cliY + y, clipW, clipH)
+    console.log(res.path, cliX + x, cliY + y, clipW, clipH)
     ctx.drawImage(res.path, cliX + x, cliY + y, clipW, clipH)
-    ctx.draw(true)
+    // ctx.drawImage(res.path, x, y, clipW, clipH)
+    // ctx.draw()
+    return Promise.resolve()
   })
 }
 
