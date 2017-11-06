@@ -28,13 +28,13 @@
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "sharekey=123"
+					"query": "sharekey=2222"
 				},
 				{
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=15601&isShowPayModal=true"
+					"query": "id=15701"
 				},
 				{
 					"id": -1,

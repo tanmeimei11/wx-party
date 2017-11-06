@@ -195,7 +195,7 @@ var drawImageInCenter = function (ctx, url, x = 0, y = 0, targetW = 0, targetH =
       clipW = _imgW * scale
       cliY = (targetH - clipH) / 2
     }
-    console.log(res.path, cliX + x, cliY + y, clipW, clipH)
+    // console.log(res.path, cliX + x, cliY + y, clipW, clipH)
     ctx.drawImage(res.path, cliX + x, cliY + y, clipW, clipH)
     ctx.draw(true)
   })
@@ -216,7 +216,14 @@ var baseMethods = {
       image: '../../images/toast-fail.png',
       duration: 2000
     })
+  },
+  toastSucc: function (text) {
+    wx.showToast({
+      title: text,
+      duration: 2000
+    })
   }
+
 }
 var mutulPage = (data) => {
   var realData = data
@@ -241,7 +248,6 @@ var mutulPage = (data) => {
       }
     })
   }
-  console.log(realData)
   Page(realData)
 }
 module.exports = {
