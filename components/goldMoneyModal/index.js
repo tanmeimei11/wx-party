@@ -2,6 +2,7 @@
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 import track from '../../utils/track.js'
 var util = require('../../utils/util.js')
+var getAuth = require('../../utils/auth.js').get
 module.exports = {
   data: {
     images: {
@@ -31,10 +32,20 @@ module.exports = {
       isShowGoldMoneyModal: false
     })
   },
+  saveImage: function (url) {
+    getAuth('writePhotosAlbum')
+      .then(() => {
+        return wxPromisify(wx.saveImageToPhotosAlbum)({
+          filePath: url
+        })
+      }).then(res => {
+        this.loadingOut()
+        this.toatSucc('保存成功')
+      })
+  },
   compose: function () {
     this.loadingIn('加载中')
-    // track(this, 'h5_tcpa_active_compose_click', [`id=${this.data.id}`])
-    console.log(this.data)
+    track(this, 'h5_tcpa_gold_photo_save')
     util.loadImages(this.data.images)
       .then(() => {
         var ctx = wx.createCanvasContext('firstCanvas')
@@ -49,8 +60,7 @@ module.exports = {
                 canvasId: 'firstCanvas',
               }).then(res => {
                 console.log(res.tempFilePath)
-                // this.saveImage()
-                this.loadingOut()
+                this.saveImage()
               })
             }, 100)
           })

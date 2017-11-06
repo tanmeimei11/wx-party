@@ -25,7 +25,6 @@ function extend(target, source, deep) {
 var extendAll = function (target) {
   var deep = true;
   var args = slice.call(arguments, 1);
-  console.log(target, args, deep)
   args.forEach(function (arg) {
     extend(target, arg, deep)
   })

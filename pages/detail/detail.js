@@ -36,6 +36,7 @@ mutulPage({
       '4、进群，报名成功'
     ],
     sessionFromQr: wx.getStorageSync('token'),
+    priceInfo: {},
     images: {
       head: {
         src: "",
@@ -145,19 +146,17 @@ mutulPage({
       }
     }).then(res => {
       if (res.succ) {
-
         // 计算的文案
-        if (res.data.actCharge > res.data.book_charge && res.data.bountySum <= 0) {
+        if (parseInt(res.data.act_charge) > parseInt(res.data.book_charge) && res.data.refund > 0) {
           res.data.desc = `＊如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥${res.data.refund}，一个工作日内退款`
-        } else if (res.data.actCharge > res.data.book_charge && res.data.bountySum > 0) {
-          res.data.desc = `＊如果最终不参加，会扣除鸽子费¥${res.data.refund}，最终退款¥0`
+        } else if (parseInt(res.data.act_charge) > parseInt(res.data.book_charge) && res.data.refund <= 0) {
+          res.data.desc = `＊如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥0`
         } else {
-          res.data.desc `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥19元鸽子费不会退款`
+          res.data.desc = `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥19元鸽子费不会退款`
         }
-
         this.setData({
-          isShowPayModal: true,
-          priceInfo: res.data
+          priceInfo: res.data,
+          isShowPayModal: true
         })
       }
     })
@@ -194,22 +193,19 @@ mutulPage({
     wxPromisify(wx.authorize)({
       scope: 'scope.writePhotosAlbum'
     }).then(() => {
-      wxPromisify(wx.downloadFile)({
-          url: url
-        })
-        .then(res => {
-          wxPromisify(wx.saveImageToPhotosAlbum)({
-              filePath: res.tempFilePath
-            })
-            .then(res => {
-              wx.showToast({
-                title: '保存成功',
-                duration: 2000
-              })
-            })
-        })
+      return wxPromisify(wx.downloadFile)({
+        url: url
+      })
+    }).then(res => {
+      return wxPromisify(wx.saveImageToPhotosAlbum)({
+        filePath: res.tempFilePath
+      })
+    }).then(res => {
+      wx.showToast({
+        title: '保存成功',
+        duration: 2000
+      })
     })
-
   },
   lookMore: function () {
     this.setData({
@@ -262,9 +258,7 @@ mutulPage({
       return
     }
 
-    this.setData({
-      isShowPayModal: true
-    })
+    this.showPayModal()
     // @xiangxiang
     // 犀牛修改流程
     // 不跳客服 去支付

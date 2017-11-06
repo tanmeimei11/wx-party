@@ -16,7 +16,7 @@
       </view>
       <view class="s-desc">您现在拥有鼓励金</view>
       <view class="s-money">¥{{myMoney}}</view>
-      <view class="s-btn">转发好友升值鼓励金</view>
+      <view class="s-btn" bindtap="transfer">转发好友升值鼓励金</view>
     </view>
   </view>
 </template>

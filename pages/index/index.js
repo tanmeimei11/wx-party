@@ -138,10 +138,10 @@ mutulPage({
     this.loadMorePromo()
   },
   upper: function () {
-    console.log("upper");
+    // console.log("upper");
   },
   promoLower: function () {
-    console.log("promoLower")
+    // console.log("promoLower")
     let that = this;
     setTimeout(function () {
       that.loadMorePromo();
@@ -300,6 +300,7 @@ mutulPage({
     }
   },
   showMoneyModal: function (sharekey) {
+    console.log(sharekey)
     request({
       url: '/bounty/open',
       data: {
@@ -339,6 +340,9 @@ mutulPage({
     }
 
     // 好友分享点进来
-    options.sharekey && (this.showMoneyModal(options.sharekey))
+    if (options.sharekey) {
+      track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
+      this.showMoneyModal(options.sharekey)
+    }
   }
 })

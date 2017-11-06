@@ -32,6 +32,8 @@
 点击群tab: h5_tcpa_index_group_tab_click
 点击活动tab: h5_tcpa_index_active_tab_click 
 发起活动：h5_tcpa_goto_launch_promo
+(弹窗)立即查看：h5_tcpa_gold_see_click
+(弹窗)转发好友：h5_tcpa_gold_forward_box
 我的鼓励金：h5_tcpa_gold_incentive_click
 
 ## 发起活动页面
@@ -44,3 +46,6 @@
 ## 支付成功页面
 活动小助手：：h5_tcpa_paysucc_getqr
 查看其他活动：h5_tcpa_paysucc_look
+
+## 鼓励金页面
+保存图片：h5_tcpa_gold_photo_save
