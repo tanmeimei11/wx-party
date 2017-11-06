@@ -33,7 +33,7 @@ const uploadImageToQiniu = (file) => {
   }).then(res => {
     res = JSON.parse(res)
     // console.log(`${qnResUrl}${res.key}`)
-    return `${qnResUrl}${res.key}`
+    return `${qnResUrl}${res.key}?imageMogr2/auto-orient`
   })
 }
 

@@ -23,12 +23,12 @@ module.exports = {
         h: 200,
       },
       qrContain: {
-        src: "https://inimg07.jiuyan.info/in/2017/11/06/4FAB771E-CA69-70BD-A4C9-1A289DCA501E.jpg",
+        src: "https://inimg07.jiuyan.info/in/2017/11/06/6934FAC6-A317-EAE6-75A5-9472183A4B91.jpg",
         local: "",
-        x: 295,
-        y: 433,
-        w: 200,
-        h: 200,
+        x: 265,
+        y: 423,
+        w: 220,
+        h: 220,
       },
       avatar: {
         src: "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
@@ -74,18 +74,20 @@ module.exports = {
           .then(() => {
             return util.drawImageInCenter(ctx, _qr.local, _qr.x, _qr.y, _qr.w, _qr.h)
           }).then(() => {
+            ctx.drawImage(_body.local, _body.x, _body.y, _body.w, _body.h)
             return util.drawImageInCenter(ctx, _qrContain.local, _qrContain.x, _qrContain.y, _qrContain.w, _qrContain.h)
           }).then(() => {
-            ctx.drawImage(_body.local, _body.x, _body.y, _body.w, _body.h)
             ctx.draw(true)
+            // ctx.drawImage(_body.local, _body.x, _body.y, _body.w, _body.h)
+            // ctx.draw(true)
             setTimeout(() => {
               // 画文字
               ctx.setTextAlign('center')
               ctx.setFillStyle('white')
               ctx.setFontSize(42)
-              ctx.fillText('扫码拆开红包', 375, 320)
+              ctx.fillText('扫码拆开红包', 375, 315)
               ctx.setFontSize(36)
-              ctx.fillText('红包最高可升值为 ¥100 ', 375, 380)
+              ctx.fillText('红包最高可升值为 ¥100 ', 375, 375)
               ctx.draw(true)
               return wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas',
