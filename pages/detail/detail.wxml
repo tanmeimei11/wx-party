@@ -96,7 +96,10 @@
           <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
           <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
           <block wx:elif="{{bookStatus == '0'}}">
-            <view class="s-btn btn-sign btn-sign-again" wx:if="{{isNeedInfo == '0'}}" bindtap="openBook">立即报名
+            <view class="s-btn btn-sign" wx:if="{{isNeedInfo == '0'}}" bindtap="openBook">
+              <!-- 秒杀详细 -->
+              <import src="../../components/seckill/detail/index.wxml" />
+              <template is="detail" data="{{...seckill}}"/>
               <!-- <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
               </contact-button> -->
             </view>

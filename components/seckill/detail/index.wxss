@@ -1,0 +1,102 @@
+.seckill-detail {
+  position: relative;
+  color: #fff;
+  letter-spacing: 0;
+}
+
+.seckill-detail-content {
+  font-size: 0;
+}
+
+.seckill-detail .sd-price {
+  padding-top: 12rpx;
+  font-size: 36rpx;
+  line-height: 50rpx;
+}
+
+.seckill-detail .sd-count {
+  font-size: 20rpx;
+  line-height: 28rpx;
+}
+
+.seckill-detail .sd-tips {
+  position: absolute;
+  right: 40rpx;
+  bottom: 100rpx;
+  width: 450rpx;
+  height: 190rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  background: url(http://inimg07.jiuyan.info/in/2017/11/06/F8484B47-23CC-FC53-CFE8-CB2D475E67A2.png) no-repeat center center;
+  background-size: cover;
+  box-sizing: border-box;
+  padding-top: 73rpx;
+  padding-left: 110rpx;
+  text-align: left;
+}
+
+.seckill-detail .sd-tips .sdt-avatar {
+  position: absolute;
+  left: 30rpx;
+  top: 73rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border: 2rpx solid #fff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.seckill-detail .sd-tips .sdt-avatar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24rpx;
+  height: 24rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.seckill-detail .sd-tips .sdt-avatar.male::after {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/AC7CA472-C19B-62EF-952B-97CAAD1C65F0.jpg);
+}
+
+.seckill-detail .sd-tips .sdt-avatar.female::after {
+  background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/E72C5ACB-CCD1-7428-FD66-2AD0662288CF.jpg);
+}
+
+.seckill-detail .sd-tips  .sdt-name {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 33rpx;
+}
+
+.seckill-detail .sd-tips  .sdt-desc {
+  font-size: 28rpx;
+  line-height: 44rpx;
+  color: #333;
+}
+
+.seckill-detail .c-modal .s-get-qr {
+  margin-top: 40rpx;
+  margin-bottom: 0;
+}
+
+.seckill-detail .sdm-header {
+  font-size: 36rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 50rpx;
+  padding-bottom: 12rpx;
+}
+
+.seckill-detail .sdm-content {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #666;
+  letter-spacing: 0;
+  text-align: center;
+}

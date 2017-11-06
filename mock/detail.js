@@ -1,54 +1,62 @@
 module.exports = {
   data: {
-    "msg": "",
-    "code": "200003",
+    "timestamp": "1509955221",
     "succ": true,
     "data": {
-      "act_id": "10701",
-      "act_name": "龙井户外徒步",
-      "act_url": ["https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
-        'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg',
-        'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg'
+      "act_charge": "30",
+      "act_desc": "3123",
+      "act_id": "15701",
+      "act_location": "",
+      "act_name": "12",
+      "act_status": "0",
+      "act_url": [
+        "https://inimg07.jiuyan.info/aW4vMjAxNy8xMS8wNi84RTVDNjM0Ni04QTNGLTk2QzQtRjRBQi03MTcyODRFOTRFNTIuanBn"
       ],
-      "act_location": "杭州市西湖区万塘路8号\n黄龙时代广场A1802",
-      "act_desc": "金秋十月，\n丹桂飘香，杭城大\n街小巷，飘着淡淡的桂花香\n你说紫金港的桂花是什么味\n\n[金额]：19元\n\n道呢？秋日的桂花雨，是触手可及的浪漫，每一朵都是惊喜。让我们来一场秋日的摄影聚金秋十月，丹桂飘香，杭城大街小巷，飘着淡淡的桂花香你说紫金港的桂花是什么味道呢？秋日的桂花雨，是触手可及的浪漫，每一朵都是惊喜。让我们来一场秋日的摄影聚会金秋十月，丹桂飘香，杭城大街小巷，飘着淡淡的桂花香你说紫金港的桂花是什么味道呢？秋日的桂花雨，是触手可及的浪漫，每一朵都是惊喜。让我们来一场秋日的摄影聚会金秋十月，丹桂飘香，杭城大街小巷，飘着淡淡的桂花香你说紫金港的桂花是什么味道呢？秋日的桂花雨，是触手可及的浪漫，每一朵都是惊喜。让我们来一场秋日的摄影聚会金秋十月，丹桂飘香，杭城大街小巷，飘着淡淡的桂花香你说紫金港的桂花是什么味道呢？秋日的桂花雨，是触手可及的浪漫，每一朵都是惊喜。让我们来一场秋日的摄影聚会金秋十月，丹桂飘香，杭城大街小巷，飘着淡淡的桂花香你说紫金港的桂花是什么味道呢？秋日的桂花雨，是触手可及的浪漫，每一朵都是惊喜。让我们来一场秋日的摄影聚会",
-      "act_status": "0", //0：未开始 //1：已结束
-      "assistants": [{
-          "assistant_name": "xxx1",
-          "assistant_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg"
-        },
+      "act_urls": "[\"https://inimg07.jiuyan.info/aW4vMjAxNy8xMS8wNi84RTVDNjM0Ni04QTNGLTk2QzQtRjRBQi03MTcyODRFOTRFNTIuanBn\"]",
+      "assistants": [],
+      "booking_charge": "0.01",
+      "charge": "0.3",
+      "city_district": "杭州市 拱墅区",
+      "created_at": "1509938992",
+      "creator_id": "1025731",
+      "creator_name": "以冬",
+      "end_time": 1511062140000,
+      "house_no": "12",
+      "id": "275",
+      "is_need_info": "0",
+      "is_org": "0",
+      "is_top": "0",
+      "join_status": "0",
+      "joiners": [
         {
-          "assistant_name": "xxx2",
-          "assistant_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg"
+          "age": "0",
+          "avatar_url": "https://wx.qlogo.cn/mmopen/vi_32/C0kDYJKfFx4awOmmJ3MjnGw4Xf75GSlgbQlBbNnxtyNkdw2IJOZyaStibAVzyTQKawNARM7ETRkXP8ZMkicKw8sA/0",
+          "city": "宁波市",
+          "district": "海曙区",
+          "gender": "女",
+          "name": "以冬",
+          "work": "1432"
         }
       ],
-      "city_district": "杭州 城西",
-      "creator_name": "犀牛",
-      "start_time": 1507651200000,
-      "end_time": 1507737600000,
-      "join_status": "0", //0:未参与 1:已参与  2:已签到
-      "joiners": [{
-          "age": "11",
-          "avatar_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
-          "city": "杭州",
-          "district": "西湖区",
-          "gender": "1",
-          "work": "程序员"
-        },
-        {
-          "age": "11",
-          "avatar_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
-          "city": "浙江",
-          "district": "城西",
-          "gender": "1",
-          "work": "程序员"
-        }
-      ],
-      "share_qrcode_url": "http://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
-      "other_act_count": "61",
-      "act_qrcode_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
-      "is_need_info": 0
+      "latitude": "30.277902384552544",
+      "longitude": "120.15369670898436",
+      "other_act_count": "91",
+      "share_qrcode_url": "https://inimg01.jiuyan.info/in/2017/11/06/520F9F67-3396-4CD5-A38C-5455A757293C.jpg?roundPic/radius/200",
+      "sigin_sum": "1",
+      "start_time": 1510630140000,
+      "updated_at": 1509939173000,
+      "wx_address": "浙江省杭州市拱墅区湖墅南路103号",
+      "wx_area_name": "拱墅区古新河(文晖路南)",
+      "num":5,
+      "sum_num": 10,
+      "amount": 10.00, 
+      "share_user_name": "啦啦",
+      "share_user_gender": "男",
+      "share_user_avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg",
+      "is_seckill": 1, 
+      "is_finish": 0,
     },
-    "timestamp": "1508137733"
+    "code": "200003",
+    "msg": ""
   }
 }
