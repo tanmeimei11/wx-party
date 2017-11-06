@@ -28,6 +28,7 @@ mutulPage({
     console.log(option)
     // 取页面上的id
     this.setData({
+      id:option.id, 
       promoText: `本周在你附近举办的${option.promonum == 0 ? "" : `${option.promonum}个`}活动`,
       sessionFrom: `activityassistant_${option.id}`,
       transferImageUrl: option.transferImageUrl,

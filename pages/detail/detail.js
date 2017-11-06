@@ -129,9 +129,7 @@ mutulPage({
     if (this.data.id) {
       request({
         url: "/activity/detail",
-        data: this.data.shareUserId ? {
-          id: this.data.id
-        } : {
+        data: {
           id: this.data.id,
           shareUserId: this.data.shareUserId
         }
