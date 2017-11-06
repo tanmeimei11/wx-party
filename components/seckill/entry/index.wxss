@@ -71,7 +71,8 @@
   line-height: 30rpx;
 }
 
-.seckill-entry .se-header text::before, .seckill-entry .se-header text::after {
+.seckill-entry .se-header text::before,
+.seckill-entry .se-header text::after {
   content: '-';
   padding: 0 15rpx;
   color: #ff4338;
@@ -119,7 +120,7 @@
   font-size: 18rpx;
   color: #fff;
   letter-spacing: 0;
-  line-height: 24rpx;
+  line-height: 26rpx;
   background-image: linear-gradient(90deg, #feb382 0%, #ff4338 89%);
   border-radius: 4rpx;
   width: 50rpx;
@@ -168,14 +169,14 @@
   margin-right: 17rpx;
 }
 
-.seckill-entry .se-content .se-surplus  .ses-progress-done {
+.seckill-entry .se-content .se-surplus .ses-progress-done {
   height: 100%;
   width: 50%;
   background-image: linear-gradient(-90deg, #ffbb8f 0%, #ff564c 100%);
   border-radius: 4rpx;
 }
 
-.seckill-entry .se-content .se-surplus  text {
+.seckill-entry .se-content .se-surplus text {
   font-size: 24rpx;
 }
 
@@ -195,11 +196,13 @@
   color: #fff;
   line-height: 28rpx;
   width: 30rpx;
-  margin:0 5rpx;
+  margin: 0 5rpx;
 }
+
 .seckill-entry .se-content .se-time text:first-child {
   margin-left: 0;
 }
+
 .seckill-entry .se-content .se-time text:last-child {
   margin-right: 13rpx;
 }
