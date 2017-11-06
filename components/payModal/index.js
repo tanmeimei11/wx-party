@@ -12,12 +12,12 @@ module.exports = {
       isShowPayModal: false
     })
   },
-  payMoneyAgain(){
+  payMoneyAgain() {
     payMoney(this.data.id)
       .then(() => {
         track(this, 'h5_tcpa_detail_pay_succ')
         wx.redirectTo({
-          url: `../result/result?prepage=apply&promonum=${this.data.otherPromoNum}&id=${id}&isSeckill=${this.data.is_seckill}&transferImageUrl=${this.data.transferImageUrl}&title=${this.data.headLine.title}`
+          url: `../result/result?prepage=apply&promonum=${this.data.otherPromoNum}&id=${this.data.id}&isSeckill=${this.data.is_seckill}&transferImageUrl=${this.data.transferImageUrl}&title=${this.data.headLine.title}`
         })
       }).catch(() => {
         this.loadingOut()
@@ -28,14 +28,14 @@ module.exports = {
     this.loadingIn('请稍后...')
     if (this.data.is_seckill === 1) {
       request({
-        url:'/activity/seckill',
-        data:{
+        url: '/activity/seckill',
+        data: {
           id: this.data.id
         }
-      }).then(res=>{
-        if (res.succ){
+      }).then(res => {
+        if (res.succ) {
           this.payMoneyAgain()
-        }else {
+        } else {
           this.showSeckillModal()
           wx.hideLoading()
         }

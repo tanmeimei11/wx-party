@@ -1,7 +1,7 @@
 <template name="detail">
   <view class="seckill-detail">
-    <view wx:if="{{is_finish}}">立即报名</view>
-    <view class='seckill-detail-content' wx:else>
+    <view wx:if="{{is_seckill==0}}">立即报名</view>
+    <view wx:else class='seckill-detail-content' catchtap="confirmOpenBook">
       <view class="sd-price">{{price}}元秒杀</view>
       <view class="sd-count">原价{{original}}元，剩余{{count}}个名额</view>
       <view class='sd-tips' wx:if="{{shareUserId}}">

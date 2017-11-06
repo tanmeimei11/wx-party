@@ -7,26 +7,30 @@ module.exports = {
       // price: '59',
       // original: '169',
       // count: 3,
-      is_finish: 1
+      is_finish: 1,
+      is_seckill: 0,
     }
   },
-  setSeckillInfo(data){
-    if (data.is_seckill!==1) return
+  setSeckillInfo(data) {
+    if (data.is_seckill != 1) return
     this.setData({
-      is_seckill: data.is_seckill,
-      seckill:{
-        name:data.share_user_name,
+      seckill: {
+        is_seckill: +data.is_seckill,
+        name: data.share_user_name,
         avatar_url: data.share_user_avatar,
         price: data.amount,
         original: data.charge,
         count: data.num,
         gender: data.share_user_gender,
-        is_finish: data.is_finish
+        is_finish: +data.is_finish
       }
     })
   },
+  confirmOpenBook(){
+    this.openBook()
+  },
   // 显示弹窗
-  showSeckillModal(){
+  showSeckillModal() {
     track(this, 'h5_tcpa_seckill_modal_show_cick')
     this.setData({
       seckill: {
@@ -36,12 +40,12 @@ module.exports = {
     })
   },
   // 关闭弹窗
-  closeSeckillModal(){
+  closeSeckillModal() {
     track(this, 'h5_tcpa_seckill_modal_close_cick')
     this.setData({
       seckill: {
         ...this.data.seckill,
-        is_finish:0
+        is_finish: 0
       }
     })
   }

@@ -25,7 +25,7 @@ module.exports = {
             total: item.sum_num,
             price: item.amount,
             original: item.charge,
-            time: (item.end_time - item.start_time)/1000
+            time: +(item.count_down)/1000
           }))
         })
         this.countdown()
