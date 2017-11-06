@@ -8,7 +8,7 @@
         <view class="s-desc-text">活动费
           <text>¥{{priceInfo.act_charge}}</text>
         </view>
-        <view class="s-desc-text" wx:if="{{priceInfo.book_charge <= 0 }}">鸽子费
+        <view class="s-desc-text" wx:if="{{ priceInfo.act_charge <= 0 && priceInfo.book_charge >0 }}">鸽子费
           <text>¥{{priceInfo.book_charge}}</text>
         </view>
         <view class="s-desc-text s-money-desc" wx:if="{{priceInfo.bounty_deduct > 0 }}">奖励金抵扣
