@@ -19,8 +19,10 @@ module.exports = {
         wx.redirectTo({
           url: `../result/result?prepage=apply&${this.getRedirectParam()}}`
         })
-      }, () => {
-        this.showSeckillModal()
+      }, (res) => {
+        if (res == 'fail') {
+          this.showSeckillModal()
+        }
         wx.hideLoading()
       }).catch(() => {
         this.loadingOut()
