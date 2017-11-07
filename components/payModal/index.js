@@ -26,7 +26,7 @@ module.exports = {
   pay: function (e) {
     track(this, 'h5_tcpa_pay_cick', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.promoMoney == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.actCharge}`])
     this.loadingIn('请稍后...')
-    if (this.data.is_seckill === 1) {
+    if (this.data.is_seckill === 1 && this.data.count_down === 0) {
       request({
         url: '/activity/seckill',
         data: {

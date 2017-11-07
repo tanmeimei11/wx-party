@@ -39,7 +39,6 @@ module.exports = {
     })
     setTimeout(() => this.countdown(), 1000)
   },
-  confirmOpenBook() {},
   // 显示弹窗
   showSeckillModal() {
     this.setData({

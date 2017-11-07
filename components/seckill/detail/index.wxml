@@ -6,7 +6,7 @@
         <view class="sd-price">{{price}}元秒杀</view>
         <view class="sd-count">原价{{original}}元，剩余{{count}}个名额</view>
       </view>
-      <view wx:else catchtap="confirmOpenBook">
+      <view wx:else>
         <view class="sd-price">立即报名</view>
         <wxs src="../tools.wxs" module="tools" />
         <view class="sd-count">秒杀将在 {{tools.hour(count_down)}}:{{tools.minute(count_down)}}:{{tools.second(count_down)}} 后开始</view>
