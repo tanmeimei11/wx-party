@@ -305,7 +305,7 @@ mutulPage({
       `promonum=${this.data.otherPromoNum}`,
       `isSeckill=${this.data.seckill.is_seckill}`,
       `transferImageUrl=${this.data.transferImageUrl}`,
-      `title=${this.data.headLine.title}`
+      `title=${getLenStr(this.data.headLine.title,30).str}`
     ].join('&')
   },
   openBookAlready: function () {
