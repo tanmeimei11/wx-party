@@ -142,14 +142,17 @@ mutulPage({
   },
   countTime: function () {
     let date = new Date()
-    // let theYear = date.getFullYear()
-    // let theMonth = date.getMonth() + 1
-    // let theDate = date.getDate()
-    // let theDay = date.getDay()
+    let theDay = date.getDay()
+    if (theDay == 0) {
+      theDay = 7
+    }
+    date.setDate(date.getDate() + 8 - theDay)
+    let theYear = date.getFullYear()
+    let theMonth = date.getMonth() + 1
+    let theDate = date.getDate()
 
-    let newMonday = theYear+'.'+theMonth+'.'+(theDate+7-theDay)
-
-    console.log(date.getTime())
+    console.log(date.getDate())
+    let newMonday = theYear + '.' + theMonth + '.' + theDate
     this.setData({
       nextMonday: newMonday
     })
