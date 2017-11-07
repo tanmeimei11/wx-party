@@ -7,7 +7,7 @@ module.exports = {
     promoMoney: 0,
     promoDelayMoney: 0
   },
-  closeUserModal: function () {
+  closePayModal: function () {
     this.setData({
       isShowPayModal: false
     })

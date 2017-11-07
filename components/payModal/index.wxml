@@ -2,7 +2,7 @@
   <!-- 关注弹窗 -->
   <view class="c-modal" wx:if="{{isShowPayModal}}">
     <view class="c-wrap c-pay-wrap">
-      <view class="s-close" bindtap="closeUserModal"></view>
+      <view class="s-close" bindtap="closePayModal"></view>
       <view class="s-title">费用明细单</view>
       <view class="s-desc">
         <view class="s-desc-text">活动费
