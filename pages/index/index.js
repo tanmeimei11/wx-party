@@ -288,6 +288,25 @@ mutulPage({
     wx.navigateTo({
       url: '../balance/balance'
     })
+    setTimeout(() => {
+      request({
+        url: '/account/balance'
+      }).then(res => {
+        if (res.succ) {
+          if (res.data.is_get_bouns) {
+            this.setData({
+              myMoney : res.data.balance
+            })
+          } else {
+            this.setData({
+              myMoney : (parseFloat(res.data.balance) + 5).toFixed(2)
+            })
+          }
+        }
+        console.log(res)
+      })
+      this.data.is_get_bouns = true
+    },1000)
   },
   formSubmit: function (e) {
     if (this.data.isSubmitFormId) {
