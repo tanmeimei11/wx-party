@@ -142,6 +142,7 @@ mutulPage({
       })
     }
     this.loadMorePromo()
+    this.loadSeckill()
   },
   upper: function () {
     // console.log("upper");
@@ -353,7 +354,5 @@ mutulPage({
     } else {
       this.switchTab2()
     }
-    // 加在秒杀
-    this.loadSeckill()
   }
 })

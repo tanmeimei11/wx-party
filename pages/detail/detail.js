@@ -297,7 +297,7 @@ mutulPage({
   getRedirectParam() {
     return [`id=${this.data.id}`,
       `promonum=${this.data.otherPromoNum}`,
-      `isSeckill=${this.data.seckill.is_seckill}`,
+      `isSeckill=${this.data.count_down == 0&& this.data.is_finish==0?this.data.seckill.is_seckill:0}`,
       `transferImageUrl=${this.data.transferImageUrl}`,
       `title=${this.data.headLine.title}`
     ].join('&')
