@@ -79,10 +79,13 @@ mutulPage({
         limit: 10
       }
     }).then((res) => {
-      this.setData({
-        currentCursor: res.data[res.data.length - 1].cursor,
-        list: res.data
-      })
+      console.log(res)
+      if (res.data.length) {
+        this.setData({
+          currentCursor: res.data[res.data.length - 1].cursor,
+          list: res.data
+        })
+      }
     })
   },
   promoLower: function () {
@@ -151,7 +154,6 @@ mutulPage({
     let theMonth = date.getMonth() + 1
     let theDate = date.getDate()
 
-    console.log(date.getDate())
     let newMonday = theYear + '.' + theMonth + '.' + theDate
     this.setData({
       nextMonday: newMonday
