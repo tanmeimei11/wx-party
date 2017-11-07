@@ -10,10 +10,10 @@ mutulPage({
   },
   onShareAppMessage(options) {
     const _options = options.from === 'button' ? {
-      title: `${this.data.seckill.shareUserName}抢到了一次秒杀机会，和他一起参加"${this.data.title}",立减¥${this.data.seckill.discount}`,
+      title: `${this.data.seckill.shareUserName}抢到了一次秒杀机会，和他一起参加"${decodeURIComponent(this.data.title)}",立减¥${this.data.seckill.discount}`,
       path: `pages/detail/detail?id=${this.data.id}&shareUserId=${this.data.seckill.shareUserId}`,
     } : {
-      title: `"${this.data.title}"火热报名中,快来加入吧～`,
+      title: `"${decodeURIComponent(this.data.title)}"火热报名中,快来加入吧～`,
       path: `pages/detail/detail?id=${this.data.id}`,
     }
     if (options.from === 'button') {
@@ -21,7 +21,7 @@ mutulPage({
     }
     return {
       ..._options,
-      imageUrl: this.data.transferImageUrl,
+      imageUrl: decodeURIComponent(this.data.transferImageUrl),
       success: function (res) {
         // 转发成功
         // track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
