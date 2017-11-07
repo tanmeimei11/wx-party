@@ -7,7 +7,7 @@ module.exports = {
   data: {
     images: {
       body: {
-        src: "https://inimg07.jiuyan.info/in/2017/11/06/A973E8DF-771A-139A-A344-464315E333BF.jpg",
+        src: "https://inimg07.jiuyan.info/in/2017/11/07/D2BBB9D0-B9BD-A49A-85F5-FF91D3D5BF45.jpg",
         local: "",
         x: 0,
         y: 0,

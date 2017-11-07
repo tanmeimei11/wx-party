@@ -10,6 +10,7 @@ module.exports = {
       count_down: 0,
       is_seckill_finish: 1,
       is_seckill: 0,
+      isShow: false
     }
   },
   setSeckillInfo(data) {
@@ -42,9 +43,11 @@ module.exports = {
   // 显示弹窗
   showSeckillModal() {
     this.setData({
+      isShowPayModal: false,
       seckill: {
         ...this.data.seckill,
-        is_seckill_finish: 1
+        is_seckill_finish: 1,
+        isShow: true
       }
     })
   },
@@ -54,7 +57,7 @@ module.exports = {
     this.setData({
       seckill: {
         ...this.data.seckill,
-        is_seckill_finish: 0
+        isShow: false
       }
     })
   }

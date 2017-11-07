@@ -18,7 +18,7 @@
         <view class='sdt-desc'>赶快报名，和我一起参加</view>
       </view>
     </view>
-    <view class='c-modal' wx:if="{{name && is_seckill_finish}}">
+    <view class='c-modal' wx:if="{{ is_seckill_finish == 1 && isShow }}">
       <view class="c-wrap c-Verify-wrap">
         <view class="s-close" catchtap="closeSeckillModal"></view>
         <view class="sdm-header">来晚了一步</view>
