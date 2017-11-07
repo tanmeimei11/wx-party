@@ -87,6 +87,8 @@ module.exports = {
               ctx.setFontSize(42)
               ctx.fillText('扫码拆开红包', 375, 315)
               ctx.setFontSize(36)
+
+              ctx.setFillStyle('#FEE1DD')
               ctx.fillText('红包最高可升值为 ¥100 ', 375, 375)
               ctx.draw(true)
               return wxPromisify(wx.canvasToTempFilePath)({

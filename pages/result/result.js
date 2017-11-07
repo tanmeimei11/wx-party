@@ -1,5 +1,7 @@
 import track from '../../utils/track.js'
-import { mutulPage } from '../../utils/util.js'
+import {
+  mutulPage
+} from '../../utils/util.js'
 let getLenStr = require('../../utils/util.js').getLenStr
 var seckillResult = require('../../components/seckill/result/index.js')
 mutulPage({
@@ -12,7 +14,7 @@ mutulPage({
       title: `${this.data.seckill.shareUserName}抢到了一次秒杀机会，和他一起参加"${getLenStr(this.data.title, 30).str}",立减¥${this.data.seckill.discount}`,
       path: `pages/detail/detail?id=${this.data.id}&shareUserId=${this.data.seckill.shareUserId}`,
     } : {
-        title: `"${getLenStr(this.data.title, 30).str}"火热报名中,快来加入吧～`,
+      title: `"${getLenStr(this.data.title, 30).str}"火热报名中,快来加入吧～`,
       path: `pages/detail/detail?id=${this.data.id}`,
     }
     if (options.from === 'button') {
@@ -28,14 +30,16 @@ mutulPage({
     }
   },
   onLoad: function (option) {
-    console.log(option)
+    wx.setNavigationBarTitle({
+      title: '报名成功'
+    })
     // 取页面上的id
     this.setData({
-      id:option.id, 
+      id: option.id,
       promoText: `本周在你附近举办的${option.promonum == 0 ? "" : `${option.promonum}个`}活动`,
       sessionFrom: `activityassistant_${option.id}`,
       transferImageUrl: option.transferImageUrl,
-      title: option.title, 
+      title: option.title,
     })
     this.setSeckillOptions(option)
   },
