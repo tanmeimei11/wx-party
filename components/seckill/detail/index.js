@@ -7,6 +7,7 @@ module.exports = {
       // price: '59',
       // original: '169',
       // count: 3,
+      count_down: 0,
       is_finish: 1,
       is_seckill: 0,
     }
@@ -15,6 +16,7 @@ module.exports = {
     if (data.is_seckill != 1) return
     this.setData({
       seckill: {
+        count_down: +data.count_down / 1000,
         is_seckill: +data.is_seckill,
         name: data.share_user_name,
         avatar_url: data.share_user_avatar,
@@ -25,10 +27,19 @@ module.exports = {
         is_finish: +data.is_finish
       }
     })
+    this.countdown()
   },
-  confirmOpenBook(){
-    this.openBook()
+  countdown() {
+    if (this.data.seckill.count_down === 0) return
+    this.setData({
+      seckill: {
+        ...this.data.seckill,
+        count_down: this.data.seckill.count_down - 1
+      }
+    })
+    setTimeout(() => this.countdown(), 1000)
   },
+  confirmOpenBook() {},
   // 显示弹窗
   showSeckillModal() {
     track(this, 'h5_tcpa_seckill_modal_show_cick')
