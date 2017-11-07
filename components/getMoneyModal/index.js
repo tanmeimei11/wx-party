@@ -11,7 +11,7 @@ module.exports = {
   },
   lookBalance: function () {
     track(this, 'h5_tcpa_gold_see_click')
-    wx.redirectTo({
+    wx.navigateTo({
       url: `../balance/balance`
     })
   }

@@ -15,7 +15,7 @@ module.exports = {
   },
   transfer: function () {
     track(this, 'h5_tcpa_gold_forward_box')
-    wx.redirectTo({
+    wx.navigateTo({
       url: `../balance/balance`
     })
   }
