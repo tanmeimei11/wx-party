@@ -1,3 +1,4 @@
+import track from '../../../utils/track.js'
 var requestPromisify = require('../../../utils/wxPromise.js').requestPromisify
 module.exports = {
   data: {
@@ -22,14 +23,17 @@ module.exports = {
             act_id: item.act_id,
             name: item.act_name,
             cover: item.act_url[0],
-            people: item.sum_num-item.num,
+            people: item.sum_num - item.num,
             total: item.sum_num,
             price: item.amount,
             original: item.charge,
-            time: +(item.count_down)/1000
+            time: +(item.count_down) / 1000
           }))
         })
         this.countdown()
+        if (this.data.seckill.filter(item => item.time != 0).length > 0) {
+          track(this, 'h5_tcpa_seckill_finish_page')
+        }
       }
     })
   },

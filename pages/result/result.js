@@ -15,12 +15,15 @@ mutulPage({
         title: `"${getLenStr(this.data.title, 30).str}"火热报名中,快来加入吧～`,
       path: `pages/detail/detail?id=${this.data.id}`,
     }
+    if (options.from === 'button') {
+      track(this, 'h5_tcpa_paysucc_share')
+    }
     return {
       ..._options,
       imageUrl: this.data.transferImageUrl,
       success: function (res) {
         // 转发成功
-        track(this, 'h5_tcpa_result_share_succ', [`id=${this.data.id}`])
+        // track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
       }
     }
   },

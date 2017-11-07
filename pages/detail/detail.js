@@ -256,7 +256,10 @@ mutulPage({
     })
   },
   openBook: function () {
-    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`])
+    if (this.data.shareUserId) {
+      track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`,`type=${this.data.is_seckill}`])
+    }
+    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`,`type=${this.data.is_seckill}`])
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       return
     }

@@ -42,7 +42,6 @@ module.exports = {
   confirmOpenBook() {},
   // 显示弹窗
   showSeckillModal() {
-    track(this, 'h5_tcpa_seckill_modal_show_cick')
     this.setData({
       seckill: {
         ...this.data.seckill,
@@ -52,7 +51,7 @@ module.exports = {
   },
   // 关闭弹窗
   closeSeckillModal() {
-    track(this, 'h5_tcpa_seckill_modal_close_cick')
+    track(this, 'h5_tcpa_seckill_iknow_cick')
     this.setData({
       seckill: {
         ...this.data.seckill,
