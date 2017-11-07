@@ -310,6 +310,7 @@ mutulPage({
   },
   openBookAlready: function () {
     track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
+    console.log(this.getRedirectParam())
     wx.redirectTo({
       url: `../result/result?nextpage=detail&prepage=detail&${this.getRedirectParam()}`
     })
