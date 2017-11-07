@@ -92,6 +92,10 @@ mutulPage({
     })
 
     option.isShowPayModal && this.showPayModal()
+    // 秒杀分享
+    if (option.shareUserId){
+      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
+    }
 
     // 是否显示导航条
     if (!option.isShowOtherAct) {
