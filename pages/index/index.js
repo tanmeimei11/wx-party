@@ -302,10 +302,12 @@ mutulPage({
               myMoney : (parseFloat(res.data.balance) + 5).toFixed(2)
             })
           }
+          this.setData({
+            is_get_bouns : true
+          })
         }
         console.log(res)
       })
-      this.data.is_get_bouns = true
     },1000)
   },
   formSubmit: function (e) {
@@ -339,7 +341,8 @@ mutulPage({
           myMoney: res.data.my_amount,
           riseMoney: res.data.friend_amount,
           friendAvatar: res.data.avatar_url,
-          friendNick: res.data.nick_name
+          friendNick: res.data.nick_name,
+          is_get_bouns: true
         }
         _data[_type] = true
         this.setData(_data)
