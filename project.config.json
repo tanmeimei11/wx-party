@@ -22,7 +22,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
@@ -76,7 +76,7 @@
 					"id": 8,
 					"name": "result",
 					"pathName": "pages/result/result",
-					"query": "promonum=2&id=120&title=11111111&isSeckill=1"
+					"query": "promonum=2&id=120&title=11111111&isSeckill=0"
 				},
 				{
 					"id": -1,
