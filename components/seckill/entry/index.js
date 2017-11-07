@@ -1,15 +1,16 @@
 var requestPromisify = require('../../../utils/wxPromise.js').requestPromisify
 module.exports = {
   data: {
-    seckill: [{
-      // name: '冰岛极光露营',
-      // cover: 'http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg',
-      // price: '59',
-      // original: '169',
-      // time: 7400,
-      // people: 5,
-      // total: 13
-    }]
+    seckill: []
+    // seckill: [{
+    // name: '冰岛极光露营',
+    // cover: 'http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg',
+    // price: '59',
+    // original: '169',
+    // time: 7400,
+    // people: 5,
+    // total: 13
+    // }]
   },
   loadSeckill() {
     requestPromisify({
