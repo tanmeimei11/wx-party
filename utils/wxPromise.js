@@ -4,10 +4,12 @@ var config = require('config')
 var isMock = config.isMock
 var DOMAIN = config.DOMAIN
 var code = ''
+var isLoginIng = false
+var loginCollectOptions = [] // 请求搜集
 /**
  * 封装wxPromisefy
  */
-function wxPromisify(fn) {
+var wxPromisify = fn => {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
       obj.success = function (res) {
@@ -24,17 +26,9 @@ function wxPromisify(fn) {
   }
 }
 
-var request = (option) => {
-  console.log('-------before request------')
-  // 登陆失败的loginFailCallback
-  // var loginFailCallback = () => {
-  //   console.log('进入了loginFailCallback')
-  //   request(option)
-  // }
-  // var loginFailCallback = option
+var request = option => {
   wxCheckLogin(option).then((token) => {
-    console.log('-------------------------token-----------');
-    console.log(token);
+    console.log('token:', token)
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
     if (token) {
       !option.data && (option.data = {});
@@ -42,51 +36,60 @@ var request = (option) => {
       option.header = {
         'Cookie': `tg_auth=${token};_v=${config._v}`
       };
-      console.log(typeof option.data)
-      if (typeof option.data == 'object') {
-        // java 支付网关必须加上必要字段_token
-        if (/payment\/signature/.test(option.url)) {
-          option.data._token = token
-        }
-        (option.method != 'POST') && (option.data.privateKey = token);
+      // 支付网关必须加上必要字段_token
+      if (/payment\/signature/.test(option.url)) {
+        option.data._token = token
       }
+      (option.method != 'POST') && (option.data.privateKey = token);
       if (isMock) {
-        console.log('===== Begin mock request =====')
-        console.log(option.data)
-        console.log(option.url)
-        console.log('============ End =============')
-        console.log(require('../mock/' + mockConfig[option.url]))
+        console.log('mock request', option.url, option.data)
+        console.log('mock responce', require('../mock/' + mockConfig[option.url]))
         option.success(require('../mock/' + mockConfig[option.url]))
         return
       }
-      console.log('-------start request------')
       wx.request(option)
     }
   })
 }
 
-var isLoginIng = false
-var loginColectOptions = []
-// 检查登陆态和token
-var wxCheckLogin = function (option) {
+/**
+ * 检查登陆态和token
+ * @param {*} option  请求字段 当监测到没有登录时 保存option 登陆完成后继续请求
+ */
+var wxCheckLogin = option => {
   console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
     .then((res) => {
       let _token = wx.getStorageSync('token')
-      return _token ? _token : wxLogin()
+      return _token ? _token : wxLogin(option)
     }, () => {
-      if (!isLoginIng) {
-        wxLogin(option)
-        loginColectOptions.push(option)
-        isLoginIng = true
-      } else {
-        loginColectOptions.push(option)
-      }
+      wxLogin(option)
     })
 }
 
 
-var wxLogin = function (option) {
+var loginRequest = () => {
+  if (!loginCollectOptions.length) return
+  for (var i = 0; i < loginCollectOptions.length; i++) {
+    request(loginCollectOptions[i])
+  }
+  loginCollectOptions = []
+}
+
+
+/**
+ * 登录
+ * @param {*} option 
+ */
+var wxLogin = option => {
+  // 搜集登录的request 这样防止请求很多次code 重复多次登录
+  loginCollectOptions.push(option)
+  if (isLoginIng) {
+    return Promise.reject()
+  } else {
+    isLoginIng = true
+  }
+
   console.log('-------get code------')
   return wxPromisify(wx.login)()
     .then(res => {
@@ -97,7 +100,7 @@ var wxLogin = function (option) {
       })
     })
     .then(res => {
-      console.log('-------logins------')
+      console.log('-------get login------')
       let _data = {
         url: DOMAIN + '/party/login',
         data: {
@@ -112,19 +115,8 @@ var wxLogin = function (option) {
         console.log('-------login succ------')
         wx.setStorageSync("token", res.data)
         isLoginIng = false
-        if (loginColectOptions.length) {
-          for (var i = 0; i < loginColectOptions.length; i++) {
-            console.log('1324353465764876586798089')
-            request(loginColectOptions[i])
-          }
-          loginColectOptions = []
-        }
-        // option && loginFailCallback()
-      } else {
-        throw ''
+        loginRequest()
       }
-
-      console.log(res.data)
       return res.data
     }).catch((error) => {
       console.log(error)

@@ -389,6 +389,7 @@ contact-button {
   font-size: 34rpx;
   color: #333;
   height: 100%;
+  width: 50%;
 }
 
 .launch-balance {
