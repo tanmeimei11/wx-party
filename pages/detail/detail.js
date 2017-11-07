@@ -93,7 +93,7 @@ mutulPage({
 
     option.isShowPayModal && this.showPayModal()
     // 秒杀分享
-    if (option.shareUserId){
+    if (option.shareUserId) {
       track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
     }
 
@@ -261,9 +261,9 @@ mutulPage({
   },
   openBook: function () {
     if (this.data.shareUserId) {
-      track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`,`type=${this.data.is_seckill}`])
+      track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.is_seckill}`])
     }
-    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`,`type=${this.data.is_seckill}`])
+    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.is_seckill}`])
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       return
     }
@@ -288,7 +288,7 @@ mutulPage({
   getRedirectParam() {
     return [`id=${this.data.id}`,
       `promonum=${this.data.otherPromoNum}`,
-      `isSeckill=${this.data.count_down === 0?this.data.seckill.is_seckill:0}`,
+      `isSeckill=${this.data.count_down == 0&& this.data.is_finish==0?this.data.seckill.is_seckill:0}`,
       `transferImageUrl=${this.data.transferImageUrl}`,
       `title=${this.data.headLine.title}`
     ].join('&')
