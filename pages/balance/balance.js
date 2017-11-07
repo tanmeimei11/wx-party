@@ -6,13 +6,15 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
   mixins: [goldMoneyModal],
   data: {
-    balance: '',
+    balance: 0,
     currentCursor: 0,
     scrollHeight: 0,
     loading: false,
     noMoreNote: false,
     hidden: true,
     listLoaded: false,
+    list: [],
+    nextMonday: '',
     isShowGoldMoneyModal: false,
     share_qrcode_url: '',
     avatarUrl: '',
@@ -22,6 +24,7 @@ mutulPage({
     wx.showLoading({
       title: '加载中...'
     })
+    this.countTime()
     let self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -56,7 +59,7 @@ mutulPage({
           console.log(res2)
           if (res2.succ && !res.data.is_get_bouns) {
             this.setData({
-              balance : parseFloat(this.data.balance) + parseFloat(res2.data.bounty),
+              balance : (parseFloat(this.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
               share_qrcode_url: res2.data.share_qrcode_url
             })
           } else if (res.data.is_get_bouns) {
@@ -71,17 +74,21 @@ mutulPage({
     })
     request({
       url: '/account/details',
-      cursor: this.currentCursor,
-      limit: 10
+      data: {
+        cursor: this.data.currentCursor,
+        limit: 10
+      }
     }).then((res) => {
-      // console.log(res)
       this.setData({
-        currentCursor: res.data.current_cursor,
-        list: res.data.list
+        currentCursor: res.data[res.data.length - 1].cursor,
+        list: res.data
       })
     })
   },
   promoLower: function () {
+    if (this.data.noMoreNote) {
+      return
+    }
     console.log("promoLower")
     let that = this;
     setTimeout(function () {
@@ -96,20 +103,22 @@ mutulPage({
 
     request({
       url: '/account/details',
-      cursor: this.currentCursor,
-      limit: 10
+      data: {
+        cursor: this.data.currentCursor,
+        limit: 10
+      }
     }).then((res) => {
       console.log(res)
-      if (res.succ && res.data && res.data.list) {
-        if (!res.data.list.length) {
+      if (res.succ && res.data) {
+        if (!res.data.length) {
           this.setData({
             noMoreNote: true
           })
         }
         this.setData({
-          list: this.data.list.concat(res.data.list),
+          list: this.data.list.concat(res.data),
           listLoaded: true,
-          currentCursor: res.data.current_cursor || null
+          currentCursor: res.data[res.data.length - 1].cursor
         })
       } else {
         this.setData({
@@ -129,6 +138,20 @@ mutulPage({
     track(this, 'h5_tcpa_gold_forward')
     this.setData({
       isShowGoldMoneyModal : true
+    })
+  },
+  countTime: function () {
+    let date = new Date()
+    // let theYear = date.getFullYear()
+    // let theMonth = date.getMonth() + 1
+    // let theDate = date.getDate()
+    // let theDay = date.getDay()
+
+    let newMonday = theYear+'.'+theMonth+'.'+(theDate+7-theDay)
+
+    console.log(date.getTime())
+    this.setData({
+      nextMonday: newMonday
     })
   }
 })

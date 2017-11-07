@@ -7,7 +7,7 @@
       <text>我的鼓励金</text>
     </view>
     <text class="money">{{balance}}</text>
-    <text class="time">当前鼓励金2017.10.14(周一) 00:00前可用</text>
+    <text class="time">当前鼓励金{{nextMonday}}(周一) 00:00前可用</text>
     <view class="btn" bindtap="share"></view>
   </view>
 
@@ -25,8 +25,7 @@
     <block wx:for="{{list}}" wx:for-index="idx" wx:key="id">
       <view class="list {{idx == 0 ? 'first' : ''}}">
         <text class="note">{{item.note}}</text>
-        <text class="operation {{ item.operation_amount-0 < 0 ? 'used' : ''}}">
-          <text>+</text>{{item.operation_amount}}</text>
+        <text class="operation {{ item.operation_amount-0 < 0 ? 'used' : ''}}">{{item.operation_amount}}</text>
         <text class="time">{{item.created_at}}</text>
         <text class="account">余额：￥{{item.account_amount}}</text>
       </view>
