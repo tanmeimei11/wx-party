@@ -13,12 +13,15 @@ module.exports = {
     })
   },
   payMoneyAgain() {
-    payMoney(this.data.id)
+    payMoney(this.data.id, this.data.seckill.is_seckill_finish)
       .then(() => {
         track(this, 'h5_tcpa_detail_pay_succ')
         wx.redirectTo({
           url: `../result/result?prepage=apply&${this.getRedirectParam()}}`
         })
+      }, () => {
+        this.showSeckillModal()
+        wx.hideLoading()
       }).catch(() => {
         this.loadingOut()
       })
@@ -26,22 +29,6 @@ module.exports = {
   pay: function (e) {
     track(this, 'h5_tcpa_pay_cick', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.promoMoney == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.actCharge}`])
     this.loadingIn('请稍后...')
-    if (this.data.is_seckill === 1 && this.data.count_down === 0) {
-      request({
-        url: '/activity/seckill',
-        data: {
-          id: this.data.id
-        }
-      }).then(res => {
-        if (res.succ) {
-          this.payMoneyAgain()
-        } else {
-          this.showSeckillModal()
-          wx.hideLoading()
-        }
-      })
-    } else {
-      this.payMoneyAgain()
-    }
+    this.payMoneyAgain()
   }
 }

@@ -150,7 +150,8 @@ mutulPage({
     request({
       url: '/activity/cost',
       data: {
-        act_id: this.data.id
+        act_id: this.data.id,
+        is_seckill_finish: this.data.seckill.is_seckill_finish
       }
     }).then(res => {
       if (res.succ) {
@@ -297,7 +298,7 @@ mutulPage({
   getRedirectParam() {
     return [`id=${this.data.id}`,
       `promonum=${this.data.otherPromoNum}`,
-      `isSeckill=${this.data.count_down == 0&& this.data.is_finish==0?this.data.seckill.is_seckill:0}`,
+      `isSeckill=${this.data.seckill.is_seckill}`,
       `transferImageUrl=${this.data.transferImageUrl}`,
       `title=${this.data.headLine.title}`
     ].join('&')

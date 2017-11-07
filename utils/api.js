@@ -41,14 +41,21 @@ const uploadImageToQiniu = (file) => {
  * 支付接口
  * @param {*} id 
  */
-var payMoney = (id) => {
+var payMoney = (id, is_seckill_finish) => {
   return request({
     url: '/activity/join_order',
     data: {
-      id: id
+      id: id,
+      is_seckill_finish: is_seckill_finish
     }
   }).then(Res => {
     if (Res.succ) {
+      // 不需要进行实际的支付
+      if (Res.data.order_directly == 1) {
+        return Promise.resolve()
+      }
+
+      // 进行微信支付
       return request({
         url: config.payUrl,
         data: {
@@ -69,7 +76,10 @@ var payMoney = (id) => {
         }
       })
     } else {
-      throw 'error'
+      // 没有秒杀到 
+      if (res.code == '4000032352') {
+        return Promise.reject()
+      }
     }
   })
 }

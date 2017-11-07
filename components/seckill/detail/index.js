@@ -6,9 +6,9 @@ module.exports = {
       // name:'犀牛',
       // price: '59',
       // original: '169',
-      // count: 3,
+      count: 0,
       count_down: 0,
-      is_finish: 1,
+      is_seckill_finish: 1,
       is_seckill: 0,
     }
   },
@@ -24,7 +24,7 @@ module.exports = {
         original: data.charge,
         count: data.num,
         gender: data.share_user_gender,
-        is_finish: +data.is_finish
+        is_seckill_finish: +data.is_seckill_finish
       }
     })
     this.countdown()
@@ -44,7 +44,7 @@ module.exports = {
     this.setData({
       seckill: {
         ...this.data.seckill,
-        is_finish: 1
+        is_seckill_finish: 1
       }
     })
   },
@@ -54,7 +54,7 @@ module.exports = {
     this.setData({
       seckill: {
         ...this.data.seckill,
-        is_finish: 0
+        is_seckill_finish: 0
       }
     })
   }

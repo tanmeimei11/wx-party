@@ -101,8 +101,6 @@
               <!-- 秒杀详细 -->
               <import src="../../components/seckill/detail/index.wxml" />
               <template is="detail" data="{{...seckill}}" />
-              <!-- <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
-              </contact-button> -->
             </view>
             <view class="s-btn btn-sign" wx:else bindtap="redirectApply">立即报名 </view>
           </block>

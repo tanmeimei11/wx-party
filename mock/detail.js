@@ -27,17 +27,15 @@ module.exports = {
       "is_org": "0",
       "is_top": "0",
       "join_status": "0",
-      "joiners": [
-        {
-          "age": "0",
-          "avatar_url": "https://wx.qlogo.cn/mmopen/vi_32/C0kDYJKfFx4awOmmJ3MjnGw4Xf75GSlgbQlBbNnxtyNkdw2IJOZyaStibAVzyTQKawNARM7ETRkXP8ZMkicKw8sA/0",
-          "city": "宁波市",
-          "district": "海曙区",
-          "gender": "女",
-          "name": "以冬",
-          "work": "1432"
-        }
-      ],
+      "joiners": [{
+        "age": "0",
+        "avatar_url": "https://wx.qlogo.cn/mmopen/vi_32/C0kDYJKfFx4awOmmJ3MjnGw4Xf75GSlgbQlBbNnxtyNkdw2IJOZyaStibAVzyTQKawNARM7ETRkXP8ZMkicKw8sA/0",
+        "city": "宁波市",
+        "district": "海曙区",
+        "gender": "女",
+        "name": "以冬",
+        "work": "1432"
+      }],
       "latitude": "30.277902384552544",
       "longitude": "120.15369670898436",
       "other_act_count": "91",
@@ -47,14 +45,14 @@ module.exports = {
       "updated_at": 1509939173000,
       "wx_address": "浙江省杭州市拱墅区湖墅南路103号",
       "wx_area_name": "拱墅区古新河(文晖路南)",
-      "num":5,
+      "num": 5,
       "sum_num": 10,
-      "amount": 10.00, 
+      "amount": 10.00,
       "share_user_name": "啦啦",
       "share_user_gender": "男",
       "share_user_avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg",
-      "is_seckill": 1, 
-      "is_finish": 0,
+      "is_seckill": 1,
+      "is_seckill_finish": 0,
     },
     "code": "200003",
     "msg": ""
