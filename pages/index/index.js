@@ -348,6 +348,10 @@ mutulPage({
       track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
       this.showMoneyModal(options.sharekey)
     }
+    // 分渠道
+    if (options.from) {
+      track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
+    }
 
     if (currentList == 'qunList') {
       this.switchTab1()

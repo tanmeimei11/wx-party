@@ -93,9 +93,14 @@ mutulPage({
     })
 
     option.isShowPayModal && this.showPayModal()
+
     // 秒杀分享
     if (option.shareUserId) {
       track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
+    }
+    // 分渠道
+    if (options.from) {
+      track(this, 'h5_tcpa_detail_enter', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
     }
 
     // 是否显示导航条
