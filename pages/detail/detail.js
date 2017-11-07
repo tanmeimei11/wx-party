@@ -304,13 +304,12 @@ mutulPage({
     return [`id=${this.data.id}`,
       `promonum=${this.data.otherPromoNum}`,
       `isSeckill=${this.data.seckill.is_seckill}`,
-      `transferImageUrl=${this.data.transferImageUrl}`,
-      `title=${getLenStr(this.data.headLine.title,30).str}`
+      `transferImageUrl=${encodeURIComponent(this.data.transferImageUrl)}`,
+      `title=${encodeURIComponent(getLenStr(this.data.headLine.title,30).str)}`
     ].join('&')
   },
   openBookAlready: function () {
     track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
-    console.log(this.getRedirectParam())
     wx.redirectTo({
       url: `../result/result?nextpage=detail&prepage=detail&${this.getRedirectParam()}`
     })
