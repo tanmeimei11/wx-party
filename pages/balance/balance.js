@@ -121,7 +121,7 @@ mutulPage({
         this.setData({
           list: this.data.list.concat(res.data),
           listLoaded: true,
-          currentCursor: res.data[res.data.length - 1].cursor
+          currentCursor: res.data[res.data.length - 1].cursor || null
         })
       } else {
         this.setData({
