@@ -78,8 +78,8 @@
 
   <!-- 活动详细介绍以及其他要点 -->
   <view class="c-textarea">
-    <textarea placeholder="{{detailDesc}}" auto-height placeholder-style="color:#B0B0B0" data-type="detailDesc" bindinput="getText"
-    />
+    <textarea placeholder="{{detailDesc}}" maxlength="-1" auto-height placeholder-style="color:#B0B0B0" data-type="detailDesc"
+      bindinput="getText" />
   </view>
 
   <!-- 微信号输入 -->

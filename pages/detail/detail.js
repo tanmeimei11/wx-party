@@ -20,6 +20,7 @@ mutulPage({
     id: '',
     userInfo: app.globalData.userInfo,
     isShowIntroAll: false,
+    isShowIntroLess: false,
     isShowInviteModal: false,
     isJoin: false,
     isShowOtherAct: false,
@@ -93,7 +94,7 @@ mutulPage({
 
     option.isShowPayModal && this.showPayModal()
     // 秒杀分享
-    if (option.shareUserId){
+    if (option.shareUserId) {
       track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
     }
 
@@ -217,7 +218,15 @@ mutulPage({
   lookMore: function () {
     this.setData({
       tempIntro: this.data.infos.intro,
-      isShowIntroAll: false
+      isShowIntroAll: false,
+      isShowIntroLess: true
+    })
+  },
+  lookLess: function () {
+    this.setData({
+      tempIntro: this.data.tempLessIntro,
+      isShowIntroLess: false,
+      isShowIntroAll: true
     })
   },
   goBack: function () {
@@ -261,9 +270,9 @@ mutulPage({
   },
   openBook: function () {
     if (this.data.shareUserId) {
-      track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`,`type=${this.data.is_seckill}`])
+      track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.is_seckill}`])
     }
-    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`,`type=${this.data.is_seckill}`])
+    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.is_seckill}`])
     if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
       return
     }
@@ -338,6 +347,7 @@ mutulPage({
         door: data.house_no
       },
       tempIntro: this.getLenStr(data.act_desc),
+      tempLessIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joiners.map(this.getDescCollect),
       actQrImg: data.share_qrcode_url,
       otherAct: `本周在你附近举办的${data.other_act_count==0 ? "":`${data.other_act_count}个`}活动`,

@@ -57,6 +57,7 @@
           <view class="m-text">
             <text class="m-intro">{{tempIntro}}</text>
             <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
+            <text class="m-more less" bindtap="lookLess" wx:if="{{isShowIntroLess}}">收起全部</text>
           </view>
 
         </view>
@@ -99,7 +100,7 @@
             <view class="s-btn btn-sign" wx:if="{{isNeedInfo == '0'}}" bindtap="openBook">
               <!-- 秒杀详细 -->
               <import src="../../components/seckill/detail/index.wxml" />
-              <template is="detail" data="{{...seckill}}"/>
+              <template is="detail" data="{{...seckill}}" />
               <!-- <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
               </contact-button> -->
             </view>

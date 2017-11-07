@@ -212,6 +212,12 @@
   font-size: 28rpx;
 }
 
+.c-infos .m-more.less {
+  display: block;
+  color: #43DDF5;
+  font-size: 28rpx;
+}
+
 .c-infos .m-intro {
   word-wrap: break-word;
 }
