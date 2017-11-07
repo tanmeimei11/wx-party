@@ -18,6 +18,7 @@
   width: 381rpx;
   margin: 24rpx auto 0;
   font-size: 20rpx;
+  line-height: 1.4;
   color: #666666;
   text-align: center;
 }
@@ -41,7 +42,7 @@
 
 .gold-money-num {
   position: absolute;
-  bottom: 0rpx;
+  bottom: -4rpx;
   left: 0;
   color: #B0B0B0;
   font-size: 24rpx;
