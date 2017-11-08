@@ -167,10 +167,10 @@ mutulPage({
         // 计算的文案
         if (parseFloat(res.data.act_charge) > parseFloat(res.data.book_charge) && res.data.refund > 0) {
           res.data.desc = `＊${_preText}如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥${res.data.refund}，一个工作日内退款`
-        } else if (parseFloat(res.data.act_charge) > parseFloat(res.data.book_charge) && res.data.refund <= 0) {
+        } else if (parseFloat(res.data.act_charge) >= parseFloat(res.data.book_charge) && res.data.refund <= 0) {
           res.data.desc = `＊${_preText}如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥0`
         } else {
-          res.data.desc = `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥19元鸽子费不会退款`
+          res.data.desc = `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥${res.data.book_charge}元鸽子费不会退款`
         }
         this.setData({
           priceInfo: res.data,
