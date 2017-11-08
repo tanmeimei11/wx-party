@@ -285,6 +285,20 @@ mutulPage({
   },
   toBalance: function () {
     track(this, 'h5_tcpa_gold_incentive_click')
+    if (!this.data.is_get_bouns) {
+      request({
+        url: '/bounty/get'
+      }).then(res => {
+        if (res.succ) {
+          this.setData({
+            isShowGetMoneyModal: true,
+            is_get_bouns : true,
+            myMoney: res.data.bounty
+          })
+        }
+      })
+      return
+    }
     wx.navigateTo({
       url: '../balance/balance'
     })
