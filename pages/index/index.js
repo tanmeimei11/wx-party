@@ -308,7 +308,7 @@ mutulPage({
         }
         console.log(res)
       })
-    },1000)
+    },2000)
   },
   formSubmit: function (e) {
     if (this.data.isSubmitFormId) {
