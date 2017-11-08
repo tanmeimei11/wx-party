@@ -28,13 +28,13 @@
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": ""
+					"query": "from=aaaa"
 				},
 				{
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=16301"
+					"query": "id=16301&from=aaaa"
 				},
 				{
 					"id": -1,
