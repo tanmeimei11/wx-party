@@ -59,7 +59,7 @@ mutulPage({
           console.log(res2)
           if (res2.succ && !res.data.is_get_bouns) {
             this.setData({
-              balance : (parseFloat(this.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
+              balance : (parseFloat(res.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
               share_qrcode_url: res2.data.share_qrcode_url
             })
           } else if (res.data.is_get_bouns) {
