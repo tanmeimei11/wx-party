@@ -38,10 +38,13 @@ module.exports = {
     })
   },
   countdown() {
+    if (this.data.seckill.filter(item => item.time > 0).length == 0) {
+      return
+    }
     this.setData({
       seckill: this.data.seckill.map(item => ({
         ...item,
-        time: item.time - 1
+        time: (item.time - 1 <= 0) ? 0 : (item.time - 1)
       }))
     })
     setTimeout(() => this.countdown(), 1000)

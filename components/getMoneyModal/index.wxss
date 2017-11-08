@@ -45,4 +45,6 @@
 
 .s-text-wrap .s-bottom-tip {
   font-size: 24rpx;
+  padding-bottom: 10rpx;
+  opacity: 0.8;
 }
