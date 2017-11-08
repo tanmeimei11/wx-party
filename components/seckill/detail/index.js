@@ -25,7 +25,8 @@ module.exports = {
         original: data.charge,
         count: data.num,
         gender: data.share_user_gender,
-        is_seckill_finish: +data.is_seckill_finish
+        is_seckill_finish: +data.is_seckill_finish,
+        isShow: false
       }
     })
     this.countdown()

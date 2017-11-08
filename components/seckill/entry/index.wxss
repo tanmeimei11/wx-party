@@ -102,11 +102,16 @@
 }
 
 .seckill-entry .se-content .se-name {
+  display: inline-block;
   top: 20rpx;
   font-size: 30rpx;
   line-height: 30rpx;
   color: #333;
   letter-spacing: 0;
+  overflow: hidden;
+  max-width: 320rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .seckill-entry .se-content .se-desc {
