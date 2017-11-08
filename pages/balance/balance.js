@@ -85,6 +85,11 @@ mutulPage({
           currentCursor: res.data[res.data.length - 1].cursor,
           list: res.data
         })
+        if (res.data.length < 10) {
+          this.setData({
+            noMoreNote: true
+          })
+        }
       }
     })
   },

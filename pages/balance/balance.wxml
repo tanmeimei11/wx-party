@@ -30,6 +30,10 @@
         <text class="account">余额：￥{{item.account_amount}}</text>
       </view>
     </block>
+    <view class="lower-loading" wx:if="{{!noMoreNote}}">
+        <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
+        <text class="lower-loading-txt">加载中...</text>
+    </view>
   </view>
 
   <!-- 分享弹窗 -->
