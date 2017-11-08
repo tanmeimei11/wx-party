@@ -4,11 +4,11 @@
   <image src="{{trackSeed}}" style="width:0;height:0;" />
 
   <!-- 其他活动 -->
-  <view class="c-other" bindtap="goBack">
+  <!-- <view class="c-other" bindtap="goBack">
     <view class="s-logo"></view>
     <view class="s-text">{{promoText}}</view>
     <view class="s-look">立即查看</view>
-  </view>
+  </view> -->
 
   <view class="r-txt">
     <view class="r-img"></view>
