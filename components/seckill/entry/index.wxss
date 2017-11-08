@@ -102,7 +102,7 @@
 }
 
 .seckill-entry .se-content .se-name {
-  top: 26rpx;
+  top: 20rpx;
   font-size: 30rpx;
   line-height: 30rpx;
   color: #333;
@@ -110,7 +110,7 @@
 }
 
 .seckill-entry .se-content .se-desc {
-  padding: 13rpx 0 38rpx;
+  padding: 10rpx 0 38rpx;
   display: flex;
   align-items: center;
   line-height: 36rpx;

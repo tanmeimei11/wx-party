@@ -15,7 +15,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin-bottom: 40rpx;
+  margin-bottom: 57rpx;
   padding-top: 63rpx;
   box-sizing: border-box;
 }
@@ -53,6 +53,7 @@
   margin-top: 20rpx;
   white-space: nowrap;
   width: 100%;
+  font-weight: bold;
 }
 
 .c-rise-money-wrap .s-header .s-title text {
