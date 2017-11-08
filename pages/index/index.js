@@ -29,6 +29,7 @@ mutulPage({
     myMoney: '',
     is_get_bouns: true,
     is_share: false,
+    balanceClicking: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -286,6 +287,12 @@ mutulPage({
   toBalance: function () {
     track(this, 'h5_tcpa_gold_incentive_click')
     if (!this.data.is_get_bouns) {
+      if (this.data.balanceClicking) {
+        return
+      }
+      this.setData({
+        balanceClicking : true
+      })
       request({
         url: '/bounty/get'
       }).then(res => {
@@ -293,7 +300,8 @@ mutulPage({
           this.setData({
             isShowGetMoneyModal: true,
             is_get_bouns : true,
-            myMoney: res.data.bounty
+            myMoney: res.data.bounty,
+            balanceClicking : false
           })
         }
       })
