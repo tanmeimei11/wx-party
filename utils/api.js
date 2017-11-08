@@ -77,7 +77,7 @@ var payMoney = (id, is_seckill_finish) => {
       })
     } else {
       // 没有秒杀到 
-      if (res.code == '4000032352') {
+      if (Res.code == '4000032352') {
         return Promise.reject('fail')
       }
     }

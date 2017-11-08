@@ -30,5 +30,5 @@
 
   <!-- 秒杀分享 -->
   <import src="../../components/seckill/result/index.wxml" />
-  <template is="result" data="{{...seckill}}" />
+  <template is="result" data="{{...seckill,sessionFrom}}" />
 </view>

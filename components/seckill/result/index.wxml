@@ -4,6 +4,6 @@
       <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
       </contact-button>
     </view>
-     <button open-type="share" class="sr-share">分享邀请好友同行</button>
+    <button open-type="share" class="sr-share">分享邀请好友同行</button>
   </view>
 </template>
