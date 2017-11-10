@@ -22,7 +22,10 @@
 }
 
 .c-line .picker {
-  width: 90%;
+  /* width: 90%; */
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 10%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
