@@ -22,13 +22,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "from=aaaa"
+					"query": "sharekey=1APyvX"
 				},
 				{
 					"id": 1,

@@ -132,18 +132,28 @@ mutulPage({
       currentCursorPromo: 0
     })
     if (!this.data.is_share) {
-      request({
-        url: '/account/balance'
-      }).then((res) => {
-        console.log(res)
+      this.loadBalance()
+        .then((is_get_bouns) => {
+          if (!is_get_bouns && this.data.from == 'getfirstmoney') {
+            this.getFirstMoneyModal()
+          }
+        })
+    }
+    this.loadMorePromo()
+    this.loadSeckill()
+  },
+  loadBalance: function () {
+    return request({
+      url: '/account/balance'
+    }).then((res) => {
+      if (res.succ) {
         this.setData({
           myMoney: res.data.balance,
           is_get_bouns: res.data.is_get_bouns
         })
-      })
-    }
-    this.loadMorePromo()
-    this.loadSeckill()
+        return res.data.is_get_bouns
+      }
+    })
   },
   upper: function () {
     // console.log("upper");
@@ -278,7 +288,7 @@ mutulPage({
     })
   },
   launchPromo: function () {
-    track(this, 'h5_tcpa_goto_launch_promo')
+    track(this, 'h5_tcpa_active_setup_click')
     var _url = this.data.isNeedFillInfo ? '../apply/apply?nextpage=launch&prepage=index' : '../launch/launch'
     wx.navigateTo({
       url: _url
@@ -291,7 +301,7 @@ mutulPage({
         return
       }
       this.setData({
-        balanceClicking : true
+        balanceClicking: true
       })
       request({
         url: '/bounty/get'
@@ -299,9 +309,9 @@ mutulPage({
         if (res.succ) {
           this.setData({
             isShowGetMoneyModal: true,
-            is_get_bouns : true,
+            is_get_bouns: true,
             myMoney: res.data.bounty,
-            balanceClicking : false
+            balanceClicking: false
           })
         }
       })
@@ -317,20 +327,20 @@ mutulPage({
         if (res.succ) {
           if (res.data.is_get_bouns) {
             this.setData({
-              myMoney : res.data.balance
+              myMoney: res.data.balance
             })
           } else {
             this.setData({
-              myMoney : (parseFloat(res.data.balance) + 5).toFixed(2)
+              myMoney: (parseFloat(res.data.balance) + 5).toFixed(2)
             })
           }
           this.setData({
-            is_get_bouns : true
+            is_get_bouns: true
           })
         }
         console.log(res)
       })
-    },2000)
+    }, 2000)
   },
   formSubmit: function (e) {
     if (this.data.isSubmitFormId) {
@@ -349,8 +359,20 @@ mutulPage({
       })
     }
   },
+  getFirstMoneyModal: function () {
+    return request({
+      url: '/bounty/get'
+    }).then(res => {
+      if (res.succ) {
+        this.setData({
+          isShowGetMoneyModal: true,
+          is_get_bouns: true,
+          myMoney: res.data.bounty,
+        })
+      }
+    })
+  },
   showMoneyModal: function (sharekey) {
-    console.log(sharekey)
     request({
       url: '/bounty/open',
       data: {
@@ -366,12 +388,18 @@ mutulPage({
           friendNick: res.data.nick_name,
           is_get_bouns: true
         }
-        _data[_type] = true
+        if (!res.data.is_owner) { // 不是自己才展示弹窗
+          _data[_type] = true
+        }
+
         this.setData(_data)
       }
     })
   },
   onLoad(options) {
+    wx.setNavigationBarTitle({
+      title: 'in 同城趴'
+    })
     let currentList = (options.tab == '1' && 'qunList') || 'promoList'
     let self = this
     wx.getSystemInfo({
@@ -381,10 +409,7 @@ mutulPage({
         });
       }
     })
-    wx.setNavigationBarTitle({
-      title: 'in 同城趴'
-    })
-    // 好友分享点进来
+    // 鼓励金详情页面好友分享点进来 options.sharekey
     if (options.sharekey) {
       this.setData({
         is_share: true
@@ -392,7 +417,14 @@ mutulPage({
       track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
       this.showMoneyModal(options.sharekey)
     }
-    // 分渠道
+    // 扫码首页进来直接领取鼓励金 options.from == 'getmoney'
+    if (options.from) {
+      this.setData({
+        from: options.from
+      })
+    }
+
+    // 分渠道埋点
     if (options.from) {
       track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
     }
