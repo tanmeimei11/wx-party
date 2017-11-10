@@ -297,6 +297,9 @@ mutulPage({
   },
   toBalance: function () {
     track(this, 'h5_tcpa_gold_incentive_click')
+    this.setData({
+      is_ending: false
+    })
     if (!this.data.is_get_bouns) {
       if (this.data.balanceClicking) {
         return
