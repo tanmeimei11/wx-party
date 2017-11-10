@@ -408,3 +408,17 @@ contact-button {
   background-size: contain;
   background-position: center;
 }
+
+.launch-ending{
+  position: absolute;
+  top: 94rpx;
+  left: 312rpx;
+  width: 282rpx;
+  height: 74rpx;
+  background-image: url(http://inimg02.jiuyan.info/in/2017/11/10/E6D31821-3DE9-A7A9-E2AF-BCF27A80502C.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+

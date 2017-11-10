@@ -29,6 +29,7 @@ mutulPage({
     myMoney: '',
     is_get_bouns: true,
     is_share: false,
+    is_ending: false,
     balanceClicking: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
@@ -395,6 +396,12 @@ mutulPage({
     // 分渠道
     if (options.from) {
       track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
+    }
+    // 即将过期
+    if (options.ending) {
+      this.setData({
+        is_ending: true
+      })
     }
 
     if (currentList == 'qunList') {

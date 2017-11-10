@@ -29,7 +29,8 @@ module.exports = {
       })
   },
   pay: function (e) {
-    track(this, 'h5_tcpa_pay_cick', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.promoMoney == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.actCharge}`])
+    console.log(this.data.priceInfo.act_charge)
+    track(this, 'h5_tcpa_pay_cick', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.promoMoney == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.act_charge}`])
     this.loadingIn('请稍后...')
     this.payMoneyAgain()
   }

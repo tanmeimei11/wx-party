@@ -6,7 +6,7 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
   mixins: [goldMoneyModal],
   data: {
-    balance: 0,
+    balance: 0.00,
     currentCursor: 0,
     scrollHeight: 0,
     loading: false,

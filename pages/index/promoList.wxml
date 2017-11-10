@@ -6,6 +6,7 @@
     <view class="launch-shu"></view>
     <text bindtap="toBalance">鼓励金<text class="launch-balance">(￥<text>{{myMoney}}</text>)</text></text>
     <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view>
+    <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
   </view>
   <!-- 秒杀入口 -->
   <import src="../../components/seckill/entry/index.wxml" />
