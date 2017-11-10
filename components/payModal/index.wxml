@@ -11,8 +11,8 @@
         <view class="s-desc-text" wx:if="{{ priceInfo.act_charge <= 0 && priceInfo.book_charge >0 }}">鸽子费
           <text>¥{{priceInfo.book_charge}}</text>
         </view>
-        <view class="s-desc-text s-money-desc" wx:if="{{priceInfo.bounty_deduct > 0 }}">奖励金抵扣
-          <text class="gold-money-num">奖励金余额{{priceInfo.bounty_sum}}</text>
+        <view class="s-desc-text s-money-desc" wx:if="{{priceInfo.bounty_deduct > 0 }}">鼓励金抵扣
+          <text class="gold-money-num">鼓励金余额{{priceInfo.bounty_sum}}</text>
           <text class="gold-money">-¥{{priceInfo.bounty_deduct}}</text>
         </view>
       </view>
