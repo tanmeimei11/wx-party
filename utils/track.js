@@ -29,10 +29,7 @@ var gaTrack = (app, track) => {
     .setAction(_query)
   // .setLabel('1111') // 可选
   // .setValue('34567')
-}
-
-t.send(a);
-
+  t.send(a);
 }
 
 var requestTrack = (app) => {
