@@ -6,6 +6,7 @@ var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
 var seckillEntry = require('../../components/seckill/entry/index.js')
 var mutulPage = require('../../utils/util.js').mutulPage
+var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry],
   data: {
@@ -30,7 +31,7 @@ mutulPage({
     is_get_bouns: true,
     is_share: false,
     is_ending: false,
-    balanceClicking: false,
+    _gps: '',
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -132,10 +133,24 @@ mutulPage({
       hidden: false,
       currentCursorPromo: 0
     })
+    if (!this.data.is_get_bouns) {
+      request({
+        url: '/bounty/get'
+      }).then(res => {
+        if (res.succ) {
+          this.setData({
+            isShowGetMoneyModal: true,
+            is_get_bouns: true,
+            myMoney: res.data.bounty,
+          })
+        }
+      })
+    }
     if (!this.data.is_share) {
       this.loadBalance()
         .then((is_get_bouns) => {
-          if (!is_get_bouns && this.data.from == 'getfirstmoney') {
+          console.log(is_get_bouns)
+          if (!is_get_bouns) {
             this.getFirstMoneyModal()
           }
         })
@@ -176,6 +191,27 @@ mutulPage({
   scroll: function (e) {
     console.log("scroll")
   },
+  getLocation: function(e) {
+    let self = this
+    return wxPromisify(wx.authorize)({
+      scope: 'scope.userLocation'
+    }).then(suc => {
+      console.log('suc')
+      return wxPromisify(wx.getLocation)({
+        type: 'gcj02'
+      })
+    }, rej => {
+      console.log('rej')
+    }).then(res => {
+      if (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        self.setData({
+          _gps: longitude + ',' + latitude
+        })
+      }
+    })
+  },
   loadMorePromo: function () {
     if (this.data.loadingMorePromo) {
       return
@@ -195,7 +231,8 @@ mutulPage({
       url: '/activity/groups',
       data: {
         limit: 10,
-        cursor: this.data.currentCursorPromo
+        cursor: this.data.currentCursorPromo,
+        _gps: this.data._gps
       }
     }
     request(params).then((res) => {
@@ -300,27 +337,6 @@ mutulPage({
     this.setData({
       is_ending: false
     })
-    if (!this.data.is_get_bouns) {
-      if (this.data.balanceClicking) {
-        return
-      }
-      this.setData({
-        balanceClicking: true
-      })
-      request({
-        url: '/bounty/get'
-      }).then(res => {
-        if (res.succ) {
-          this.setData({
-            isShowGetMoneyModal: true,
-            is_get_bouns: true,
-            myMoney: res.data.bounty,
-            balanceClicking: false
-          })
-        }
-      })
-      return
-    }
     wx.navigateTo({
       url: '../balance/balance'
     })
@@ -413,36 +429,33 @@ mutulPage({
         });
       }
     })
+    this.getLocation().then((res) => {
+      console.log(res)
     // 鼓励金详情页面好友分享点进来 options.sharekey
-    if (options.sharekey) {
-      this.setData({
-        is_share: true
-      })
-      track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
-      this.showMoneyModal(options.sharekey)
-    }
-    // 扫码首页进来直接领取鼓励金 options.from == 'getmoney'
-    if (options.from) {
-      this.setData({
-        from: options.from
-      })
-    }
+      if (options.sharekey) {
+        this.setData({
+          is_share: true
+        })
+        track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
+        this.showMoneyModal(options.sharekey)
+      }
 
-    // 分渠道埋点
-    if (options.from) {
-      track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
-    }
-    // 即将过期
-    if (options.ending) {
-      this.setData({
-        is_ending: true
-      })
-    }
+      // 分渠道埋点
+      if (options.from) {
+        track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
+      }
+      // 即将过期
+      if (options.ending) {
+        this.setData({
+          is_ending: true
+        })
+      }
 
-    if (currentList == 'qunList') {
-      this.switchTab1()
-    } else {
-      this.switchTab2()
-    }
+      if (currentList == 'qunList') {
+        this.switchTab1()
+      } else {
+        this.switchTab2()
+      }
+    })
   }
 })

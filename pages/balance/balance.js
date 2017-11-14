@@ -11,7 +11,6 @@ mutulPage({
     scrollHeight: 0,
     loading: false,
     noMoreNote: false,
-    hidden: true,
     listLoaded: false,
     list: [],
     nextMonday: '',
@@ -122,11 +121,12 @@ mutulPage({
           this.setData({
             noMoreNote: true
           })
+          return
         }
         this.setData({
           list: this.data.list.concat(res.data),
           listLoaded: true,
-          currentCursor: res.data[res.data.length - 1].cursor || null
+          currentCursor: res.data[res.data.length - 1].cursor
         })
       } else {
         this.setData({
@@ -134,12 +134,6 @@ mutulPage({
         })
       }
       this.data.loading = false
-      let self = this
-      setTimeout(function () {
-        self.setData({
-          hidden: true
-        })
-      }, 300)
     })
   },
   share: function () {
