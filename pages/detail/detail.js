@@ -31,6 +31,7 @@ mutulPage({
     actQrImg: '',
     isShowVerifyModal: false,
     isSubmitFormId: true,
+    newDesc: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',
@@ -388,20 +389,29 @@ mutulPage({
     return Promise.all(imgPromiseList)
   },
   getNewDesc: function (desc) {
-    var context = JSON.parse(desc)
-    // console.log(context[0].insert.replace(/\n/g,'|').split('|'))
-    var arr = []
-    Object.keys(context).forEach((idx) => {
-      if (context[idx].insert.image) {
-        arr.push(context[idx].insert)
-      } else {
-        // console.log(arr)
-        console.log(context[idx].insert.replace(/\n/g,'|').split('|'))
-        arr = arr.concat(context[idx].insert.replace(/\n/g,'|').split('|'))
-      }
-    })
-    console.log(arr)
-    return arr
+    console.log(/^\[{/.test(desc))
+    if (/^\[{/.test(desc)) {
+      var context = JSON.parse(desc)
+      var arr = []
+      Object.keys(context).forEach((idx) => {
+        if (context[idx].insert.image) {
+          arr.push(context[idx].insert)
+        } else {
+          // console.log(arr)
+          console.log(context[idx].insert.replace(/\n/g,'|').split('|'))
+          arr = arr.concat(context[idx].insert.replace(/\n/g,'|').split('|'))
+        }
+      })
+      this.setData({
+        newDesc: true
+      })
+      return arr
+    } else {
+      this.setData({
+        newDesc: false
+      })
+      return desc
+    }
   },
   check: function() {
     console.log(this.data.tempIntro)

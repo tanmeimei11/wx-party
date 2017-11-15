@@ -50,8 +50,8 @@
         <view class="s-line">
           <view class="title">活动介绍</view>
           <view class="m-text">
-            <!-- <text class="m-intro">{{tempIntro}}</text> -->
-            <block wx:for="{{tempIntro}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+            <text class="m-intro" wx:if="{{!newDesc}}">{{tempIntro}}</text>
+            <block wx:if="{{newDesc}}" wx:for="{{tempIntro}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
               <text wx:if="{{!item.image}}" class="{{!item ? 'empty' : ''}}">{{item}}</text>
               <image wx:if="{{item.image}}" src="{{item.image}}" mode="widthFix"></image>
             </block>
