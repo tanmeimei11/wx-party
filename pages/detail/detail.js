@@ -13,7 +13,7 @@ mutulPage({
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,
     autoplay: true,
-    interval: 2000,
+    interval: 5000,
     duration: 1000,
     circular: true,
     curSwiperIdx: 0,
@@ -31,6 +31,7 @@ mutulPage({
     actQrImg: '',
     isShowVerifyModal: false,
     isSubmitFormId: true,
+    newDesc: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',
@@ -346,10 +347,10 @@ mutulPage({
         desc: `发起人：${data.creator_name}`
       },
       infos: {
-        charge: `活动费用: ¥${ data.charge || 0}`,
+        charge: `¥${ data.charge || 0}`,
         sAddr: data.city_district,
         time: formatTimeToTime(data.start_time, data.end_time, true),
-        detailAddr: data.act_location,
+        detailAddr: (data.latitude == '0' ) ? data.act_location : '',
         intro: data.act_desc.replace(/\\n/g, '\n'),
         mapName: data.wx_area_name,
         mapAddress: data.wx_address,
@@ -357,7 +358,7 @@ mutulPage({
         mapLongitude: data.longitude,
         door: data.house_no
       },
-      tempIntro: this.getLenStr(data.act_desc),
+      tempIntro: this.getNewDesc(data.act_desc),
       tempLessIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joiners.map(this.getDescCollect),
       actQrImg: data.share_qrcode_url,
@@ -387,6 +388,34 @@ mutulPage({
       }))
     })
     return Promise.all(imgPromiseList)
+  },
+  getNewDesc: function (desc) {
+    console.log(/^\[{/.test(desc))
+    if (/^\[{/.test(desc)) {
+      var context = JSON.parse(desc)
+      var arr = []
+      Object.keys(context).forEach((idx) => {
+        if (context[idx].insert.image) {
+          arr.push(context[idx].insert)
+        } else {
+          // console.log(arr)
+          console.log(context[idx].insert.replace(/\n/g,'|').split('|'))
+          arr = arr.concat(context[idx].insert.replace(/\n/g,'|').split('|'))
+        }
+      })
+      this.setData({
+        newDesc: true
+      })
+      return arr
+    } else {
+      this.setData({
+        newDesc: false
+      })
+      return desc
+    }
+  },
+  check: function() {
+    console.log(this.data.tempIntro)
   },
   getActFirstImg: function (ctx, url) {
     return wxPromisify(wx.getImageInfo)({

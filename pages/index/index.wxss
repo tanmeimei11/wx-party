@@ -199,7 +199,7 @@
   color: #666;
   letter-spacing: 0;
   margin-left: 5rpx;
-  max-width: 200rpx;
+  max-width: 300rpx;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

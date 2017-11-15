@@ -6,8 +6,8 @@
 
 .balance {
   width: 100%;
-  height: 333rpx;
-  background-image: url(http://inimg01.jiuyan.info/in/2017/11/06/C89BAE6D-8871-3040-3C32-7956F9D2AEDD.png);
+  height: 404rpx;
+  background-image: url(https://inimg02.jiuyan.info/in/2017/11/14/A43BF292-F974-318A-A9B8-BED0D761EFB7.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -56,14 +56,25 @@
 }
 
 .balance .btn {
-  margin: 30rpx auto 0;
-  width: 270rpx;
-  height: 270rpx;
-  background-image: url(http://inimg07.jiuyan.info/in/2017/11/06/B85955EE-CF79-F0B4-2BC7-37B07CF3D95E.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  margin: 60rpx auto 0;
+  width: 500rpx;
+  height: 80rpx;
+  background: #fee475;
+  border-radius: 100px;
+  box-shadow: 0 5rpx 15rpx 0 rgba(227,93,75,0.47);
 }
+.balance .btn view {
+  background-image: url(https://inimg05.jiuyan.info/in/2017/11/14/53E3E12C-BCF5-D6EE-D55A-8068D072C274.png);
+  background-repeat: no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position: left center;
+  color: #614100;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  display: inline-block;
+  padding-left: 45rpx;
+}
+
 
 .tips {
   margin: 137rpx 40rpx 0;
