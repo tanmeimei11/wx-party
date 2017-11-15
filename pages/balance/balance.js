@@ -21,6 +21,7 @@ mutulPage({
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_balance_enter'
   },
   onLoad: function (option) {
+    track(this, 'h5_tcpa_balance_screen_enter')
     wx.showLoading({
       title: '加载中...'
     })
@@ -50,7 +51,7 @@ mutulPage({
       if (res.succ) {
         if (res.data.is_get_bouns) {
           this.setData({
-            balance : res.data.balance
+            balance: res.data.balance
           })
         }
         request({
@@ -59,7 +60,7 @@ mutulPage({
           console.log(res2)
           if (res2.succ && !res.data.is_get_bouns) {
             this.setData({
-              balance : (parseFloat(res.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
+              balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
               share_qrcode_url: res2.data.share_qrcode_url
             })
           } else if (res.data.is_get_bouns) {
@@ -145,7 +146,7 @@ mutulPage({
   share: function () {
     track(this, 'h5_tcpa_gold_forward')
     this.setData({
-      isShowGoldMoneyModal : true
+      isShowGoldMoneyModal: true
     })
   },
   countTime: function () {

@@ -77,6 +77,7 @@ mutulPage({
     }
   },
   onLoad: function (option) {
+    track(this, 'h5_tcpa_detail_screen_enter')
     wx.showLoading({
       title: '加载中...'
     })

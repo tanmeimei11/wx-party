@@ -49,3 +49,16 @@
 
 ## 鼓励金页面
 保存图片：h5_tcpa_gold_photo_save
+
+
+
+
+ga埋点：
+屏幕：
+首页页面：h5_tcpa_index_screen_enter
+详情页面：h5_tcpa_detail_screen_enter
+签到页面：h5_tcpa_sign_screen_enter
+报名成功页面：h5_tcpa_result_screen_enter
+发起活动页面：h5_tcpa_launch_screen_enter
+奖励金页面：h5_tcpa_balance_screen_enter
+报名填写信息页面：h5_tcpa_apply_screen_enter

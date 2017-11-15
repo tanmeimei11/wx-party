@@ -6,8 +6,6 @@ var ga = require('../lib/ga.js');
 
 var HitBuilders = ga.HitBuilders;
 var t = getApp().getTracker();
-t.setScreenName('测试页面');
-// t.send();
 var trackArray = []
 var gaTrackArray = []
 var isTrack = false
@@ -18,9 +16,12 @@ var gaTrack = (app, track) => {
   if (!_query) {
     _query = 'click'
   }
-  var entry = /.*_page_enter/.exec(_query)
+  var entry = /.*_screen_enter/.exec(_action)
   if (entry) {
-    t.setScreenName(entry);
+    console.log('-------entry------')
+    console.log(_action)
+    // _action = '首页'
+    t.setScreenName(_action);
     var screenName = new HitBuilders.ScreenViewBuilder().build()
     t.send(screenName);
   }
@@ -36,8 +37,6 @@ var requestTrack = (app) => {
   console.log(isTrack)
 
   var t = getApp().getTracker();
-  t.setScreenName('这里是日志页面');
-  t.send(new HitBuilders.ScreenViewBuilder().build());
   return new Promise((resolve, reject) => {
     if (trackArray.length) {
       setTimeout(() => {

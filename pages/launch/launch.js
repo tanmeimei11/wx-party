@@ -71,6 +71,7 @@ Page({
   onLoad: function (option) {
     console.log(new Date('2017-10-26 12:00:00'))
     track(this, 'h5_tcpa_launch_entry')
+    track(this, 'h5_tcpa_launch_screen_enter')
     if (option.prepage) {
       this.setData({
         prepage: option.prepage

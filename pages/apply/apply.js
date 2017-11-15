@@ -29,6 +29,7 @@ Page({
     id: ''
   },
   onLoad: function (option) {
+    track(this, 'h5_tcpa_apply_screen_enter')
     track(this, 'h5_tcpa_apply_entry')
     if (option.nextpage || option.prepage) {
       this.setData({

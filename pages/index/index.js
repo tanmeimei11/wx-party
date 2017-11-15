@@ -401,6 +401,7 @@ mutulPage({
     })
   },
   onLoad(options) {
+    track(this, 'h5_tcpa_index_screen_enter')
     wx.setNavigationBarTitle({
       title: 'in 同城趴'
     })
@@ -413,12 +414,14 @@ mutulPage({
         });
       }
     })
+
     // 鼓励金详情页面好友分享点进来 options.sharekey
     if (options.sharekey) {
       this.setData({
         is_share: true
       })
       track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
+
       this.showMoneyModal(options.sharekey)
     }
     // 扫码首页进来直接领取鼓励金 options.from == 'getmoney'

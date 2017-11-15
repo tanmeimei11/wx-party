@@ -29,6 +29,7 @@ mutulPage({
     }
   },
   onLoad: function (option) {
+    track(this, 'h5_tcpa_result_screen_enter')
     wx.setNavigationBarTitle({
       title: '报名成功'
     })

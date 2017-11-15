@@ -15,6 +15,7 @@ Page({
     requestInyerval: 3000
   },
   onLoad: function (option) {
+    track(this, 'h5_tcpa_sign_screen_enter')
     wx.setNavigationBarTitle({
       title: '签到'
     })
