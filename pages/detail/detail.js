@@ -392,21 +392,28 @@ mutulPage({
   getNewDesc: function (desc) {
     console.log(/^\[{/.test(desc))
     if (/^\[{/.test(desc)) {
-      var context = JSON.parse(desc)
-      var arr = []
-      Object.keys(context).forEach((idx) => {
-        if (context[idx].insert.image) {
-          arr.push(context[idx].insert)
-        } else {
-          // console.log(arr)
-          console.log(context[idx].insert.replace(/\n/g,'|').split('|'))
-          arr = arr.concat(context[idx].insert.replace(/\n/g,'|').split('|'))
-        }
-      })
-      this.setData({
-        newDesc: true
-      })
-      return arr
+      try {
+        var context = JSON.parse(desc)
+        var arr = []
+        Object.keys(context).forEach((idx) => {
+          if (context[idx].insert.image) {
+            arr.push(context[idx].insert)
+          } else {
+            // console.log(arr)
+            console.log(context[idx].insert.replace(/\n/g,'|').split('|'))
+            arr = arr.concat(context[idx].insert.replace(/\n/g,'|').split('|'))
+          }
+        })
+        this.setData({
+          newDesc: true
+        })
+        return arr
+      } catch(e) {
+        this.setData({
+          newDesc: false
+        })
+        return desc
+      }
     } else {
       this.setData({
         newDesc: false
