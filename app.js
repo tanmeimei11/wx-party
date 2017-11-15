@@ -14,7 +14,7 @@ App({
       this.tracker = GoogleAnalytics.getInstance(this)
         .setAppName('in同城趴')
         .setAppVersion(_v)
-        .newTracker('UA-109527059-1'); //用你的 Tracking ID 代替
+        .newTracker('UA-109725915-1'); //用你的 Tracking ID 代替
     }
     return this.tracker;
   },
