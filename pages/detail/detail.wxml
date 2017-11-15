@@ -37,7 +37,7 @@
         <view class="s-line s-header">
           <!-- <view class="s-addr">{{infos.sAddr}}</view> -->
           <view class="s-time">{{infos.time}}</view>
-          <view class="s-charge">活动费用 <text>{{infos.charge}}</text></view>
+          <view class="s-charge" wx:if="{{infos.charge}}">活动费用 <text>{{infos.charge}}</text></view>
           <text wx:if="{{infos.detailAddr}}" class="m-text" space="nbsp">{{infos.detailAddr}}</text>
           <view wx:else class="map-line" bindtap="openMap">
             <view class="map-name">{{infos.mapName}} {{infos.door}}</view>
