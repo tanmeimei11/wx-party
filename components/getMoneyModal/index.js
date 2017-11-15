@@ -14,5 +14,6 @@ module.exports = {
     wx.navigateTo({
       url: `../balance/balance`
     })
+    this.closeGetMoneyModal()
   }
 }
