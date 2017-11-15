@@ -426,7 +426,7 @@ mutulPage({
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
-          scrollHeight: res.windowHeight - 50
+          scrollHeight: res.windowHeight
         });
       }
     })
