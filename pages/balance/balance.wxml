@@ -33,13 +33,12 @@
       </view>
     </block>
     <view class="lower-loading" wx:if="{{!noMoreNote}}">
-        <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
-        <text class="lower-loading-txt">加载中...</text>
+      <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
+      <text class="lower-loading-txt">加载中...</text>
     </view>
   </view>
 
   <!-- 分享弹窗 -->
   <import src="../../components/goldMoneyModal/index.wxml" />
-  <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,avatarUrl:avatarUrl,actQrImg:share_qrcode_url}}"
-  />
+  <template is="goldMoneyModal" data="{{...goldMoneyModalData}}" />
 </scroll-view>

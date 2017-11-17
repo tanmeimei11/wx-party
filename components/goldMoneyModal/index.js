@@ -5,46 +5,57 @@ var util = require('../../utils/util.js')
 var getAuth = require('../../utils/auth.js').get
 module.exports = {
   data: {
-    images: {
-      body: {
-        src: "https://inimg07.jiuyan.info/in/2017/11/07/D2BBB9D0-B9BD-A49A-85F5-FF91D3D5BF45.jpg",
-        local: "",
-        x: 0,
-        y: 0,
-        w: 750,
-        h: 866
+    goldMoneyModalData: {
+      images: {
+        body: {
+          src: "https://inimg07.jiuyan.info/in/2017/11/07/D2BBB9D0-B9BD-A49A-85F5-FF91D3D5BF45.jpg",
+          local: "",
+          x: 0,
+          y: 0,
+          w: 750,
+          h: 866
+        },
+        qr: {
+          src: "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
+          local: "",
+          x: 275,
+          y: 433,
+          w: 200,
+          h: 200,
+        },
+        qrContain: {
+          src: "https://inimg07.jiuyan.info/in/2017/11/06/6934FAC6-A317-EAE6-75A5-9472183A4B91.jpg",
+          local: "",
+          x: 265,
+          y: 423,
+          w: 220,
+          h: 220,
+        },
+        avatar: {
+          src: "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
+          local: "",
+          x: 311,
+          y: 108,
+          w: 128,
+          h: 128,
+        },
       },
-      qr: {
-        src: "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
-        local: "",
-        x: 275,
-        y: 433,
-        w: 200,
-        h: 200,
-      },
-      qrContain: {
-        src: "https://inimg07.jiuyan.info/in/2017/11/06/6934FAC6-A317-EAE6-75A5-9472183A4B91.jpg",
-        local: "",
-        x: 265,
-        y: 423,
-        w: 220,
-        h: 220,
-      },
-      avatar: {
-        src: "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg",
-        local: "",
-        x: 311,
-        y: 108,
-        w: 128,
-        h: 128,
-      },
-    },
-    isShowGoldMoneyModal: false,
+      isShow: true,
+    }
+
+  },
+  setGoldMoneyModalData: function (key, value) {
+    var _goldMoneyModalData = this.data.goldMoneyModalData
+    _goldMoneyModalData[key] = value
+    this.setData({
+      goldMoneyModalData: _goldMoneyModalData
+    })
+  },
+  getGoldMoneyModalData: function (key) {
+    return this.data.goldMoneyModalData[key]
   },
   closeGoldMoneyModal: function () {
-    this.setData({
-      isShowGoldMoneyModal: false
-    })
+    this.setGoldMoneyModalData('isShow', false)
   },
   saveImage: function (url) {
     getAuth('writePhotosAlbum')
@@ -60,12 +71,12 @@ module.exports = {
   compose: function () {
     this.loadingIn('加载中')
     track(this, 'h5_tcpa_gold_photo_save')
-    this.data.images.qr.src = this.data.share_qrcode_url
-    this.data.images.avatar.src = this.data.avatarUrl
-    util.loadImages(this.data.images)
+    var _images = this.data.goldMoneyModalData.images
+    _images.qr.src = this.getGoldMoneyModalData('actQrImg')
+    _images.avatar.src = this.getGoldMoneyModalData('avatarUrl')
+    util.loadImages(_images)
       .then(() => {
         var ctx = wx.createCanvasContext('firstCanvas')
-        var _images = this.data.images
         var _avatar = _images.avatar
         var _qr = _images.qr
         var _qrContain = _images.qrContain
