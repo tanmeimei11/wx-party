@@ -492,9 +492,7 @@ mutulPage({
               ctx.draw(true)
               console.log('---------------倒出图片－－－－－－')
               wxPromisify(wx.canvasToTempFilePath)({
-                canvasId: 'firstCanvas',
-                width: '100',
-                height: '100'
+                canvasId: 'firstCanvas'
               }).then(res => {
                 console.log('---------------保存图片－－－－－－')
                 this.saveImage(res.tempFilePath)
