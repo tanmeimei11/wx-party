@@ -499,14 +499,14 @@ mutulPage({
               }, () => {
                 wx.hideLoading()
                 wx.showToast({
-                  title: '当前微信版本不支持',
+                  title: '当前微信版本不支持, 请截屏分享',
                   image: '../../images/toast-fail.png',
                   duration: 2000
                 })
               }).catch(error => {
                 wx.hideLoading()
                 wx.showToast({
-                  title: '当前微信版本不支持',
+                  title: '当前微信版本不支持, 请截屏分享',
                   image: '../../images/toast-fail.png',
                   duration: 2000
                 })
