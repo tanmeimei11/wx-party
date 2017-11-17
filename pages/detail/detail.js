@@ -501,14 +501,14 @@ mutulPage({
               }, () => {
                 wx.hideLoading()
                 wx.showToast({
-                  title: '当前版本不兼容',
+                  title: '当前微信版本不支持',
                   image: '../../images/toast-fail.png',
                   duration: 2000
                 })
               }).catch(error => {
                 wx.hideLoading()
                 wx.showToast({
-                  title: '当前版本不兼容',
+                  title: '当前微信版本不支持',
                   image: '../../images/toast-fail.png',
                   duration: 2000
                 })
