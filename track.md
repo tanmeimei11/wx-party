@@ -1,3 +1,14 @@
+##首页
+进入：h5_tcpa_index_entry
+群加入：h5_tcpa_index_group_join 参数id=111
+活动加入：h5_tcpa_index_active_join 参数id=111
+点击群tab: h5_tcpa_index_group_tab_click
+点击活动tab: h5_tcpa_index_active_tab_click 
+发起活动：h5_tcpa_goto_launch_promo
+(弹窗)立即查看：h5_tcpa_gold_see_click
+(弹窗)转发好友：h5_tcpa_gold_forward_box
+我的鼓励金：h5_tcpa_gold_incentive_click
+
 ## 详情页面
 进入页面：h5_tcpa_detail_entry
 其他活动:h5_tcpa_other_act
@@ -25,16 +36,7 @@
 进入：h5_tcpa_apply_entry
 完成：h5_tcpa_apply_finish
 
-##首页
-进入：h5_tcpa_index_entry
-群加入：h5_tcpa_index_group_join 参数id=111
-活动加入：h5_tcpa_index_active_join 参数id=111
-点击群tab: h5_tcpa_index_group_tab_click
-点击活动tab: h5_tcpa_index_active_tab_click 
-发起活动：h5_tcpa_goto_launch_promo
-(弹窗)立即查看：h5_tcpa_gold_see_click
-(弹窗)转发好友：h5_tcpa_gold_forward_box
-我的鼓励金：h5_tcpa_gold_incentive_click
+
 
 ## 发起活动页面
 提交：h5_tcpa_active_submit
