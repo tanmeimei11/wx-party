@@ -22,7 +22,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -52,7 +52,7 @@
 					"id": 4,
 					"name": "sign",
 					"pathName": "pages/sign/sign",
-					"query": "id=11401"
+					"query": "id= 15401"
 				},
 				{
 					"id": -1,

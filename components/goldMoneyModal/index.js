@@ -40,7 +40,7 @@ module.exports = {
           h: 128,
         },
       },
-      isShow: true,
+      isShow: false,
     }
 
   },

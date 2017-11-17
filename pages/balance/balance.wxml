@@ -3,14 +3,15 @@
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
   <view class="balance">
-    <view class="title">
+    <!-- <view class="title">
       <text>我的鼓励金</text>
-    </view>
+    </view> -->
     <text class="money">{{balance}}</text>
-    <text class="time">当前鼓励金{{nextMonday}}(周一) 00:00前可用</text>
-    <view class="btn" bindtap="share">
-      <view>转发最高赚￥100</view>
-    </view>
+    <!-- <text class="time">当前鼓励金{{nextMonday}}(周一) 00:00前可用</text> -->
+  </view>
+
+  <view class="banance-btn" bindtap="share">
+    <view>转发最高赚￥100</view>
   </view>
 
   <view class="tips">

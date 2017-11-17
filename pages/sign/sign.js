@@ -4,6 +4,7 @@ const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
 var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
+import track from '../../utils/track.js'
 Page({
   data: {
     title: '',
@@ -12,7 +13,8 @@ Page({
     userInfo: app.globalData.userInfo,
     siginInUsers: [],
     qrImage: '',
-    requestInyerval: 3000
+    requestInyerval: 3000,
+    trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_sign_enter'
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_sign_screen_enter')
