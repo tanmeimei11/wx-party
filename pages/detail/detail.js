@@ -95,7 +95,6 @@ mutulPage({
     })
 
     options.isShowPayModal && this.showPayModal()
-    console.log(options)
     // 秒杀分享
     if (options.shareUserId) {
       track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
@@ -147,7 +146,6 @@ mutulPage({
           shareUserId: this.data.shareUserId
         }
       }).then((res) => {
-        console.log('获取数据成功')
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
         }
@@ -392,7 +390,6 @@ mutulPage({
     return Promise.all(imgPromiseList)
   },
   getNewDesc: function (desc) {
-    console.log(/^\[{/.test(desc))
     if (/^\[{/.test(desc)) {
       try {
         var context = JSON.parse(desc)
@@ -401,8 +398,6 @@ mutulPage({
           if (context[idx].insert.image) {
             arr.push(context[idx].insert)
           } else {
-            // console.log(arr)
-            console.log(context[idx].insert.replace(/\n/g, '|').split('|'))
             arr = arr.concat(context[idx].insert.replace(/\n/g, '|').split('|'))
           }
         })
@@ -424,7 +419,7 @@ mutulPage({
     }
   },
   check: function () {
-    console.log(this.data.tempIntro)
+    // console.log(this.data.tempIntro)
   },
   getActFirstImg: function (ctx, url) {
     return wxPromisify(wx.getImageInfo)({
@@ -490,7 +485,6 @@ mutulPage({
               ctx.setFontSize(40)
               ctx.fillText(title.str, 375, 352)
               ctx.draw(true)
-              console.log('---------------倒出图片－－－－－－')
               wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas'
               }).then(res => {
@@ -551,9 +545,7 @@ mutulPage({
     })
   },
   formSubmit: function (e) {
-
     if (this.data.isSubmitFormId) {
-      console.log('form发生了submit事件，携带数据为：', e.detail.formId)
       request({
         url: '/tmpl/formid/submit',
         data: {
@@ -561,7 +553,7 @@ mutulPage({
         }
       }).then(res => {
         if (res.succ) {
-          console.log('发送成功')
+          // console.log('发送成功')
         } else {
           this.data.isSubmitFormId = false
         }

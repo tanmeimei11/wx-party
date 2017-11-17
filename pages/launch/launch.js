@@ -69,7 +69,6 @@ Page({
     isShowMapName: false
   },
   onLoad: function (option) {
-    console.log(new Date('2017-10-26 12:00:00'))
     track(this, 'h5_tcpa_launch_entry')
     track(this, 'h5_tcpa_launch_screen_enter')
     if (option.prepage) {
@@ -95,7 +94,6 @@ Page({
     var len = files.length
     var _num = 0
     var _load = (file) => {
-      console.log(_num)
       return uploadImageToQiniu(file)
         .then(url => {
           this.data.images.push(url)
@@ -107,7 +105,7 @@ Page({
 
     }
     return _load(files[_num]).then(() => {
-      console.log('------all images upload succ-----')
+      // console.log('------all images upload succ-----')
     })
 
   },
@@ -140,7 +138,7 @@ Page({
           isAddImg: false
         })
       }
-      console.log(this.images)
+      // console.log(this.images)
     })
   },
   changeAddr: function (e) {
@@ -176,7 +174,6 @@ Page({
   changeTime: function (e) {
     // begin end
     var _val = e.detail.value
-    console.log(_val)
     var _type = e.target.dataset.type
     var _md = this.data.multiArray[0][_val[0]].split('日')[0].split('月')
     var _timeText = `${year}-${formatNumber(_md[0])}-${formatNumber(_md[1])} ${formatNumber(_val[1])}:${formatNumber(_val[2])}`
@@ -187,9 +184,7 @@ Page({
     this.setData(_data)
     this.verify('', true)
   },
-  bindMultiPickerColumnChange: function (e) {
-    console.log(e)
-  },
+  bindMultiPickerColumnChange: function (e) {},
   getText: function (e) {
     var _val = e.detail.value
     var _type = e.target.dataset.type
@@ -321,7 +316,7 @@ Page({
     //   amount: 12,
     //   wxNo: '4444'
     // }
-    console.log(requestData)
+    // console.log(requestData)
     requestPromisify({
       url: `/activity/create`,
       method: 'POST',

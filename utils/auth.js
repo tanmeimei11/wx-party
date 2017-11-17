@@ -14,10 +14,8 @@ var authPromisify = [
 
 function get(key) {
   var scope = 'scope.' + key;
-  console.log(scope)
   return new Promise((authRes, authRej) => {
     authPromisify.getSetting().then(res => {
-      console.log(res)
       if (res.authSetting[scope]) {
         authRes(true);
       } else {

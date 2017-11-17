@@ -149,7 +149,6 @@ mutulPage({
     if (!this.data.is_share) {
       this.loadBalance()
         .then((is_get_bouns) => {
-          console.log(is_get_bouns)
           if (!is_get_bouns) {
             this.getFirstMoneyModal()
           }
@@ -182,27 +181,21 @@ mutulPage({
     }, 300);
   },
   lower: function (e) {
-    console.log("lower")
     let that = this;
     setTimeout(function () {
       that.loadMoreQun();
     }, 300);
   },
-  scroll: function (e) {
-    console.log("scroll")
-  },
+  scroll: function (e) {},
   getLocation: function (e) {
     let self = this
     return wxPromisify(wx.authorize)({
       scope: 'scope.userLocation'
     }).then(suc => {
-      console.log('suc')
       return wxPromisify(wx.getLocation)({
         type: 'gcj02'
       })
-    }, rej => {
-      console.log('rej')
-    }).then(res => {
+    }, rej => {}).then(res => {
       if (res) {
         var latitude = res.latitude
         var longitude = res.longitude
@@ -217,8 +210,6 @@ mutulPage({
       return
     }
     this.data.loadingMorePromo = true
-    console.log('loadMorePromo')
-
     // if (this.data.noMorePromo) {
     //   console.log('noMorePromo')
     //   this.setData({
@@ -251,7 +242,6 @@ mutulPage({
             res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time), true)
           }
         }
-        console.log(this.data)
         this.setData({
           promoList: this.data.promoList.concat(res.data.list),
           promoListLoaded: true,
@@ -358,22 +348,18 @@ mutulPage({
             is_get_bouns: true
           })
         }
-        console.log(res)
       })
     }, 2000)
   },
   formSubmit: function (e) {
     if (this.data.isSubmitFormId) {
-      console.log('form发生了submit事件，携带数据为：', e.detail.formId)
       request({
         url: '/tmpl/formid/submit',
         data: {
           formId: e.detail.formId
         }
       }).then(res => {
-        if (res.succ) {
-          console.log('发送成功')
-        } else {
+        if (res.succ) {} else {
           this.data.isSubmitFormId = false
         }
       })
@@ -431,7 +417,6 @@ mutulPage({
       }
     })
     this.getLocation().then((res) => {
-      console.log(res)
       // 鼓励金详情页面好友分享点进来 options.sharekey
       if (options.sharekey) {
         this.setData({
