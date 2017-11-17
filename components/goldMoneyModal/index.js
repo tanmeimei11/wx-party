@@ -95,6 +95,20 @@ module.exports = {
                 canvasId: 'firstCanvas',
               }).then(res => {
                 this.saveImage(res.tempFilePath)
+              }, () => {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '当前版本不兼容',
+                  image: '../../images/toast-fail.png',
+                  duration: 2000
+                })
+              }).catch(error => {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '当前版本不兼容',
+                  image: '../../images/toast-fail.png',
+                  duration: 2000
+                })
               })
             }, 100)
           })

@@ -41,6 +41,8 @@ var request = option => {
         option.data._token = token
       }
       (option.method != 'POST') && (option.data.privateKey = token);
+      // 请求带上来源
+      option.data.from = wx.getStorageSync('from')
       if (isMock) {
         console.log('mock request', option.url, option.data)
         console.log('mock responce', require('../mock/' + mockConfig[option.url]))

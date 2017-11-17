@@ -443,6 +443,7 @@ mutulPage({
 
       // 分渠道埋点
       if (options.from) {
+        wx.setStorageSync("from", options.from)
         track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
       }
       // 即将过期

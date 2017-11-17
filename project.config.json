@@ -28,13 +28,13 @@
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": ""
+					"query": "from=weicagt"
 				},
 				{
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=17001&isShowOtherAct=false"
+					"query": "id=17503&isShowOtherAct=false&from=xiangxiang"
 				},
 				{
 					"id": -1,

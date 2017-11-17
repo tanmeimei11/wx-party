@@ -77,7 +77,7 @@ mutulPage({
       }
     }
   },
-  onLoad: function (option) {
+  onLoad: function (options) {
     track(this, 'h5_tcpa_detail_screen_enter')
     wx.showLoading({
       title: '加载中...'
@@ -88,25 +88,26 @@ mutulPage({
 
     // 取页面上的id
     this.setData({
-      shareUserId: option.shareUserId || '',
-      id: option.id || '11001',
-      sessionFrom: `activity_${option.id}`,
-      sessionFromQr: `activitymanager_${option.id}`,
+      shareUserId: options.shareUserId || '',
+      id: options.id || '11001',
+      sessionFrom: `activity_${options.id}`,
+      sessionFromQr: `activitymanager_${options.id}`,
     })
 
-    option.isShowPayModal && this.showPayModal()
-    console.log(option)
+    options.isShowPayModal && this.showPayModal()
+    console.log(options)
     // 秒杀分享
-    if (option.shareUserId) {
+    if (options.shareUserId) {
       track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
     }
     // 分渠道
-    if (option.from) {
-      track(this, 'h5_tcpa_detail_enter', [`cannel_id=${option.from}`, `active_id=${this.data.id}`])
+    if (options.from) {
+      wx.setStorageSync("from", options.from)
+      track(this, 'h5_tcpa_detail_enter', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
     }
 
     // 是否显示导航条
-    if (!option.isShowOtherAct) {
+    if (!options.isShowOtherAct) {
       track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
       this.setData({
         isShowOtherAct: true
@@ -116,11 +117,11 @@ mutulPage({
     }
 
     // 审核中
-    if (option.prepage == 'launch') {
+    if (options.prepage == 'launch') {
       this.setData({
         isShowVerifyModal: true
       })
-    } else if (option.prepage == 'apply') { // 支付
+    } else if (options.prepage == 'apply') { // 支付
       this.setData({
         promoDelayMoney: true
       })
@@ -217,6 +218,7 @@ mutulPage({
         url: url
       })
     }).then(res => {
+
       return wxPromisify(wx.saveImageToPhotosAlbum)({
         filePath: res.tempFilePath
       })
@@ -350,7 +352,7 @@ mutulPage({
         charge: `¥${ data.charge || 0}`,
         sAddr: data.city_district,
         time: formatTimeToTime(data.start_time, data.end_time, true),
-        detailAddr: (data.latitude == '0' ) ? data.act_location : '',
+        detailAddr: (data.latitude == '0') ? data.act_location : '',
         intro: data.act_desc.replace(/\\n/g, '\n'),
         mapName: data.wx_area_name,
         mapAddress: data.wx_address,
@@ -400,15 +402,15 @@ mutulPage({
             arr.push(context[idx].insert)
           } else {
             // console.log(arr)
-            console.log(context[idx].insert.replace(/\n/g,'|').split('|'))
-            arr = arr.concat(context[idx].insert.replace(/\n/g,'|').split('|'))
+            console.log(context[idx].insert.replace(/\n/g, '|').split('|'))
+            arr = arr.concat(context[idx].insert.replace(/\n/g, '|').split('|'))
           }
         })
         this.setData({
           newDesc: true
         })
         return arr
-      } catch(e) {
+      } catch (e) {
         this.setData({
           newDesc: false
         })
@@ -421,7 +423,7 @@ mutulPage({
       return desc
     }
   },
-  check: function() {
+  check: function () {
     console.log(this.data.tempIntro)
   },
   getActFirstImg: function (ctx, url) {
@@ -488,10 +490,28 @@ mutulPage({
               ctx.setFontSize(40)
               ctx.fillText(title.str, 375, 352)
               ctx.draw(true)
+              console.log('---------------倒出图片－－－－－－')
               wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas',
+                width: '100',
+                height: '100'
               }).then(res => {
+                console.log('---------------保存图片－－－－－－')
                 this.saveImage(res.tempFilePath)
+              }, () => {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '当前版本不兼容',
+                  image: '../../images/toast-fail.png',
+                  duration: 2000
+                })
+              }).catch(error => {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '当前版本不兼容',
+                  image: '../../images/toast-fail.png',
+                  duration: 2000
+                })
               })
             }, 100)
           })
