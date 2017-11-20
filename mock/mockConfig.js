@@ -3,7 +3,7 @@ module.exports = {
   [`${DOMAIN}/party/login`]: "login",
   [`${DOMAIN}/activity/detail`]: "detail",
   [`${DOMAIN}/citysocial/groups`]: "qunList",
-  [`${DOMAIN}/activity/groups`]: "promoList",
+  [`${DOMAIN}/activity/groups_new`]: "promoList",
   [`${DOMAIN}/activity/signins`]: "signins",
   [`${DOMAIN}/activity/prepare`]: "prepare",
   [`${DOMAIN}/activity/add_info`]: "submit",
