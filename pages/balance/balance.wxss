@@ -8,7 +8,7 @@
   height: 646rpx;
   background-image: url(https://inimg07.jiuyan.info/in/2017/11/17/AA94ED41-7B4F-A50E-B7F4-981CB9A9066B.jpg);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   position: relative;
   text-align: center;
@@ -60,10 +60,10 @@
   width: 500rpx;
   height: 100rpx;
   border-radius: 100px;
-  box-shadow: 0 5rpx 15rpx 0 rgba(227, 93, 75, 0.47);
+  /* box-shadow: 0 5rpx 15rpx 0 rgba(227, 93, 75, 0.47); */
   text-align: center;
   background-image: linear-gradient(0deg, #ff3228, #ff7234 100%);
-  box-shadow: 0 0 7rpx 5rpx #ff3228;
+  box-shadow: 0 0 5rpx 5rpx #ff3228;
 }
 
 .banance-btn view {
@@ -79,7 +79,7 @@
 }
 
 .tips {
-  margin: 137rpx 40rpx 0;
+  margin: 80rpx 40rpx 0;
   padding-bottom: 30rpx;
 }
 

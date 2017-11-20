@@ -184,7 +184,6 @@ Page({
     this.setData(_data)
     this.verify('', true)
   },
-  bindMultiPickerColumnChange: function (e) {},
   getText: function (e) {
     var _val = e.detail.value
     var _type = e.target.dataset.type

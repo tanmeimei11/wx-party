@@ -1,5 +1,6 @@
 // import common from './common'
 const U_TRACK = 'http://stats1.jiuyan.info/onepiece/router.html'
+var isTrack = require('./config.js')
 // const U_TRACK = 'http://10.10.109.253:8018/index.html'
 // 这里是ga统计
 var ga = require('../lib/ga.js');
@@ -54,6 +55,9 @@ var requestTrack = (app) => {
 export default function track(app, seed, query = []) {
   // let img = new Image()
   // img.src = combineQuery(seed, query)
+  if (!isTrack) {
+    return false
+  }
   gaTrackArray.push({
     action: seed,
     query: query.join('&')
