@@ -5,7 +5,7 @@ module.exports = {
 "succ": true,
 "data": {
     "balance": "3.01",
-    "is_get_bouns":false //是否领取奖励金
+    "is_get_bouns":true //是否领取奖励金
 },
 "timestamp": "1508137132"
 }

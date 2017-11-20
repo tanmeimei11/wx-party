@@ -1,4 +1,4 @@
-<scroll-view scroll-y="true" class="container " upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower"
+<scroll-view scroll-y="true" class="container " upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower" bindscroll="scroll"
   style="height:{{scrollHeight}}px;">
   <!-- 发起活动 -->
   <view class="launch-promo">
@@ -9,8 +9,13 @@
     <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
   </view>
   <!-- 秒杀入口 -->
-  <import src="../../components/seckill/entry/index.wxml" />
-  <template is="entry" data="{{seckill}}"/>
+<!--   <import src="../../components/seckill/entry/index.wxml" />
+  <template is="entry" data="{{seckill}}"/> -->
+  <view class="search">
+    <text class="tongcheng">同城活动</text>
+    <view class="type">全部活动</view>
+    <view class="sort">排序</view>
+  </view>
   <view class="list">
     <block wx:for="{{promoList}}" wx:key="act_id">
       <view class="promo {{ item.act_status == '1'? 'done' : ''}}" index="{{index}}" id="{{item.act_id}}" bindtap='jumpToDetail'

@@ -37,8 +37,5 @@
         </block>
       </swiper>
     </view>
-    <view class='se-header'>
-      <text>同城活动</text>
-    </view>
   </view>
 </template>

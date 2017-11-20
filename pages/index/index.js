@@ -14,16 +14,13 @@ mutulPage({
     promoList: [],
     hidden: false,
     scrollHeight: 0,
-    noMoreQun: false,
     noMorePromo: false,
     currentList: 'qunList',
     qunListLoaded: false,
     promoListLoaded: false,
-    loadingMoreQun: false,
     loadingMorePromo: false,
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_index_entry',
     promoNum: 0,
-    currentCursorQun: 0,
     currentCursorPromo: 0,
     isNeedFillInfo: true,
     isSubmitFormId: true,
@@ -66,31 +63,6 @@ mutulPage({
       path: '/pages/index/index'
     }
   },
-  joinQun: function (e) {
-    var _qunId = e.currentTarget.dataset.id
-    track(this, 'h5_tcpa_index_group_join', [`id=${_qunId}`])
-    // 加群人数＋1
-    let params = {
-      url: '/citysocial/join',
-      data: {
-        id: _qunId,
-      }
-    }
-    request(params).then((res) => {
-      if (res.succ && res.data == '1') {
-        // 遍历群
-        var _qun = this.data.qunList
-        _qun.forEach((item, idx) => {
-          if (item.city_social_id == _qunId) {
-            item.count = parseInt(item.count) + 1
-          }
-        })
-        this.setData({
-          qunList: _qun
-        })
-      }
-    })
-  },
   jumpToDetail: function (e) {
     if (e.currentTarget.dataset.id) {
       track(this, 'h5_tcpa_index_active_join', [`id=${e.currentTarget.dataset.id}`])
@@ -99,23 +71,45 @@ mutulPage({
       })
     }
   },
-  switchTab1: function (e) {
-    if (this.data.promoListLoaded && this.data.currentList == 'qunList') {
-      return
-    }
-    if (e) {
-      this.setShare(1)
-      track(this, 'h5_tcpa_index_group_tab_click ')
-    }
-    this.setData({
-      currentCursorQun: 0,
-      noMoreQun: false,
-      qunList: [],
-      currentList: 'qunList',
-      hidden: false,
-      currentCursorQun: 0
+  onLoad(options) {
+    track(this, 'h5_tcpa_index_screen_enter')
+    wx.setNavigationBarTitle({
+      title: 'in 同城趴'
     })
-    this.loadMoreQun()
+
+    let self = this
+    wx.getSystemInfo({
+      success: function (res) {
+        self.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    })
+    this.getLocation().then((res) => {
+      console.log(res)
+      // 鼓励金详情页面好友分享点进来 options.sharekey
+      if (options.sharekey) {
+        this.setData({
+          is_share: true
+        })
+        track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
+        this.showMoneyModal(options.sharekey)
+      }
+
+      // 分渠道埋点
+      if (options.from) {
+        wx.setStorageSync("from", options.from)
+        track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
+      }
+      // 即将过期
+      if (options.ending) {
+        this.setData({
+          is_ending: true
+        })
+      }
+
+      this.switchTab2()
+    })
   },
   switchTab2: function (e) {
     if (this.data.currentList == 'promoList') {
@@ -189,7 +183,9 @@ mutulPage({
     }, 300);
   },
   scroll: function (e) {
-    console.log("scroll")
+    if (e.detail.scrollTop) {
+      console.log()
+    }
   },
   getLocation: function (e) {
     let self = this
@@ -264,59 +260,6 @@ mutulPage({
         })
       }
       this.data.loadingMorePromo = false
-      let self = this
-      setTimeout(function () {
-        self.setData({
-          hidden: true
-        })
-      }, 300)
-    })
-  },
-  loadMoreQun: function () {
-    if (this.data.loadingMoreQun) {
-      return
-    }
-    this.data.loadingMoreQun = true
-    // console.log('loadMoreQun')
-    // if (this.data.noMoreQun) {
-    //   console.log('noMoreQun')
-    //   this.setData({
-    //     hidden: true,
-    //     loadingMoreQun: false
-    //   })
-    //   return
-    // }
-    let params = {
-      url: '/citysocial/groups',
-      data: {
-        limit: 10,
-        cursor: this.data.currentCursorQun
-      }
-    }
-    request(params).then((res) => {
-      if (res.succ && res.data && res.data.list) {
-        if (!res.data.list.length) {
-          this.setData({
-            noMoreQun: true
-          })
-        }
-        for (let i = 0; i < res.data.list.length; i++) {
-          if (res.data.list[i].male_count && res.data.list[i].female_count) {
-            res.data.list[i].count = parseInt(res.data.list[i].male_count) + parseInt(res.data.list[i].female_count)
-          }
-        }
-        this.setData({
-          qunList: this.data.qunList.concat(res.data.list),
-          qunListLoaded: true,
-          promoNum: res.data && res.data.promo_num || 0,
-          currentCursorQun: res.data.current_cursor || null
-        })
-      } else {
-        this.setData({
-          noMoreQun: true
-        })
-      }
-      this.data.loadingMoreQun = false
       let self = this
       setTimeout(function () {
         self.setData({
@@ -413,50 +356,6 @@ mutulPage({
         }
 
         this.setData(_data)
-      }
-    })
-  },
-  onLoad(options) {
-    track(this, 'h5_tcpa_index_screen_enter')
-    wx.setNavigationBarTitle({
-      title: 'in 同城趴'
-    })
-    let currentList = (options.tab == '1' && 'qunList') || 'promoList'
-    let self = this
-    wx.getSystemInfo({
-      success: function (res) {
-        self.setData({
-          scrollHeight: res.windowHeight
-        });
-      }
-    })
-    this.getLocation().then((res) => {
-      console.log(res)
-      // 鼓励金详情页面好友分享点进来 options.sharekey
-      if (options.sharekey) {
-        this.setData({
-          is_share: true
-        })
-        track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
-        this.showMoneyModal(options.sharekey)
-      }
-
-      // 分渠道埋点
-      if (options.from) {
-        wx.setStorageSync("from", options.from)
-        track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
-      }
-      // 即将过期
-      if (options.ending) {
-        this.setData({
-          is_ending: true
-        })
-      }
-
-      if (currentList == 'qunList') {
-        this.switchTab1()
-      } else {
-        this.switchTab2()
       }
     })
   }
