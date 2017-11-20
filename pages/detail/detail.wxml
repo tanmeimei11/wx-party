@@ -37,7 +37,9 @@
         <view class="s-line s-header">
           <!-- <view class="s-addr">{{infos.sAddr}}</view> -->
           <view class="s-time">{{infos.time}}</view>
-          <view class="s-charge" wx:if="{{infos.charge}}">活动费用 <text>{{infos.charge}}</text></view>
+          <view class="s-charge" wx:if="{{infos.charge}}">活动费用
+            <text>{{infos.charge}}</text>
+          </view>
           <text wx:if="{{infos.detailAddr}}" class="m-text" space="nbsp">{{infos.detailAddr}}</text>
           <view wx:else class="map-line" bindtap="openMap">
             <view class="map-name">{{infos.mapName}} {{infos.door}}</view>
@@ -45,6 +47,13 @@
           </view>
         </view>
 
+        <!-- 电话 -->
+        <view class="s-line">
+          <view class="title">活动电话</view>
+          <view class="m-text">
+            <text class="m-intro" wx:if="{{phone}}" bindtap="makePhoneCall">{{phone}}</text>
+          </view>
+        </view>
 
         <!-- 活动介绍 -->
         <view class="s-line">
@@ -55,14 +64,14 @@
               <text wx:if="{{!item.image}}" class="{{!item ? 'empty' : ''}}">{{item}}</text>
               <image wx:if="{{item.image}}" src="{{item.image}}" mode="widthFix"></image>
             </block>
-          <!--   <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
+            <!--   <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
             <text class="m-more less" bindtap="lookLess" wx:if="{{isShowIntroLess}}">收起全部</text> -->
           </view>
 
         </view>
 
         <!-- 报名用户 -->
-   <!--      <view class="s-line">
+        <!--      <view class="s-line">
           <view class="title">已报名用户</view>
           <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
             <view class="user-avatar" style="background-image:url({{item.avatar_url}})">

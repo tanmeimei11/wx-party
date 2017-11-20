@@ -371,7 +371,8 @@ mutulPage({
       isNeedInfo: data.is_need_info,
       promoMoney: data.charge || 0,
       promoDelayMoney: data.booking_charge || 0,
-      otherPromoNum: data.other_act_count
+      otherPromoNum: data.other_act_count,
+      phone: data.data || '18768146254'
     })
     // 设置秒杀信息
     this.setSeckillInfo(data)
@@ -569,5 +570,10 @@ mutulPage({
       name: this.data.infos.mapName
     }
     wxPromisify(wx.openLocation)(_data).then(res => {})
+  },
+  makePhoneCall: function () {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone
+    })
   }
 })
