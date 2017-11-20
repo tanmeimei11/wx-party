@@ -23,8 +23,7 @@
 		},
 		"miniprogram": {
 			"current": 0,
-			"list": [
-				{
+			"list": [{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
@@ -52,7 +51,7 @@
 					"id": 4,
 					"name": "sign",
 					"pathName": "pages/sign/sign",
-					"query": "id=11401"
+					"query": "id= 15401"
 				},
 				{
 					"id": -1,

@@ -14,9 +14,6 @@ mutulPage({
     listLoaded: false,
     list: [],
     nextMonday: '',
-    isShowGoldMoneyModal: false,
-    share_qrcode_url: '',
-    avatarUrl: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_balance_enter'
   },
   onLoad: function (option) {
@@ -35,9 +32,7 @@ mutulPage({
     })
     wx.getUserInfo({
       success: function (res) {
-        self.setData({
-          avatarUrl: res.userInfo.avatarUrl
-        });
+        self.setGoldMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
       }
     })
     wx.setNavigationBarTitle({
@@ -46,7 +41,6 @@ mutulPage({
     request({
       url: '/account/balance'
     }).then((res) => {
-      console.log(res)
       if (res.succ) {
         if (res.data.is_get_bouns) {
           this.setData({
@@ -56,18 +50,12 @@ mutulPage({
         request({
           url: '/bounty/get'
         }).then((res2) => {
-          console.log(res2)
           if (res2.succ && !res.data.is_get_bouns) {
             this.setData({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
-              share_qrcode_url: res2.data.share_qrcode_url
-            })
-          } else if (res.data.is_get_bouns) {
-            console.log(res2.data.share_qrcode_url)
-            this.setData({
-              share_qrcode_url: res2.data.share_qrcode_url
             })
           }
+          self.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
           wx.hideLoading()
         })
       }
@@ -79,7 +67,6 @@ mutulPage({
         limit: 10
       }
     }).then((res) => {
-      console.log(res)
       if (res.data.length) {
         this.setData({
           currentCursor: res.data[res.data.length - 1].cursor,
@@ -97,7 +84,6 @@ mutulPage({
     if (this.data.noMoreNote) {
       return
     }
-    console.log("promoLower")
     let that = this;
     setTimeout(function () {
       that.loadMoreNote();
@@ -108,7 +94,6 @@ mutulPage({
       return
     }
     this.data.loading = true
-
     request({
       url: '/account/details',
       data: {
@@ -116,7 +101,6 @@ mutulPage({
         limit: 10
       }
     }).then((res) => {
-      console.log(res)
       if (res.succ && res.data) {
         if (!res.data.length) {
           this.setData({
@@ -139,9 +123,7 @@ mutulPage({
   },
   share: function () {
     track(this, 'h5_tcpa_gold_forward')
-    this.setData({
-      isShowGoldMoneyModal: true
-    })
+    this.setGoldMoneyModalData('isShow', true)
   },
   countTime: function () {
     let date = new Date()

@@ -1,5 +1,7 @@
 <!--logs.wxml-->
 <view class="container sign-wrap">
+  <!-- 埋点 -->
+  <image src="{{trackSeed}}" style="width:0;height:0;" />
   <view class='code-wrap'>
     <view class="code-bar">
       <view class='text'>{{title}}</view>

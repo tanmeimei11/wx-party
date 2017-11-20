@@ -3,14 +3,15 @@
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
   <view class="balance">
-    <view class="title">
+    <!-- <view class="title">
       <text>我的鼓励金</text>
-    </view>
+    </view> -->
     <text class="money">{{balance}}</text>
-    <text class="time">当前鼓励金{{nextMonday}}(周一) 00:00前可用</text>
-    <view class="btn" bindtap="share">
-      <view>转发最高赚￥100</view>
-    </view>
+    <!-- <text class="time">当前鼓励金{{nextMonday}}(周一) 00:00前可用</text> -->
+  </view>
+
+  <view class="banance-btn" bindtap="share">
+    <view>转发最高赚￥100</view>
   </view>
 
   <view class="tips">
@@ -33,13 +34,12 @@
       </view>
     </block>
     <view class="lower-loading" wx:if="{{!noMoreNote}}">
-        <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
-        <text class="lower-loading-txt">加载中...</text>
+      <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
+      <text class="lower-loading-txt">加载中...</text>
     </view>
   </view>
 
   <!-- 分享弹窗 -->
   <import src="../../components/goldMoneyModal/index.wxml" />
-  <template is="goldMoneyModal" data="{{isShowGoldMoneyModal:isShowGoldMoneyModal,avatarUrl:avatarUrl,actQrImg:share_qrcode_url}}"
-  />
+  <template is="goldMoneyModal" data="{{...goldMoneyModalData}}" />
 </scroll-view>

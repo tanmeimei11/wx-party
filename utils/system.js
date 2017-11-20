@@ -9,7 +9,7 @@ let debug = true
 let mockConfig = wxP.mockConfig
 let wxLog = function (msg) {
   if (debug) {
-    console.log(msg)
+    // console.log(msg)
   }
 }
 let getStoragePromise = function () {
@@ -114,7 +114,7 @@ let wxRelogin = function (next) {
   // wxLogout()
   return wxLogin(next)
 }
-let wxTimeout = function (fn) { }
+let wxTimeout = function (fn) {}
 let wxCheck = function (next) {
   return wxCheckSessionPromise()
     .then((res) => {

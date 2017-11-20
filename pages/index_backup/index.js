@@ -21,14 +21,10 @@ Page({
   onLoad: function () {
     requestPromisify({
       url: '/citysocial/groups'
-    }).then((res) => {
-      console.log(res)
-    })
-    console.log('onLoad')
+    }).then((res) => {})
     // 使用 Mock
     api.ajax('', function (res) {
       //这里既可以获取模拟的res
-      console.log(res)
       // this.setData({
       //   list: this.data
       // })

@@ -18,8 +18,6 @@ var gaTrack = (app, track) => {
   }
   var entry = /.*_screen_enter/.exec(_action)
   if (entry) {
-    console.log('-------entry------')
-    console.log(_action)
     // _action = '首页'
     t.setScreenName(_action);
     var screenName = new HitBuilders.ScreenViewBuilder().build()
@@ -34,15 +32,11 @@ var gaTrack = (app, track) => {
 }
 
 var requestTrack = (app) => {
-  console.log(isTrack)
-
   var t = getApp().getTracker();
   return new Promise((resolve, reject) => {
     if (trackArray.length) {
       setTimeout(() => {
-        console.log('real', trackArray[0])
         gaTrack(app, gaTrackArray[0])
-        console.log(gaTrackArray[0])
         app.setData({
           trackSeed: trackArray[0]
         })
@@ -65,7 +59,6 @@ export default function track(app, seed, query = []) {
     query: query.join('&')
   })
   let trackSeed = combineQuery(seed, query)
-  console.log('visual', trackSeed)
   // 这样请求会被丢弃 有的埋点抓不到 原因1，img赋值太快了造成页面请求还没有发就被丢弃了 2，替换的过快 setdata直接跳过类似vue 好像setdata内部也是和vue内部一样的 超过一定数量采取更新dom 
   // app.setData({
   //   trackSeed: trackArray[0]
