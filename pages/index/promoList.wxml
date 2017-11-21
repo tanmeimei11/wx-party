@@ -21,14 +21,16 @@
     <view class="sort {{sortOpen ? 'on' : ''}} {{ currentID2 != 0 ? 'checked' : ''}}" bindtap="openSort">{{sort}}</view>
     <view class="screen-list" wx:if="{{screenOpen}}">
       <block wx:for="{{screenList}}" wx:key="id" wx:for-index="i">
-        <view class="screen-item {{currentID1 == i ? 'active' : ''}}" bindtap="reselect" data-screen="{{item.screen}}" data-name="{{item.name}}" data-id="{{i}}">
+        <view class="screen-item {{currentID1 == i ? 'active' : ''}}" bindtap="reselect" data-screen="{{item.screen}}" data-name="{{item.name}}"
+          data-id="{{i}}">
           <view class="screen-txt">{{item.name}}</view>
         </view>
       </block>
     </view>
     <view class="sort-list {{sortOpen ? 'on' : ''}}" wx:if="{{sortOpen}}">
       <block wx:for="{{sortList}}" wx:key="id" wx:for-index="i">
-        <view class="sort-item {{currentID2 == i ? 'active' : ''}}" bindtap="reselect" data-sort="{{item.sort}}" data-name="{{item.name}}"  data-id="{{i}}">
+        <view class="sort-item {{currentID2 == i ? 'active' : ''}}" bindtap="reselect" data-sort="{{item.sort}}" data-name="{{item.name}}"
+          data-id="{{i}}">
           <view class="sort-txt">{{item.name}}</view>
         </view>
       </block>
@@ -70,7 +72,7 @@
             <text class="promo-time">{{item.time}}</text>
             <text class="promo-area">
               <text>{{item.city_district}}</text>
-              <text wx:if="{{item.distance}}"> |  {{item.distance}}</text>
+              <text wx:if="{{item.distance}}"> | {{item.distance}}</text>
             </text>
           </view>
         </view>
