@@ -4,9 +4,7 @@
   <view class="launch-promo">
     <text bindtap="launchPromo">发起活动</text>
     <view class="launch-shu"></view>
-    <text bindtap="toBalance">鼓励金
-      <text class="launch-balance">(￥
-        <text>{{myMoney}}</text>)</text>
+    <text bindtap="toBalance">鼓励金<text class="launch-balance">(￥<text>{{myMoney}}</text>)</text>
     </text>
     <!-- <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view> -->
     <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
@@ -16,14 +14,24 @@
   <template is="entry" data="{{seckill}}"/> -->
   <view class="search {{onTop ? 'ontop' : ''}}">
     <text class="tongcheng">同城活动</text>
-    <view class="type">全部活动</view>
-    <view class="sort">排序</view>
+    <view class="type {{screenOpen ? 'on' : ''}}" bindtap="openScreen">{{screen}}</view>
+    <view class="sort {{sortOpen ? 'on' : ''}}" bindtap="openSort">{{sort}}</view>
+    <view class="screen-list" wx:if="{{screenOpen}}">
+      <block wx:for="{{screenList}}" wx:key="num">
+        <view class="screen-item">
+          <view bindtap="reselect" class="screen-txt">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+    <view class="sort-list {{sortOpen ? 'on' : ''}}" wx:if="{{sortOpen}}">
+      <block wx:for="{{sortList}}" wx:key="num">
+        <view class="sort-item">
+          <view bindtap="reselect" class="sort-txt">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
   </view>
   <view class="list">
-    <wxs module="foo">
-      var some_msg = "hello world"; module.exports = { msg : some_msg, }
-    </wxs>
-    <view> {{foo.msg}} </view>
     <block wx:for="{{promoList}}" wx:key="act_id">
       <view class="promo {{ item.act_status == '1'? 'done' : ''}}" index="{{index}}" id="{{item.act_id}}" bindtap='jumpToDetail'
         data-id="{{ item.act_id }}">
@@ -39,11 +47,11 @@
               <text class='se-original'>原价 ¥{{item.charge}}</text>
             </view>
             <import src="../../components/seckill/item/index.wxml" />
-            <template is="item" data="{{item}}" wx:if="{{item.start_time > nowTime}}" class="se-time" />
-            <view class="se-end" wx:elif="{{item.end_time < nowTime}}">
+            <template is="item" data="{{item}}" wx:if="{{item.count_down > 0}}" class="se-time" />
+            <view class="se-end" wx:if="{{item.end_time < nowTime}}">
               <view class="se-end-text">秒杀已结束</view>
             </view>
-            <view wx:else class='se-surplus'>
+            <view wx:if="{{!item.count_down && item.sum_num - item.num > 0}}" class='se-surplus'>
               <view class='ses-progress'>
                 <view class='ses-progress-done' style="width:{{50 + item.num/item.sum_num*50}}%;"></view>
               </view>

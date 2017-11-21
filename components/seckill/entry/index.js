@@ -13,31 +13,30 @@ module.exports = {
     // total: 13
     // }]
   },
-  loadSeckill() {
-    console.log("entry")
-    requestPromisify({
-      url: "/activity/inventorys",
-    }).then(res => {
-      if (res.succ) {
-        this.setData({
-          seckill: res.data.map(item => ({
-            act_id: item.act_id,
-            name: item.act_name,
-            cover: item.act_url[0],
-            people: item.sum_num - item.num,
-            total: item.sum_num,
-            price: item.amount,
-            original: item.charge,
-            time: +(item.count_down) / 1000
-          }))
-        })
-        this.countdown()
-        if (this.data.seckill.filter(item => item.time != 0).length > 0) {
-          track(this, 'h5_tcpa_seckill_finish_page')
-        }
-      }
-    })
-  },
+  // loadSeckill() {
+  //   requestPromisify({
+  //     url: "/activity/inventorys",
+  //   }).then(res => {
+  //     if (res.succ) {
+  //       this.setData({
+  //         seckill: res.data.map(item => ({
+  //           act_id: item.act_id,
+  //           name: item.act_name,
+  //           cover: item.act_url[0],
+  //           people: item.sum_num - item.num,
+  //           total: item.sum_num,
+  //           price: item.amount,
+  //           original: item.charge,
+  //           time: +(item.count_down) / 1000
+  //         }))
+  //       })
+  //       this.countdown()
+  //       if (this.data.seckill.filter(item => item.time != 0).length > 0) {
+  //         track(this, 'h5_tcpa_seckill_finish_page')
+  //       }
+  //     }
+  //   })
+  // },
   countdown() {
     if (this.data.seckill.filter(item => item.time > 0).length == 0) {
       return

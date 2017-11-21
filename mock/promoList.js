@@ -13,12 +13,32 @@ module.exports = Mock.mock({
           {
               "name":"户外",
               "screen":1
+          },
+          {
+              "name":"户外",
+              "screen":1
+          },
+          {
+              "name":"户外",
+              "screen":1
           }
       ],
       "sort_list":[
           {
               "name":"按工作日排序",
               "sort":"workday"
+          },
+          {
+              "name":"按距离远近排序",
+              "sort":"gps"
+          },
+          {
+              "name":"按距离远近排序",
+              "sort":"gps"
+          },
+          {
+              "name":"按距离远近排序",
+              "sort":"gps"
           },
           {
               "name":"按距离远近排序",
@@ -38,7 +58,8 @@ module.exports = Mock.mock({
             "amount":10.00, //秒杀价,
             "charge":20.00, //原价
             "is_seckill": true, //是否秒杀,可能为空默认为false
-            "act_type":1 //分类
+            "act_type":1, //分类
+            "count_down":"200"
         }]
     },
     'time': 1502261173
