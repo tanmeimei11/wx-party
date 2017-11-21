@@ -225,12 +225,12 @@ mutulPage({
     }
     // 开始时间
     if (_data.beginText == _data.perLine.begin.placeHolder || (+new Date(_data.beginText.replace(/-/g, '/')) - +new Date() < 100)) {
-      !type && this.toast(perLine['beginText'].errorMsg, 'warn')
+      !type && this.toast(perLine['begin'].errorMsg, 'warn')
       return
     }
     // 结束时间 
     if (_data.endText == _data.perLine.end.placeHolder || (+new Date(_data.endText.replace(/-/g, '/')) - +new Date(_data.beginText.replace(/-/g, '/'))) < 100) {
-      !type && (this.toast(perLine['endText'].errorMsg, 'warn'))
+      !type && (this.toast(perLine['end'].errorMsg, 'warn'))
       return
     }
     // 描述
@@ -239,7 +239,7 @@ mutulPage({
       return
     }
     // 手机号
-    if (/\d{11}/.test(_data.phone)) {
+    if (!/\d{11}/.test(_data.phone)) {
       !type && this.toast(perLine['phone'].errorMsg, 'warn')
       return
     }

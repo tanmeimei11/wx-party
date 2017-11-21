@@ -77,7 +77,7 @@
   <!-- 手机号 -->
   <view class="c-line">
     <view class="money-icon"></view>
-    <input type="number" placeholder="{{perLine.phone.placeHolder}}" data-type="phone" maxlength="11" placeholder-style="color:#B0B0B0"
+    <input type="number" placeholder="{{perLine.phone.placeHolder}}" data-type="phone" maxlength="11" bindinput="getText" placeholder-style="color:#B0B0B0"
     />
   </view>
 
