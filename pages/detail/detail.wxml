@@ -41,17 +41,17 @@
             <text>{{infos.charge}}</text>
           </view>
           <text wx:if="{{infos.detailAddr}}" class="m-text" space="nbsp">{{infos.detailAddr}}</text>
-          <view wx:else class="map-line" bindtap="openMap">
-            <view class="map-name">{{infos.mapName}} {{infos.door}}</view>
-            <view class="map-address">{{infos.mapAddress}}</view>
-          </view>
         </view>
 
         <!-- 电话 -->
-        <view class="s-line">
-          <view class="title">活动电话</view>
-          <view class="m-text">
-            <text class="m-intro" wx:if="{{phone}}" bindtap="makePhoneCall">{{phone}}</text>
+        <view class="s-line" wx:if="{{infos.phone || !infos.detailAddr}}">
+          <view wx:if="{{infos.phone}}" class="map-line phone-line" bindtap="makePhoneCall">
+            <view class="map-name">联系电话 {{infos.phone}}</view>
+            <!-- <view class="map-address">{{infos.mapAddress}}</view> -->
+          </view>
+          <view wx:if="{{!infos.detailAddr}}" class="map-line" bindtap="openMap">
+            <view class="map-name">{{infos.mapName}} {{infos.door}}</view>
+            <view class="map-address">{{infos.mapAddress}}</view>
           </view>
         </view>
 
