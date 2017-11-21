@@ -15,19 +15,30 @@ module.exports = {
   },
   setSeckillInfo(data) {
     if (data.is_seckill != 1) return
+
+    var seckillStatus = ''
+    var seckill = {
+      count_down: +data.count_down / 1000,
+      is_seckill: +data.is_seckill,
+      name: data.share_user_name,
+      avatar_url: data.share_user_avatar,
+      price: data.amount,
+      original: data.charge,
+      count: data.num,
+      gender: data.share_user_gender,
+      is_seckill_finish: +data.is_seckill_finish,
+      isShow: false
+    }
+    if (seckill.is_seckill == 1 && seckill.count_down != 0 && seckill.is_seckill_finish != 1) { // 即将开抢
+      seckillStatus = 'ready'
+    } else if (seckill.is_seckill == 1 && seckill.count_down <= 0 && seckill.is_seckill_finish != 1) { //正在秒杀
+      seckillStatus = 'begin'
+    } else if (seckill.is_seckill == 1 && seckill.is_seckill_finish == 1) { //已经结束了
+      seckillStatus = 'over'
+    }
+    seckill.seckillStatus = seckillStatus
     this.setData({
-      seckill: {
-        count_down: +data.count_down / 1000,
-        is_seckill: +data.is_seckill,
-        name: data.share_user_name,
-        avatar_url: data.share_user_avatar,
-        price: data.amount,
-        original: data.charge,
-        count: data.num,
-        gender: data.share_user_gender,
-        is_seckill_finish: +data.is_seckill_finish,
-        isShow: false
-      }
+      seckill: seckill
     })
     this.countdown()
   },
