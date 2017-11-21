@@ -1,9 +1,10 @@
 <image src="{{trackSeed}}" style="width:0;height:0;" wx:if="{{trackSeed.length}}"></image>
 <form bindsubmit="formSubmit" report-submit="true" class="submit-from">
   <button formType="submit" class="submit-btn">
+
     <include src="qunList.wxml" wx:if="{{currentList=='qunList'}}" />
     <include src="promoList.wxml" wx:if="{{currentList=='promoList'}}" />
-<!--     <view class="list-tabs">
+    <!--     <view class="list-tabs">
       <image src="/images/tab1.png" class="icon-person hide"></image>
       <image src="/images/tab1-active.png" class="icon-person hide"></image>
       <image src="/images/tab2.png" class="icon-person hide"></image>

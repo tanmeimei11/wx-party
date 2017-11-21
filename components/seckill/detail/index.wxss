@@ -116,7 +116,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 500rpx;
+  width: 510rpx;
   height: 700rpx;
   background-image: linear-gradient(90deg, #F89142 0%, #FBBC59 100%);
   transform: translate(0, -300rpx)rotate(20deg);
