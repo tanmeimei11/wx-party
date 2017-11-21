@@ -4,10 +4,6 @@ var request = require('../../../utils/wxPromise.js').requestPromisify
 module.exports = {
   data: {
     seckill: {
-      // gender: '男',      avatar_url:'http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg',
-      // name:'犀牛',
-      // price: '59',
-      // original: '169',
       count: 0,
       count_down: 0,
       is_seckill_finish: 1,
@@ -59,8 +55,8 @@ module.exports = {
       url: '/activity/remindseckill',
       data: {
         act_id: this.data.id
-      },
-      method: 'POST'
+      }
+      // method: 'POST'
     }).then(res => {
       if (res.succ) {
         this.toastSucc('设置成功')
@@ -82,11 +78,8 @@ module.exports = {
       return
     }
     request({
-      url: '/activity/interestinseckill',
-      data: {
-        act_id: this.data.id
-      },
-      method: 'POST'
+      url: '/activity/interestinseckill'
+      // method: 'POST'
     }).then(res => {
       if (res.succ) {
         console.log('2222')
