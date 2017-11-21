@@ -83,7 +83,6 @@ module.exports = {
       url: '/bounty/bounty_img',
     }).then(res => {
       if (res.succ && res.data) {
-        console.log(res.data)
         this.saveImage(res.data)
       }
     }).catch(() => {

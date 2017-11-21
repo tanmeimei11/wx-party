@@ -12,7 +12,8 @@ module.exports = {
       count_down: 0,
       is_seckill_finish: 1,
       is_seckill: 0,
-      isShow: false
+      isShow: false,
+      seckillStatus: ''
     }
   },
   setSeckillInfo(data) {
@@ -30,7 +31,8 @@ module.exports = {
       gender: data.share_user_gender,
       is_seckill_finish: +data.is_seckill_finish,
       isShow: false,
-      isSetWarn: data.isSetWarn || false
+      isSeckillReminded: data.is_seckill_reminded || false,
+      isSeckillInterested: data.is_seckill_interested || false
     }
     if (seckill.is_seckill == 1 && seckill.count_down != 0 && seckill.is_seckill_finish != 1) { // 即将开抢
       seckillStatus = 'ready'
@@ -46,7 +48,11 @@ module.exports = {
     this.countdown()
   },
   setSeckillWarnBefore() {
-    if (!this.data.id || this.data.seckill.isSetWarn) {
+    if (!this.data.id) {
+      return
+    }
+    if (this.data.seckill.isSeckillReminded) {
+      this.toastSucc('成功开启~~')
       return
     }
     request({
@@ -57,10 +63,9 @@ module.exports = {
       method: 'POST'
     }).then(res => {
       if (res.succ) {
-        console.log('2222')
         this.toastSucc('设置成功')
         var _s = this.data.seckill
-        _s.isSetWarn = true
+        _s.isSeckillReminded = true
         this.setData({
           seckill: _s
         })
@@ -69,11 +74,15 @@ module.exports = {
   },
   // 设置提醒
   setSeckillWarn() {
-    if (!this.data.id || this.data.seckill.isSetWarn) {
+    if (!this.data.id) {
+      return
+    }
+    if (this.data.seckill.isSeckillInterested) {
+      this.toastSucc('成功开启提醒啦')
       return
     }
     request({
-      url: ' /activity/interestinseckill',
+      url: '/activity/interestinseckill',
       data: {
         act_id: this.data.id
       },
@@ -83,7 +92,7 @@ module.exports = {
         console.log('2222')
         this.toastSucc('设置成功')
         var _s = this.data.seckill
-        _s.isSetWarn = true
+        _s.isSeckillInterested = true
         this.setData({
           seckill: _s
         })

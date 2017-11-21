@@ -30,7 +30,7 @@
 </template>
 
 <template name="detailBar">
-  <view class="seckill-detail-bar {{seckillStatus}}" wx:if="!seckillStatus">
+  <view class="seckill-detail-bar {{seckillStatus}}" wx:if="{{seckillStatus !=''}}">
     <view class="seckill-bar-inner" wx:if="{{seckillStatus!='over'}}">
       <text class="seckill-price">¥{{price}}</text>
       <text class="origin-price">原价:{{original}}</text>
@@ -50,7 +50,7 @@
         <text>本次秒杀已结束</text>
         <text>点击“设置提醒”，不错过下次秒杀活动</text>
       </view>
-      <view class="float-right {{isSetWarn ?'warn' :''}}" bindtap="setSeckillWarn">{{isSetWarn? '已设置':'设置提醒'}}</view>
+      <view class="float-right {{isSeckillInterested ?'warn' :''}}" bindtap="setSeckillWarn">{{isSeckillInterested? '已设置':'设置提醒'}}</view>
     </view>
   </view>
 </template>

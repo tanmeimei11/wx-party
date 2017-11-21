@@ -41,7 +41,7 @@ module.exports = {
       "other_act_count": "91",
       "share_qrcode_url": "https://inimg01.jiuyan.info/in/2017/11/06/520F9F67-3396-4CD5-A38C-5455A757293C.jpg?roundPic/radius/200",
       "sigin_sum": "1",
-      "count_down": 100000,
+      "count_down": 0,
       "start_time": 1510630140000,
       "updated_at": 1509939173000,
       "wx_address": "浙江省杭州市拱墅区湖墅南路103号",
@@ -55,6 +55,8 @@ module.exports = {
       "is_seckill": 1,
       "is_seckill_finish": 0,
       "phone": 13135252222, //电话号码,
+      "is_seckill_reminded": false, // 是否已经秒杀提醒
+      "is_seckill_interested": false // 秒杀结束后 是否已经 关注秒杀
     },
     "code": "200003",
     "msg": ""

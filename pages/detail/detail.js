@@ -281,30 +281,23 @@ mutulPage({
     })
   },
   openBook: function () {
+    if (!(this.data.seckill.seckillStatus == '' || this.data.seckill.seckillStatus == 'over')) {
+      return
+    }
+    if (this.data.bookStatus == '1') {
+      return
+    }
     if (this.data.shareUserId) {
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
     track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
-    if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
+    console.log('3333')
+    // 首次报名
+    if (this.data.isNeedInfo == 1) {
+      this.redirectApply()
       return
     }
-
     this.showPayModal()
-    // @xiangxiang
-    // 犀牛修改流程
-    // 不跳客服 去支付
-    // request({
-    //   url: "/activity/join",
-    //   data: {
-    //     id: this.data.id
-    //   }
-    // }).then((res) => {
-    //   if (res.succ && res.data == '1') {
-    //     this.setData({
-    //       bookStatus: '1'
-    //     })
-    //   }
-    // })
   },
   getRedirectParam() {
     return [`id=${this.data.id}`,
@@ -457,10 +450,11 @@ mutulPage({
   getImgFromBack() {
     request({
       url: '/activity/detail_img',
-      id: this.data.id
+      data: {
+        id: this.data.id
+      }
     }).then(res => {
       if (res.succ && res.data) {
-        console.log(res.data)
         this.saveImage(res.data)
       }
     }).catch(() => {
@@ -505,7 +499,7 @@ mutulPage({
               ctx.setFontSize(40)
               ctx.fillText(title.str, 375, 352)
               ctx.draw(true)
-              wxPromisify(wx.canvasToTempFilePath)({
+              return wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas'
               }).then(res => {
                 this.saveImage(res.tempFilePath)
@@ -517,12 +511,7 @@ mutulPage({
             }, 100)
           })
       }).catch((error) => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '保存失败',
-          image: '../../images/toast-fail.png',
-          duration: 2000
-        })
+        this.getImgFromBack()
       })
   },
   saveImage: function (url) {
@@ -539,6 +528,7 @@ mutulPage({
         })
       }
       return prePromise.then(res => {
+        console.log(res)
         return wxPromisify(wx.saveImageToPhotosAlbum)({
           filePath: res.path
         })
