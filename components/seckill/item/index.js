@@ -14,7 +14,7 @@ module.exports = {
     // }]
   },
   loadSeckill() {
-    console.log("entry")
+    console.log("item")
     requestPromisify({
       url: "/activity/inventorys",
     }).then(res => {

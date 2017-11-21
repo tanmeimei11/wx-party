@@ -38,13 +38,8 @@
               <text class='se-price'>¥{{item.amount}}</text>
               <text class='se-original'>原价 ¥{{item.charge}}</text>
             </view>
-
-            <wxs src="./tools.wxs" module="tools" />
-            <view wx:if="{{item.start_time > nowTime}}" class="se-time">
-              <text>{{tools.msg}}</text>:
-              <!-- <text>{{tools.minute(item.start_time)}}</text>: -->
-              <!-- <text>{{tools.second(item.start_time)}}</text>后开抢 -->
-            </view>
+            <import src="../../components/seckill/item/index.wxml" />
+            <template is="item" data="{{item}}" wx:if="{{item.start_time > nowTime}}" class="se-time" />
             <view class="se-end" wx:elif="{{item.end_time < nowTime}}">
               <view class="se-end-text">秒杀已结束</view>
             </view>
