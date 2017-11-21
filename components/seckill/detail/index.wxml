@@ -34,7 +34,8 @@
 
 <template name="detailBar">
   <view class="seckill-detail-bar">
-    <text>100</text>
-    <text>100</text>
+    <text class="seckill-price">100</text>
+    <text class="oeigin-price">100</text>
+
   </view>
 </template>
