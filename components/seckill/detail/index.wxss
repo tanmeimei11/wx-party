@@ -68,13 +68,13 @@
   background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/E72C5ACB-CCD1-7428-FD66-2AD0662288CF.jpg);
 }
 
-.seckill-detail .sd-tips  .sdt-name {
+.seckill-detail .sd-tips .sdt-name {
   font-size: 24rpx;
   color: #666;
   line-height: 33rpx;
 }
 
-.seckill-detail .sd-tips  .sdt-desc {
+.seckill-detail .sd-tips .sdt-desc {
   font-size: 28rpx;
   line-height: 44rpx;
   color: #333;
@@ -99,4 +99,26 @@
   color: #666;
   letter-spacing: 0;
   text-align: center;
+}
+
+
+/* 秒杀导航条 */
+
+.seckill-detail-bar {
+  height: 90rpx;
+  background-color: #FAC576;
+  position: relative;
+  overflow: hidden;
+}
+
+.seckill-detail-bar:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500rpx;
+  height: 700rpx;
+  background-image: linear-gradient(90deg, #F89142 0%, #FBBC59 100%);
+  transform: translate(0, -300rpx)rotate(20deg);
+  transform-origin: 0 0;
 }
