@@ -152,6 +152,7 @@ var loadImages = (images) => {
   var imgPromiseList = []
   Object.keys(images).forEach((idx) => {
     var _val = images[idx]
+    console.log(_val.src)
     imgPromiseList.push(wxPromisify(wx.downloadFile)({
       url: _val.src
     }).then(res => {

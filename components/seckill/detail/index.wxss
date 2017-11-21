@@ -272,9 +272,14 @@
   font-size: 28rpx;
   width: 152rpx;
   height: 60rpx;
-  line-height: 59rpx;
+  line-height: 60rpx;
   text-align: center;
   margin-top: 15rpx;
   border: 1rpx solid #fff;
   border-radius: 6rpx;
+}
+
+.seckill-detail-bar .over-time .float-right.warn {
+  cursor: none;
+  opacity: .4;
 }

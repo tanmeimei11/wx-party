@@ -53,8 +53,10 @@ module.exports = {
       "share_user_gender": "男",
       "share_user_avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg",
       "is_seckill": 1,
-      "is_seckill_finish": 1,
+      "is_seckill_finish": 0,
       "phone": 13135252222, //电话号码,
+      "is_seckill_reminded": false, // 是否已经秒杀提醒
+      "is_seckill_interested": false // 秒杀结束后 是否已经 关注秒杀
     },
     "code": "200003",
     "msg": ""

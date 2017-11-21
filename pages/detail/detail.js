@@ -281,30 +281,23 @@ mutulPage({
     })
   },
   openBook: function () {
+    if (!(this.data.seckill.seckillStatus == '' || this.data.seckill.seckillStatus == 'over')) {
+      return
+    }
+    if (this.data.bookStatus == '1') {
+      return
+    }
     if (this.data.shareUserId) {
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
     track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
-    if (this.data.bookStatus == '1') { //0:未参与 1:已参与  2:已签到
+    console.log('3333')
+    // 首次报名
+    if (this.data.isNeedInfo == 1) {
+      this.redirectApply()
       return
     }
-
     this.showPayModal()
-    // @xiangxiang
-    // 犀牛修改流程
-    // 不跳客服 去支付
-    // request({
-    //   url: "/activity/join",
-    //   data: {
-    //     id: this.data.id
-    //   }
-    // }).then((res) => {
-    //   if (res.succ && res.data == '1') {
-    //     this.setData({
-    //       bookStatus: '1'
-    //     })
-    //   }
-    // })
   },
   getRedirectParam() {
     return [`id=${this.data.id}`,
@@ -454,6 +447,25 @@ mutulPage({
       ctx.draw()
     })
   },
+  getImgFromBack() {
+    request({
+      url: '/activity/detail_img',
+      data: {
+        id: this.data.id
+      }
+    }).then(res => {
+      if (res.succ && res.data) {
+        this.saveImage(res.data)
+      }
+    }).catch(() => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '当前微信版本不支持, 请截屏分享',
+        image: '../../images/toast-fail.png',
+        duration: 2000
+      })
+    })
+  },
   compose: function () {
     wx.showLoading({
       title: '正在生成图片...',
@@ -487,52 +499,46 @@ mutulPage({
               ctx.setFontSize(40)
               ctx.fillText(title.str, 375, 352)
               ctx.draw(true)
-              wxPromisify(wx.canvasToTempFilePath)({
+              return wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas'
               }).then(res => {
-                console.log('---------------保存图片－－－－－－')
                 this.saveImage(res.tempFilePath)
               }, () => {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '当前微信版本不支持, 请截屏分享',
-                  image: '../../images/toast-fail.png',
-                  duration: 2000
-                })
+                this.getImgFromBack()
               }).catch(error => {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '当前微信版本不支持, 请截屏分享',
-                  image: '../../images/toast-fail.png',
-                  duration: 2000
-                })
+                this.getImgFromBack()
               })
             }, 100)
           })
       }).catch((error) => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '保存失败',
-          image: '../../images/toast-fail.png',
-          duration: 2000
-        })
+        this.getImgFromBack()
       })
   },
-  saveImage: function (file) {
+  saveImage: function (url) {
     wxPromisify(wx.authorize)({
       scope: 'scope.writePhotosAlbum'
     }).then(() => {
       wx.hideLoading()
-      wxPromisify(wx.saveImageToPhotosAlbum)({
-          filePath: file
+      var prePromise = Promise.resolve({
+        path: url
+      })
+      if (/^http/.test(url)) {
+        prePromise = wxPromisify(wx.getImageInfo)({
+          src: url
         })
-        .then(res => {
-          wx.showToast({
-            title: '图片已保存到相册',
-            duration: 2000
-          })
+      }
+      return prePromise.then(res => {
+        console.log(res)
+        return wxPromisify(wx.saveImageToPhotosAlbum)({
+          filePath: res.path
         })
-    }, () => {
+      })
+    }).then(res => {
+      wx.showToast({
+        title: '图片已保存到相册',
+        duration: 2000
+      })
+    }).catch(e => {
       wx.showToast({
         title: '保存失败',
         image: '../../images/toast-fail.png',

@@ -19,5 +19,9 @@ module.exports = {
   [`${DOMAIN}/activity/share_info`]: "share_info",
   [`${DOMAIN}/bounty/get`]: "get",
   [`${DOMAIN}/account/balance`]: "balance",
-  [`${DOMAIN}/activity/act_type`]: "actType"
+  [`${DOMAIN}/activity/act_type`]: "actType",
+  [`${DOMAIN}/activity/remindseckill`]: "remindSeckill",
+  [`${DOMAIN}/activity/interestinseckill`]: "remindSeckill",
+  [`${DOMAIN}/bounty/bounty_img`]: "img",
+  [`${DOMAIN}/activity/detail_img`]: "img"
 }

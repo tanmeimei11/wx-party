@@ -1,4 +1,4 @@
-// var request = require('../../utils/wxPromise.js').requestPromisify
+var request = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 import track from '../../utils/track.js'
 var util = require('../../utils/util.js')
@@ -60,13 +60,39 @@ module.exports = {
   saveImage: function (url) {
     getAuth('writePhotosAlbum')
       .then(() => {
-        return wxPromisify(wx.saveImageToPhotosAlbum)({
-          filePath: url
+        var prePromise = Promise.resolve({
+          path: url
+        })
+        if (/^http/.test(url)) {
+          prePromise = wxPromisify(wx.getImageInfo)({
+            src: url
+          })
+        }
+        return prePromise.then(res => {
+          return wxPromisify(wx.saveImageToPhotosAlbum)({
+            filePath: res.path
+          })
         })
       }).then(res => {
         this.loadingOut()
         this.toastSucc('保存成功')
       })
+  },
+  getImgFromBack() {
+    request({
+      url: '/bounty/bounty_img',
+    }).then(res => {
+      if (res.succ && res.data) {
+        this.saveImage(res.data)
+      }
+    }).catch(() => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '当前微信版本不支持, 请截屏分享',
+        image: '../../images/toast-fail.png',
+        duration: 2000
+      })
+    })
   },
   compose: function () {
     this.loadingIn('加载中')
@@ -107,23 +133,15 @@ module.exports = {
               }).then(res => {
                 this.saveImage(res.tempFilePath)
               }, () => {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '当前微信版本不支持, 请截屏分享',
-                  image: '../../images/toast-fail.png',
-                  duration: 2000
-                })
+                this.getImgFromBack()
               }).catch(error => {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '当前微信版本不支持, 请截屏分享',
-                  image: '../../images/toast-fail.png',
-                  duration: 2000
-                })
+                console.error('error')
+                this.getImgFromBack()
               })
             }, 100)
           })
       }).catch((error) => {
+        console.log(error)
         this.loadingOut()
         this.toastFail('保存失败')
       })
