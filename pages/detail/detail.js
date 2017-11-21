@@ -574,7 +574,7 @@ mutulPage({
   },
   makePhoneCall: function () {
     wx.makePhoneCall({
-      phoneNumber: this.data.phone
+      phoneNumber: this.data.infos.phone
     })
   }
 })
