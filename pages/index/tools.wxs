@@ -13,3 +13,4 @@ module.exports.second = function (time) {
   var _time ="00"+ (time % 60)
   return _time.slice(-2);
 }
+module.exports.msg="2411"

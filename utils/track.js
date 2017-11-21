@@ -20,14 +20,19 @@ var gaTrack = (app, track) => {
   var entry = /.*_screen_enter/.exec(_action)
   if (entry) {
     // _action = '首页'
-    t.setScreenName(_action);
-    var screenName = new HitBuilders.ScreenViewBuilder().setLabel('from__' + 'weixin')
+    // t.setScreenName(_action);
+    t.setScreenName('xiang');
+    var screenName = new HitBuilders.ScreenViewBuilder().build()
     t.send(screenName);
   }
   var a = new HitBuilders.EventBuilder()
-    .setCategory(_action)
-    .setAction(_query)
-    .setLabel(`from__${wx.getStorageSync('from')}`) // 可选
+    .setCategory('xiangxiang')
+    .setAction('xiangxiang')
+    .setLabel('111111') // 可选
+  // var a = new HitBuilders.EventBuilder()
+  //   .setCategory(_action)
+  //   .setAction(_query)
+  //   .setLabel(`from__${wx.getStorageSync('from')}`) // 可选
   // .setValue('34567')
   t.send(a);
 }
