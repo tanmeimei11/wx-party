@@ -27,7 +27,7 @@
 
 .c-gold-money-wrap .s-title .t2 {
   color: #909090;
-  font-size: 36rpx;
+  font-size: 30rpx;
   line-height: 1.6;
 }
 

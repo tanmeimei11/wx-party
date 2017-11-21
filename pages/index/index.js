@@ -73,6 +73,7 @@ mutulPage({
   },
   onLoad(options) {
     track(this, 'h5_tcpa_index_screen_enter')
+    track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
     wx.setNavigationBarTitle({
       title: 'in 同城趴'
     })
@@ -99,7 +100,6 @@ mutulPage({
       // 分渠道埋点
       if (options.from) {
         wx.setStorageSync("from", options.from)
-        track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
       }
       // 即将过期
       if (options.ending) {

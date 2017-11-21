@@ -1,6 +1,6 @@
 // import common from './common'
 const U_TRACK = 'http://stats1.jiuyan.info/onepiece/router.html'
-var isTrack = require('./config.js')
+// var isTrack = require('./config.js')
 // const U_TRACK = 'http://10.10.109.253:8018/index.html'
 // 这里是ga统计
 var ga = require('../lib/ga.js');
@@ -21,13 +21,13 @@ var gaTrack = (app, track) => {
   if (entry) {
     // _action = '首页'
     t.setScreenName(_action);
-    var screenName = new HitBuilders.ScreenViewBuilder().build()
+    var screenName = new HitBuilders.ScreenViewBuilder().setLabel('from__' + 'weixin')
     t.send(screenName);
   }
   var a = new HitBuilders.EventBuilder()
     .setCategory(_action)
     .setAction(_query)
-  // .setLabel('1111') // 可选
+    .setLabel(`from__${wx.getStorageSync('from')}`) // 可选
   // .setValue('34567')
   t.send(a);
 }
@@ -55,9 +55,9 @@ var requestTrack = (app) => {
 export default function track(app, seed, query = []) {
   // let img = new Image()
   // img.src = combineQuery(seed, query)
-  if (!isTrack) {
-    return false
-  }
+  // if (!isTrack) {
+  //   return false
+  // }
   gaTrackArray.push({
     action: seed,
     query: query.join('&')

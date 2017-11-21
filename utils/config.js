@@ -6,6 +6,7 @@ module.exports = {
   // isMock: true,
   isMock: false,
   isTrack: false,
+  // isTrack: true,
   qnTokenUrl: "https://www.in66.com/promo/commonapi/qiniutoken",
   // qnUploadUrl: "http://up.qiniu.com",
   qnUploadUrl: "https://up.qbox.me",
