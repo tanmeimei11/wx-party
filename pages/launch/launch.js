@@ -1,6 +1,7 @@
 //launch.js
+var mutulPage = require('../../utils/util.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
-var requestPromisify = require('../../utils/wxPromise.js').requestPromisify
+var request = require('../../utils/wxPromise.js').requestPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var formatNumber = require('../../utils/util.js').formatNumber
 var getTimeObj = require('../../utils/util.js').getTimeObj
@@ -11,9 +12,12 @@ var getFullNumArray = require('../../utils/util.js').getFullNumArray
 var uploadImageToQiniu = require('../../utils/api.js').uploadImageToQiniu
 var getAuth = require('../../utils/auth.js').get
 var perLine = require('./config.js')
+var actTypes = require('../../components/actTypes/index.js')
+
+console.log(actTypes)
 import track from '../../utils/track.js'
 
-Page({
+mutulPage({
   data: {
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_launch_enter',
     jobList: [],
@@ -44,6 +48,7 @@ Page({
     isAddImg: true,
     isShowMapName: false
   },
+  mixins: [actTypes],
   onLoad: function (option) {
     track(this, 'h5_tcpa_launch_entry')
     track(this, 'h5_tcpa_launch_screen_enter')
@@ -63,7 +68,7 @@ Page({
     wx.setNavigationBarTitle({
       title: '发起活动'
     })
-
+    this.getActTypes()
     this.initTime()
   },
   loadImages: function (files) {
@@ -186,7 +191,11 @@ Page({
   verify: function (e, type) {
 
     var _data = this.data
-
+    // 验证分类
+    if (!_data.actTypes.activeType.screen) {
+      !type && this.toast(perLine['activeType'].errorMsg, 'warn')
+      return
+    }
     // 验证图片
     if (!_data.images.length) {
       !type && this.toast(perLine['image'].errorMsg, 'warn')
@@ -249,7 +258,7 @@ Page({
     }
   },
   getProviceByString: function (str) {
-    var array = /(.*省)(.*市)(.*区)/g.exec(str)
+    var array = /(.*省)?(.*市)?(.*区)?/g.exec(str)
     return JSON.stringify([array[1], array[2], array[3]])
   },
   submit: function () {
@@ -265,12 +274,13 @@ Page({
       latitude: _data.mapLatitude,
       longitude: _data.mapLongitude,
       houseNo: _data.door,
-      // actLocation: _data.detailAddr,
       startTime: +new Date(_data.beginText.replace(/-/g, '/')),
       endTime: +new Date(_data.endText.replace(/-/g, '/')),
       actDesc: _data.detailDesc,
       amount: _data.amount,
       wxNo: _data.wechat,
+      phone: _data.phone,
+      actType: _data.actTypes.activeType.screen
 
     }
     // var requestData = {
@@ -286,7 +296,7 @@ Page({
     //   wxNo: '4444'
     // }
     // console.log(requestData)
-    requestPromisify({
+    request({
       url: `/activity/create`,
       method: 'POST',
       data: requestData,

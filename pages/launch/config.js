@@ -1,4 +1,9 @@
 const perLine = {
+  activeType: {
+    placeHolder: '请选择分类',
+    errorMsg: '请选择分类',
+    value: ''
+  },
   image: {
     placeHolder: '图片',
     errorMsg: '请上传图片',

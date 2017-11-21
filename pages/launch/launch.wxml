@@ -3,15 +3,9 @@
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;" />
 
-  <!-- 图片 -->
-  <view class="c-picture">
-    <view class="s-title">选择活动分类</view>
-    <view class="s-tab-wrap">
-      <view class="m-tab">选择活动分类</view>
-      <view class="m-tab">选择活动分类</view>
-      <view class="m-tab">选择活动分类</view>
-    </view>
-  </view>
+  <!-- 选择类型 -->
+  <import src="../../components/actTypes/index.wxml" />
+  <template is="actTypes" data="{{...actTypes}}" />
 
   <!-- 图片 -->
   <view class="c-picture">
