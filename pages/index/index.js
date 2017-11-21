@@ -4,7 +4,8 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 import track from '../../utils/track.js'
 var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
-var seckillEntry = require('../../components/seckill/entry/index.js')
+// var seckillEntry = require('../../components/seckill/entry/index.js')
+var seckillEntry = require('../../components/seckill/item/index.js')
 var mutulPage = require('../../utils/util.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 
@@ -112,7 +113,7 @@ mutulPage({
         self.setData({
           scrollHeight: res.windowHeight,
           windowWidth: res.windowWidth,
-          launchTop: res.windowWidth/750 * 150,
+          launchTop: res.windowWidth / 750 * 150,
           nowTime: new Date().getTime()
         });
       }
@@ -263,11 +264,11 @@ mutulPage({
     let res = e.currentTarget.dataset
     console.log(res.id)
     this.setData({
-      promoList : []
+      promoList: []
     })
     if (res.screen) {
       this.setData({
-        screen: res.name ,
+        screen: res.name,
         screenID: res.screen,
         currentID1: res.id,
         hidden: false,
@@ -275,7 +276,7 @@ mutulPage({
       })
     } else {
       this.setData({
-        sort: res.name ,
+        sort: res.name,
         sortID: res.sort,
         currentID2: res.id,
         hidden: false,
@@ -284,7 +285,7 @@ mutulPage({
     }
     this.getPromo()
   },
-  getPromo: function() {
+  getPromo: function () {
     request({
       url: '/activity/groups_new',
       data: {
@@ -327,6 +328,7 @@ mutulPage({
           currentCursorPromo: res.data.current_cursor || null,
           isNeedFillInfo: res.data.is_need_info == 1
         })
+        this.initSeckill()
       } else {
         this.setData({
           noMorePromo: true
@@ -342,18 +344,6 @@ mutulPage({
         })
       }, 300)
     })
-  },
-  countdown: function () {
-    if (this.data.seckill.filter(item => item.time > 0).length == 0) {
-      return
-    }
-    this.setData({
-      seckill: this.data.seckill.map(item => ({
-        ...item,
-        time: (item.time - 1 <= 0) ? 0 : (item.time - 1)
-      }))
-    })
-    setTimeout(() => this.countdown(), 1000)
   },
   launchPromo: function () {
     track(this, 'h5_tcpa_active_setup_click')
