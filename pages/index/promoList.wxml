@@ -11,7 +11,7 @@
   <!-- 秒杀入口 -->
 <!--   <import src="../../components/seckill/entry/index.wxml" />
   <template is="entry" data="{{seckill}}"/> -->
-  <view class="search">
+  <view class="search {{onTop ? 'ontop' : ''}}">
     <text class="tongcheng">同城活动</text>
     <view class="type">全部活动</view>
     <view class="sort">排序</view>

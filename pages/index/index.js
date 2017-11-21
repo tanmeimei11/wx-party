@@ -12,6 +12,7 @@ mutulPage({
   data: {
     qunList: [],
     promoList: [],
+    launchTop: 0,
     hidden: false,
     scrollHeight: 0,
     noMorePromo: false,
@@ -28,6 +29,9 @@ mutulPage({
     is_get_bouns: true,
     is_share: false,
     is_ending: false,
+    onTop: false,
+    screen: '',
+    sort: '',
     _gps: '',
     joinTips: [
       '1、点击下方按钮联系小助手',
@@ -82,7 +86,9 @@ mutulPage({
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
-          scrollHeight: res.windowHeight
+          scrollHeight: res.windowHeight,
+          windowWidth: res.windowWidth,
+          launchTop: res.windowWidth/750 * 150
         });
       }
     })
@@ -181,8 +187,14 @@ mutulPage({
     }, 300);
   },
   scroll: function (e) {
-    if (e.detail.scrollTop) {
-      console.log()
+    if (e.detail.scrollTop > this.data.launchTop) {
+      this.setData({
+        onTop: true
+      })
+    } else {
+      this.setData({
+        onTop: false
+      })
     }
   },
   getLocation: function (e) {
@@ -217,11 +229,13 @@ mutulPage({
     //   return
     // }
     let params = {
-      url: '/activity/groups',
+      url: '/activity/groups_new',
       data: {
         limit: 10,
         cursor: this.data.currentCursorPromo,
-        _gps: this.data._gps
+        _gps: this.data._gps,
+        screen: this.data.screen,
+        sort: this.data.sort
       }
     }
     request(params).then((res) => {

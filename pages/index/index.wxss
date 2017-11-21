@@ -3,7 +3,7 @@
 @import '../../components/seckill/entry/index.wxss';
 .list {
   width: 750rpx;
-  margin-top: 20rpx;
+  margin-top: 170rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -147,12 +147,11 @@
 .promo {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   margin: 0 auto;
   width: 670rpx;
   /* height: 582rpx;  */
-  box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.10);
   border-radius: 8rpx;
   margin-bottom: 40rpx;
   overflow: hidden;
@@ -164,11 +163,12 @@
 
 .promo-image {
   position: relative;
-  width: 670rpx;
-  height: 446rpx;
+  width: 310rpx;
+  height: 210rpx;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border-radius:8rpx;
 }
 
 .promo-status {
@@ -424,9 +424,13 @@ contact-button {
 .search{
   width: 100%;
   height: 100rpx;
-  position: relative;
+  position: absolute;
+  top: 150rpx;
+  left: 0;
   display: flex;
   justify-content: flex-end;
+  background: #fff;
+  z-index: 1;
 }
 
 .search text{
@@ -459,7 +463,11 @@ contact-button {
   background-position: center;
 }
 
-
+.search.ontop{
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 
 
 
