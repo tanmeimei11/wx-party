@@ -167,10 +167,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  border-radius:8rpx;
+  border-radius: 8rpx;
 }
 
-.promo-seckill{
+.promo-seckill {
   position: absolute;
   top: -8rpx;
   left: -8rpx;
@@ -182,10 +182,10 @@
   line-height: 44rpx;
   padding-left: 43rpx;
   background-image: linear-gradient(-90deg, #FEB382 0%, #FF4338 89%);
-  z-index:1;
+  z-index: 1;
 }
 
-.promo-seckill:before{
+.promo-seckill:before {
   content: '';
   position: absolute;
   top: 8rpx;
@@ -265,14 +265,14 @@
   position: relative;
 }
 
-.se-desc{
+.se-desc {
   padding-top: 8rpx;
   font-size: 32rpx;
   color: #ff4338;
   line-height: 36rpx;
 }
 
-.se-original{
+.se-original {
   padding: 8rpx 26rpx 0;
   font-size: 24rpx;
   color: #666;
@@ -342,14 +342,14 @@
   margin-right: 13rpx;
 }
 
-.se-end{
+.se-end {
   position: absolute;
   bottom: 5rpx;
   left: 34rpx;
   color: #fff;
   font-size: 24rpx;
   line-height: 40rpx;
-  background: rgba(58,58,58,0.50);
+  background: rgba(58, 58, 58, 0.50);
   border-radius: 4rpx;
   width: 148rpx;
   text-align: center;
@@ -504,6 +504,7 @@ contact-button {
 }
 
 .launch-promo>text {
+  display: inline-block;
   display: flex;
   flex-grow: 1;
   justify-content: center;
@@ -511,7 +512,6 @@ contact-button {
   font-size: 34rpx;
   color: #333;
   height: 100%;
-  width: 50%;
 }
 
 .launch-balance {
@@ -531,7 +531,7 @@ contact-button {
   background-position: center;
 }
 
-.launch-ending{
+.launch-ending {
   position: absolute;
   top: 94rpx;
   left: 312rpx;
@@ -543,7 +543,7 @@ contact-button {
   background-position: center;
 }
 
-.search{
+.search {
   width: 100%;
   height: 100rpx;
   position: absolute;
@@ -555,15 +555,16 @@ contact-button {
   z-index: 2;
 }
 
-.search text{
+.search text {
   position: absolute;
-  top: 0;left: 40rpx;
+  top: 0;
+  left: 40rpx;
   font-size: 34rpx;
   color: #333;
   line-height: 100rpx;
 }
 
-.search view{
+.search view {
   position: relative;
   margin-right: 80rpx;
   font-size: 28rpx;
@@ -572,7 +573,7 @@ contact-button {
   align-items: center;
 }
 
-.search view::after{
+.search view::after {
   content: '';
   position: absolute;
   top: 0;
@@ -585,26 +586,8 @@ contact-button {
   background-position: center;
 }
 
-.search.ontop{
+.search.ontop {
   position: fixed;
   top: 0;
   left: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
