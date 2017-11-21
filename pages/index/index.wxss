@@ -286,11 +286,14 @@
   font-size: 24rpx;
   color: #333;
   line-height: 20rpx;
+  position: absolute;
+  bottom: 10rpx;
+  left: 30rpx;
 }
 
 .se-content .se-surplus {
   position: absolute;
-  bottom: 5rpx;
+  bottom: 20rpx;
   left: 34rpx;
   font-size: 18rpx;
   color: #151515;
@@ -366,11 +369,13 @@
   font-size: 34rpx;
   line-height: 42rpx;
   color: #333;
+  font-weight: bold;
   letter-spacing: 0;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
+  margin-top: 2rpx;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
