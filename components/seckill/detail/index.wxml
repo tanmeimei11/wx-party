@@ -1,15 +1,12 @@
 <template name="detail">
   <view class="seckill-detail">
-    <view wx:if="{{is_seckill==0 || count == 0 || is_seckill_finish==1}}">立即报名</view>
-    <view wx:else class='seckill-detail-content'>
-      <view wx:if="{{count_down==0}}">
-        <view class="sd-price">{{price}}元秒杀</view>
-        <view class="sd-count">原价{{original}}元，剩余{{count}}个名额</view>
+    <view wx:if="{{seckillStatus == '' || seckillStatus=='over'}}">立即报名</view>
+    <view wx:else class='seckill-detail-content '>
+      <view wx:if="{{seckillStatus=='begin'}}">
+        <view class="sd-price begin">立即秒杀</view>
       </view>
-      <view wx:else>
-        <view class="sd-price">立即报名</view>
-        <wxs src="../tools.wxs" module="tools" />
-        <view class="sd-count">秒杀将在 {{tools.hour(count_down)}}:{{tools.minute(count_down)}}:{{tools.second(count_down)}} 后开始</view>
+      <view wx:if="{{seckillStatus=='ready'}}">
+        <view class="sd-price ready">开抢提醒</view>
       </view>
       <view class='sd-tips' wx:if="{{name}}">
         <view class="sdt-avatar {{gender=='男' ? 'male': 'female'}}" style="background-image:url({{avatar_url}})">
@@ -33,9 +30,27 @@
 </template>
 
 <template name="detailBar">
-  <view class="seckill-detail-bar">
-    <text class="seckill-price">100</text>
-    <text class="oeigin-price">100</text>
-
+  <view class="seckill-detail-bar {{seckillStatus}}" wx:if="!seckillStatus">
+    <view class="seckill-bar-inner" wx:if="{{seckillStatus!='over'}}">
+      <text class="seckill-price">¥{{price}}</text>
+      <text class="origin-price">原价:{{original}}</text>
+      <wxs src="../../../utils/tools.wxs" module="tools" />
+      <view class="se-time" wx:if="{{seckillStatus=='ready'}}">
+        <text>{{tools.hour(count_down)}}</text>:
+        <text>{{tools.minute(count_down)}}</text>:
+        <text>{{tools.second(count_down)}}</text>后开抢
+      </view>
+      <view class="begin-time" wx:if="{{seckillStatus=='begin'}}">
+        <text>秒杀进行中</text>
+        <text>仅剩{{count}}个名额</text>
+      </view>
+    </view>
+    <view class="over-time" wx:else>
+      <view class="left">
+        <text>本次秒杀已结束</text>
+        <text>点击“设置提醒”，不错过下次秒杀活动</text>
+      </view>
+      <view class="float-right">设置提醒</view>
+    </view>
   </view>
 </template>

@@ -19,13 +19,13 @@
                 <text class='se-price'>¥{{item.price}}</text>
                 <text class='se-original'>原价 ¥{{item.original}}</text>
               </view>
-              <wxs src="../tools.wxs" module="tools" />
-              <view wx:if="{{item.time > 0}}" class="se-time">
+              <!-- <wxs src="../tools.wxs" module="tools" /> -->
+              <!-- <view wx:if="{{item.time > 0}}" class="se-time">
                 <text>{{tools.hour(item.time)}}</text>:
                 <text>{{tools.minute(item.time)}}</text>:
                 <text>{{tools.second(item.time)}}</text>后开抢
-              </view>
-              <view wx:else class='se-surplus'>
+              </view> -->
+              <view class='se-surplus'>
                 <view class='ses-count'>剩余名额 {{item.total-item.people}}位</view>
                 <view class='ses-progress'>
                   <view class='ses-progress-done' style="width:{{item.people/item.total*100}}%;"></view>

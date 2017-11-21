@@ -5,7 +5,7 @@ module.exports = {
     "succ": true,
     "data": {
       "book_charge": "19", //鸽子费
-      "actCharge": "59", //活动费用
+      "act_charge": "59", //活动费用
       "bounty_deduct": "21.11", //奖励金抵扣
       "bountySum": "21.11", //奖励金余额
       "final_cost": "37.89", //最终要付的钱
