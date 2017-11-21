@@ -50,7 +50,7 @@
         <text>本次秒杀已结束</text>
         <text>点击“设置提醒”，不错过下次秒杀活动</text>
       </view>
-      <view class="float-right">设置提醒</view>
+      <view class="float-right {{isSet}}">设置提醒</view>
     </view>
   </view>
 </template>

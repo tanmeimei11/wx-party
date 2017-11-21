@@ -2,6 +2,7 @@ import {
   DOMAIN
 } from '../utils/config.js'
 module.exports = {
+  [`${DOMAIN}/tmpl/formid/submit`]: "formid",
   [`${DOMAIN}/party/login`]: "login",
   [`${DOMAIN}/activity/detail`]: "detail",
   [`${DOMAIN}/citysocial/groups`]: "qunList",
