@@ -32,6 +32,13 @@
         </view>
       </swiper>
 
+      <!-- 秒杀导航 -->
+      <view class="c-seckill">
+        <import src="../../components/seckill/detail/index.wxml" />
+        <template is="detailBar" data="{{...seckill}}" />
+      </view>
+
+
       <view class="c-infos">
         <!-- 地点 时间 -->
         <view class="s-line s-header">

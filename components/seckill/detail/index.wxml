@@ -31,3 +31,10 @@
     </view>
   </view>
 </template>
+
+<template name="detailBar">
+  <view class="seckill-detail-bar">
+    <text>100</text>
+    <text>100</text>
+  </view>
+</template>
