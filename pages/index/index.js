@@ -11,6 +11,7 @@ var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry],
   data: {
+    seckill: [],
     qunList: [],
     promoList: [],
     launchTop: 0,
@@ -343,18 +344,16 @@ mutulPage({
     })
   },
   countdown: function () {
-    console.log(123)
-    // console.log(this.data.promoList.filter(item => item.count_down > 0).length)
-    // if (this.data.promoList.filter(item => item.count_down > 0).length == 0) {
-    //   return
-    // }
-    // this.setData({
-    //   promoList: this.data.promoList.map(item => ({
-    //     ...item,
-    //     count_down: (item.count_down - 1 <= 0) ? 0 : (item.count_down - 1)
-    //   }))
-    // })
-    // setTimeout(() => this.countdown(), 1000)
+    if (this.data.seckill.filter(item => item.time > 0).length == 0) {
+      return
+    }
+    this.setData({
+      seckill: this.data.seckill.map(item => ({
+        ...item,
+        time: (item.time - 1 <= 0) ? 0 : (item.time - 1)
+      }))
+    })
+    setTimeout(() => this.countdown(), 1000)
   },
   launchPromo: function () {
     track(this, 'h5_tcpa_active_setup_click')

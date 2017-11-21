@@ -646,6 +646,8 @@ contact-button {
 }
 
 .notfindpromo{
+  margin-bottom: 122rpx;
+  position: relative;
   height: 450rpx;
   box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.03);
 }
@@ -697,6 +699,7 @@ contact-button {
   content: '-';
   color: #ff4338;
   font-size: 22rpx;
+  margin: 10rpx
 }
 
 
