@@ -298,11 +298,10 @@ mutulPage({
     }).then((res) => {
       if (res.succ && res.data && res.data.list) {
         // console.log(res.data)
-        if (!res.data.list.length) {
-          this.setData({
-            noMorePromo: true,
-          })
-        }
+        this.setData({
+          noMorePromo: res.data.list.length ? false : true,
+          notfindpromo: false
+        })
         if (res.data.is_empty) {
           this.setData({
             notfindpromo: true,
