@@ -6,7 +6,7 @@
         <view class="sd-price begin">立即秒杀</view>
       </view>
       <view wx:if="{{seckillStatus=='ready'}}">
-        <view class="sd-price ready">开抢提醒</view>
+        <view class="sd-price ready" bindtap="setSeckillWarnBefore">开抢提醒</view>
       </view>
       <view class='sd-tips' wx:if="{{name}}">
         <view class="sdt-avatar {{gender=='男' ? 'male': 'female'}}" style="background-image:url({{avatar_url}})">
@@ -50,7 +50,7 @@
         <text>本次秒杀已结束</text>
         <text>点击“设置提醒”，不错过下次秒杀活动</text>
       </view>
-      <view class="float-right {{isSet}}">设置提醒</view>
+      <view class="float-right {{isSetWarn ?'warn' :''}}" bindtap="setSeckillWarn">{{isSetWarn? '已设置':'设置提醒'}}</view>
     </view>
   </view>
 </template>

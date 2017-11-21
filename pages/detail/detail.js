@@ -454,6 +454,24 @@ mutulPage({
       ctx.draw()
     })
   },
+  getImgFromBack() {
+    request({
+      url: '/activity/detail_img',
+      id: this.data.id
+    }).then(res => {
+      if (res.succ && res.data) {
+        console.log(res.data)
+        this.saveImage(res.data)
+      }
+    }).catch(() => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '当前微信版本不支持, 请截屏分享',
+        image: '../../images/toast-fail.png',
+        duration: 2000
+      })
+    })
+  },
   compose: function () {
     wx.showLoading({
       title: '正在生成图片...',
@@ -490,22 +508,11 @@ mutulPage({
               wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas'
               }).then(res => {
-                console.log('---------------保存图片－－－－－－')
                 this.saveImage(res.tempFilePath)
               }, () => {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '当前微信版本不支持, 请截屏分享',
-                  image: '../../images/toast-fail.png',
-                  duration: 2000
-                })
+                this.getImgFromBack()
               }).catch(error => {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '当前微信版本不支持, 请截屏分享',
-                  image: '../../images/toast-fail.png',
-                  duration: 2000
-                })
+                this.getImgFromBack()
               })
             }, 100)
           })
@@ -518,21 +525,30 @@ mutulPage({
         })
       })
   },
-  saveImage: function (file) {
+  saveImage: function (url) {
     wxPromisify(wx.authorize)({
       scope: 'scope.writePhotosAlbum'
     }).then(() => {
       wx.hideLoading()
-      wxPromisify(wx.saveImageToPhotosAlbum)({
-          filePath: file
+      var prePromise = Promise.resolve({
+        path: url
+      })
+      if (/^http/.test(url)) {
+        prePromise = wxPromisify(wx.getImageInfo)({
+          src: url
         })
-        .then(res => {
-          wx.showToast({
-            title: '图片已保存到相册',
-            duration: 2000
-          })
+      }
+      return prePromise.then(res => {
+        return wxPromisify(wx.saveImageToPhotosAlbum)({
+          filePath: res.path
         })
-    }, () => {
+      })
+    }).then(res => {
+      wx.showToast({
+        title: '图片已保存到相册',
+        duration: 2000
+      })
+    }).catch(e => {
       wx.showToast({
         title: '保存失败',
         image: '../../images/toast-fail.png',
