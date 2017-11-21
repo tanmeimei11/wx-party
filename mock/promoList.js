@@ -8,19 +8,19 @@ module.exports = Mock.mock({
       "screen_list":[
           {
               "name":"全部",
-              "screen":0
+              "screen":123123
           },
           {
               "name":"户外",
-              "screen":1
+              "screen":1232123
           },
           {
               "name":"户外",
-              "screen":1
+              "screen":1232123
           },
           {
               "name":"户外",
-              "screen":1
+              "screen":1232123
           }
       ],
       "sort_list":[

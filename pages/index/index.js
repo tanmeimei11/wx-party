@@ -31,14 +31,19 @@ mutulPage({
     is_share: false,
     is_ending: false,
     onTop: false,
-    screen: '全部活动',
+    screen: '全部',
+    screenID: '',
     screenList: [],
     screenOpen: false,
     sort: '排序',
+    sortID: '',
     sortList: [],
     sortOpen: false,
     _gps: '',
+    currentID1: '',
+    currentID2: '',
     nowTime: 0,
+    notfindpromo: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -235,7 +240,7 @@ mutulPage({
     })
   },
   loadMorePromo: function () {
-    if (this.data.loadingMorePromo) {
+    if (this.data.loadingMorePromo || this.data.notfindpromo) {
       return
     }
     this.data.loadingMorePromo = true
@@ -247,26 +252,66 @@ mutulPage({
     //   })
     //   return
     // }
-    let params = {
+    this.getPromo()
+  },
+  reselect: function (e) {
+    if (this.data.loadingMorePromo) {
+      return
+    }
+    this.data.loadingMorePromo = true
+    let res = e.currentTarget.dataset
+    console.log(res.id)
+    this.setData({
+      promoList : []
+    })
+    if (res.screen) {
+      this.setData({
+        screen: res.name ,
+        screenID: res.screen,
+        currentID1: res.id,
+        hidden: false,
+        currentCursorPromo: 0
+      })
+    } else {
+      this.setData({
+        sort: res.name ,
+        sortID: res.sort,
+        currentID2: res.id,
+        hidden: false,
+        currentCursorPromo: 0
+      })
+    }
+    this.getPromo()
+  },
+  getPromo: function() {
+    request({
       url: '/activity/groups_new',
       data: {
         limit: 10,
         cursor: this.data.currentCursorPromo,
         _gps: this.data._gps,
-        screen: this.data.screen,
-        sort: this.data.sort
+        screen: this.data.screenID,
+        sort: this.data.sortID
       }
-    }
-    request(params).then((res) => {
+    }).then((res) => {
       if (res.succ && res.data && res.data.list) {
         // console.log(res.data)
         if (!res.data.list.length) {
           this.setData({
-            noMorePromo: true
+            noMorePromo: true,
           })
         }
+        if (res.data.is_empty) {
+          this.setData({
+            notfindpromo: true,
+            currentCursorPromo: 0,
+            screenID: '',
+            sortID: ''
+          })
+          this.getPromo()
+        }
         for (let i = 0; i < res.data.list.length; i++) {
-          // res.data.list[i].end_time = null
+          res.data.list[i].end_time = null
           if (res.data.list[i].start_time && res.data.list[i].end_time) {
             res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
           } else {
@@ -290,63 +335,12 @@ mutulPage({
       let self = this
       setTimeout(function () {
         self.setData({
+          screenOpen: false,
+          sortOpen: false,
           hidden: true
         })
       }, 300)
     })
-  },
-  reselect: function (e) {
-    console.log(e)
-    let params = {
-      url: '/activity/groups_new',
-      data: {
-        limit: 10,
-        cursor: '',
-        _gps: this.data._gps,
-        screen: this.data.screen,
-        sort: this.data.sort
-      }
-    }
-    // request(params).then((res) => {
-    //   if (res.succ && res.data && res.data.list) {
-    //     // console.log(res.data)
-    //     if (!res.data.list.length) {
-    //       this.setData({
-    //         noMorePromo: true
-    //       })
-    //     }
-    //     for (let i = 0; i < res.data.list.length; i++) {
-    //       res.data.list[i].end_time = null
-    //       if (res.data.list[i].start_time && res.data.list[i].end_time) {
-    //         res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
-    //       } else {
-    //         res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time), true)
-    //       }
-    //     }
-    //     this.setData({
-    //       screenList: res.data.screen_list,
-    //       sortList: res.data.sort_list,
-    //       promoList: this.data.promoList.concat(res.data.list),
-    //       promoListLoaded: true,
-    //       currentCursorPromo: res.data.current_cursor || null,
-    //       isNeedFillInfo: res.data.is_need_info == 1
-    //     })
-    //   } else {
-    //     this.setData({
-    //       noMorePromo: true
-    //     })
-    //   }
-    //   this.data.loadingMorePromo = false
-    //   let self = this
-    //   setTimeout(function () {
-    //     self.setData({
-    //       hidden: true
-    //     })
-    //   }, 300)
-    // })
-  },
-  getPromo: function() {
-
   },
   countdown: function () {
     console.log(123)

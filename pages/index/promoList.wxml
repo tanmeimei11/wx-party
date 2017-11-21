@@ -9,29 +9,35 @@
     <!-- <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view> -->
     <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
   </view>
+  <view class="mainBg" wx:if="{{currentID1 == '' && currentID2 == '' }}"></view>
   <!-- 秒杀入口 -->
   <!--   <import src="../../components/seckill/entry/index.wxml" />
   <template is="entry" data="{{seckill}}"/> -->
   <view class="search {{onTop ? 'ontop' : ''}}">
     <text class="tongcheng">同城活动</text>
-    <view class="type {{screenOpen ? 'on' : ''}}" bindtap="openScreen">{{screen}}</view>
-    <view class="sort {{sortOpen ? 'on' : ''}}" bindtap="openSort">{{sort}}</view>
+    <view class="type {{screenOpen ? 'on' : ''}} {{ currentID1 != 0 ? 'checked' : ''}}" bindtap="openScreen">{{screen}}</view>
+    <view class="sort {{sortOpen ? 'on' : ''}} {{ currentID2 != 0 ? 'checked' : ''}}" bindtap="openSort">{{sort}}</view>
     <view class="screen-list" wx:if="{{screenOpen}}">
-      <block wx:for="{{screenList}}" wx:key="num">
-        <view class="screen-item">
-          <view bindtap="reselect" class="screen-txt">{{item.name}}</view>
+      <block wx:for="{{screenList}}" wx:key="id" wx:for-index="i">
+        <view class="screen-item {{currentID1 == i ? 'active' : ''}}" bindtap="reselect" data-screen="{{item.screen}}" data-name="{{item.name}}" data-id="{{i}}">
+          <view class="screen-txt">{{item.name}}</view>
         </view>
       </block>
     </view>
     <view class="sort-list {{sortOpen ? 'on' : ''}}" wx:if="{{sortOpen}}">
-      <block wx:for="{{sortList}}" wx:key="num">
-        <view class="sort-item">
-          <view bindtap="reselect" class="sort-txt">{{item.name}}</view>
+      <block wx:for="{{sortList}}" wx:key="id" wx:for-index="i">
+        <view class="sort-item {{currentID2 == i ? 'active' : ''}}" bindtap="reselect" data-sort="{{item.sort}}" data-name="{{item.name}}"  data-id="{{i}}">
+          <view class="sort-txt">{{item.name}}</view>
         </view>
       </block>
     </view>
   </view>
   <view class="list">
+    <view class="notfindpromo" wx:if="{{notfindpromo}}">
+      <view class="notfindpromoimg"></view>
+      <text>啊哦，没有找到合适的活动</text>
+      <view class="notfindpromotitle">看看本周其他活动</view>
+    </view>
     <block wx:for="{{promoList}}" wx:key="act_id">
       <view class="promo {{ item.act_status == '1'? 'done' : ''}}" index="{{index}}" id="{{item.act_id}}" bindtap='jumpToDetail'
         data-id="{{ item.act_id }}">
@@ -41,14 +47,14 @@
         </view>
         <view class="promo-joiners">
           <text class="promo-name">{{item.act_name}}</text>
-          <view class="se-content">
+          <view class="se-content" wx:if="{{item.is_seckill}}">
             <view class='se-desc'>
               <text class='se-price'>¥{{item.amount}}</text>
               <text class='se-original'>原价 ¥{{item.charge}}</text>
             </view>
             <import src="../../components/seckill/item/index.wxml" />
             <template is="item" data="{{item}}" wx:if="{{item.count_down > 0}}" class="se-time" />
-            <view class="se-end" wx:if="{{item.end_time < nowTime}}">
+            <view class="se-end" wx:if="{{item.num == 0}}">
               <view class="se-end-text">秒杀已结束</view>
             </view>
             <view wx:if="{{!item.count_down && item.sum_num - item.num > 0}}" class='se-surplus'>
@@ -59,11 +65,10 @@
             </view>
           </view>
           <view class="promo-info" wx:if="{{!item.is_seckill}}">
-            <!-- <image class="icon-promo-time" src="/images/promo-time.png"></image> -->
             <text class="promo-time">{{item.time}}</text>
-            <!-- <image class="icon-promo-area" src="/images/promo-area.png"></image> -->
-            <text class="promo-area">{{item.city_district}}
-              <text wx:if="{{item.distance}}"> |{{item.distance}}</text>
+            <text class="promo-area">
+              <text>{{item.city_district}}</text>
+              <text wx:if="{{item.distance}}"> |  {{item.distance}}</text>
             </text>
           </view>
         </view>
