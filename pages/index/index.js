@@ -7,6 +7,7 @@ var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
 var seckillEntry = require('../../components/seckill/entry/index.js')
 var mutulPage = require('../../utils/util.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
+
 mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry],
   data: {
@@ -33,6 +34,7 @@ mutulPage({
     screen: '',
     sort: '',
     _gps: '',
+    nowTime: 0,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -87,7 +89,8 @@ mutulPage({
         self.setData({
           scrollHeight: res.windowHeight,
           windowWidth: res.windowWidth,
-          launchTop: res.windowWidth/750 * 150
+          launchTop: res.windowWidth/750 * 150,
+          nowTime: new Date().getTime()
         });
       }
     })
@@ -247,8 +250,9 @@ mutulPage({
           })
         }
         for (let i = 0; i < res.data.list.length; i++) {
-          res.data.list[i].end_time = null
+          // res.data.list[i].end_time = null
           if (res.data.list[i].start_time && res.data.list[i].end_time) {
+            console.log(res.data.list[i].end_time, new Date().getTime())
             res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
           } else {
             res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time), true)

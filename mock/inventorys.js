@@ -9,8 +9,8 @@ module.exports = {
       "act_status": "1",//0：未开始 //1：已结束
       "act_url":["http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg"],
       "city_district": "杭州 城西",
-      "start_time": 1506787200000,
-      "end_time": 1509379200000,
+      "start_time": 1611248859879,
+      "end_time": 1911249782631,
       "num":5,
       "sum_num": 10, 
       "amount": 10.00,

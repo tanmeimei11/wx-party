@@ -27,12 +27,12 @@ module.exports = Mock.mock({
       ],
       'list|10': [{
             "act_id": "10928",
-            "act_name": "龙井户外徒步",
-            "act_status": "1",//0:未开始 //1:已结束
+            "act_name": "龙井户外徒步龙井户外徒步龙井户外徒步龙井户外徒步",
+            "act_status": "0",//0:未开始 //1:已结束
             "act_url": ["http://inimg05.jiuyan.info/in/2017/07/08/1FA80AEF-1F57-27FD-FB72-D66207D45228-1xLEKMvL.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!"],
             "city_district": "杭州 城西",
-            "start_time": 1506787200000,
-            "end_time": 1509379200000,
+            "start_time": 1611248859879,
+            "end_time": 1911249782631,
             "num":5, //剩余数量,
             "sum_num":10, //总量,
             "amount":10.00, //秒杀价,
