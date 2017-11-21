@@ -560,16 +560,19 @@ contact-button {
   z-index: 2;
 }
 
-.search text {
+
+.search>text{
   position: absolute;
   top: 0;
   left: 40rpx;
   font-size: 34rpx;
   color: #333;
   line-height: 100rpx;
+  font-weight: bold;
 }
 
-.search view {
+
+.search .type,.search .sort{
   position: relative;
   margin-right: 80rpx;
   font-size: 28rpx;
@@ -578,7 +581,8 @@ contact-button {
   align-items: center;
 }
 
-.search view::after {
+
+.search>view::after{
   content: '';
   position: absolute;
   top: 0;
@@ -591,8 +595,48 @@ contact-button {
   background-position: center;
 }
 
-.search.ontop {
+
+.search .type.on,.search .sort.on{
+  color: #333;
+  font-weight: bold;
+}
+
+.search .type.on::after,.search .sort.on::after{
+  background-image: url('https://inimg02.jiuyan.info/in/2017/11/21/1FF4D11F-91C7-D564-3600-5393F92C41D7.png'); 
+}
+
+.search.ontop{
   position: fixed;
   top: 0;
   left: 0;
 }
+
+.screen-list,.sort-list{
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.screen-list .screen-item,.sort-list .sort-item{
+  width: 100%;
+  height: 100rpx;
+  box-shadow: inset 0 -1rpx 0 0 #E0E0E0;
+  line-height: 100rpx;
+  margin-left: 42rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+

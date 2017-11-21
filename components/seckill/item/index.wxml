@@ -1,8 +1,8 @@
 <template name="item">
-  <!-- <wxs src="../tools.wxs" module="tools" />
+  <wxs src="../../../utils/tools.wxs" module="tools" />
   <view class="se-time">
-    <text>{{tools.hour(item.start_time)}}</text>:
-    <text>{{tools.minute(item.start_time)}}</text>:
-    <text>{{tools.second(item.start_time)}}</text>后开抢
-  </view> -->
+    <text>{{tools.hour(item.count_down)}}</text>:
+    <text>{{tools.minute(item.count_down)}}</text>:
+    <text>{{tools.second(item.count_down)}}</text>后开抢
+  </view>
 </template>

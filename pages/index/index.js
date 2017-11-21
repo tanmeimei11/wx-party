@@ -31,8 +31,12 @@ mutulPage({
     is_share: false,
     is_ending: false,
     onTop: false,
-    screen: '',
-    sort: '',
+    screen: '全部活动',
+    screenList: [],
+    screenOpen: false,
+    sort: '排序',
+    sortList: [],
+    sortOpen: false,
     _gps: '',
     nowTime: 0,
     joinTips: [
@@ -68,6 +72,18 @@ mutulPage({
       desc: 'in同城趴本周活动报名中，点击查看',
       path: '/pages/index/index'
     }
+  },
+  openScreen: function () {
+    this.setData({
+      screenOpen: !this.data.screenOpen,
+      sortOpen: false
+    })
+  },
+  openSort: function () {
+    this.setData({
+      sortOpen: !this.data.sortOpen,
+      screenOpen: false
+    })
   },
   jumpToDetail: function (e) {
     if (e.currentTarget.dataset.id) {
@@ -158,7 +174,7 @@ mutulPage({
         })
     }
     this.loadMorePromo()
-    this.loadSeckill()
+    // this.loadSeckill()
   },
   loadBalance: function () {
     return request({
@@ -258,6 +274,8 @@ mutulPage({
           }
         }
         this.setData({
+          screenList: res.data.screen_list,
+          sortList: res.data.sort_list,
           promoList: this.data.promoList.concat(res.data.list),
           promoListLoaded: true,
           currentCursorPromo: res.data.current_cursor || null,
@@ -276,6 +294,73 @@ mutulPage({
         })
       }, 300)
     })
+  },
+  reselect: function (e) {
+    console.log(e)
+    let params = {
+      url: '/activity/groups_new',
+      data: {
+        limit: 10,
+        cursor: '',
+        _gps: this.data._gps,
+        screen: this.data.screen,
+        sort: this.data.sort
+      }
+    }
+    // request(params).then((res) => {
+    //   if (res.succ && res.data && res.data.list) {
+    //     // console.log(res.data)
+    //     if (!res.data.list.length) {
+    //       this.setData({
+    //         noMorePromo: true
+    //       })
+    //     }
+    //     for (let i = 0; i < res.data.list.length; i++) {
+    //       res.data.list[i].end_time = null
+    //       if (res.data.list[i].start_time && res.data.list[i].end_time) {
+    //         res.data.list[i].time = util.formatTimeToTime(res.data.list[i].start_time, res.data.list[i].end_time)
+    //       } else {
+    //         res.data.list[i].time = util.formatTime(new Date(res.data.list[i].start_time), true)
+    //       }
+    //     }
+    //     this.setData({
+    //       screenList: res.data.screen_list,
+    //       sortList: res.data.sort_list,
+    //       promoList: this.data.promoList.concat(res.data.list),
+    //       promoListLoaded: true,
+    //       currentCursorPromo: res.data.current_cursor || null,
+    //       isNeedFillInfo: res.data.is_need_info == 1
+    //     })
+    //   } else {
+    //     this.setData({
+    //       noMorePromo: true
+    //     })
+    //   }
+    //   this.data.loadingMorePromo = false
+    //   let self = this
+    //   setTimeout(function () {
+    //     self.setData({
+    //       hidden: true
+    //     })
+    //   }, 300)
+    // })
+  },
+  getPromo: function() {
+
+  },
+  countdown: function () {
+    console.log(123)
+    // console.log(this.data.promoList.filter(item => item.count_down > 0).length)
+    // if (this.data.promoList.filter(item => item.count_down > 0).length == 0) {
+    //   return
+    // }
+    // this.setData({
+    //   promoList: this.data.promoList.map(item => ({
+    //     ...item,
+    //     count_down: (item.count_down - 1 <= 0) ? 0 : (item.count_down - 1)
+    //   }))
+    // })
+    // setTimeout(() => this.countdown(), 1000)
   },
   launchPromo: function () {
     track(this, 'h5_tcpa_active_setup_click')
