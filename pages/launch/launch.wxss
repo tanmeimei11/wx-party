@@ -1,5 +1,6 @@
 /**launch.wxss**/
 
+@import '../../components/actTypes/index.wxss';
 .container {
   text-align: left;
   width: 100%;
@@ -28,6 +29,10 @@
 
 .s-pic-wrap {
   font-size: 0;
+}
+
+.s-tab-wrap {
+  font-size: 0rpx
 }
 
 .s-pic-wrap .pic {

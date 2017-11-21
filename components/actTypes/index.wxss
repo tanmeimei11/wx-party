@@ -1,0 +1,16 @@
+.s-tab-wrap .m-tab {
+  margin-top: 24rpx;
+  margin-right: 24rpx;
+  display: inline-block;
+  padding: 16rpx 20rpx;
+  font-size: 28rpx;
+  color: #333333;
+  background-color: rgba(246, 246, 246, 0.5);
+  border: 1rpx solid #E0E0E0;
+  border-radius: 6rpx;
+}
+
+.s-tab-wrap .m-tab.active {
+  color: #FF4338;
+  border-color: #FF4338;
+}

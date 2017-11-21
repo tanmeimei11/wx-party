@@ -3,6 +3,10 @@
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;" />
 
+  <!-- 选择类型 -->
+  <import src="../../components/actTypes/index.wxml" />
+  <template is="actTypes" data="{{...actTypes}}" />
+
   <!-- 图片 -->
   <view class="c-picture">
     <view class="s-title">活动介绍图片(最多9张)</view>
@@ -14,7 +18,8 @@
 
   <!-- 活动名称 -->
   <view class="c-line">
-    <input placeholder="{{name}}" type="text" data-type="name" bindinput="getText" placeholder-style="color:#B0B0B0" />
+    <input placeholder="{{perLine.name.placeHolder}}" type="text" data-type="name" bindinput="getText" placeholder-style="color:#B0B0B0"
+    />
   </view>
 
   <!-- 活动地点 -->
@@ -29,28 +34,15 @@
 
   <!-- 门牌号，如1幢1单元402 -->
   <view class="c-line">
-    <input placeholder="{{door}}" type="text" data-type="door" bindinput="getText" placeholder-style="color:#B0B0B0" />
+    <input placeholder="{{perLine.door.placeHolder}}" type="text" data-type="door" bindinput="getText" placeholder-style="color:#B0B0B0"
+    />
   </view>
 
-  <!-- 省市选择 -->
-  <!-- <view class="c-line">
-    <view class="triangle"></view>
-    <picker mode="region" data-type="addr" bindchange="changeAddr" value="{{initAddrVal}}" custom-item="{{customItem}}" class="{{addr!=originText.addr ? 'active':''}}">
-      <view class="picker">
-        {{addr}}
-      </view>
-    </picker>
-  </view> -->
-
-  <!-- 详细地址 -->
-  <!-- <view class="c-line">
-    <input placeholder="{{detailAddr}}" data-type="detailAddr" bindinput="getText" placeholder-style="color:#B0B0B0" />
-  </view> -->
-
   <!-- 价格 -->
-  <view class="c-line {{(amount != originText.amount && amount !=0) ? 'money-line' : ''}}">
+  <view class="c-line {{(amount  && amount !=0) ? 'money-line' : ''}}">
     <view class="money-icon"></view>
-    <input type="digit" placeholder="{{amount}}" data-type="amount" bindinput="getText" placeholder-style="color:#B0B0B0" />
+    <input type="digit" placeholder="{{perLine.amount.placeHolder}}" data-type="amount" bindinput="getText" placeholder-style="color:#B0B0B0"
+    />
   </view>
 
 
@@ -58,7 +50,7 @@
   <view class="c-line">
     <view class="triangle"></view>
     <picker mode="multiSelector" data-type="begin" bindchange="changeTime" bindcolumnchange="bindMultiPickerColumnChange" value="{{beginIndex}}"
-      range="{{multiArray}}" class="{{beginText!=originText.beginText ? 'active':''}}">
+      range="{{multiArray}}" class="{{beginText!=perLine.begin.placeHolder ? 'active':''}}">
       <view class="picker">
         {{beginText}}
       </view>
@@ -69,7 +61,7 @@
   <view class="c-line">
     <view class="triangle"></view>
     <picker mode="multiSelector" data-type="end" bindchange="changeTime" bindcolumnchange="bindMultiPickerColumnChange" value="{{endIndex}}"
-      range="{{multiArray}}" class="{{endText!=originText.endText ? 'active':''}}">
+      range="{{multiArray}}" class="{{endText!=perLine.end.placeHolder ? 'active':''}}">
       <view class="picker">
         {{endText}}
       </view>
@@ -78,13 +70,21 @@
 
   <!-- 活动详细介绍以及其他要点 -->
   <view class="c-textarea">
-    <textarea placeholder="{{detailDesc}}" maxlength="-1" auto-height placeholder-style="color:#B0B0B0" data-type="detailDesc"
+    <textarea placeholder="{{perLine.detailDesc.placeHolder}}" maxlength="-1" auto-height placeholder-style="color:#B0B0B0" data-type="detailDesc"
       bindinput="getText" />
+  </view>
+
+  <!-- 手机号 -->
+  <view class="c-line">
+    <view class="money-icon"></view>
+    <input type="number" placeholder="{{perLine.phone.placeHolder}}" data-type="phone" maxlength="11" bindinput="getText" placeholder-style="color:#B0B0B0"
+    />
   </view>
 
   <!-- 微信号输入 -->
   <view class="c-line">
-    <input placeholder="{{wechat}}" type="text" data-type="wechat" bindinput="getText" placeholder-style="color:#B0B0B0" />
+    <input placeholder="{{perLine.wechat.placeHolder}}" type="text" data-type="wechat" bindinput="getText" placeholder-style="color:#B0B0B0"
+    />
   </view>
 
   <view class="c-tips">*微信号不会对其他用户显示</view>

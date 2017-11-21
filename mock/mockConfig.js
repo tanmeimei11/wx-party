@@ -1,4 +1,6 @@
-import { DOMAIN } from '../utils/config.js'
+import {
+  DOMAIN
+} from '../utils/config.js'
 module.exports = {
   [`${DOMAIN}/party/login`]: "login",
   [`${DOMAIN}/activity/detail`]: "detail",
@@ -15,5 +17,6 @@ module.exports = {
   [`${DOMAIN}/activity/inventorys`]: "inventorys",
   [`${DOMAIN}/activity/share_info`]: "share_info",
   [`${DOMAIN}/bounty/get`]: "get",
-  [`${DOMAIN}/account/balance`]: "balance"
+  [`${DOMAIN}/account/balance`]: "balance",
+  [`${DOMAIN}/activity/act_type`]: "actType"
 }

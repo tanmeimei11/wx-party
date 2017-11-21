@@ -356,7 +356,9 @@ mutulPage({
         mapAddress: data.wx_address,
         mapLatitude: data.latitude,
         mapLongitude: data.longitude,
-        door: data.house_no
+        door: data.house_no,
+        phone: data.phone || '18768146254'
+        // phone: ''
       },
       tempIntro: this.getNewDesc(data.act_desc),
       tempLessIntro: this.getLenStr(data.act_desc),
@@ -371,8 +373,7 @@ mutulPage({
       isNeedInfo: data.is_need_info,
       promoMoney: data.charge || 0,
       promoDelayMoney: data.booking_charge || 0,
-      otherPromoNum: data.other_act_count,
-      phone: data.data || '18768146254'
+      otherPromoNum: data.other_act_count
     })
     // 设置秒杀信息
     this.setSeckillInfo(data)
@@ -573,7 +574,7 @@ mutulPage({
   },
   makePhoneCall: function () {
     wx.makePhoneCall({
-      phoneNumber: this.data.phone
+      phoneNumber: this.data.infos.phone
     })
   }
 })
