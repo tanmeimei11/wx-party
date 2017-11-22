@@ -5,7 +5,7 @@
       <view class="s-close" bindtap="closeGoldMoneyModal"></view>
       <view class="s-avatar" style="background-image:url({{avatarUrl}})"></view>
       <view class="s-title">
-        <view class="t1">好友扫码即可帮你升值鼓励金 </view>
+        <view class="t1">好友扫码即可帮你升值,最高¥100 </view>
         <view class="t2">扫码同时好友领取￥5鼓励金</view>
       </view>
       <view class="s-qr" style="background-image:url('https://inimg07.jiuyan.info/in/2017/11/17/ED101F8D-E7E1-9915-2ADF-4D30C6A2165A.jpg')"></view>

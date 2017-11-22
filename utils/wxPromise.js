@@ -27,7 +27,8 @@ var wxPromisify = fn => {
 }
 
 var request = option => {
-  wxCheckLogin(option).then((token) => {
+  console.log('wxCheckLoginCallback')
+  wxCheckLoginCallback(option, function (token) {
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
     if (token) {
       console.log('----get token----', token);
@@ -54,6 +55,33 @@ var request = option => {
       wx.request(option)
     }
   })
+  // wxCheckLogin(option).then((token) => {
+  //   // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
+  //   if (token) {
+  //     console.log('----get token----', token);
+  //     !option.data && (option.data = {});
+  //     !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
+  //     option.header = {
+  //       'Cookie': `tg_auth=${token};_v=${config._v}`
+  //     };
+  //     // 支付网关必须加上必要字段_token
+  //     if (/payment\/signature/.test(option.url)) {
+  //       option.data._token = token
+  //     }
+  //     (option.method != 'POST') && (option.data.privateKey = token);
+  //     // 请求带上来源
+  //     option.data.from = wx.getStorageSync('from')
+  //     if (isMock) {
+  //       // console.log('mock request', option.url, option.data)
+  //       // console.log('mock responce', require('../mock/' + mockConfig[option.url]))
+  //       option.success(require('../mock/' + mockConfig[option.url]))
+  //       return
+  //     }
+  //     console.log('----start-request----')
+  //     console.log(option)
+  //     wx.request(option)
+  //   }
+  // })
 }
 
 /**
@@ -63,14 +91,38 @@ var request = option => {
 var wxCheckLogin = option => {
   console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
-    .then((res) => {
+    .then(() => {
       let _token = wx.getStorageSync('token')
-      console.log('------会话存在----token没有----重新登陆－－－－')
-      return _token ? _token : wxLogin(option)
+      console.log('token', _token)
+      if (!_token) {
+        console.log('------会话存在----token没有----重新登陆－－－－')
+        wxLogin(option)
+      }
+      return _token ? _token : ''
     }, () => {
       console.log('------会话失效----重新登陆－－－－')
       wxLogin(option)
     })
+}
+
+var wxCheckLoginCallback = (option, callback) => {
+  console.log('-------checkSession------')
+  wx.checkSession({
+    success: function () {
+      let _token = wx.getStorageSync('token')
+      console.log('token', _token)
+      if (!_token) {
+        console.log('------会话存在----token没有----重新登陆－－－－')
+        wxLogin(option)
+      } else {
+        callback(_token)
+      }
+    },
+    fail: function () {
+      console.log('------会话失效----重新登陆－－－－')
+      wxLogin(option)
+    }
+  })
 }
 
 
@@ -91,8 +143,11 @@ var wxLogin = option => {
   // 搜集登录的request 这样防止请求很多次code 重复多次登录
   loginCollectOptions.push(option)
   if (isLoginIng) {
-    return Promise.reject()
+    console.log('----正在登陆－－返回－－')
+    // return Promise.reject()
+    return false
   } else {
+    console.log('----开始登陆－－－－－')
     isLoginIng = true
   }
 
@@ -100,12 +155,14 @@ var wxLogin = option => {
   return wxPromisify(wx.login)()
     .then(res => {
       code = res.code
+      console.log('code', code)
       console.log('-------get UserInfo------')
       return wxPromisify(wx.getUserInfo)({
         lang: 'zh_CN'
       })
     })
     .then(res => {
+      console.log('getUserInfo', res)
       console.log('-------get login------')
       let _data = {
         url: DOMAIN + '/party/login',
@@ -115,15 +172,17 @@ var wxLogin = option => {
           iv: res.iv
         }
       }
+      console.log('logindata', _data)
       return wxPromisify(wx.request)(_data)
     }).then((res) => {
       if (res.succ && res.data) {
         console.log('-------login succ------')
+        console.log('res', res)
         wx.setStorageSync("token", res.data)
+        console.log('-------login succ------')
         isLoginIng = false
         loginRequest()
       }
-      return res.data
     }).catch((error) => {
       console.log(error)
     })
