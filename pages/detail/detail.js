@@ -97,7 +97,7 @@ mutulPage({
     options.isShowPayModal && this.showPayModal()
     // 秒杀分享
     if (options.shareUserId) {
-      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
+      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
     }
     // 分渠道
     if (options.from) {

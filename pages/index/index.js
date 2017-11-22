@@ -94,13 +94,15 @@ mutulPage({
   },
   jumpToDetail: function (e) {
     if (e.currentTarget.dataset.id) {
-      track(this, 'h5_tcpa_index_active_join', [`id=${e.currentTarget.dataset.id}`,`type=${e.currentTarget.dataset.tpye}`])
+      track(this, 'h5_tcpa_index_active_join', [`id=${e.currentTarget.dataset.id}`, `type=${e.currentTarget.dataset.tpye}`])
       wx.navigateTo({
         url: '../detail/detail?id=' + e.currentTarget.dataset.id + '&isShowOtherAct=false'
       })
     }
   },
   onLoad(options) {
+    console.log('-------options---------')
+    console.log(options)
     track(this, 'h5_tcpa_index_screen_enter')
     track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
     wx.setNavigationBarTitle({
@@ -305,7 +307,7 @@ mutulPage({
         //   notfindpromo: false
         // })
         if (bottomItem) {
-          if (res.data.is_empty){
+          if (res.data.is_empty) {
             this.setData({
               notfindpromo: true,
               currentCursorPromo: 0,
