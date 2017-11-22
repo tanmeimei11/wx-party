@@ -76,7 +76,7 @@ mutulPage({
   closeSelect: function () {
     this.setData({
       screenOpen: false,
-      sortOpen:false
+      sortOpen: false
     })
   },
   onShareAppMessage: function () {
@@ -135,7 +135,7 @@ mutulPage({
           is_share: true
         })
         track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
-        this.showMoneyModal(options.sharekey)
+        this.showShareMoneyModal(options.sharekey)
       }
 
       // 分渠道埋点
@@ -168,26 +168,12 @@ mutulPage({
       hidden: false,
       currentCursorPromo: 0
     })
-    if (!this.data.is_get_bouns) {
-      console.log('-------第一次获取鼓励斤---------')
-      request({
-        url: '/bounty/get'
-      }).then(res => {
-        if (res.succ) {
-          this.setData({
-            isShowGetMoneyModal: true,
-            is_get_bouns: true,
-            myMoney: res.data.bounty,
-          })
-        }
-      })
-    }
     if (!this.data.is_share) {
       console.log('-------loadBalance---------')
       this.loadBalance()
         .then((is_get_bouns) => {
           if (!is_get_bouns) {
-            this.getFirstMoneyModal()
+            this.showGetMoneyModal()
           }
         })
     }
@@ -411,20 +397,20 @@ mutulPage({
       })
     }
   },
-  getFirstMoneyModal: function () {
+  showGetMoneyModal: function () {
     return request({
       url: '/bounty/get'
     }).then(res => {
       if (res.succ) {
         this.setData({
-          isShowGetMoneyModal: true,
+          isShowGetMoneyModal: res.data.is_pop,
           is_get_bouns: true,
           myMoney: res.data.bounty,
         })
       }
     })
   },
-  showMoneyModal: function (sharekey) {
+  showShareMoneyModal: function (sharekey) {
     request({
       url: '/bounty/open',
       data: {
@@ -445,7 +431,6 @@ mutulPage({
         if (!res.data.is_owner) { // 不是自己才展示弹窗
           _data[_type] = true
         }
-
 
         this.setData(_data)
       }
