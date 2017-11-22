@@ -59,7 +59,7 @@ var request = option => {
  * @param {*} option  请求字段 当监测到没有登录时 保存option 登陆完成后继续请求
  */
 var wxCheckLogin = option => {
-  // console.log('-------checkSession------')
+  console.log('-------checkSession------')
   return wxPromisify(wx.checkSession)()
     .then((res) => {
       let _token = wx.getStorageSync('token')
@@ -92,17 +92,17 @@ var wxLogin = option => {
     isLoginIng = true
   }
 
-  // console.log('-------get code------')
+  console.log('-------get code------')
   return wxPromisify(wx.login)()
     .then(res => {
       code = res.code
-      // console.log('-------get UserInfo------')
+      console.log('-------get UserInfo------')
       return wxPromisify(wx.getUserInfo)({
         lang: 'zh_CN'
       })
     })
     .then(res => {
-      // console.log('-------get login------')
+      console.log('-------get login------')
       let _data = {
         url: DOMAIN + '/party/login',
         data: {

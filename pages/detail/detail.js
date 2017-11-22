@@ -97,7 +97,7 @@ mutulPage({
     options.isShowPayModal && this.showPayModal()
     // 秒杀分享
     if (options.shareUserId) {
-      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
+      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
     }
     // 分渠道
     if (options.from) {
@@ -346,7 +346,7 @@ mutulPage({
         mapLatitude: data.latitude,
         mapLongitude: data.longitude,
         door: data.house_no,
-        phone: data.phone || '18768146254'
+        phone: data.phone || ''
         // phone: ''
       },
       tempIntro: this.getNewDesc(data.act_desc),
