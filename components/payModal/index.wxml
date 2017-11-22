@@ -14,10 +14,10 @@
         <view class="s-desc-text s-money-desc" wx:if="{{priceInfo.bounty_deduct > 0 }}">鼓励金抵扣
           <text class="gold-money">-¥{{priceInfo.bounty_deduct}}</text>
         </view>
-        <view class="gold-money-num">余额:¥{{priceInfo.bounty_sum}},单次最高抵扣¥{{priceInfo.upper_bound}}</view>
+        <view class="gold-money-num" wx:if="{{priceInfo.bounty_deduct > 0 }}">余额:¥{{priceInfo.bounty_sum}},单次最高抵扣¥{{priceInfo.upper_bound}}</view>
       </view>
-      <view class="s-tip">{{priceInfo.desc}}</view>
-      <view class="s-share-img s-btn" bindtap="pay">去支付 ¥{{priceInfo.final_cost}} </view>
+      <view class=" s-tip ">{{priceInfo.desc}}</view>
+      <view class="s-share-img s-btn " bindtap="pay ">去支付 ¥{{priceInfo.final_cost}} </view>
     </view>
   </view>
 </template>
