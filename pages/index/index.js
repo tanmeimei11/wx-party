@@ -302,6 +302,10 @@ mutulPage({
           this.setData({
             noMorePromo: true,
           })
+        } else {
+          this.setData({
+            noMorePromo: false,
+          })
         }
         if (bottomItem) {
           if (res.data.is_empty) {
@@ -335,6 +339,10 @@ mutulPage({
           isNeedFillInfo: res.data.is_need_info == 1
         })
         this.initSeckill()
+      } else {
+        this.setData({
+          noMorePromo: true
+        })
       }
       this.data.loadingMorePromo = false
       let self = this
