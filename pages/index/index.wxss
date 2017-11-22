@@ -234,6 +234,7 @@
   position: absolute;
   bottom: 5rpx;
   left: 30rpx;
+  font-weight: bold;
 }
 
 .icon-promo-area {
@@ -487,7 +488,6 @@ contact-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 30rpx auto 0;
   width: 670rpx;
   height: 100rpx;
   color: #333333;
@@ -496,7 +496,7 @@ contact-button {
   border-radius: 8rpx;
   margin-bottom: 20rpx;
   position: relative;
-  z-index: 1
+  z-index: 3
 }
 
 .launch-shu {
@@ -597,6 +597,7 @@ contact-button {
 
 .search .type.checked,.search .sort.checked{
   color: #333;
+  font-weight: bold;
 }
 
 .search .type.on,.search .sort.on{
@@ -625,16 +626,22 @@ contact-button {
   top: 100%;
   left: 0;
   overflow: hidden;
+  border-bottom-right-radius: 12rpx;
+  border-bottom-left-radius: 12rpx;
 }
 
 .screen-list .screen-item,.sort-list .sort-item{
-  width: 100%;
+  width: 666rpx;
   height: 100rpx;
   box-shadow: inset 0 -1rpx 0 0 #E0E0E0;
   line-height: 100rpx;
   margin-left: 42rpx;
   font-size: 32rpx;
   color: #333;
+}
+
+.screen-list .screen-item:last-child,.sort-list .sort-item:last-child{
+  box-shadow: none;
 }
 
 .screen-list .screen-item.active,.sort-list .sort-item.active{
@@ -702,9 +709,23 @@ contact-button {
   margin: 10rpx
 }
 
+.searchBg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  z-index: 2;
+}
 
+.launch-bg{
+  z-index: 4;
+  background: #fff;
+  position: relative;
+  padding: 30rpx 40rpx 20rpx;
 
-
+}
 
 
 

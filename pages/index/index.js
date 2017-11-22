@@ -33,7 +33,7 @@ mutulPage({
     is_share: false,
     is_ending: false,
     onTop: false,
-    screen: '全部',
+    screen: '全部活动',
     screenID: '',
     screenList: [],
     screenOpen: false,
