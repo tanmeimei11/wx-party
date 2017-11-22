@@ -346,7 +346,7 @@ mutulPage({
         mapLatitude: data.latitude,
         mapLongitude: data.longitude,
         door: data.house_no,
-        phone: data.phone || '18768146254'
+        phone: data.phone || ''
         // phone: ''
       },
       tempIntro: this.getNewDesc(data.act_desc),
