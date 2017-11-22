@@ -47,7 +47,7 @@
   color: #B0B0B0;
   font-size: 24rpx;
   word-break: wrap;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .c-pay-wrap .s-title {
