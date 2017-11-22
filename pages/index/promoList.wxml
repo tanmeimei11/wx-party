@@ -14,7 +14,7 @@
     </view>
   </view>
   <view class="mainBg" wx:if="{{currentID1 == '' && currentID2 == '' }}"></view>
-  <view class="searchBg" wx:if="{{screenOpen || sortOpen}}"></view>
+  <view class="searchBg" wx:if="{{screenOpen || sortOpen}}" bindtap="closeSelect"></view>
   <!-- 秒杀入口 -->
   <!--   <import src="../../components/seckill/entry/index.wxml" />
   <template is="entry" data="{{seckill}}"/> -->
@@ -66,9 +66,9 @@
             </view>
             <view wx:if="{{item.count_down == 0 && item.num > 0}}" class='se-surplus'>
               <view class='ses-progress'>
-                <view class='ses-progress-done' style="width:{{50 + item.num/item.sum_num*50}}%;"></view>
+                <view class='ses-progress-done' style="width:{{50 + item.num/(item.num - item.sum_num)*50}}%;"></view>
               </view>
-              <view class='ses-count'>仅剩{{item.sum_num-item.num}}位</view>
+              <view class='ses-count'>仅剩{{item.num}}位</view>
             </view>
           </view>
           <view class="promo-info" wx:if="{{!item.is_seckill}}">

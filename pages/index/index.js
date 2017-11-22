@@ -73,6 +73,12 @@ mutulPage({
       }
     }
   },
+  closeSelect: function () {
+    this.setData({
+      screenOpen: false,
+      sortOpen:false
+    })
+  },
   onShareAppMessage: function () {
     return {
       title: 'in同城趴，出门一起玩，认识新朋友',
@@ -306,10 +312,11 @@ mutulPage({
     }).then((res) => {
       if (res.succ && res.data && res.data.list) {
         // console.log(res.data)
-        // this.setData({
-        //   noMorePromo: res.data.list.length ? false : true,
-        //   notfindpromo: false
-        // })
+        if (res.data.list.length < 10) {
+          this.setData({
+            noMorePromo: true,
+          })
+        }
         if (bottomItem) {
           if (res.data.is_empty) {
             this.setData({

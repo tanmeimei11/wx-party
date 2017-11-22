@@ -3,7 +3,7 @@
 @import '../../components/seckill/entry/index.wxss';
 .list {
   width: 750rpx;
-  margin-top: 130rpx;
+  margin-top: 100rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -517,6 +517,7 @@ contact-button {
   font-size: 34rpx;
   color: #333;
   height: 100%;
+  width: 50%;
 }
 
 .launch-balance {
@@ -649,7 +650,7 @@ contact-button {
   background: url(https://inimg01.jiuyan.info/in/2017/11/21/A077583C-08EC-B649-D66C-01E9B3D67140.png);
   background-repeat: no-repeat;
   background-size: 34rpx 22rpx;
-  background-position: 86% center;
+  background-position: 100% center;
 }
 
 .notfindpromo{
