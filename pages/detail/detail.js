@@ -281,10 +281,7 @@ mutulPage({
     })
   },
   openBook: function () {
-    if (!(this.data.seckill.seckillStatus == '' || this.data.seckill.seckillStatus == 'over')) {
-      return
-    }
-    if (this.data.bookStatus == '1') {
+    if (this.data.seckill.seckillStatus == 'ready' || this.data.bookStatus == '1') {
       return
     }
     if (this.data.shareUserId) {
