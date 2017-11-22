@@ -94,7 +94,7 @@ mutulPage({
   },
   jumpToDetail: function (e) {
     if (e.currentTarget.dataset.id) {
-      track(this, 'h5_tcpa_index_active_join', [`id=${e.currentTarget.dataset.id}`])
+      track(this, 'h5_tcpa_index_active_join', [`id=${e.currentTarget.dataset.id}`,`type=${e.currentTarget.dataset.tpye}`])
       wx.navigateTo({
         url: '../detail/detail?id=' + e.currentTarget.dataset.id + '&isShowOtherAct=false'
       })
@@ -242,7 +242,7 @@ mutulPage({
     })
   },
   loadMorePromo: function () {
-    if (this.data.loadingMorePromo || this.data.notfindpromo) {
+    if (this.data.loadingMorePromo) {
       return
     }
     this.data.loadingMorePromo = true
@@ -262,11 +262,11 @@ mutulPage({
     }
     this.data.loadingMorePromo = true
     let res = e.currentTarget.dataset
-    console.log(res.id)
     this.setData({
       promoList: []
     })
     if (res.screen) {
+      track(this, 'h5_tcpa_category_click', [`type=${res.screen}`])
       this.setData({
         screen: res.name,
         screenID: res.screen,
@@ -275,6 +275,7 @@ mutulPage({
         currentCursorPromo: 0
       })
     } else {
+      track(this, 'h5_tcpa_order_click', [`type=${res.sort}`])
       this.setData({
         sort: res.name,
         sortID: res.sort,
@@ -283,9 +284,9 @@ mutulPage({
         currentCursorPromo: 0
       })
     }
-    this.getPromo()
+    this.getPromo('reselect')
   },
-  getPromo: function () {
+  getPromo: function (bottomItem) {
     request({
       url: '/activity/groups_new',
       data: {
@@ -298,18 +299,24 @@ mutulPage({
     }).then((res) => {
       if (res.succ && res.data && res.data.list) {
         // console.log(res.data)
-        this.setData({
-          noMorePromo: res.data.list.length ? false : true,
-          notfindpromo: false
-        })
-        if (res.data.is_empty) {
-          this.setData({
-            notfindpromo: true,
-            currentCursorPromo: 0,
-            screenID: '',
-            sortID: ''
-          })
-          this.getPromo()
+        // this.setData({
+        //   noMorePromo: res.data.list.length ? false : true,
+        //   notfindpromo: false
+        // })
+        if (bottomItem) {
+          if (res.data.is_empty){
+            this.setData({
+              notfindpromo: true,
+              currentCursorPromo: 0,
+              screenID: '',
+              sortID: ''
+            })
+            this.getPromo()
+          } else {
+            this.setData({
+              notfindpromo: false,
+            })
+          }
         }
         for (let i = 0; i < res.data.list.length; i++) {
           res.data.list[i].end_time = null
@@ -328,10 +335,6 @@ mutulPage({
           isNeedFillInfo: res.data.is_need_info == 1
         })
         this.initSeckill()
-      } else {
-        this.setData({
-          noMorePromo: true
-        })
       }
       this.data.loadingMorePromo = false
       let self = this
