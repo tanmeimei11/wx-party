@@ -160,6 +160,8 @@
       <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
       <template is="payModal" data="{{isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
+      <!-- 白色 toast 弹窗 -->
+      <include src="../../components/toastWhite/index.wxml" />
     </view>
   </button>
 </form>

@@ -6,9 +6,10 @@ var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var payModal = require('../../components/payModal/index.js')
 var seckillDetail = require('../../components/seckill/detail/index.js')
+var toastWhite = require('../../components/toastWhite/index.js')
 import track from '../../utils/track.js'
 mutulPage({
-  mixins: [payModal, seckillDetail],
+  mixins: [payModal, seckillDetail, toastWhite],
   data: {
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,

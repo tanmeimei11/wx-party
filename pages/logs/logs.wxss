@@ -1,4 +1,5 @@
 @import '../../components/goldMoneyModal/index.wxss';
+@import '../../components/toastWhite/index.wxss';
 .log-list {
   display: flex;
   flex-direction: column;

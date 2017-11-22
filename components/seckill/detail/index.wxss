@@ -207,6 +207,7 @@
 .seckill-detail-bar .begin-time {
   float: right;
   height: 90rpx;
+  margin-right: 32rpx;
   font-size: 24rpx;
   color: #333;
   line-height: 20rpx;

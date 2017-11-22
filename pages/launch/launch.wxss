@@ -12,11 +12,12 @@
   padding: 50rpx 0;
   border-bottom: 1rpx solid #E0E0E0;
   font-size: 34rpx;
+  overflow: hidden;
 }
 
 .c-textarea textarea {
   width: 100%;
-  box-sizing: border0box;
+  box-sizing: border-box;
   min-height: 200rpx;
   padding: 0 10rpx 0 0;
 }
@@ -24,7 +25,7 @@
 .c-picture .s-title {
   color: #333333;
   font-size: 34rpx;
-  padding: 40rpx 0;
+  padding: 0 0 40rpx;
 }
 
 .s-pic-wrap {
