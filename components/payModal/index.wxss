@@ -37,15 +37,17 @@
 }
 
 .c-pay-wrap .s-money-desc {
-  height: 70rpx;
+  /* height: 70rpx; */
 }
 
 .gold-money-num {
-  position: absolute;
-  bottom: -4rpx;
-  left: 0;
+  /* position: absolute; */
+  /* bottom: -4rpx; */
+  /* left: 0; */
   color: #B0B0B0;
   font-size: 24rpx;
+  word-break: wrap;
+  text-align: center;
 }
 
 .c-pay-wrap .s-title {

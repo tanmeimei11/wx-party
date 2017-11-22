@@ -65,8 +65,10 @@ var wxCheckLogin = option => {
   return wxPromisify(wx.checkSession)()
     .then((res) => {
       let _token = wx.getStorageSync('token')
+      console.log('------会话存在----token没有----重新登陆－－－－')
       return _token ? _token : wxLogin(option)
     }, () => {
+      console.log('------会话失效----重新登陆－－－－')
       wxLogin(option)
     })
 }
