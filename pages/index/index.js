@@ -280,6 +280,7 @@ mutulPage({
         sort: res.name,
         sortID: res.sort,
         currentID2: res.id,
+        screenID: this.data.currentID1,
         hidden: false,
         currentCursorPromo: 0
       })
