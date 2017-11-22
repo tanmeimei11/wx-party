@@ -33,7 +33,7 @@
   <view class="seckill-detail-bar {{seckillStatus}}" wx:if="{{seckillStatus !=''}}">
     <view class="seckill-bar-inner" wx:if="{{seckillStatus!='over'}}">
       <text class="seckill-price">¥{{price}}</text>
-      <text class="origin-price">原价:{{original}}</text>
+      <text class="origin-price">原价:¥{{original}}</text>
       <wxs src="../../../utils/tools.wxs" module="tools" />
       <view class="se-time" wx:if="{{seckillStatus=='ready'}}">
         <text>{{tools.hour(count_down)}}</text>:

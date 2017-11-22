@@ -425,11 +425,14 @@ mutulPage({
           riseMoney: res.data.friend_amount,
           friendAvatar: res.data.avatar_url,
           friendNick: res.data.nick_name,
-          is_get_bouns: true
+          is_get_bouns: true,
+          isScanTwice: res.data.is_already_open
         }
+
         if (!res.data.is_owner) { // 不是自己才展示弹窗
           _data[_type] = true
         }
+
 
         this.setData(_data)
       }
