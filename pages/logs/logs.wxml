@@ -13,5 +13,5 @@
     <button formType="submit">Submit</button>
   </form> -->
   <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 电话</button>
-
+  <include src="../../components/toastWhite/index.wxml" />
 </view>

@@ -110,6 +110,7 @@ mutulPage({
     })
 
     let self = this
+    console.log('-------获取设备信息---------')
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
@@ -121,7 +122,7 @@ mutulPage({
       }
     })
     this.getLocation().then((res) => {
-      console.log(res)
+      console.log('-------获取地理位置---------')
       // 鼓励金详情页面好友分享点进来 options.sharekey
       if (options.sharekey) {
         this.setData({
@@ -141,7 +142,7 @@ mutulPage({
           is_ending: true
         })
       }
-
+      console.log('-------switchTab2---------')
       this.switchTab2()
     })
   },
@@ -162,6 +163,7 @@ mutulPage({
       currentCursorPromo: 0
     })
     if (!this.data.is_get_bouns) {
+      console.log('-------第一次获取鼓励斤---------')
       request({
         url: '/bounty/get'
       }).then(res => {
@@ -175,6 +177,7 @@ mutulPage({
       })
     }
     if (!this.data.is_share) {
+      console.log('-------loadBalance---------')
       this.loadBalance()
         .then((is_get_bouns) => {
           if (!is_get_bouns) {
@@ -290,6 +293,7 @@ mutulPage({
     this.getPromo('reselect')
   },
   getPromo: function (bottomItem) {
+    console.log('-------getPromo-----groups_new----')
     request({
       url: '/activity/groups_new',
       data: {

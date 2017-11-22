@@ -28,9 +28,9 @@ var wxPromisify = fn => {
 
 var request = option => {
   wxCheckLogin(option).then((token) => {
-    console.log('token:', token)
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
     if (token) {
+      console.log('----get token----', token);
       !option.data && (option.data = {});
       !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
       option.header = {
@@ -49,6 +49,8 @@ var request = option => {
         option.success(require('../mock/' + mockConfig[option.url]))
         return
       }
+      console.log('----start-request----')
+      console.log(option)
       wx.request(option)
     }
   })

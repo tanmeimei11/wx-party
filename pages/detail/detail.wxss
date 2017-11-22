@@ -2,6 +2,7 @@
 
 @import '../../components/payModal/index.wxss';
 @import '../../components/seckill/detail/index.wxss';
+@import '../../components/toastWhite/index.wxss';
 .container {
   padding-bottom: 150rpx;
 }
@@ -434,6 +435,11 @@
 
 .map-line:first-child {
   margin-top: 0rpx;
+}
+
+.map-line.phone-line {
+  background-size: 30rpx 30rpx;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/11/22/08474B40-54B2-00A8-E0D4-D604F14A4ACD.jpg')
 }
 
 .map-line.phone-line .map-name {

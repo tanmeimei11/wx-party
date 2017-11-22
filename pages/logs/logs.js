@@ -6,8 +6,9 @@ var request = require('../../utils/wxPromise.js').requestPromisify
 // var Promise = require('../../lib/es6-promise');
 var mutulPage = require('../../utils/util.js').mutulPage
 var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
+var toastWhite = require('../../components/toastWhite/index.js')
 mutulPage({
-  mixins: [goldMoneyModal],
+  mixins: [goldMoneyModal, toastWhite],
   data: {
     access_token: '',
     qrImg: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg'
@@ -15,6 +16,7 @@ mutulPage({
   onLoad: function (e) {
     // this.getAccessToken()
     // this.pay()
+    this.toastWhite('123213')
 
   },
   auth: function () {

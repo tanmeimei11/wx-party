@@ -48,7 +48,7 @@ module.exports = {
       return
     }
     if (this.data.seckill.isSeckillReminded) {
-      this.toastSucc('成功开启~~')
+      this.showToastWhite('已开启提醒，勿重复点击')
       return
     }
     request({
@@ -59,7 +59,7 @@ module.exports = {
       // method: 'POST'
     }).then(res => {
       if (res.succ) {
-        this.toastSucc('设置成功')
+        this.showToastWhite('成功开启提醒')
         var _s = this.data.seckill
         _s.isSeckillReminded = true
         this.setData({
@@ -74,7 +74,7 @@ module.exports = {
       return
     }
     if (this.data.seckill.isSeckillInterested) {
-      this.toastSucc('成功开启提醒啦')
+      this.showToastWhite('已开启提醒，勿重复点击')
       return
     }
     request({
@@ -82,8 +82,7 @@ module.exports = {
       // method: 'POST'
     }).then(res => {
       if (res.succ) {
-        console.log('2222')
-        this.toastSucc('设置成功')
+        this.showToastWhite('成功开启提醒')
         var _s = this.data.seckill
         _s.isSeckillInterested = true
         this.setData({

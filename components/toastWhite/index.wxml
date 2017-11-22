@@ -1,10 +1,6 @@
 <!-- 鼓励金钱窗 -->
-<template name="actTypes">
-  <view class="c-picture">
-    <view class="s-title">选择活动分类</view>
-    <view class="s-tab-wrap">
-      <view class="m-tab {{activeType.screen == item.screen ? 'active':''}}" wx:for="{{list}}" wx:for-index="idx" wx:for-item="item"
-        wx:key="{{idx}}" data-item="{{item}}" bindtap="chooseType">{{item.name}}</view>
-    </view>
+<view class="c-toast-modal" wx:if="{{isShowToastWhite}}">
+  <view class="c-toast-white-wrap">
+    {{toastWhiteStr}}
   </view>
-</template>
+</view>
