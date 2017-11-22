@@ -407,7 +407,10 @@ mutulPage({
   },
   showGetMoneyModal: function () {
     return request({
-      url: '/bounty/get'
+      url: '/bounty/get',
+      data:{
+        gps:this.data._gps
+      }
     }).then(res => {
       if (res.succ) {
         this.setData({
