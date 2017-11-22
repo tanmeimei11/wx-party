@@ -28,7 +28,7 @@
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "from=wechat"
+					"query": "from=wechat&sharekey=1APyvX"
 				},
 				{
 					"id": 1,

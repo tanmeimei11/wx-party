@@ -8,10 +8,13 @@
           <view class="s-avatar" style="background-image:url({{friendAvatar}})"></view>
           <text class="nick-name">{{friendNick}}</text>
         </view>
-        <view class="s-title">
+        <view class="s-title" wx:if="{{!isScanTwice}}">
           <text>您帮</text>
           <text class="nick-name">{{friendNick}}</text>
           <text>升值了¥{{riseMoney}}</text>
+        </view>
+        <view class="s-title" wx:else>
+          每周只能帮同一好友升值一次
         </view>
       </view>
       <view class="s-desc">您现在拥有鼓励金</view>

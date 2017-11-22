@@ -287,8 +287,7 @@ mutulPage({
     if (this.data.shareUserId) {
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
-    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
-    console.log('3333')
+    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
     // 首次报名
     if (this.data.isNeedInfo == 1) {
       this.redirectApply()
@@ -305,7 +304,7 @@ mutulPage({
     ].join('&')
   },
   openBookAlready: function () {
-    track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`])
+    track(this, 'h5_tcpa_active_book_again_click', [`id=${this.data.id}`, `acttype=${this.data.actType}`])
     wx.redirectTo({
       url: `../result/result?nextpage=detail&prepage=detail&${this.getRedirectParam()}`
     })
@@ -363,7 +362,8 @@ mutulPage({
       isNeedInfo: data.is_need_info,
       promoMoney: data.charge || 0,
       promoDelayMoney: data.booking_charge || 0,
-      otherPromoNum: data.other_act_count
+      otherPromoNum: data.other_act_count,
+      actType: data.act_type
     })
     // 设置秒杀信息
     this.setSeckillInfo(data)

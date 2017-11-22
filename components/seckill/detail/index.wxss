@@ -169,6 +169,7 @@
 
 .seckill-detail-bar .origin-price {
   /* line-height: 90epx; */
+  opacity: .7;
   margin-left: 16rpx;
   text-decoration: line-through;
 }

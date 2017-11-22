@@ -29,7 +29,7 @@
 
     <!-- 升值奖励金弹窗 -->
     <import src="../../components/riseMoneyModal/index.wxml" />
-    <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney}}"
+    <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney,isScanTwice:isScanTwice}}"
     />
   </button>
 </form>
