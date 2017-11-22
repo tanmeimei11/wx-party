@@ -1,17 +1,20 @@
-<scroll-view scroll-y="true" class="container " upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower" bindscroll="scroll"
+<scroll-view scroll-y="{{!screenOpen && !sortOpen}}" class="container " upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower" bindscroll="scroll"
   style="height:{{scrollHeight}}px;">
   <!-- 发起活动 -->
-  <view class="launch-promo">
-    <text bindtap="launchPromo">发起活动</text>
-    <view class="launch-shu"></view>
-    <text bindtap="toBalance">
-      <text>鼓励金</text>
-      <text class="launch-balance">(￥<text>{{myMoney}}</text>)</text>
-    </text>
-    <!-- <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view> -->
-    <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
+  <view class="launch-bg">
+    <view class="launch-promo">
+      <text bindtap="launchPromo">发起活动</text>
+      <view class="launch-shu"></view>
+      <text bindtap="toBalance">
+        <text>鼓励金</text>
+        <text class="launch-balance">(￥<text>{{myMoney}}</text>)</text>
+      </text>
+      <!-- <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view> -->
+      <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
+    </view>
   </view>
   <view class="mainBg" wx:if="{{currentID1 == '' && currentID2 == '' }}"></view>
+  <view class="searchBg" wx:if="{{screenOpen || sortOpen}}"></view>
   <!-- 秒杀入口 -->
   <!--   <import src="../../components/seckill/entry/index.wxml" />
   <template is="entry" data="{{seckill}}"/> -->
