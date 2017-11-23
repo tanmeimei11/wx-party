@@ -41,7 +41,7 @@ module.exports = {
       "other_act_count": "91",
       "share_qrcode_url": "https://inimg01.jiuyan.info/in/2017/11/06/520F9F67-3396-4CD5-A38C-5455A757293C.jpg?roundPic/radius/200",
       "sigin_sum": "1",
-      "count_down": 0,
+      "count_down": 10000,
       "start_time": 1510630140000,
       "updated_at": 1509939173000,
       "wx_address": "浙江省杭州市拱墅区湖墅南路103号",

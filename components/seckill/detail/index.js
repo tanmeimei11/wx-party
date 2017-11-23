@@ -92,7 +92,15 @@ module.exports = {
     })
   },
   countdown() {
-    if (this.data.seckill.count_down === 0) return
+    if (this.data.seckill.count_down === 0) {
+      var _seckill = this.data.seckill
+      _seckill.seckillStatus = 'begin'
+      this.setData({
+        seckill: _seckill
+      })
+      return
+    }
+
     this.setData({
       seckill: {
         ...this.data.seckill,

@@ -175,13 +175,16 @@ var wxLogin = option => {
       console.log('logindata', _data)
       return wxPromisify(wx.request)(_data)
     }).then((res) => {
+      console.log('login succ', res)
       if (res.succ && res.data) {
         console.log('-------login succ------')
         console.log('res', res)
         wx.setStorageSync("token", res.data)
-        console.log('-------login succ------')
+        console.log('请求的到的token：', res.data)
         isLoginIng = false
         loginRequest()
+      } else {
+        console.log('login fail', res)
       }
     }).catch((error) => {
       console.log(error)
