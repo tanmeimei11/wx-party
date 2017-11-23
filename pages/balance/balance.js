@@ -80,7 +80,7 @@ mutulPage({
       }
     })
   },
-  promoLower: function () {
+  onReachBottom: function () {
     if (this.data.noMoreNote) {
       return
     }

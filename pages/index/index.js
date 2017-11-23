@@ -238,7 +238,7 @@ mutulPage({
       }
     })
   },
-  loadMorePromo: function () {
+  onReachBottom: function () {
     if (this.data.loadingMorePromo) {
       return
     }
