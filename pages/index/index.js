@@ -408,8 +408,8 @@ mutulPage({
   showGetMoneyModal: function () {
     return request({
       url: '/bounty/get',
-      data:{
-        gps:this.data._gps
+      data: {
+        gps: this.data._gps
       }
     }).then(res => {
       if (res.succ) {
