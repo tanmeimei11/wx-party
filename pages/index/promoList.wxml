@@ -60,11 +60,11 @@
               <text class='se-original'>原价 ¥{{item.charge}}</text>
             </view>
             <import src="../../components/seckill/item/index.wxml" />
-            <template is="item" data="{{item}}" wx:if="{{item.count_down > 0}}" class="se-time" />
+            <template is="item" data="{{item}}" wx:if="{{item.count_down > 0 && item.cutTime != 0}}" class="se-time" />
             <view class="se-end" wx:if="{{item.num == 0}}">
               <view class="se-end-text">秒杀已结束</view>
             </view>
-            <view wx:if="{{item.count_down == 0 && item.num > 0}}" class='se-surplus'>
+            <view wx:if="{{item.cutTime == 0 || item.count_down == 0}}" class='se-surplus'>
               <view class='ses-progress'>
                 <view class='ses-progress-done' style="width:{{50 + (item.sum_num-item.num)/item.sum_num*50}}%;"></view>
               </view>

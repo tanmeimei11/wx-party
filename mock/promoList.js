@@ -59,7 +59,7 @@ module.exports = Mock.mock({
             "charge":20.00, //原价
             "is_seckill": true, //是否秒杀,可能为空默认为false
             "act_type":1, //分类
-            "count_down":"200"
+            "count_down|+5000": 0
         }]
     },
     'time': 1502261173

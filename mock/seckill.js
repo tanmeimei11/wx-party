@@ -15,6 +15,7 @@ module.exports = {
             "sum_num":10, //总量,
             "amount":10.00, //秒杀价,
             "charge":20.00, //原价
+            "count_down":"200"
     },
     "timestamp": "1508137929"
   }
