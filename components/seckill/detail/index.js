@@ -116,7 +116,8 @@ module.exports = {
       seckill: {
         ...this.data.seckill,
         is_seckill_finish: 1,
-        isShow: true
+        isShow: true,
+        seckillStatus: 'over'
       }
     })
   },
