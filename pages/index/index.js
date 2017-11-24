@@ -196,7 +196,7 @@ mutulPage({
   upper: function () {
     // console.log("upper");
   },
-  promoLower: function () {
+  onReachBottom: function () {
     // console.log("promoLower")
     let that = this;
     setTimeout(function () {
@@ -239,7 +239,7 @@ mutulPage({
     })
   },
 
-  onReachBottom: function () {
+  loadMorePromo: function () {
     console.log('111')
     if (this.data.loadingMorePromo) {
       return
