@@ -238,6 +238,7 @@ mutulPage({
       }
     })
   },
+
   onReachBottom: function () {
     console.log('111')
     if (this.data.loadingMorePromo) {
