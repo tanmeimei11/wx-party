@@ -1,5 +1,4 @@
-<scroll-view scroll-y="true" class="container " upper-threshold="10" lower-threshold="10" bindscrolltolower="promoLower"
-  style="height:{{scrollHeight}}px;">
+<view class="container">
   <!-- 埋点 -->
   <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
   <view class="balance">
@@ -43,4 +42,4 @@
   <!-- 分享弹窗 -->
   <import src="../../components/goldMoneyModal/index.wxml" />
   <template is="goldMoneyModal" data="{{...goldMoneyModalData}}" />
-</scroll-view>
+</view>

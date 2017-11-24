@@ -21,7 +21,6 @@ mutulPage({
     wx.showLoading({
       title: '加载中...'
     })
-    this.countTime()
     let self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -80,7 +79,7 @@ mutulPage({
       }
     })
   },
-  promoLower: function () {
+  onReachBottom: function () {
     if (this.data.noMoreNote) {
       return
     }
@@ -124,21 +123,5 @@ mutulPage({
   share: function () {
     track(this, 'h5_tcpa_gold_forward')
     this.setGoldMoneyModalData('isShow', true)
-  },
-  countTime: function () {
-    let date = new Date()
-    let theDay = date.getDay()
-    if (theDay == 0) {
-      theDay = 7
-    }
-    date.setDate(date.getDate() + 8 - theDay)
-    let theYear = date.getFullYear()
-    let theMonth = date.getMonth() + 1
-    let theDate = date.getDate()
-
-    let newMonday = theYear + '.' + theMonth + '.' + theDate
-    this.setData({
-      nextMonday: newMonday
-    })
   }
 })

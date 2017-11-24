@@ -1,5 +1,4 @@
-<scroll-view scroll-y="{{!screenOpen && !sortOpen}}" class="container " upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower"
-  bindscroll="scroll" style="height:{{scrollHeight}}px;">
+<view class="container">
   <!-- 发起活动 -->
   <view class="launch-bg">
     <view class="launch-promo">
@@ -83,4 +82,4 @@
     </block>
     <include src="lowerLoading" />
   </view>
-</scroll-view>
+</view>

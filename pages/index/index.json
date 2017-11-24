@@ -1,5 +1,4 @@
 {
-  "window": {
-    "navigationBarTitleText": "in同城趴"
-  }
+    "navigationBarTitleText": "in同城趴",
+	"enablePullDownRefresh": true
 }
