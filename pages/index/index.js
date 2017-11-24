@@ -239,6 +239,7 @@ mutulPage({
     })
   },
   loadMorePromo: function () {
+    console.log('111')
     if (this.data.loadingMorePromo) {
       return
     }
