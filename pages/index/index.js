@@ -138,10 +138,9 @@ mutulPage({
         this.showShareMoneyModal(options.sharekey)
       }
 
-      // 分渠道埋点
-      if (options.from) {
-        wx.setStorageSync("from", options.from)
-      }
+      // 分渠道
+      wx.setStorageSync("from", options.from || '')
+
       // 即将过期
       if (options.ending) {
         this.setData({
