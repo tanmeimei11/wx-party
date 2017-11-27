@@ -33,6 +33,7 @@ mutulPage({
     is_share: false,
     is_ending: false,
     onTop: false,
+    toTop: false,
     screen: '全部活动',
     screenID: '',
     screenList: [],
@@ -193,9 +194,6 @@ mutulPage({
       }
     })
   },
-  upper: function () {
-    // console.log("upper");
-  },
   onReachBottom: function () {
     // console.log("promoLower")
     let that = this;
@@ -209,8 +207,8 @@ mutulPage({
       that.loadMoreQun();
     }, 300);
   },
-  scroll: function (e) {
-    if (e.detail.scrollTop > this.data.launchTop) {
+  onPageScroll: function (e) {
+    if (e.scrollTop > this.data.launchTop) {
       this.setData({
         onTop: true
       })
@@ -219,6 +217,23 @@ mutulPage({
         onTop: false
       })
     }
+    if (e.scrollTop >this.data.scrollHeight) {
+      this.setData({
+        toTop : true
+      })
+    } else {
+      this.setData({
+        toTop : false
+      })
+    }
+  },
+  toTop: function () {
+    this.setData({
+      toTop : false
+    })
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
   },
   getLocation: function (e) {
     let self = this
@@ -309,7 +324,9 @@ mutulPage({
             noMorePromo: false,
           })
         }
+        // 搜索返回判断
         if (bottomItem) {
+          // 搜索为空
           if (res.data.is_empty) {
             this.setData({
               notfindpromo: true,

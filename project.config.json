@@ -22,7 +22,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -95,6 +95,12 @@
 					"name": "detail shareUserId",
 					"pathName": "pages/detail/detail",
 					"query": "id=15901&shareUserId=1aRJYn"
+				},
+				{
+					"id": 12,
+					"name": "result_double",
+					"pathName": "pages/result_double/result",
+					"query": "id=17801&isShowOtherAct=false&from=xiangxiang"
 				}
 			]
 		}
