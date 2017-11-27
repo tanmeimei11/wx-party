@@ -38,6 +38,7 @@
       </block>
     </view>
   </view>
+  <view class="toTop" bindtap="toTop" wx:if="{{toTop}}">顶部</view>
   <view class="list">
     <view class="notfindpromo" wx:if="{{notfindpromo}}">
       <view class="notfindpromoimg"></view>
