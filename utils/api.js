@@ -6,7 +6,6 @@ const qnTokenUrl = config.qnTokenUrl
 const qnUploadUrl = config.qnUploadUrl
 const qnResUrl = config.qnResUrl
 
-
 /**
  * 上传文件到七牛
  * @param {*} file 
@@ -84,17 +83,26 @@ var payMoney = (id, is_seckill_finish) => {
   })
 }
 
-// 秒杀活动 post
-var paySeckill = (id) => {
-  return request({
-    url: '/activity/seckill',
-    data: {
-      id: id
-    }
+/**
+ * 获取设备信息
+ */
+var getDeviceInfo = (app, key) => {
+  var _data = app.data
+  if (_data.deviceInfo) {
+    return key ? _data.deviceInfo : _data.deviceInfo[key]
+  }
+  var deviceInfo = wx.getSystemInfoSync()
+  console.log(deviceInfo)
+  app.setData({
+    deviceInfo: deviceInfo
   })
+  console.log(key ? deviceInfo : deviceInfo[key])
+  return key ? deviceInfo : deviceInfo[key]
 }
+
 
 module.exports = {
   uploadImageToQiniu,
-  payMoney
+  payMoney,
+  getDeviceInfo
 }
