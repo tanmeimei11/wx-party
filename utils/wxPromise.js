@@ -25,6 +25,20 @@ var wxPromisify = fn => {
     })
   }
 }
+var requestBefore = (option, token) => {
+  !option.data && (option.data = {});
+  !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
+  option.header = {
+    'Cookie': `tg_auth=${token};_v=${config._v}`
+  };
+  // 支付网关必须加上必要字段_token
+  if (/payment\/signature/.test(option.url)) {
+    option.data._token = token
+  }
+  (option.method != 'POST') && (option.data.privateKey = token);
+  // 请求带上来源
+  option.data.from = wx.getStorageSync('from')
+}
 
 var request = option => {
   console.log('wxCheckLoginCallback')
@@ -32,21 +46,8 @@ var request = option => {
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
     if (token) {
       console.log('----get token----', token);
-      !option.data && (option.data = {});
-      !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
-      option.header = {
-        'Cookie': `tg_auth=${token};_v=${config._v}`
-      };
-      // 支付网关必须加上必要字段_token
-      if (/payment\/signature/.test(option.url)) {
-        option.data._token = token
-      }
-      (option.method != 'POST') && (option.data.privateKey = token);
-      // 请求带上来源
-      option.data.from = wx.getStorageSync('from')
+      requestBefore(option, token)
       if (isMock) {
-        // console.log('mock request', option.url, option.data)
-        // console.log('mock responce', require('../mock/' + mockConfig[option.url]))
         option.success(require('../mock/' + mockConfig[option.url]))
         return
       }

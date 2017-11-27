@@ -1,0 +1,10 @@
+<!-- 鼓励金钱窗 -->
+<template name="unionIngModal">
+  <view class="c-modal" wx:if="{{isShow}}">
+    <view class="c-wrap c-unioning-wrap">
+      <view class="s-close" bindtap="closeUnionIngModal"></view>
+      <view class="s-title">拼团中</view>
+      <view class="s-btn">邀请好友同行</view>
+    </view>
+  </view>
+</template>

@@ -4,7 +4,7 @@ const auth = require('../../utils/auth.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var request = require('../../utils/wxPromise.js').requestPromisify
 // var Promise = require('../../lib/es6-promise');
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
 var toastWhite = require('../../components/toastWhite/index.js')
 mutulPage({

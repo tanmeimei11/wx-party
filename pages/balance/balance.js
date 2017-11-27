@@ -1,7 +1,7 @@
 import track from '../../utils/track.js'
 var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
   mixins: [goldMoneyModal],

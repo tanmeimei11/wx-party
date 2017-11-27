@@ -1,0 +1,78 @@
+.c-wrap.c-unioning-wrap {
+  padding-top: 70rpx 0 0 0!important;
+}
+
+.c-unioning-wrap .s-header {
+  color: #fff;
+  height: 209rpx;
+  background-image: url(http://inimg05.jiuyan.info/in/2017/11/05/83797657-FB5E-CC5A-AB81-B1412FE62751.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 57rpx;
+  padding-top: 63rpx;
+  box-sizing: border-box;
+}
+
+.c-unioning-wrap .s-header .s-avatar {
+  width: 40rpx;
+  height: 40rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-right: 10rpx;
+}
+
+.c-unioning-wrap .s-header .nick {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+  justify-content: center;
+}
+
+.c-unioning-wrap .nick-name {
+  display: inline-block;
+  max-width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c-unioning-wrap .s-header .s-title {
+  font-size: 32rpx;
+  color: #fff;
+  margin-top: 20rpx;
+  white-space: nowrap;
+  width: 100%;
+  font-weight: bold;
+}
+
+.c-unioning-wrap .s-header .s-title text {
+  vertical-align: middle;
+}
+
+.c-unioning-wrap .s-desc {
+  font-size: 28rpx;
+  color: #B0B0B0;
+}
+
+.c-unioning-wrap .s-money {
+  font-size: 72rpx;
+  color: #333333;
+  margin: 18rpx auto 40rpx;
+}
+
+.c-unioning-wrap .s-btn {
+  width: 460rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 0 auto 0;
+  border-radius: 200rpx;
+  color: #fff;
+  background-color: #FF4338;
+}

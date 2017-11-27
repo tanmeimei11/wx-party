@@ -1,0 +1,25 @@
+<!-- 双人成团 -->
+<template name="union">
+  <view class="c-bottom-nav c-bottom-group">
+    <view class="sd-tips {{union_status == 2 ? 'late':''}}" wx:if="{{shareUnionId && (union_status==0||union_status==2||union_status==3)}}">
+      <view class="sdt-avatar {{gender=='男' ? 'male': 'female'}} " style="background-image:url({{union_luanch_avatar}}) ">
+      </view>
+      <view class='sdt-name'>{{union_luanch_nick_name}} 邀请你</view>
+      <view class='sdt-desc'>{{desc}}</view>
+    </view>
+    <view class="btn-group-share " bindtap="openInviteModal">
+      <view></view>分享
+    </view>
+    <block wx:if="{{union_status==0||union_status==2||union_status==3}}">
+      <view class="btn-group btn-group-book" bindtap="openBook">报名 ¥34 </view>
+      <view class="btn-group btn-group-two" bindtap="openBook" data-union="2">两人成团 ¥29 </view>
+    </block>
+    <view class="btn-group btn-group-ing " wx:elif="{{union_status==1}}" bindtap="getUnionIng">
+      <text class="big ">拼团中</text>
+      <text>11:08:59 内邀请到好友参与，即享受拼团价</text>
+    </view>
+    <view class="btn-group btn-group-ing" wx:elif="{{union_status==4}}">
+      <text class="big ">拼团成功</text>
+    </view>
+  </view>
+</template>
