@@ -1,7 +1,7 @@
 import track from '../../utils/track.js'
 import {
   mutulPage
-} from '../../utils/util.js'
+} from '../../utils/mixin.js'
 var seckillResult = require('../../components/seckill/result/index.js')
 mutulPage({
   mixins: [seckillResult],

@@ -57,7 +57,6 @@ module.exports = {
       "phone": 13135252222, //电话号码,
       "is_seckill_reminded": false, // 是否已经秒杀提醒
       "is_seckill_interested": false, // 秒杀结束后 是否已经 关注秒杀
-<<<<<<< HEAD
       "union_info": {
         "is_union": true, //是否拼团,
         "union_id": "455667",
@@ -67,15 +66,6 @@ module.exports = {
         "union_luanch_nick_name": "犀牛", //拼团发起人昵称
         "desc": "来晚一步～有人抢先拼团啦 开一个自己的团吧～", //拼团失败提示文案
       } //拼团相关信息，只要是拼团的情况下才有这个字段
-=======
-      "is_union":false,//是否拼团,
-      "union_info":{
-          "is_unioning":true,//是否在拼团中，默认为false,
-          "union_luanch_avatar":"http://img05.in66.com/xxxxx.jpg", //拼团发起人头像
-          "union_luanch_nick_name":"犀牛",//拼团发起人昵称
-          "desc":"来晚一步～有人抢先拼团啦 开一个自己的团吧～", //拼团失败提示文案
-      }//拼团相关信息，只要是拼团的情况下才有这个字段
->>>>>>> bd2ca01d3cad68e662166e17003ae522a193f7bd
     },
     "code": "200003",
     "msg": ""
