@@ -8,7 +8,7 @@
     "pages/result/result",
     "pages/launch/launch",
     "pages/balance/balance",
-    "pages/result_double/result"
+    "pages/result_union/result_union"
   ],
   "window": {
     "backgroundTextStyle": "light",

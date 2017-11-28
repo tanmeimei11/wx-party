@@ -3,6 +3,7 @@
   <view class="se-time">
     <text>{{tools.hour(item.cutTime)}}</text>:
     <text>{{tools.minute(item.cutTime)}}</text>:
-    <text>{{tools.second(item.cutTime)}}</text>后开抢
+    <text>{{tools.second(item.cutTime)}}</text>
+    <view wx:if="{{item.count_down}}">后开抢</view>
   </view>
 </template>

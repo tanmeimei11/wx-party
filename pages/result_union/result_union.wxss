@@ -1,0 +1,52 @@
+/**index.wxss**/
+
+.container {
+  padding-bottom: 150rpx;
+}
+
+.se-time{
+  text-align: center;
+  font-size: 60rpx;
+  color: #333;
+  margin-top: 20rpx;
+}
+
+.r-txt {
+  width: 750rpx;
+  margin-top: 71rpx;
+}
+
+.r-txt .r-img {
+  width: 129rpx;
+  height: 129rpx;
+  background-image: url(https://inimg07.jiuyan.info/in/2017/10/31/1B56058C-0CEE-8710-CB3D-CBCF6D4EC8D9.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: auto;
+}
+
+.r-txt .r-suc-txt {
+  font-size: 40rpx;
+  margin: auto;
+  text-align: center;
+  font-size: #333;
+}
+
+.r-txt .r-txt1 {
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+.r-txt .r-txt2 {
+  font-size: 28rpx;
+  color: #888;
+  text-align: center;
+}
+
+
+.r-link contact-button {
+  transform: scale(10, 3);
+}
