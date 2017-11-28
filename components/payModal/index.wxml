@@ -1,20 +1,21 @@
 <template name="payModal">
-  <!-- 关注弹窗 -->
   <view class="c-modal" wx:if="{{isShowPayModal}}">
     <view class="c-wrap c-pay-wrap">
       <view class="s-close" bindtap="closePayModal"></view>
-      <block wx:if="{{unionInfo.is_union}}">
-        <view class="s-title">发起拼团</view>
+      <!-- 是拼团 -->
+      <block wx:if="{{priceInfo.union_discount}}">
+        <view class=" s-title ">发起拼团</view>
       </block>
-      <view class="s-title" wx:else>费用明细单</view>
-      <view class="s-desc">
-        <view class="s-desc-text">活动费用
+      <view class="s-title " wx:else>费用明细单</view>
+      <view class="s-desc ">
+        <view class="s-desc-text ">活动费用
           <text>¥{{priceInfo.act_charge}}</text>
         </view>
-        <view class="s-desc-text" wx:if="{{ priceInfo.act_charge <= 0 && priceInfo.book_charge >0 }}">鸽子费
+        <view class="s-desc-text " wx:if="{{ priceInfo.act_charge <=0 && priceInfo.book_charge>0 }}">鸽子费
           <text>¥{{priceInfo.book_charge}}</text>
         </view>
-        <view class="s-desc-text s-money-desc" wx:if="{{unionInfo.is_union}}">拼团优惠
+        <!-- 是拼团  显示拼团优惠-->
+        <view class="s-desc-text s-money-desc" wx:if="{{priceInfo.union_discount}}">拼团优惠
           <text class="gold-money">-¥{{priceInfo.union_discount}}</text>
         </view>
         <view class="s-desc-text s-money-desc" wx:if="{{priceInfo.bounty_deduct > 0 }}">鼓励金抵扣
