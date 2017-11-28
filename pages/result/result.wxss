@@ -132,7 +132,3 @@
   position: relative;
   overflow: hidden;
 }
-
-.r-link contact-button {
-  transform: scale(10, 3);
-}
