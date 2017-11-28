@@ -13,8 +13,17 @@
   <view class="r-txt">
     <view class="r-suc-txt">开团成功</view>
     <view class="r-txt1">规定时间内邀请到好友参与，即享受拼团价</view>
-    <import src="../../components/seckill/item/index.wxml" wx:if="{{}}"/>
-    <template is="item" data="{{count_down}}" class="se-time" />
+    <import src="../../components/seckill/item/index.wxml"/>
+    <template is="item" data="{{item}}" class="se-time" wx:show="{{done}}"/>
+  </view>
+
+  <view class="r-avatar">
+    <view class="r-avatarme {{item.launch_gender == '男' ? 'male' : 'female'}}" style="background-image:url({{item.union_launch_avatar}})">
+      <text>{{item.union_launch_nick_name}}</text>
+    </view>
+    <view class="r-avatarher {{item.join_gender == '男' ? 'male' : 'female'}}" style="background-image:url({{item.union_join_avatar}})">
+      <text>{{item.union_join_nick_name}}</text>
+    </view>
   </view>
 
 <!--   <view class="r-txt">

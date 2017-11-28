@@ -2,13 +2,14 @@ import track from '../../utils/track.js'
 var request = require('../../utils/wxPromise.js').requestPromisify
 import {
   mutulPage
-} from '../../utils/util.js'
+} from '../../utils/mixin.js'
 var seckillResult = require('../../components/seckill/result/index.js')
 mutulPage({
   mixins: [seckillResult],
   data: {
-    item: 0,
-
+    item: [],
+    xxtimer: null,
+    emptyAvatar: 'https://inimg07.jiuyan.info/in/2017/11/28/29AB4215-BACF-F96B-88A0-A0BE33046BF0.png'
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_result_screen_enter')
@@ -33,9 +34,15 @@ mutulPage({
       //   item.cutTime = +item.count_down / 1000
       //   return item
       // }))
-      // this.setData({
-      //   item: res.data
-      // })
+      if (res.data.count_down) {
+        var list = res.data
+        list.cutTime = list.count_down
+        list.union_join_avatar = list.union_join_avatar ? list.union_join_avatar : this.data.emptyAvatar
+        this.setData({
+          item: list
+        })
+        this.countdown()
+      }
     })
   },
   goBack: function () {
@@ -43,5 +50,17 @@ mutulPage({
     wx.redirectTo({
       url: '../index/index?tab=2'
     })
+  },
+  countdown: function () {
+    var list = this.data.item
+    if (list.cutTime < 1) {
+      return
+    }
+    list.cutTime -= 1
+    this.setData({
+      item: list
+    })
+
+    this.data.xxtimer = setTimeout(() => this.countdown(), 1000)
   }
 })

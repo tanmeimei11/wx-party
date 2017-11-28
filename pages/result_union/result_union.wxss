@@ -14,6 +14,8 @@
 .r-txt {
   width: 750rpx;
   margin-top: 71rpx;
+  padding-bottom: 70rpx;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.03);
 }
 
 .r-txt .r-img {
@@ -45,6 +47,60 @@
   color: #888;
   text-align: center;
 }
+
+.r-avatar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+}
+
+.r-avatar view{
+  width: 128rpx;
+  height: 128rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin: 100rpx 42rpx 0;
+  position: relative;
+}
+
+.r-avatar view::after{
+  content: '';
+  position: absolute;
+  top: 88rpx;
+  left: 88rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.r-avatar view.male::after{
+  background-image: url(http://inimg07.jiuyan.info/in/2017/11/28/6ED5D101-D20C-2AAC-EE6B-48F0E9E7CFD3.png);
+}
+
+.r-avatar view.female::after{
+  background-image: url(http://inimg05.jiuyan.info/in/2017/11/28/64BAA0EE-2CFE-1D3C-3F2E-A15C2D326205.png);
+}
+
+.r-avatar view text{
+  position: absolute;
+  top: 144rpx;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 35rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 
 
 .r-link contact-button {

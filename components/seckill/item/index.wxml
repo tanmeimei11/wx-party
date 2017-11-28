@@ -4,6 +4,6 @@
     <text>{{tools.hour(item.cutTime)}}</text>:
     <text>{{tools.minute(item.cutTime)}}</text>:
     <text>{{tools.second(item.cutTime)}}</text>
-    <view wx:if="{{item.count_down}}">后开抢</view>
+    <view wx:if="{{item.count_down && item.act_name}}">后开抢</view>
   </view>
 </template>
