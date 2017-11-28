@@ -6,7 +6,7 @@ var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
 // var seckillEntry = require('../../components/seckill/entry/index.js')
 var seckillEntry = require('../../components/seckill/item/index.js')
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 
 mutulPage({

@@ -3,6 +3,8 @@
 @import '../../components/payModal/index.wxss';
 @import '../../components/seckill/detail/index.wxss';
 @import '../../components/toastWhite/index.wxss';
+@import '../../components/union/index.wxss';
+@import '../../components/unionIngModal/index.wxss';
 .container {
   padding-bottom: 150rpx;
 }

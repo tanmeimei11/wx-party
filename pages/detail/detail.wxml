@@ -33,7 +33,7 @@
       </swiper>
 
       <!-- 秒杀导航 -->
-      <view class="c-seckill">
+      <view class="c-seckill" wx:if="{{!unionInfo.is_union}}">
         <import src="../../components/seckill/detail/index.wxml" />
         <template is="detailBar" data="{{...seckill}}" />
       </view>
@@ -91,7 +91,7 @@
 
 
       <!-- 底部导航 -->
-      <view class="c-bottom-nav">
+      <view class="c-bottom-nav" wx:if="{{!unionInfo.is_union}}">
         <!-- 审核未通过 -->
         <block wx:if="{{actStatus == '3'}}">
           <view class="btn-end-act">审核未通过 </view>
@@ -119,6 +119,12 @@
           </view>
         </block>
       </view>
+      <!-- union  双人成团-->
+      <block wx:else>
+        <import src="../../components/union/index.wxml" />
+        <template is="union" data="{{...unionInfo,shareUnionId:shareUnionId}}" />
+      </block>
+
 
       <!-- 邀请弹窗 -->
       <view class="c-modal" wx:if="{{isShowInviteModal}}">
@@ -159,7 +165,10 @@
 
       <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
-      <template is="payModal" data="{{isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
+      <template is="payModal" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
+      <!-- 拼团中弹窗 -->
+      <import src="../../components/unionIngModal/index.wxml" />
+      <template is="unionIngModal" data="{{...unionIngModalInfo}}" />
       <!-- 白色 toast 弹窗 -->
       <include src="../../components/toastWhite/index.wxml" />
     </view>

@@ -1,15 +1,17 @@
 const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 var request = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var payModal = require('../../components/payModal/index.js')
 var seckillDetail = require('../../components/seckill/detail/index.js')
 var toastWhite = require('../../components/toastWhite/index.js')
+var union = require('../../components/union/index.js')
+var unionIngModal = require('../../components/unionIngModal/index.js')
 import track from '../../utils/track.js'
 mutulPage({
-  mixins: [payModal, seckillDetail, toastWhite],
+  mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal],
   data: {
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,
@@ -78,7 +80,7 @@ mutulPage({
       }
     }
   },
-  onLoad: function (options) {
+  onLoad(options) {
     track(this, 'h5_tcpa_detail_screen_enter')
     wx.showLoading({
       title: '加载中...'
@@ -93,6 +95,7 @@ mutulPage({
       id: options.id || '11001',
       sessionFrom: `activity_${options.id}`,
       sessionFromQr: `activitymanager_${options.id}`,
+      shareUnionId: options.shareUnionId
     })
 
     options.isShowPayModal && this.showPayModal()
@@ -153,17 +156,22 @@ mutulPage({
       })
     }
   },
-  showPayModal: function () {
+  showPayModal: function (option) {
+    var _data = {
+      act_id: this.data.id,
+    }
+    if (option && option.union == 1) {
+      _data.is_union = true
+    } else {
+      _data.is_seckill_finish = this.data.seckill.is_seckill_finish
+    }
     request({
       url: '/activity/cost',
-      data: {
-        act_id: this.data.id,
-        is_seckill_finish: this.data.seckill.is_seckill_finish
-      }
+      data: _data
     }).then(res => {
       if (res.succ) {
         var _preText = ''
-        if (this.data.seckill.is_seckill_finish == 0) {
+        if (this.data.seckill.is_seckill_finish == 0 && !this.data.unionInfo.is_union) {
           _preText = '秒杀活动不支持鼓励金，'
         }
         // 计算的文案
@@ -281,10 +289,12 @@ mutulPage({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
-  openBook: function () {
+  openBook: function (e) {
+    // 秒杀倒计时
     if (this.data.seckill.seckillStatus == 'ready' || this.data.bookStatus == '1') {
       return
     }
+    // 分享秒杀
     if (this.data.shareUserId) {
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
@@ -292,6 +302,12 @@ mutulPage({
     // 首次报名
     if (this.data.isNeedInfo == 1) {
       this.redirectApply()
+      return
+    }
+    if (e.target.dataset.union == 1) {
+      this.showPayModal({
+        union: 1
+      })
       return
     }
     this.showPayModal()
@@ -368,6 +384,8 @@ mutulPage({
     })
     // 设置秒杀信息
     this.setSeckillInfo(data)
+    // 设置拼团信息
+    this.setUnionInfo(data)
   },
   loadImages: function (images) {
     var imgPromiseList = []

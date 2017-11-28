@@ -1,0 +1,67 @@
+.c-bottom-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.c-bottom-group>view {
+  height: 100%;
+}
+
+.c-bottom-group .btn-group-share {
+  width: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  color: #666666;
+}
+
+.c-bottom-group .btn-group-share>view {
+  width: 44rpx;
+  height: 44rpx;
+  background: url(https://inimg07.jiuyan.info/in/2017/11/26/A601B345-DF88-FC51-8147-60E045308BB1.jpg) no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-bottom: 2rpx;
+}
+
+.c-bottom-group .btn-group {
+  flex: 1;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-bottom-group .btn-group-book {
+  background-image: linear-gradient(90deg, #F29E2A 0%, #FBBC59 100%);
+}
+
+.c-bottom-group .btn-group-two {
+  background-image: linear-gradient(-90deg, #FF8259 0%, #F75C53 100%);
+}
+
+.c-bottom-group .btn-group-ing {
+  font-size: 20rpx;
+  background-image: linear-gradient(-90deg, #FF8259 0%, #F75C53 100%);
+}
+
+.c-bottom-group .btn-group-ing .big:first-child {
+  font-size: 36rpx;
+}
+
+.c-bottom-group .sd-tips.late {
+  background-image: url(https://inimg07.jiuyan.info/in/2017/11/26/3E28C94B-7EF1-9F5B-9782-36BC421F122F.jpg);
+  width: 505rpx;
+  height: 257rpx;
+  bottom: 110rpx;
+  padding-top: 90rpx;
+  padding-right: 30rpx;
+}

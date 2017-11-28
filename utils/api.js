@@ -6,7 +6,6 @@ const qnTokenUrl = config.qnTokenUrl
 const qnUploadUrl = config.qnUploadUrl
 const qnResUrl = config.qnResUrl
 
-
 /**
  * 上传文件到七牛
  * @param {*} file 
@@ -84,15 +83,8 @@ var payMoney = (id, is_seckill_finish) => {
   })
 }
 
-// 秒杀活动 post
-var paySeckill = (id) => {
-  return request({
-    url: '/activity/seckill',
-    data: {
-      id: id
-    }
-  })
-}
+
+
 
 module.exports = {
   uploadImageToQiniu,
