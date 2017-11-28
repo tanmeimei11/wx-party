@@ -93,6 +93,7 @@ mutulPage({
       id: options.id || '11001',
       sessionFrom: `activity_${options.id}`,
       sessionFromQr: `activitymanager_${options.id}`,
+      sessionFromAct: `typeactivity_${options.id}`
     })
 
     options.isShowPayModal && this.showPayModal()
@@ -364,7 +365,8 @@ mutulPage({
       promoMoney: data.charge || 0,
       promoDelayMoney: data.booking_charge || 0,
       otherPromoNum: data.other_act_count,
-      actType: data.act_type
+      actType: data.act_type,
+      banner: data.banner
     })
     // 设置秒杀信息
     this.setSeckillInfo(data)
