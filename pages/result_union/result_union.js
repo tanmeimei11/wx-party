@@ -9,7 +9,8 @@ mutulPage({
   data: {
     item: [],
     xxtimer: null,
-    emptyAvatar: 'https://inimg07.jiuyan.info/in/2017/11/28/29AB4215-BACF-F96B-88A0-A0BE33046BF0.png'
+    unionSucc: false,
+    done: false
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_result_screen_enter')
@@ -34,15 +35,19 @@ mutulPage({
       //   item.cutTime = +item.count_down / 1000
       //   return item
       // }))
-      if (res.data.count_down) {
-        var list = res.data
+      var list = res.data
+      if (res.data.join_info.join_avatar) {
+        var unionSucc = true
+      } else {
+        var unionSucc = false
         list.cutTime = list.count_down
-        list.union_join_avatar = list.union_join_avatar ? list.union_join_avatar : this.data.emptyAvatar
-        this.setData({
-          item: list
-        })
         this.countdown()
       }
+      this.setData({
+        item: list,
+        unionSucc: unionSucc,
+        done: true
+      })
     })
   },
   goBack: function () {
