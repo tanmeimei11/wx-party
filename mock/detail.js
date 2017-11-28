@@ -60,11 +60,14 @@ module.exports = {
       "union_info": {
         "is_union": true, //是否拼团,
         "union_id": "455667",
+        "union_charge": "18.00",
         "union_status": "0", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
         "union_countdown_diff": "85860000", // 过期时间 - 现在时间差 （millis）
         "union_luanch_avatar": "https://inimg01.jiuyan.info/in/2017/10/13/AC7CA472-C19B-62EF-952B-97CAAD1C65F0.jpg", //拼团发起人头像
         "union_luanch_nick_name": "犀牛", //拼团发起人昵称
+        "is_owner": true, //是否为发起拼团人自己
         "desc": "来晚一步～有人抢先拼团啦 开一个自己的团吧～", //拼团失败提示文案
+        "gender": "男"
       } //拼团相关信息，只要是拼团的情况下才有这个字段
     },
     "code": "200003",

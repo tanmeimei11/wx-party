@@ -2,7 +2,7 @@ import track from '../../utils/track.js'
 var request = require('../../utils/wxPromise.js').requestPromisify
 import {
   mutulPage
-} from '../../utils/util.js'
+} from '../../utils/mixin.js'
 var seckillResult = require('../../components/seckill/result/index.js')
 mutulPage({
   mixins: [seckillResult],
