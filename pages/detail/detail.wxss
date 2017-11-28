@@ -392,10 +392,6 @@
   overflow: hidden
 }
 
-.btn-sign-again contact-button {
-  transform: scale(10, 3);
-}
-
 .c-Verify-wrap .s-list-text>view {
   padding-left: 80rpx;
   padding-right: 40rpx;
@@ -413,10 +409,6 @@
 
 .c-Verify-wrap .s-get-look {
   margin-top: 0rpx;
-}
-
-.s-get-qr contact-button {
-  transform: scale(10, 3);
 }
 
 .map-line {
@@ -505,10 +497,4 @@
 .new-banner {
   position: relative;
   overflow: hidden;
-}
-
-contact-button {
-  /* width: 100%; */
-  /* height: 100%; */
-  transform: scale(15, 10);
 }

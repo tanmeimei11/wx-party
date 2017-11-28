@@ -75,10 +75,6 @@
   position: relative;
 }
 
-.c-pay-wrap .s-btn contact-button {
-  transform: scale(15, 3);
-}
-
 .c-pay-wrap .gold-money {
   color: #FF4338;
 }
