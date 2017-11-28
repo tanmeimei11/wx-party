@@ -63,6 +63,12 @@
         <view class="s-line">
           <view class="title">活动介绍</view>
           <view class="m-text">
+            <!-- 点击跳客服 -->
+            <view wx:if="{{banner}}" class="new-banner">
+              <contact-button type="default-dark" size="20" session-from="{{sessionFromAct}}">
+              </contact-button>
+              <image src="{{banner}}" mode="widthFix"></image>
+            </view>
             <text class="m-intro" wx:if="{{!newDesc}}">{{tempIntro}}</text>
             <block wx:if="{{newDesc}}" wx:for="{{tempIntro}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
               <text wx:if="{{!item.image}}" class="{{!item ? 'empty' : ''}}">{{item}}</text>

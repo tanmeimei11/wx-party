@@ -89,7 +89,3 @@
   border-right: 10rpx solid transparent;
   border-top: 14rpx solid #333333;
 }
-
-contact-button {
-  transform: scale(17, 4);
-}

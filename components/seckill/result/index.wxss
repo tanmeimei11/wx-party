@@ -1,5 +1,4 @@
-.seckill-result {
-}
+.seckill-result {}
 
 .seckill-result .sr-contact {
   position: relative;
@@ -11,6 +10,7 @@
   font-size: 28rpx;
   color: #fff;
   text-align: center;
+  overflow: hidden;
 }
 
 .seckill-result .sr-share {
@@ -23,8 +23,4 @@
   color: #ff4338;
   text-align: center;
   background: #fff;
-}
-
-.seckill-result  contact-button {
-  transform: scale(11, 2);
 }
