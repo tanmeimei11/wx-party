@@ -176,7 +176,7 @@
   overflow: hidden;
 }
 
-.sr-share{
+.sr-share,.r-btn{
   width: 420rpx;
   height: 80rpx;
   margin: 50rpx auto 77rpx;

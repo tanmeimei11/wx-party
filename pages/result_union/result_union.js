@@ -17,7 +17,8 @@ mutulPage({
     id: '',
     title: '',
     transferImageUrl: '',
-    union_id: ''
+    union_id: '',
+    hidden: false
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_result_screen_enter')
@@ -50,6 +51,7 @@ mutulPage({
         this.countdown()
       }
       this.setData({
+        hidden: true,
         item: list,
         unionSucc: unionSucc,
         done: true,
