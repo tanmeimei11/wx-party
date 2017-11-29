@@ -13,10 +13,16 @@ mutulPage({
     done: false,
     _v: '',
     act_id: '',
-    shareInfo: {}
+    shareInfo: {},
+    id: '',
+    title: '',
+    transferImageUrl: '',
+    union_id: ''
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_result_screen_enter')
+    console.log(option)
+    console.log(decodeURIComponent(option.title))
     var self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -28,17 +34,15 @@ mutulPage({
     // 取页面上的id
     this.setData({
       id: option.id,
-      promoText: `本周在你附近举办的${option.promonum == 0 ? "" : `${option.promonum}个`}活动`,
-      sessionFrom: `activityassistant_${option.id}`,
-      transferImageUrl: option.transferImageUrl,
-      title: option.title,
+      user_id: option.user_id,
+      title: decodeURIComponent(option.title),
+      transferImageUrl: decodeURIComponent(option.transferImageUrl),
     })
-    this.getInfo(option)
     request({
       url: `/union/share_info`,
       data: {
         act_id: this.data.act_id,
-        launch_user_id: '',
+        user_id: this.data.user_id,
         _v: this.data._v
       }
     }).then((res) => {
@@ -57,39 +61,17 @@ mutulPage({
       this.setData({
         item: list,
         unionSucc: unionSucc,
-        done: true
+        done: true,
+        union_id: union_id
       })
     })
   },
-  getInfo: function (option) {
-    request({
-      url: "/activity/share_info",
-      data: {
-          id: option.id
-      }
-    }).then(res => {
-      if (res.succ) {
-        this.setData({
-          shareInfo: {
-            shareUserName: res.data.user_name,
-            shareUserId: res.data.user_id,
-            discount: res.data.discount,
-          }
-        })
-      }
-    })
-  },
   onShareAppMessage(options) {
-    const _options = options.from === 'button' ? {
-      title: `${this.data.shareInfo.shareUserName}邀请你一起参团，参加"${decodeURIComponent(this.data.title)}",立减¥${this.data.seckill.discount}`,
-      path: `pages/detail/detail?id=${this.data.id}&shareUserId=${this.data.seckill.shareUserId}`,
-    } : {
-      title: `"${decodeURIComponent(this.data.title)}"火热报名中,快来加入吧～`,
-      path: `pages/detail/detail?id=${this.data.id}`,
-    }
     return {
-      ..._options,
-      imageUrl: decodeURIComponent(this.data.transferImageUrl),
+      title: this.data.title,
+      id: this.data.id,
+      imageUrl: this.data.transferImageUrl,
+      path: `pages/detail/detail?id=${this.data.id}&shareUserId=${this.data.union_id}`,
       success: function (res) {
         // 转发成功
         // track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
@@ -100,7 +82,7 @@ mutulPage({
     var list = this.data.item
     if (list.cutTime < 1) {
       wx.redirectTo({
-        url: '../detail/detail'
+        url: `../detail/detail?id=${this.data.id}`
       })
       return
     }
