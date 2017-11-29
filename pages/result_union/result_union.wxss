@@ -10,7 +10,9 @@
   font-size: 60rpx;
   color: #333;
   margin-top: 30rpx;
-  padding-bottom: 50rpx;
+  padding-bottom: 70rpx;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.03);
+  margin-bottom: 100rpx;
 }
 
 .r-txt {
@@ -53,6 +55,12 @@
   flex-direction: row;
   align-items: center;
   justify-content:center;
+}
+
+.unionSucc .r-avatar{
+  margin: 40rpx 0 80rpx;
+  padding-bottom: 40rpx;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.03);
 }
 
 .r-avatar>view{
@@ -121,7 +129,7 @@
 
 .r-link {
   width: 420rpx;
-  padding-bottom: 64rpx;
+  padding: 1rpx 0 64rpx;
   border-radius: 8rpx;
   background: #fff;
   box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.1);
@@ -168,10 +176,10 @@
   overflow: hidden;
 }
 
-.r-btn{
+.sr-share{
   width: 420rpx;
   height: 80rpx;
-  margin: 50rpx auto;
+  margin: 50rpx auto 77rpx;
   background: #ff4338;
   border-radius: 100rpx;
   color: #fff;
@@ -179,18 +187,29 @@
   display: flex;
   align-items: center;
   justify-content:center;
+  position: relative;
 }
+
+/*.seckill-result button{}*/
 
 .r-other{
   font-size: 28rpx;
   color: #ff4338;
-  margin-top: 250rpx;
+  margin-top: 300rpx;
   text-align: center;
+}
+
+.unionSucc .r-other{
+  margin-top: 0;
 }
 
 .r-line1{
   height: 20rpx;
   box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.03);
+}
+
+.sr-contact{
+  display: none;
 }
 
 .r-link contact-button {

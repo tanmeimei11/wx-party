@@ -28,19 +28,24 @@
       </view>
     </view>
 
-    <view class="r-btn">
+<!--     <view class="r-btn">
       <text class="r-share">邀请好友同行</text>
-    </view>
+    </view> -->
+    <!-- 秒杀分享 -->
+    <button open-type="share" class="sr-share">分享邀请好友同行</button>
+<!--     <import src="../../components/seckill/result/index.wxml" />
+    <template is="result" data="{{...seckill,sessionFrom}}" /> -->
+
+    <view class="r-other" bindtap="goback">查看附近其他活动 ></view>
+
   </view>
 
 
   <!-- 拼团完成 -->
-  <view wx:if="{{unionSucc}}">
+  <view wx:if="{{unionSucc}}" class="unionSucc">
     <view class="r-txt">
-      <view class="r-suc-txt" wx:if="{{unionSucc}}">拼团成功</view>
-      <view class="r-txt1" wx:if="{{unionSucc}}">记得和小伙伴一起来玩耍哦</view>
-      <import src="../../components/seckill/item/index.wxml"/>
-      <template is="item" data="{{item}}" class="se-time" wx:if="{{!unionSucc}}"/>
+      <view class="r-suc-txt">拼团成功</view>
+      <view class="r-txt1">记得和小伙伴一起来玩耍哦</view>
     </view>
 
     <view class="r-avatar">
@@ -60,22 +65,20 @@
       </view>
     </view>
 
-    <view class="r-link" wx:if="{{unionSucc}}">
+    <view class="r-link">
       <view class="r-link-img"></view>
       <view class="r-link-name">同城趴-小in</view>
       <view class="r-link-wxid">微信号:pabeidaren</view>
+    </view>
+
+    <view class="r-btn">
       <view class="r-link-btn" wx:if="{{!seckill.isSeckill}}" bindtap="getQrTrack">获取小助手二维码
         <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
         </contact-button>
       </view>
     </view>
 
-    <view class="r-btn">
-      <text class="r-share" wx:if="{{!unionSucc}}">邀请好友同行</text>
-      <text class="r-get" wx:if="{{unionSucc}}">获取小助手二维码</text>
-    </view>
+    <view class="r-other" bindtap="goback">查看附近其他活动 ></view>
 
   </view>
-
-  <text class="r-other">查看附近其他活动</text>
 </view>
