@@ -2,25 +2,23 @@ var request = require('../../utils/wxPromise.js').requestPromisify
 // import track from '../../utils/track.js'
 module.exports = {
   data: {
-    unionInfo: {
-      is_union: false
+    unionStatus: {
+      is_show: true
     }
   },
-  setUnionInfo: function (data) {
-    data.union_info && (
-      this.setData({
-        unionInfo: data.union_info
-      })
-    )
-  },
-  // 拼团成功
-  // 两人成团
-  // 拼团中
-  getUnionIng: function () {
+  showUnionStatus: function () {
     this.setData({
-      unionIngModalInfo: {
-        ...this.data.unionIngModalInfo,
-        isShow: true
+      unionStatus: {
+        ...this.data.unionStatus,
+        is_show: true
+      }
+    })
+  },
+  closeWindow: function () {
+    this.setData({
+      unionStatus: {
+        ...this.data.unionStatus,
+        is_show: false
       }
     })
   }

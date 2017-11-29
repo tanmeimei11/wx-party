@@ -61,7 +61,7 @@ module.exports = {
         "is_union": true, //是否拼团,
         "union_id": "455667",
         "union_charge": "18.00",
-        "union_status": "2", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
+        "union_status": "3", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
         "union_countdown_diff": 85860000, // 过期时间 - 现在时间差 （millis）
         "launch_info": {
           "avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg", //拼团发起人头像
@@ -69,7 +69,7 @@ module.exports = {
           "gender": "男" //拼团发起人性别
         }, //拼团发起人用户信息
         "join_info": {
-          // "avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg", //拼团参与人头像
+          "avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg", //拼团参与人头像
           "nick_name": "小夫", //拼团参与人昵称
           "gender": "男" //拼团参与人性别
         }, //拼团参与人用户信息

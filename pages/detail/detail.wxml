@@ -172,7 +172,7 @@
 
       <!-- 支付弹窗 -->
       <import src="../../components/unionStatus/index.wxml" />
-      <template is="unionStatus" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
+      <template is="unionStatus" data="{{unionInfo:unionInfo,isShowUnionStatus:isShowUnionStatus,unionStatus:unionStatus}}" />
       <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
       <template is="payModal" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo,shareUnionId:shareUnionId}}"
