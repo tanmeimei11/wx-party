@@ -64,7 +64,7 @@ mutulPage({
       title: this.data.title,
       id: this.data.id,
       imageUrl: this.data.transferImageUrl,
-      path: `pages/detail/detail?id=${this.data.id}&shareUserId=${this.data.union_id}`,
+      path: `pages/detail/detail?id=${this.data.id}&shareUnionId=${this.data.union_id}`,
       success: function (res) {
         // 转发成功
         // track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`])
