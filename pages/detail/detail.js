@@ -9,9 +9,10 @@ var seckillDetail = require('../../components/seckill/detail/index.js')
 var toastWhite = require('../../components/toastWhite/index.js')
 var union = require('../../components/union/index.js')
 var unionIngModal = require('../../components/unionIngModal/index.js')
+var unionStatus = require('../../components/unionStatus/index.js')
 import track from '../../utils/track.js'
 mutulPage({
-  mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal],
+  mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal, unionStatus],
   data: {
     sharePathQuery: [],
     sharePathTitle: '',
@@ -36,6 +37,7 @@ mutulPage({
     actQrImg: '',
     isShowVerifyModal: false,
     isSubmitFormId: true,
+    isShowUnionStatus: false,
     newDesc: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
