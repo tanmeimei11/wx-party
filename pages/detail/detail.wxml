@@ -170,7 +170,7 @@
       <!-- canvas -->
       <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
 
-      <!-- 支付弹窗 -->
+      <!-- 拼团通知弹窗 -->
       <import src="../../components/unionStatus/index.wxml" />
       <template is="unionStatus" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
       <!-- 支付弹窗 -->

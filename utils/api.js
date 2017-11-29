@@ -72,10 +72,10 @@ var payMoney = (_data) => {
         }
       })
     } else {
-      // 没有秒杀到 
-      if (Res.code == '4000032352') {
-        return Promise.reject('fail')
-      }
+      // 失败的情况
+      // if (Res.code == '4000032352') {
+      return Promise.reject(Res.code)
+      // }
     }
   })
 }

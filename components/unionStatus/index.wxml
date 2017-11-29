@@ -1,6 +1,6 @@
 <!-- 双人成团状态弹窗 -->
 <template name="unionStatus">
-  <view class="c-modal">
+  <view class="c-modal" wx:if="{{false}}">
     <view class="c-wrap u-bg">
 
       <view class="u-txt">拼团成功</view>
