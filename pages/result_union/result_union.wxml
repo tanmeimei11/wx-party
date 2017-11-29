@@ -81,4 +81,6 @@
     <view class="r-other" bindtap="goback">查看附近其他活动 ></view>
 
   </view>
+
 </view>
+<loading hidden="{{hidden}}">加载中...</loading>
