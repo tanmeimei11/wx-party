@@ -1,6 +1,10 @@
 <!-- 双人成团状态弹窗 -->
 <template name="unionStatus">
+<<<<<<< HEAD
   <view class="c-modal" wx:if="{{false}}">
+=======
+  <view class="c-modal" wx:if="{{showPrompt && unionStatus.is_show}}">
+>>>>>>> a5f12194e213800b1348a210edf1ff8285f99dd7
     <view class="c-wrap u-bg {{unionInfo.union_status == '4' ? 'succ' : 'fail'}}">
 
       <view class="u-txt" wx:if="{{unionInfo.union_status == '4'}}">拼团成功</view>
