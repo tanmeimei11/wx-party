@@ -13,5 +13,8 @@ module.exports = {
         isShow: false
       }
     })
+  },
+  inviteFriendsUnion: function () {
+
   }
 }

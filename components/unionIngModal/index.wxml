@@ -4,7 +4,31 @@
     <view class="c-wrap c-unioning-wrap">
       <view class="s-close" bindtap="closeUnionIngModal"></view>
       <view class="s-title">拼团中</view>
-      <view class="s-btn">邀请好友同行</view>
+      <view class="r-avatar-wrap">
+        <view>
+          <view class="r-avatar first {{unionInfo.launch_info.gender == '男' ? 'male' : 'female'}}" style="background-image:url({{unionInfo.launch_info.avatar}})">
+          </view>
+          <text class="r-text">{{unionInfo.launch_info.nick_name}}</text>
+        </view>
+        <view>
+          <view class="r-avatar {{unionInfo.join_info.status}} {{unionInfo.join_info.gender == '男' ? 'male' : 'female'}}" style="background-image:url({{unionInfo.join_info.avatar}})">
+          </view>
+          <text class="r-text">{{unionInfo.join_info.nick_name}}</text>
+        </view>
+      </view>
+      <view class="s-ravatar-tips-wrap" wx:if="{{!unionInfo.is_owner}}">
+        <wxs src="../../utils/tools.wxs" module="tools" />
+        <view class="cut-time">
+          <text>{{tools.hour(unionInfo.union_countdown_diff)}}</text>:
+          <text>{{tools.minute(unionInfo.union_countdown_diff)}}</text>:
+          <text>{{tools.second(unionInfo.union_countdown_diff)}}</text>
+        </view>
+        <text>内支付，即享受拼团价</text>
+      </view>
+      <view class="s-ravatar-tips" wx:else>24小时内邀请好友报名，即享受拼团价</view>
+
+      <view class="s-btn">
+        <button type="default" disabled="{{disabled}}" bindtap="transferTrack" open-type="share"> </button>邀请好友同行</view>
     </view>
   </view>
 </template>

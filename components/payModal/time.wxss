@@ -1,0 +1,28 @@
+.s-ravatar-tips-wrap .cut-time {
+  display: flex;
+  height: 90rpx;
+  align-items: center;
+  font-size: 24rpx;
+  color: #333;
+  line-height: 20rpx;
+}
+
+.s-ravatar-tips-wrap .cut-time text {
+  background: #333333;
+  border-radius: 4rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 29rpx;
+  width: 29rpx;
+  height: 29rpx;
+  margin: 0 5rpx;
+}
+
+.s-ravatar-tips-wrap .cut-time text:first-child {
+  margin-left: 0;
+}
+
+.s-ravatar-tips-wrap .cut-time text:last-child {
+  margin-right: 13rpx;
+}

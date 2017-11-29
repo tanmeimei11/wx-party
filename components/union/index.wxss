@@ -1,3 +1,4 @@
+@import '../payModal/time.wxss';
 .c-bottom-group {
   display: flex;
   flex-direction: row;
@@ -55,6 +56,17 @@
 
 .c-bottom-group .btn-group-ing .big:first-child {
   font-size: 36rpx;
+}
+
+.c-bottom-group .btn-group-ing .small {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-bottom-group .btn-group-ing .small .cut-time {
+  margin-right: 5rpx;
 }
 
 .c-bottom-group .sd-tips.late {
