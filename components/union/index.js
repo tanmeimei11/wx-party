@@ -20,6 +20,9 @@ module.exports = {
     if (union_info.join_info && union_info.join_info.avatar) {
       union_info.join_info.status = ''
     } else {
+      if (union_info.is_owner) {
+        union_info.launch_info = union_info.owner_info
+      }
       union_info.join_info = this.data.defaultUnionInfo
     }
     this.setData({

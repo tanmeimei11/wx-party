@@ -11,6 +11,9 @@
 	"libVersion": "1.5.4",
 	"appid": "wx48155bddeea6fb66",
 	"projectname": "wx-party",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
 	"miniprogramRoot": "./",
 	"condition": {
 		"search": {
@@ -34,11 +37,7 @@
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-<<<<<<< HEAD
 					"query": "id=19801&isShowOtherAct=false&from=xiangxiang"
-=======
-					"query": "id=16601&isShowOtherAct=false&from=xiangxiang&shareUnionId=11&unionStatus=1&show_prompt=1"
->>>>>>> a5f12194e213800b1348a210edf1ff8285f99dd7
 				},
 				{
 					"id": -1,
