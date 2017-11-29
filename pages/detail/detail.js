@@ -10,9 +10,10 @@ var toastWhite = require('../../components/toastWhite/index.js')
 var union = require('../../components/union/index.js')
 var unionIngModal = require('../../components/unionIngModal/index.js')
 var unionStatus = require('../../components/unionStatus/index.js')
+var toastModal = require('../../components/toastModal/index.js')
 import track from '../../utils/track.js'
 mutulPage({
-  mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal, unionStatus],
+  mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal, unionStatus, toastModal],
   data: {
     sharePathQuery: [],
     sharePathTitle: '',
@@ -37,8 +38,9 @@ mutulPage({
     actQrImg: '',
     isShowVerifyModal: false,
     isSubmitFormId: true,
-    isShowUnionStatus: false,
     newDesc: false,
+    showPrompt: false,
+    late: true,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',
@@ -104,7 +106,7 @@ mutulPage({
       sessionFrom: `activity_${options.id}`,
       sessionFromQr: `activitymanager_${options.id}`,
       sessionFromAct: `typeactivity_${options.id}`,
-      shareUnionId: options.shareUnionId || ''
+      shareUnionId: options.shareUnionId || '',
     })
 
     options.isShowPayModal && this.showPayModal()
@@ -136,6 +138,12 @@ mutulPage({
     } else if (options.prepage == 'apply') { // 支付
       this.setData({
         promoDelayMoney: true
+      })
+    }
+
+    if (options.show_prompt) {
+      this.setData({
+        showPrompt: true
       })
     }
 

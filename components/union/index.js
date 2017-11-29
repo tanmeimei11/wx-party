@@ -17,9 +17,6 @@ module.exports = {
       return
     }
     var union_info = data.union_info
-    if (data.union_info) {
-      this.showUnionStatus()
-    }
     if (union_info.join_info && union_info.join_info.avatar) {
       union_info.join_info.status = ''
     } else {
