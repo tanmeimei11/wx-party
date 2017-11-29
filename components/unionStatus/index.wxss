@@ -1,0 +1,96 @@
+.u-bg::before{
+  content: '';
+  position: absolute;
+  top: -70rpx;
+  left: 215rpx;
+  width: 140rpx;
+  height: 140rpx;
+  background: url(http://inimg07.jiuyan.info/in/2017/11/29/009E497D-034D-5D0F-3F0C-5C516467D941.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+
+}
+
+.u-txt{
+  display: block;
+  margin-top: 32rpx;
+  text-align: center;
+}
+
+
+
+.r-avatar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+}
+
+.unionSucc .r-avatar{
+  margin: 40rpx 0 80rpx;
+  padding-bottom: 40rpx;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.03);
+}
+
+.r-avatar>view{
+  margin: 0 42rpx;
+  position: relative;
+  width: 80rpx
+}
+
+.r-avatar .sex{
+  width: 80rpx;
+  height: 80rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.r-avatar .sex::after{
+  content: '';
+  position: absolute;
+  top: 68.75%;
+  left: 68.75%;
+  width: 31.25%;
+  height: 31.25%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.r-avatar>.male .sex::after{
+  background-image: url(http://inimg07.jiuyan.info/in/2017/11/28/6ED5D101-D20C-2AAC-EE6B-48F0E9E7CFD3.png);
+}
+
+.r-avatar>.female .sex::after{
+  background-image: url(http://inimg05.jiuyan.info/in/2017/11/28/64BAA0EE-2CFE-1D3C-3F2E-A15C2D326205.png);
+}
+
+.r-avatar>.none .sex::after{
+  background-image: none!important
+}
+
+.r-avatar .sex.noone{
+  background-image: url(https://inimg07.jiuyan.info/in/2017/11/28/29AB4215-BACF-F96B-88A0-A0BE33046BF0.png);
+}
+
+.r-avatar>view text{
+  width: 150%;
+  margin-left: -25%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 35rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  margin-top: 16rpx;
+}
+
+.r-avatar>view.none text{
+  color: #b0b0b0;
+}
