@@ -72,10 +72,7 @@ var payMoney = (_data) => {
         }
       })
     } else {
-      // 失败的情况
-      // if (Res.code == '4000032352') {
       return Promise.reject(Res.code)
-      // }
     }
   })
 }

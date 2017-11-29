@@ -3,7 +3,7 @@ var request = require('../../utils/wxPromise.js').requestPromisify
 module.exports = {
   data: {
     unionStatus: {
-      is_show: true
+      is_show: false
     }
   },
   showUnionStatus: function () {
