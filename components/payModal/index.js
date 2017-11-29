@@ -30,7 +30,8 @@ module.exports = {
           url: `../result/result?prepage=apply&${this.getRedirectParam()}}`
         })
       }, (res) => {
-        if (res == 'fail') {
+        // 没有秒杀到
+        if (res.code == '4000032352') {
           this.showSeckillModal()
         }
         wx.hideLoading()
