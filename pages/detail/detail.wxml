@@ -113,15 +113,15 @@
         <!-- 邀请好友 签到  -->
         <block wx:if="{{actStatus == '0'}}">
           <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
-          <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
+          <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" catchtap="openSign">签到</view>
           <block wx:elif="{{bookStatus == '0'}}">
             <!-- 秒杀详细 -->
-            <view class="s-btn btn-sign" bindtap="openBook">
+            <view class="s-btn btn-sign" catchtap="openBook">
               <import src="../../components/seckill/detail/index.wxml" />
               <template is="detail" data="{{...seckill}}" />
             </view>
           </block>
-          <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" bindtap="openBookAlready">已报名
+          <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" catchtap="openBookAlready">已报名
           </view>
         </block>
       </view>

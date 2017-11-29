@@ -27,7 +27,7 @@
         </view>
       </view>
 
-      <view class="u-btn" bindtap="closeWindow">我知道啦</view>
+      <view class="u-btn" catchtap="closeWindow">我知道啦</view>
     </view>
   </view>
 </template>

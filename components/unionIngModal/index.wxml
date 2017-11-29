@@ -1,8 +1,7 @@
-<!-- 鼓励金钱窗 -->
 <template name="unionIngModal">
   <view class="c-modal" wx:if="{{isShow}}">
     <view class="c-wrap c-unioning-wrap">
-      <view class="s-close" bindtap="closeUnionIngModal"></view>
+      <view class="s-close" catchtap="closeUnionIngModal"></view>
       <view class="s-title">拼团中</view>
       <view class="r-avatar-wrap">
         <view>
@@ -28,7 +27,7 @@
       <view class="s-ravatar-tips" wx:else>24小时内邀请好友报名，即享受拼团价</view>
 
       <view class="s-btn">
-        <button type="default" disabled="{{disabled}}" bindtap="transferTrack" open-type="share"> </button>邀请好友同行</view>
+        <button type="default" disabled="{{disabled}}" catchtap="transferTrack" open-type="share"> </button>邀请好友同行</view>
     </view>
   </view>
 </template>
