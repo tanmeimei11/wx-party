@@ -107,8 +107,10 @@ mutulPage({
       sessionFromAct: `typeactivity_${options.id}`,
       shareUnionId: options.shareUnionId || '',
     })
-
-    options.isShowPayModal && this.showPayModal()
+    if (options.isShowPayModal && options.shareUnionId) {
+      this.data.showPayModalByUnion = true
+      this.showPayModal()
+    }
     // 秒杀分享
     if (options.shareUserId) {
       track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
@@ -318,11 +320,6 @@ mutulPage({
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
     track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
-    // 首次报名
-    if (this.data.isNeedInfo == 1) {
-      this.redirectApply()
-      return
-    }
     // 开团状态变化 
     this.changeUnionStatus()
     if (e.target.dataset.union == 1) {
@@ -334,7 +331,11 @@ mutulPage({
         showPayModalByUnion: false
       })
     }
-
+    // 首次报名
+    if (this.data.isNeedInfo == 1) {
+      this.redirectApply()
+      return
+    }
     this.showPayModal()
   },
   getRedirectParam() {
@@ -353,7 +354,7 @@ mutulPage({
   },
   redirectApply: function () {
     wx.redirectTo({
-      url: `../apply/apply?nextpage=detail&prepage=detail&id=${this.data.id}`
+      url: `../apply/apply?nextpage=detail&prepage=detail&id=${this.data.id}&shareUnionId=${this.data.shareUnionId}`
     })
   },
   closeJoin: function () {
@@ -489,7 +490,7 @@ mutulPage({
       ctx.draw()
     })
   },
-  getImgFromBack() {
+  getImgFromBack: function () {
     request({
       url: '/activity/detail_img',
       data: {

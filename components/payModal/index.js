@@ -46,7 +46,9 @@ module.exports = {
         if (res.code == '4160032400' || res.code == '4160032401') {
           this.guoqiModal()
         }
-        this.closePayModal()
+        if (res && res.code) {
+          this.closePayModal()
+        }
         wx.hideLoading()
       }).catch(() => {
         this.loadingOut()

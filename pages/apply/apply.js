@@ -41,6 +41,7 @@ Page({
     if (option.id) {
       this.setData({
         id: option.id,
+        shareUnionId: option.shareUnionId || '',
         sessionFrom: `activity_${option.id}`
       })
     }
@@ -131,6 +132,13 @@ Page({
         if (this.data.prepage == 'detail') {
           this.toast('提交成功')
           setTimeout(() => {
+            if (this.data.shareUnionId) {
+              wx.redirectTo({
+                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true&shareUnionId=${this.data.shareUnionId}`
+              })
+              return
+            }
+
             if (this.data.id) {
               wx.redirectTo({
                 url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true`
