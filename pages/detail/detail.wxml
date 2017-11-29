@@ -175,7 +175,7 @@
       <template is="unionStatus" data="{{unionInfo:unionInfo,showPrompt:showPrompt,unionStatus:unionStatus}}" />
       <!-- 来晚提示弹窗 -->
       <import src="../../components/toastModal/index.wxml" />
-      <template is="toastModal" data="{{late:late,lateModal:lateModal}}" />
+      <template is="toastModal" data="{{late:late,lateModal:lateModal,txt1:lateModal.txt1,txt2:lateModal.txt2}}" />
       <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
       <template is="payModal" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo,shareUnionId:shareUnionId}}"
