@@ -6,6 +6,7 @@
 @import '../../components/union/index.wxss';
 @import '../../components/unionIngModal/index.wxss';
 @import '../../components/unionStatus/index.wxss';
+@import '../../components/toastModal/index.wxss';
 .container {
   padding-bottom: 150rpx;
 }

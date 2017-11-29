@@ -1,11 +1,11 @@
 <!-- 来晚状态弹窗 -->
 <template name="toastModal">
-  <view class="c-modal" wx:if="{{late && lateModal.is_show}}">
+  <view class="c-modal toastModal" wx:if="{{late && lateModal.is_show}}">
     <view class="c-wrap u-bg">
 
-      <view class="u-txt">来晚了一步</view>
+      <view class="u-txt">{{txt1}}</view>
 
-      <view class="u-detail">活动开始一小时内，无法拼团报名</view>
+      <view class="u-detail">{{txt2}}</view>
 
       <view class="u-btn" bindtap="closelateModal">我知道了</view>
     </view>
