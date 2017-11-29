@@ -1,6 +1,6 @@
 <!-- 来晚状态弹窗 -->
 <template name="toastModal">
-  <view class="c-modal toastModal" wx:if="{{late && lateModal.is_show}}">
+  <view class="c-modal toastModal" wx:if="{{lateModal.is_show}}">
     <view class="c-wrap u-bg">
 
       <view class="u-txt">{{txt1}}</view>

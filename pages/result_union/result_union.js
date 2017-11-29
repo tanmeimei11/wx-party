@@ -23,14 +23,6 @@ mutulPage({
     track(this, 'h5_tcpa_result_screen_enter')
     console.log(option)
     console.log(decodeURIComponent(option.title))
-    var self = this
-    wx.getSystemInfo({
-      success: function (res) {
-        self.setData({
-          _v: res.version
-        });
-      }
-    })
     // 取页面上的id
     this.setData({
       id: option.id,
@@ -41,9 +33,8 @@ mutulPage({
     request({
       url: `/union/share_info`,
       data: {
-        act_id: this.data.act_id,
+        act_id: this.data.id,
         user_id: this.data.user_id,
-        _v: this.data._v
       }
     }).then((res) => {
       // console.log(res.data.map(item => {
@@ -51,7 +42,7 @@ mutulPage({
       //   return item
       // }))
       var list = res.data
-      if (res.data.join_info.join_avatar) {
+      if (res.data.join_info && res.data.join_info.join_avatar) {
         var unionSucc = true
       } else {
         var unionSucc = false
@@ -62,7 +53,7 @@ mutulPage({
         item: list,
         unionSucc: unionSucc,
         done: true,
-        union_id: union_id
+        union_id: res.data.union_id
       })
     })
   },

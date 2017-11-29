@@ -40,11 +40,11 @@ module.exports = {
         }
         //  来晚一步啦～
         if (res.code == '4160032399') {
-          this.showSeckillModal()
+          this.lateModal()
         }
         //  拼团过期了～
         if (res.code == '4160032400' || res.code == '4160032401') {
-          this.showSeckillModal()
+          this.guoqiModal()
         }
         this.closePayModal()
         wx.hideLoading()

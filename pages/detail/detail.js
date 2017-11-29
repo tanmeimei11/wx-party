@@ -40,7 +40,6 @@ mutulPage({
     isSubmitFormId: true,
     newDesc: false,
     showPrompt: false,
-    late: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',

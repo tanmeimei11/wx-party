@@ -25,6 +25,7 @@ module.exports = {
       }
       union_info.join_info = this.data.defaultUnionInfo
     }
+    union_info.union_countdown_diff = data.union_info.union_countdown_diff / 1000
     this.setData({
       unionInfo: data.union_info
     })
