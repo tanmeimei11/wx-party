@@ -73,6 +73,8 @@ module.exports = {
   },
   // 拼团成功
   goUnionSucc: function () {
+    console.log('-------------------')
+    console.log(this.getUnionParam())
     wx.redirectTo({
       url: `../result_union/result_union?${this.getUnionParam()}}`
     })
@@ -87,7 +89,7 @@ module.exports = {
     })
   },
   // 判断状态  (来晚了 过期了)状态重置到0
-  changeUnionStatus() {
+  changeUnionStatus: function () {
     var _data = {}
     if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3) {
       _data = {
