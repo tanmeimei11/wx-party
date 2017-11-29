@@ -13,6 +13,8 @@ import track from '../../utils/track.js'
 mutulPage({
   mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal],
   data: {
+    sharePathQuery: [],
+    sharePathTitle: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,
     autoplay: true,
@@ -67,9 +69,9 @@ mutulPage({
     }
   },
   onShareAppMessage: function (res) {
-    return {
+    var _shareInfo = {
       title: `"${getLenStr(this.data.headLine.title,30).str}"火热报名中,快来加入吧～`,
-      path: `pages/detail/detail?id=${this.data.id}`,
+      path: `pages/detail/detail?${this.data.sharePathQuery.join('&')}`,
       imageUrl: this.data.transferImageUrl,
       success: function (res) {
         // 转发成功
@@ -79,6 +81,10 @@ mutulPage({
         // 转发失败
       }
     }
+    if (this.data.unionIngModalInfo.isShow) {
+      _shareInfo.title = `${this.data.unionInfo.launch_info.nick_name}邀请你一起拼团，参加${getLenStr(this.data.headLine.title,30).str}`
+    }
+    return _shareInfo
   },
   onLoad(options) {
     track(this, 'h5_tcpa_detail_screen_enter')
@@ -96,7 +102,8 @@ mutulPage({
       sessionFrom: `activity_${options.id}`,
       sessionFromQr: `activitymanager_${options.id}`,
       sessionFromAct: `typeactivity_${options.id}`,
-      shareUnionId: options.shareUnionId || ''
+      shareUnionId: options.shareUnionId || '',
+      sharePathQuery: [`id=${options.id}`]
     })
 
     options.isShowPayModal && this.showPayModal()
@@ -305,12 +312,15 @@ mutulPage({
       this.redirectApply()
       return
     }
-    if (e.target.dataset.union == 1) {
+    // 开团状态变化
+    this.changeUnionStatus()
+    if (this.data.unionInfo.union_status == 0 && e.target.dataset.union == 1) {
       this.showPayModal({
         union: 1
       })
       return
     }
+
     this.showPayModal()
   },
   getRedirectParam() {

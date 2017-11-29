@@ -128,7 +128,8 @@
       <!-- union  双人成团-->
       <block wx:else>
         <import src="../../components/union/index.wxml" />
-        <template is="union" data="{{...unionInfo,shareUnionId:shareUnionId,price:infos.charge}}" />
+        <template is="union" data="{{...unionInfo,shareUnionId:shareUnionId,price:infos.charge,defaultUnionInfo:defaultUnionInfo}}"
+        />
       </block>
 
 
@@ -171,10 +172,11 @@
 
       <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
-      <template is="payModal" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
+      <template is="payModal" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo,shareUnionId:shareUnionId}}"
+      />
       <!-- 拼团中弹窗 -->
       <import src="../../components/unionIngModal/index.wxml" />
-      <template is="unionIngModal" data="{{...unionIngModalInfo}}" />
+      <template is="unionIngModal" data="{{...unionIngModalInfo,unionInfo:unionInfo}}" />
       <!-- 白色 toast 弹窗 -->
       <include src="../../components/toastWhite/index.wxml" />
     </view>

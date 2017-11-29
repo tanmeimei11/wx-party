@@ -61,12 +61,25 @@ module.exports = {
         "is_union": true, //是否拼团,
         "union_id": "455667",
         "union_charge": "18.00",
-        "union_status": "0", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
-        "union_countdown_diff": "85860000", // 过期时间 - 现在时间差 （millis）
-        "union_luanch_avatar": "https://inimg01.jiuyan.info/in/2017/10/13/AC7CA472-C19B-62EF-952B-97CAAD1C65F0.jpg", //拼团发起人头像
-        "union_luanch_nick_name": "犀牛", //拼团发起人昵称
-        "is_owner": true, //是否为发起拼团人自己
-        "desc": "来晚一步～有人抢先拼团啦 开一个自己的团吧～", //拼团失败提示文案
+        "union_status": "2", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
+        "union_countdown_diff": 85860000, // 过期时间 - 现在时间差 （millis）
+        "launch_info": {
+          "avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg", //拼团发起人头像
+          "nick_name": "犀牛", //拼团发起人昵称
+          "gender": "男" //拼团发起人性别
+        }, //拼团发起人用户信息
+        "join_info": {
+          // "avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg", //拼团参与人头像
+          "nick_name": "小夫", //拼团参与人昵称
+          "gender": "男" //拼团参与人性别
+        }, //拼团参与人用户信息
+        "owner_info": {
+          "avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg", //当前用户头像
+          "nick_name": "香香", //当前用户昵称
+          "gender": "男" //当前用户性别
+        }, //当前用户信息
+        "is_owner": false, //是否为发起拼团人自己
+        "desc": "享受拼团价格", //拼团失败提示文案
         "gender": "男"
       } //拼团相关信息，只要是拼团的情况下才有这个字段
     },
