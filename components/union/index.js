@@ -60,7 +60,6 @@ module.exports = {
         },
         isShowPayModal: false
       })
-      clearTimeout(unionTimer)
       return
     }
 
