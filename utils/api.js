@@ -40,13 +40,10 @@ const uploadImageToQiniu = (file) => {
  * 支付接口
  * @param {*} id 
  */
-var payMoney = (id, is_seckill_finish) => {
+var payMoney = (_data) => {
   return request({
     url: '/activity/join_order',
-    data: {
-      id: id,
-      is_seckill_finish: is_seckill_finish
-    }
+    data: _data
   }).then(Res => {
     if (Res.succ) {
       // 不需要进行实际的支付

@@ -71,7 +71,7 @@ mutulPage({
   onShareAppMessage: function (res) {
     var _shareInfo = {
       title: `"${getLenStr(this.data.headLine.title,30).str}"火热报名中,快来加入吧～`,
-      path: `pages/detail/detail?${this.data.sharePathQuery.join('&')}`,
+      path: `pages/detail/detail?id=${this.data.id}`,
       imageUrl: this.data.transferImageUrl,
       success: function (res) {
         // 转发成功
@@ -82,7 +82,7 @@ mutulPage({
       }
     }
     if (this.data.unionIngModalInfo.isShow) {
-      _shareInfo.title = `${this.data.unionInfo.launch_info.nick_name}邀请你一起拼团，参加${getLenStr(this.data.headLine.title,30).str}`
+      _shareInfo = this.getUnionShareInfo()
     }
     return _shareInfo
   },
@@ -102,8 +102,7 @@ mutulPage({
       sessionFrom: `activity_${options.id}`,
       sessionFromQr: `activitymanager_${options.id}`,
       sessionFromAct: `typeactivity_${options.id}`,
-      shareUnionId: options.shareUnionId || '',
-      sharePathQuery: [`id=${options.id}`]
+      shareUnionId: options.shareUnionId || ''
     })
 
     options.isShowPayModal && this.showPayModal()
@@ -164,11 +163,27 @@ mutulPage({
       })
     }
   },
-  showPayModal: function (option) {
+  getUnionShareInfo: function () {
+    var _shareInfo = {
+      title: `${this.data.unionInfo.launch_info.nick_name}邀请你一起拼团，参加${getLenStr(this.data.headLine.title,30).str}`,
+      path: `pages/detail/detail?id=${this.data.id}&unionid=${this.data.unionInfo.union_id}`,
+      imageUrl: this.data.transferImageUrl,
+      success: function (res) {
+        // 转发成功
+        track(this, 'h5_tcpa_active_transfer_succ', [`id=${this.data.id}`])
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+    return _shareInfo
+  },
+  showPayModal: function () {
     var _data = {
       act_id: this.data.id,
     }
-    if (option && option.union == 1) {
+    // 开团或者秒杀
+    if (this.data.showPayModalByUnion) {
       _data.is_union = true
     } else {
       _data.is_seckill_finish = this.data.seckill.is_seckill_finish
@@ -312,13 +327,16 @@ mutulPage({
       this.redirectApply()
       return
     }
-    // 开团状态变化
+    // 开团状态变化 
     this.changeUnionStatus()
-    if (this.data.unionInfo.union_status == 0 && e.target.dataset.union == 1) {
-      this.showPayModal({
-        union: 1
+    if (e.target.dataset.union == 1) {
+      this.setData({
+        showPayModalByUnion: true
       })
-      return
+    } else {
+      this.setData({
+        showPayModalByUnion: false
+      })
     }
 
     this.showPayModal()

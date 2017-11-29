@@ -28,8 +28,16 @@ module.exports = {
     })
     this.countdownPay()
   },
+  getUnionParam: function () {
+    var _shareInfo = this.getUnionShareInfo()
+    return [`id=${this.data.id}`,
+      `&user_id=${this.data.unionInfo.owner_info.user_id}`,
+      `transferImageUrl=${encodeURIComponent(this.data.transferImageUrl)}`,
+      `title=${encodeURIComponent(_shareInfo.title)}`
+    ].join('&')
+  },
   // 拼团倒计时
-  countdownPay() {
+  countdownPay: function () {
     if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3 || this.data.unionInfo.union_status == 4) {
       return
     }
@@ -62,8 +70,13 @@ module.exports = {
     this.data.unionTimer = setTimeout(() => this.countdownPay(), 1000)
   },
   // 拼团成功
+  goUnionSucc: function () {
+    wx.redirectTo({
+      url: `../result_union/result_union?${this.getUnionParam()}}`
+    })
+  },
   // 拼团中
-  getUnionIng: function () {
+  goUnionIng: function () {
     this.setData({
       unionIngModalInfo: {
         ...this.data.unionIngModalInfo,

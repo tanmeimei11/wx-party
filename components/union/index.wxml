@@ -16,7 +16,7 @@
       <view class="btn-group btn-group-book" bindtap="openBook">报名 {{price}} </view>
       <view class="btn-group btn-group-two" bindtap="openBook" data-union="1">两人成团 ¥{{union_charge}} </view>
     </block>
-    <view class="btn-group btn-group-ing " wx:elif="{{union_status==1}}" bindtap="getUnionIng">
+    <view class="btn-group btn-group-ing " wx:elif="{{union_status==1}}" bindtap="goUnionIng">
       <text class="big ">拼团中</text>
       <view class="small">
         <wxs src="../../utils/tools.wxs" module="tools" />
@@ -28,8 +28,8 @@
         内邀请到好友参与，即享受拼团价
       </view>
     </view>
-    <view class="btn-group btn-group-ing" wx:elif="{{union_status==4}}">
-      <text class="big ">拼团成功</text>
+    <view class="btn-group btn-group-ing" wx:elif="{{union_status==4}}" bindtap="goUnionSucc">
+      <text class="big">拼团成功</text>
     </view>
   </view>
 </template>
