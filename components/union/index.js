@@ -8,12 +8,12 @@ module.exports = {
       'nick_name': '还差一人'
     },
     unionInfo: {
+      cutDownTimer: null,
       is_union: false,
-    },
-    unionTimer: null
+    }
   },
   setUnionInfo: function (data) {
-    if (!data.union_info) {
+    if (!data.union_info || !data.union_info.is_union) {
       return
     }
     var union_info = data.union_info
@@ -44,32 +44,36 @@ module.exports = {
     if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3 || this.data.unionInfo.union_status == 4) {
       return
     }
-    // joiner 进来倒计时结束 (拼团者0 ＋ 发起者 1) ＝> 已过期3
-    if (this.data.unionInfo.union_countdown_diff === 0) {
-      var _data = {
-        ...this.data.unionInfo,
-        union_status: 3,
-        desc: '来晚一步，拼团已经过期了'
-      }
-      this.setData({
-        unionInfo: _data,
-        isShowPayModal: false,
-        unionIngModalInfo: {
-          ...this.data.unionIngModalInfo,
-          isShow: false
-        },
-        isShowPayModal: false
-      })
-      return
-    }
+    var cutDownFun = () => {
+        // joiner 进来倒计时结束 (拼团者0 ＋ 发起者 1) ＝> 已过期3
+        if (this.data.unionInfo.union_countdown_diff <= 0) {
+          clearInterval(this.data.unionInfo.cutDownTimer)
+          var _data = {
+            ...this.data.unionInfo,
+            union_status: 3,
+            desc: '来晚一步，拼团已经过期了'
+          }
+          this.setData({
+            unionInfo: _data,
+            isShowPayModal: false,
+            unionIngModalInfo: {
+              ...this.data.unionIngModalInfo,
+              isShow: false
+            },
+            isShowPayModal: false
+          })
+          return
+        }
 
-    this.setData({
-      unionInfo: {
-        ...this.data.unionInfo,
-        union_countdown_diff: this.data.unionInfo.union_countdown_diff - 1
+        this.setData({
+          unionInfo: {
+            ...this.data.unionInfo,
+            union_countdown_diff: this.data.unionInfo.union_countdown_diff - 1
+          }
+        })
       }
-    })
-    this.data.unionTimer = setTimeout(() => this.countdownPay(), 1000)
+
+      !this.data.unionInfo.cutDownTimer && (this.data.unionInfo.cutDownTimer = setInterval(cutDownFun, 1000))
   },
   // 拼团成功
   goUnionSucc: function () {

@@ -80,18 +80,20 @@ mutulPage({
   },
   countdown: function () {
     var list = this.data.item
-    if (list.cutTime < 1) {
-      wx.redirectTo({
-        url: `../detail/detail?id=${this.data.id}`
+    var cutDownFun = () => {
+      if (list.cutTime < 1) {
+        clearInterval(this.data.xxtimer)
+        wx.redirectTo({
+          url: `../detail/detail?id=${this.data.id}`
+        })
+        return
+      }
+      list.cutTime -= 1
+      this.setData({
+        item: list
       })
-      return
-    }
-    list.cutTime -= 1
-    this.setData({
-      item: list
-    })
-
-    this.data.xxtimer = setTimeout(() => this.countdown(), 1000)
+    };
+    !this.data.xxtimer && (this.data.xxtimer = setTimeout(cutDownFun, 1000))
   },
   goback: function () {
     track(this, 'h5_tcpa_pintuan_near_active_click')

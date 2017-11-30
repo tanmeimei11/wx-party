@@ -80,7 +80,7 @@
   text-align: center;
   font-size: 22rpx;
   color: #666666;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .s-ravatar-tips-wrap {
