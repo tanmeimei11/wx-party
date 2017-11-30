@@ -214,10 +214,10 @@ mutulPage({
         var _ms = res.data.count_down
         if (_ms) {
           var _h = parseInt(_ms / 1000 / 60 / 60)
-          if (_h <= 1) {
-            this.toastModal('来晚了一步', '活动开始前一小时内，无法拼团报名')
-            return
-          }
+          // if (_h <= 1) {
+          //   this.toastModal('来晚了一步', '活动开始前一小时内，无法拼团报名')
+          //   return
+          // }
           res.data.count_down_info = _h >= 24 ? '24小时内邀请好友报名，即享受拼团价' : '活动开始前一小时内邀请好友报名，即享受拼团价'
         }
         this.setData({
