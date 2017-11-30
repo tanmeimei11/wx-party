@@ -1,5 +1,5 @@
 var request = require('../../utils/wxPromise.js').requestPromisify
-// import track from '../../utils/track.js'
+import track from '../../utils/track.js'
 module.exports = {
   data: {
     defaultUnionInfo: {
@@ -81,7 +81,7 @@ module.exports = {
   },
   // 拼团中
   goUnionIng: function () {
-    trach(this, 'h5_tcpa_pintuan_ing_click')
+    track(this, 'h5_tcpa_pintuan_ing_click')
     this.setData({
       unionIngModalInfo: {
         ...this.data.unionIngModalInfo,

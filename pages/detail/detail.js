@@ -326,7 +326,7 @@ mutulPage({
     this.changeUnionStatus()
     if (e.target.dataset.union == 1) {
       console.log(this.data.unionInfo.union_status)
-      track(this, 'h5_tcpa_pintuan_click', [`id=${this.data.id}`, `type=${this.data.unionInfo.union_status}`])
+      track(this, 'h5_tcpa_pintuan_click', [`active_id=${this.data.id}`, `type=${this.data.unionInfo.union_status}`])
       this.setData({
         showPayModalByUnion: true
       })
