@@ -23,6 +23,7 @@ module.exports = {
     } else {
       _data.is_seckill_finish = this.data.seckill.is_seckill_finish
     }
+    track(this,'h5_tcpa_pintuan_pay_click',[`active_amt=${this.data.priceInfo.act_charge}`, `pt_amt=${this.data.priceInfo.union_discount}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_id=${this.data.id}`, `type=${this.data.unionInfo.is_owner ? 1 : 0}`])
     payMoney(_data)
       .then(() => {
         track(this, 'h5_tcpa_detail_pay_succ')

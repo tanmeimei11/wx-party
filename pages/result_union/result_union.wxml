@@ -32,7 +32,7 @@
       <text class="r-share">邀请好友同行</text>
     </view> -->
     <!-- 秒杀分享 -->
-    <button open-type="share" class="sr-share">分享邀请好友同行</button>
+    <button open-type="share" class="sr-share" bindtap="shareQr">分享邀请好友同行</button>
 <!--     <import src="../../components/seckill/result/index.wxml" />
     <template is="result" data="{{...seckill,sessionFrom}}" /> -->
 
@@ -72,7 +72,7 @@
     </view>
 
     <view class="r-btn">
-      <view class="r-link-btn" wx:if="{{!seckill.isSeckill}}" bindtap="getQrTrack">获取小助手二维码
+      <view class="r-link-btn" wx:if="{{!seckill.isSeckill}}" bindtap="getQr">获取小助手二维码
         <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
         </contact-button>
       </view>

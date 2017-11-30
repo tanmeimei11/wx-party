@@ -131,7 +131,6 @@ mutulPage({
     this.getLocation().then((res) => {
       console.log('-------获取地理位置---------')
       // 鼓励金详情页面好友分享点进来 options.sharekey
-      console.log(options.sharekey)
       if (options.sharekey) {
         this.setData({
           is_share: true
@@ -472,7 +471,6 @@ mutulPage({
         }
         if (res.data.is_first_amount == true) { //分享进来第一次领取
           track(this, 'h5_tcpa_gold_forward_expo')
-          console.log(this.data.riseMoney)
         }
         this.setData(_data)
       }
