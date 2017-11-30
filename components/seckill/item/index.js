@@ -14,6 +14,9 @@ module.exports = {
     this.countdown()
   },
   countdown: function () {
+    if (this.data.promoList.filter(item => item.cutTime > 0).length == 0) {
+      return
+    }
     var cutDownFun = () => {
       console.log('333333')
       if (this.data.promoList.filter(item => item.cutTime > 0).length == 0) {

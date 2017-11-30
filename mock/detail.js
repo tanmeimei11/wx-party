@@ -41,7 +41,7 @@ module.exports = {
       "other_act_count": "91",
       "share_qrcode_url": "https://inimg01.jiuyan.info/in/2017/11/06/520F9F67-3396-4CD5-A38C-5455A757293C.jpg?roundPic/radius/200",
       "sigin_sum": "1",
-      "count_down": 10000,
+      "count_down": 0,
       "start_time": 1510630140000,
       "updated_at": 1509939173000,
       "wx_address": "浙江省杭州市拱墅区湖墅南路103号",
@@ -52,17 +52,18 @@ module.exports = {
       "share_user_name": "",
       "share_user_gender": "男",
       "share_user_avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg",
-      "is_seckill": 1,
+      "is_seckill": false,
       "is_seckill_finish": 0,
       "phone": 13135252222, //电话号码,
       "is_seckill_reminded": false, // 是否已经秒杀提醒
       "is_seckill_interested": false, // 秒杀结束后 是否已经 关注秒杀
       "union_info": {
-        "is_union": false, //是否拼团,
+        "is_union": true, //是否拼团,
         "union_id": "455667",
         "union_charge": "18.00",
         "union_status": "1", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
-        "union_countdown_diff": 85860000, // 过期时间 - 现在时间差 （millis）
+        // "union_countdown_diff": 85860000, // 过期时间 - 现在时间差 （millis）
+        "union_countdown_diff": 5000, // 过期时间 - 现在时间差 （millis）
         "launch_info": {
           "avatar": "http://inimg02.jiuyan.info/in/2017/03/24/5F838417-1DDA-CE2A-14A6-7A0D0247301C-1wGMzYZ.jpg", //拼团发起人头像
           "nick_name": "犀牛", //拼团发起人昵称

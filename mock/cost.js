@@ -12,7 +12,7 @@ module.exports = {
       "refund": "18.89", //如果退钱，能退的费用
       "upper_bound": "20",
       "union_discount": "5.00", //拼团优惠
-      "count_down": "300000"
+      "count_down": "95860000"
     },
     "timestamp": "1508137132"
   }

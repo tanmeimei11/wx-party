@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   setUnionInfo: function (data) {
-    if (!data.union_info) {
+    if (!data.union_info || !data.union_info.is_union) {
       return
     }
     var union_info = data.union_info
@@ -41,10 +41,10 @@ module.exports = {
   },
   // 拼团倒计时
   countdownPay: function () {
+    if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3 || this.data.unionInfo.union_status == 4) {
+      return
+    }
     var cutDownFun = () => {
-        if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3 || this.data.unionInfo.union_status == 4) {
-          return
-        }
         // joiner 进来倒计时结束 (拼团者0 ＋ 发起者 1) ＝> 已过期3
         if (this.data.unionInfo.union_countdown_diff <= 0) {
           clearInterval(this.data.unionInfo.cutDownTimer)
