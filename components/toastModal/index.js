@@ -11,7 +11,7 @@ module.exports = {
   guoqiModal: function () {
     this.setData({
       lateModal: {
-        ...this.data.lateModal,
+        is_show: true,
         txt1: '来晚了一步',
         txt2: '活动开始前一小时内，无法拼团报名'
       }
@@ -20,7 +20,7 @@ module.exports = {
   lateModal: function () {
     this.setData({
       lateModal: {
-        ...this.data.lateModal,
+        is_show: true,
         txt1: '来晚了一步',
         txt2: '已经有人抢先拼团了'
       }

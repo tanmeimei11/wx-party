@@ -34,7 +34,7 @@ module.exports = {
   getUnionParam: function () {
     var _shareInfo = this.getUnionShareInfo()
     return [`id=${this.data.id}`,
-      `&user_id=${this.data.unionInfo.owner_info.user_id}`,
+      `&user_id=${this.data.unionInfo.launch_info.user_id}`,
       `transferImageUrl=${encodeURIComponent(this.data.transferImageUrl)}`,
       `title=${encodeURIComponent(_shareInfo.title)}`
     ].join('&')
@@ -76,7 +76,7 @@ module.exports = {
     // console.log('-------------------')
     // console.log(this.getUnionParam())
     wx.redirectTo({
-      url: `../result_union/result_union?${this.getUnionParam()}}`
+      url: `../result_union/result_union?${this.getUnionParam()}`
     })
   },
   // 拼团中
