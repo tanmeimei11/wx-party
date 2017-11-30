@@ -27,6 +27,15 @@ module.exports = {
       }
     })
   },
+  toastModal: function (title, text) {
+    this.setData({
+      lateModal: {
+        is_show: true,
+        txt1: title,
+        txt2: text
+      }
+    })
+  },
   closelateModal: function () {
     this.setData({
       lateModal: {

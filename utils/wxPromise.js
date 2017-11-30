@@ -37,7 +37,7 @@ var requestBefore = (option, token) => {
     '_pf': deviceInfo.platform,
     '_s': deviceInfo.system.toLowerCase(),
     '_gps': deviceInfo.gps || '',
-    // '_n': getDeviceInfo(''),
+    // '_n': deviceInfo,
   }
   option.header = {
     'Cookie': Object.keys(cookieObj).map((key) => {

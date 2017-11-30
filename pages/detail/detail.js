@@ -101,17 +101,20 @@ mutulPage({
     })
 
     // 取页面上的id
+    var deviceInfo = app.getDeviceInfo()
+    var _isAndrod = /android/.test(deviceInfo.system.toLowerCase())
     this.setData({
       shareUserId: options.shareUserId || '',
       id: options.id || '11001',
-      sessionFrom: `activity_${options.id}`,
-      sessionFromQr: `activitymanager_${options.id}`,
-      sessionFromAct: `typeactivity_android_${options.id}`,
+      sessionFrom: `activity_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromQr: `activitymanager_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromAct: `typeactivity_${_isAndrod ? 'android_' : ''}${options.id}`,
       // sessionFrom: `activity_${options.id}`,
       // sessionFromQr: `activitymanager_${options.id}`,
       // sessionFromAct: `typeactivity_${options.id}`,
       shareUnionId: options.shareUnionId || '',
     })
+    console.log(this.data.sessionFromAct)
     if (options.isShowPayModal && options.shareUnionId) {
       this.data.showPayModalByUnion = true
       this.showPayModal()
@@ -174,7 +177,7 @@ mutulPage({
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
           if (!options.show_prompt && !res.data.union_info.is_owner) {
-            track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`,`user_id=${res.data.union_info.launch_info.user_id}`])
+            track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.launch_info.user_id}`])
           }
         }
       })
@@ -206,6 +209,11 @@ mutulPage({
           res.data.desc = `＊${_preText}如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥0`
         } else {
           res.data.desc = `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥${res.data.book_charge}元鸽子费不会退款`
+        }
+        var _ms = res.data.count_down
+        if (_ms) {
+          var _h = parseInt(_ms / 1000 / 60 / 60)
+          res.data.count_down = (_h >= 24 || _h < 1) ? '24' : _h
         }
         this.setData({
           priceInfo: res.data,

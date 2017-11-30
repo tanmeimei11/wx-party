@@ -26,7 +26,7 @@
           </view>
           <text>内支付，即享受拼团价</text>
         </view>
-        <view class="s-ravatar-tips" wx:else>24小时内邀请好友报名，即享受拼团价</view>
+        <view class="s-ravatar-tips" wx:else>{{priceInfo.count_down}}小时内邀请好友报名，即享受拼团价</view>
       </view>
       <view class="s-title " wx:else>费用明细单</view>
       <view class="s-desc ">

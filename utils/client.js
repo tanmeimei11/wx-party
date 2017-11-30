@@ -7,12 +7,12 @@ var getDeviceInfo = (key) => {
     return
   }
   var deviceInfo = app.globalData.deviceInfo
-  // if (deviceInfo) {
-  //   return key ? deviceInfo : deviceInfo[key]
-  // }
-  return wx.getSystemInfoSync()
-  // deviceInfo = app.globalData.deviceInfo = wx.getSystemInfoSync()
-  // return key ? deviceInfo : deviceInfo[key]
+  if (deviceInfo) {
+    return key ? deviceInfo[key] : deviceInfo
+  }
+  app.globalData.deviceInfo = wx.getSystemInfoSync()
+  deviceInfo = wx.getSystemInfoSync()
+  return key ? deviceInfo[key] : deviceInfo
 }
 
 module.exports = {

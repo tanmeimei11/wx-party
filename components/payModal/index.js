@@ -23,7 +23,7 @@ module.exports = {
     } else {
       _data.is_seckill_finish = this.data.seckill.is_seckill_finish
     }
-    track(this,'h5_tcpa_pintuan_pay_click',[`active_amt=${this.data.priceInfo.act_charge}`, `pt_amt=${this.data.priceInfo.union_discount}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_id=${this.data.id}`, `type=${this.data.unionInfo.is_owner ? 1 : 0}`])
+    track(this, 'h5_tcpa_pintuan_pay_click', [`active_amt=${this.data.priceInfo.act_charge}`, `pt_amt=${this.data.priceInfo.union_discount}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_id=${this.data.id}`, `type=${this.data.unionInfo.is_owner ? 1 : 0}`])
     payMoney(_data)
       .then(() => {
         track(this, 'h5_tcpa_detail_pay_succ')
@@ -38,6 +38,10 @@ module.exports = {
         // 没有秒杀到
         if (res.code == '4000032352') {
           this.showSeckillModal()
+        }
+        //  来晚一步啦～
+        if (res.code == '4160032402') {
+          this.lateModal('请重试', '网络开小差了～请稍后重试')
         }
         //  来晚一步啦～
         if (res.code == '4160032399') {
