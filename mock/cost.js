@@ -11,7 +11,8 @@ module.exports = {
       "final_cost": "37.89", //最终要付的钱
       "refund": "18.89", //如果退钱，能退的费用
       "upper_bound": "20",
-      "union_discount": "5.00" //拼团优惠
+      "union_discount": "5.00", //拼团优惠
+      "count_down": "300000"
     },
     "timestamp": "1508137132"
   }
