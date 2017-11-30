@@ -174,8 +174,10 @@ mutulPage({
       }).then((res) => {
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
-          if (!options.show_prompt && !res.data.union_info.is_owner) {
-            track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`,`user_id=${res.data.union_info.launch_info.user_id}`])
+          if(res.data.union_info){
+            if (!options.show_prompt && !res.data.union_info.is_owner) {
+              track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`,`user_id=${res.data.union_info.launch_info.user_id}`])
+            }
           }
         }
       })
