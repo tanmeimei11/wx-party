@@ -141,7 +141,6 @@ module.exports = {
             }, 100)
           })
       }).catch((error) => {
-        console.log(error)
         this.loadingOut()
         this.toastFail('保存失败')
       })

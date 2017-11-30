@@ -73,8 +73,8 @@ module.exports = {
   },
   // 拼团成功
   goUnionSucc: function () {
-    console.log('-------------------')
-    console.log(this.getUnionParam())
+    // console.log('-------------------')
+    // console.log(this.getUnionParam())
     wx.redirectTo({
       url: `../result_union/result_union?${this.getUnionParam()}}`
     })
