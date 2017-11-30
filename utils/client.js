@@ -1,17 +1,18 @@
 /**
  * 获取设备信息
  */
-var getDeviceInfo = (app, key) => {
-  var _data = app.data
-  if (_data.deviceInfo) {
-    return key ? _data.deviceInfo : _data.deviceInfo[key]
+var getDeviceInfo = (key) => {
+  var app = getApp()
+  if (!app) {
+    return
   }
-  var deviceInfo = wx.getSystemInfoSync()
-  console.log(deviceInfo)
-  app.setData({
-    deviceInfo: deviceInfo
-  })
-  return key ? deviceInfo : deviceInfo[key]
+  var deviceInfo = app.globalData.deviceInfo
+  // if (deviceInfo) {
+  //   return key ? deviceInfo : deviceInfo[key]
+  // }
+  return wx.getSystemInfoSync()
+  // deviceInfo = app.globalData.deviceInfo = wx.getSystemInfoSync()
+  // return key ? deviceInfo : deviceInfo[key]
 }
 
 module.exports = {

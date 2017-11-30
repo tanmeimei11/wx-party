@@ -4,7 +4,6 @@ const U_TRACK = 'http://stats1.jiuyan.info/onepiece/router.html'
 // const U_TRACK = 'http://10.10.109.253:8018/index.html'
 // 这里是ga统计
 var ga = require('../lib/ga.js');
-var getDeviceInfo = require('./client').getDeviceInfo
 var config = require('./config.js')
 
 var HitBuilders = ga.HitBuilders;
@@ -75,15 +74,17 @@ export function combineQuery(app, seed, query = []) {
   let _trackSuffix = ''
   query.push(`action=${_trackPrefix}${seed}${_trackSuffix}`)
   query = query.concat(_track)
+  // 添加必要的辅助字断
+  var deviceInfo = getApp().getDeviceInfo()
   return `${U_TRACK}?` + query.concat([
     // `_host=${location.host}`,
     `_token=${wx.getStorageSync('token')}`,
-    `_pf=${getDeviceInfo(app,'platform')}`,
-    `_sys=${getDeviceInfo(app,'system')}`,
-    `_phone=${getDeviceInfo(app,'model')}`,
+    `_pf=${deviceInfo.platform}`,
+    `_sys=${deviceInfo.system}`,
+    `_phone=${deviceInfo.model}`,
     `_v=${config._v}`,
-    `_wxv=${getDeviceInfo(app,'version')}`,
-    `_sdkv=${getDeviceInfo(app,'SDKVersion')}`,
+    `_wxv=${deviceInfo.version}`,
+    `_sdkv=${deviceInfo.SDKVersion}`,
     `_time=${+new Date()}`
   ]).join('&')
 }

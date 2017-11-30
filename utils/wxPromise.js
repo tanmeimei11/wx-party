@@ -28,8 +28,21 @@ var wxPromisify = fn => {
 var requestBefore = (option, token) => {
   !option.data && (option.data = {});
   !/^http/.test(option.url) && (option.url = DOMAIN + option.url)
+  // 添加必要的辅助字断
+  var deviceInfo = getApp().getDeviceInfo()
+  var cookieObj = {
+    'tg_auth': token,
+    '_v': config._v,
+    'wxv': deviceInfo.version,
+    '_pf': deviceInfo.platform,
+    '_s': deviceInfo.system.toLowerCase(),
+    '_gps': deviceInfo.gps || '',
+    // '_n': getDeviceInfo(''),
+  }
   option.header = {
-    'Cookie': `tg_auth=${token};_v=${config._v}`
+    'Cookie': Object.keys(cookieObj).map((key) => {
+      return `${key}=${cookieObj[key]}`
+    }).join(';')
   };
   // 支付网关必须加上必要字段_token
   if (/payment\/signature/.test(option.url)) {
