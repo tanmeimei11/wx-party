@@ -20,14 +20,15 @@ module.exports = {
     if (this.data.showPayModalByUnion) {
       _data.is_union = true
       _data.union_id = this.data.unionInfo.union_id || ''
+      track(this, 'h5_tcpa_pintuan_pay_click', [`active_amt=${this.data.priceInfo.act_charge}`, `pt_amt=${this.data.priceInfo.union_discount}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_id=${this.data.id}`, `type=${this.data.unionInfo.is_owner ? 1 : 0}`])
     } else {
       _data.is_seckill_finish = this.data.seckill.is_seckill_finish
+      track(this, 'h5_tcpa_pay_click', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.promoMoney == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.act_charge}`])
     }
-    track(this, 'h5_tcpa_pintuan_pay_click', [`active_amt=${this.data.priceInfo.act_charge}`, `pt_amt=${this.data.priceInfo.union_discount}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_id=${this.data.id}`, `type=${this.data.unionInfo.is_owner ? 1 : 0}`])
     payMoney(_data)
       .then(() => {
-        track(this, 'h5_tcpa_detail_pay_succ')
         if (!_data.is_union) {
+          track(this, 'h5_tcpa_detail_pay_succ')
           wx.redirectTo({
             url: `../result/result?prepage=apply&${this.getRedirectParam()}}`
           })
@@ -60,7 +61,6 @@ module.exports = {
       })
   },
   pay: function (e) {
-    track(this, 'h5_tcpa_pay_click', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.promoMoney == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.act_charge}`])
     this.loadingIn('请稍后...')
     this.payMoneyAgain()
   }
