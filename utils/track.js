@@ -78,12 +78,12 @@ export function combineQuery(app, seed, query = []) {
   return `${U_TRACK}?` + query.concat([
     // `_host=${location.host}`,
     `_token=${wx.getStorageSync('token')}`,
-    `_pf=${getDeviceInfo(app,'platform')}`,
-    `_sys=${getDeviceInfo(app,'system')}`,
-    `_phone=${getDeviceInfo(app,'model')}`,
+    `_pf=${getDeviceInfo('platform')}`,
+    `_sys=${getDeviceInfo('system')}`,
+    `_phone=${getDeviceInfo('model')}`,
     `_v=${config._v}`,
-    `_wxv=${getDeviceInfo(app,'version')}`,
-    `_sdkv=${getDeviceInfo(app,'SDKVersion')}`,
+    `_wxv=${getDeviceInfo('version')}`,
+    `_sdkv=${getDeviceInfo('SDKVersion')}`,
     `_time=${+new Date()}`
   ]).join('&')
 }

@@ -72,7 +72,7 @@ var payMoney = (_data) => {
         }
       })
     } else {
-      return Promise.reject(Res.code)
+      return Promise.reject(Res)
     }
   })
 }

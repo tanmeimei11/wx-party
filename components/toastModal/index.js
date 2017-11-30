@@ -9,6 +9,7 @@ module.exports = {
     }
   },
   guoqiModal: function () {
+    console.log('guoqi')
     this.setData({
       lateModal: {
         is_show: true,

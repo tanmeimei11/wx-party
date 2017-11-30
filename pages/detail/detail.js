@@ -106,7 +106,10 @@ mutulPage({
       id: options.id || '11001',
       sessionFrom: `activity_${options.id}`,
       sessionFromQr: `activitymanager_${options.id}`,
-      sessionFromAct: `typeactivity_${options.id}`,
+      sessionFromAct: `typeactivity_android_${options.id}`,
+      // sessionFrom: `activity_${options.id}`,
+      // sessionFromQr: `activitymanager_${options.id}`,
+      // sessionFromAct: `typeactivity_${options.id}`,
       shareUnionId: options.shareUnionId || '',
     })
     if (options.isShowPayModal && options.shareUnionId) {
