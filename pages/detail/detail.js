@@ -177,8 +177,10 @@ mutulPage({
       }).then((res) => {
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
-          if (!options.show_prompt && res.data.union_info && !res.data.union_info.is_owner) {
-            track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
+          if (!options.show_prompt) {
+            if ((res.data.union_info && !res.data.union_info.is_owner) || res.data.join_status == 1) {
+              track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
+            }
           }
         }
       })
@@ -337,7 +339,6 @@ mutulPage({
     if (this.data.shareUserId) {
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
-    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
     // 开团状态变化 
     this.changeUnionStatus()
     if (e.target.dataset.union == 1) {
@@ -348,6 +349,7 @@ mutulPage({
       })
 
     } else {
+      track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
       this.setData({
         showPayModalByUnion: false
       })
