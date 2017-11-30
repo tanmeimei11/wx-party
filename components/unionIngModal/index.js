@@ -17,7 +17,7 @@ module.exports = {
   },
   getUnionShareInfo: function () {
     var _shareInfo = {
-      title: `${this.data.unionInfo.launch_info.nick_name}邀请你一起拼团，参加${getLenStr(this.data.headLine.title,30).str}`,
+      title: `${this.data.unionInfo.launch_info.nick_name}邀请你一起拼团，参加"${getLenStr(this.data.headLine.title,30).str}"活动`,
       path: `pages/detail/detail?id=${this.data.id}&shareUnionId=${this.data.unionInfo.union_id}`,
       imageUrl: this.data.transferImageUrl,
       success: (res) => {
