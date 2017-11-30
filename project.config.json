@@ -37,7 +37,7 @@
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=19801&isShowOtherAct=false&from=xiangxiang&shareUnionId=10002"
+					"query": "id=19801&isShowOtherAct=false&from=xiangxiang"
 				},
 				{
 					"id": -1,

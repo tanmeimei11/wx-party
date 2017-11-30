@@ -29,7 +29,7 @@ Page({
       //   list: this.data
       // })
     });
-    console.log(this.data.list)
+    // console.log(this.data.list)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -60,9 +60,9 @@ Page({
     }
   },
   getUserInfo: function () {
-    console.log('login')
+    // console.log('login')
     var that = this
-    console.log(this)
+    // console.log(this)
     wxPromisify(wx.getUserInfo)()
       .then(res => {
         console.log(res)

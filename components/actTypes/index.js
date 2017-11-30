@@ -8,11 +8,9 @@ module.exports = {
     }
   },
   getActTypes: function () {
-    console.log('22')
     request({
       url: '/activity/act_type',
     }).then(res => {
-      console.log(res.data)
       this.setData({
         actTypes: {
           list: res.data,

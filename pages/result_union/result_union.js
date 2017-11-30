@@ -32,7 +32,7 @@ mutulPage({
       transferImageUrl: decodeURIComponent(option.transferImageUrl),
     })
     request({
-      url: `/union/share_info`,
+      url: `/union/pay_after_info`,
       data: {
         act_id: this.data.id,
         user_id: this.data.user_id,

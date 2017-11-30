@@ -91,6 +91,8 @@ mutulPage({
   },
   onLoad(options) {
     track(this, 'h5_tcpa_detail_screen_enter')
+    console.log('------options-----')
+    console.log(options)
     wx.showLoading({
       title: '加载中...'
     })
@@ -143,9 +145,7 @@ mutulPage({
     }
 
     if (options.show_prompt) {
-      this.setData({
-        showPrompt: true
-      })
+      this.showUnionStatus()
     }
 
     if (!this.data.userInfo) {
@@ -158,7 +158,6 @@ mutulPage({
           })
         })
     }
-
     // 数据
     if (this.data.id) {
       request({
@@ -571,7 +570,7 @@ mutulPage({
         })
       }
       return prePromise.then(res => {
-        console.log(res)
+        // console.log(res)
         return wxPromisify(wx.saveImageToPhotosAlbum)({
           filePath: res.path
         })

@@ -76,6 +76,13 @@
             </block>
             <!--   <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
             <text class="m-more less" bindtap="lookLess" wx:if="{{isShowIntroLess}}">收起全部</text> -->
+            <!-- 点击跳客服 -->
+            <view wx:if="{{banner}}" class="new-banner">
+              <contact-button type="default-dark" size="20" session-from="{{sessionFromAct}}">
+              </contact-button>
+              <image src="{{banner}}" mode="widthFix"></image>
+            </view>
+
           </view>
 
         </view>
