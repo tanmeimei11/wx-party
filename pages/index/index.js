@@ -47,6 +47,7 @@ mutulPage({
     currentID2: '',
     nowTime: 0,
     notfindpromo: false,
+    globalData: app.globalData,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -254,8 +255,13 @@ mutulPage({
         var latitude = res.latitude
         var longitude = res.longitude
         self.setData({
+          globalData:{
+            ...this.data.globalData,
+            deviceInfo: longitude + ',' + latitude
+          },
           _gps: longitude + ',' + latitude
         })
+        console.log(this.data.globalData)
       }
     }, rej => {
       console.log("获取地理位置失败")

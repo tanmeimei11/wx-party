@@ -15,6 +15,7 @@ import track from '../../utils/track.js'
 mutulPage({
   mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal, unionStatus, toastModal],
   data: {
+    detailDone: false,
     sharePathQuery: [],
     sharePathTitle: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
@@ -380,6 +381,7 @@ mutulPage({
     }
     wx.hideLoading()
     this.setData({
+      detailDone: true,
       imgUrls: data.act_url,
       headLine: {
         title: data.act_name,
