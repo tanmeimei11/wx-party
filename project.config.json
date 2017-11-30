@@ -25,9 +25,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
+			"current": 12,
+			"list": [{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
