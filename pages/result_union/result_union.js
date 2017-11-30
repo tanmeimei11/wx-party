@@ -18,10 +18,11 @@ mutulPage({
     title: '',
     transferImageUrl: '',
     union_id: '',
-    hidden: false
+    hidden: false,
+    trackSeed: `http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_pintuan_succ_page`
   },
   onLoad: function (option) {
-    track(this, 'h5_tcpa_result_screen_enter')
+    track(this, 'h5_tcpa_pintuan_succ_page', [`active_id=${this.data.id}`])
     console.log(option)
     console.log(decodeURIComponent(option.title))
     // 取页面上的id
@@ -71,6 +72,12 @@ mutulPage({
       }
     }
   },
+  shareQr: function () {
+    track(this, 'h5_tcpa_pintuan_invite_click')
+  },
+  getQr: function () {
+    track(this, 'h5_tcpa_pintuan_asst_qrcode_click')
+  },
   countdown: function () {
     var list = this.data.item
     if (list.cutTime < 1) {
@@ -87,6 +94,7 @@ mutulPage({
     this.data.xxtimer = setTimeout(() => this.countdown(), 1000)
   },
   goback: function () {
+    track(this, 'h5_tcpa_pintuan_near_active_click')
     wx.redirectTo({
       url: '../index/index'
     })

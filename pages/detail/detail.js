@@ -170,6 +170,9 @@ mutulPage({
       }).then((res) => {
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
+          if (!options.show_prompt && !res.data.union_info.is_owner) {
+            track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`,`user_id=${res.data.union_info.launch_info.user_id}`])
+          }
         }
       })
     }
@@ -322,6 +325,8 @@ mutulPage({
     // 开团状态变化 
     this.changeUnionStatus()
     if (e.target.dataset.union == 1) {
+      console.log(this.data.unionInfo.union_status)
+      track(this, 'h5_tcpa_pintuan_click', [`id=${this.data.id}`, `type=${this.data.unionInfo.union_status}`])
       this.setData({
         showPayModalByUnion: true
       })
@@ -624,5 +629,8 @@ mutulPage({
     wx.makePhoneCall({
       phoneNumber: this.data.infos.phone
     })
+  },
+  bannerQr: function () {
+    track(this, 'h5_tcpa_active_introduce_join', [`active_id=${this.data.id}`])
   }
 })

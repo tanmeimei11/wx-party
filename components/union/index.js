@@ -81,6 +81,7 @@ module.exports = {
   },
   // 拼团中
   goUnionIng: function () {
+    trach(this, 'h5_tcpa_pintuan_ing_click')
     this.setData({
       unionIngModalInfo: {
         ...this.data.unionIngModalInfo,

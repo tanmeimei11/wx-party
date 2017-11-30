@@ -29,5 +29,8 @@ module.exports = {
       }
     }
     return _shareInfo
+  },
+  inviteFriend: function () {
+    track(this, 'h5_tcpa_pintuan_ing_invite_click')
   }
 }

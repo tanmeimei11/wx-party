@@ -65,7 +65,7 @@
           <view class="m-text">
             <!-- 点击跳客服 -->
             <view wx:if="{{banner}}" class="new-banner">
-              <contact-button type="default-dark" size="20" session-from="{{sessionFromAct}}">
+              <contact-button type="default-dark" size="20" session-from="{{sessionFromAct}}" catchtap="bannerQr">
               </contact-button>
               <image src="{{banner}}" mode="widthFix"></image>
             </view>

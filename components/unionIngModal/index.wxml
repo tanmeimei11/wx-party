@@ -27,7 +27,7 @@
       <view class="s-ravatar-tips" wx:else>24小时内邀请好友报名，即享受拼团价</view>
 
       <view class="s-btn">
-        <button type="default" disabled="{{disabled}}" catchtap="transferTrack" open-type="share"> </button>邀请好友同行</view>
+        <button type="default" disabled="{{disabled}}" catchtap="inviteFriend" open-type="share"> </button>邀请好友同行</view>
     </view>
   </view>
 </template>
