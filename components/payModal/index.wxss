@@ -49,6 +49,7 @@
   color: #B0B0B0;
   font-size: 24rpx;
   word-break: wrap;
+  margin-top: 10rpx;
   /* text-align: center; */
 }
 

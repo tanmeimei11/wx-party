@@ -15,16 +15,16 @@
           <text class="r-text">{{unionInfo.join_info.nick_name}}</text>
         </view>
       </view>
-      <view class="s-ravatar-tips-wrap" wx:if="{{!unionInfo.is_owner}}">
+      <view class="s-ravatar-tips-wrap" wx:if="{{unionInfo.is_owner}}">
         <wxs src="../../utils/tools.wxs" module="tools" />
         <view class="cut-time">
           <text>{{tools.hour(unionInfo.union_countdown_diff)}}</text>:
           <text>{{tools.minute(unionInfo.union_countdown_diff)}}</text>:
           <text>{{tools.second(unionInfo.union_countdown_diff)}}</text>
         </view>
-        <text>内支付，即享受拼团价</text>
+        <text>完成拼团，即享受拼团价</text>
       </view>
-      <view class="s-ravatar-tips" wx:else>截止时间前邀请好友报名，即享受拼团价</view>
+      <view class="s-ravatar-tips" wx:else>截止时间前完成拼团，即享受拼团价</view>
 
       <view class="s-btn">
         <button type="default" disabled="{{disabled}}" catchtap="inviteFriend" open-type="share"> </button>邀请好友同行</view>
