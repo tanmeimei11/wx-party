@@ -32,7 +32,7 @@
       <text class="r-share">邀请好友同行</text>
     </view> -->
     <!-- 秒杀分享 -->
-    <button open-type="share" class="sr-share" bindtap="shareQr">分享邀请好友同行</button>
+    <button open-type="share" class="sr-share" bindtap="shareQr">邀请好友同行</button>
 <!--     <import src="../../components/seckill/result/index.wxml" />
     <template is="result" data="{{...seckill,sessionFrom}}" /> -->
 
