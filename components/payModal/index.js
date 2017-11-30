@@ -42,7 +42,7 @@ module.exports = {
         }
         //  来晚一步啦～
         if (res.code == '4160032402') {
-          this.lateModal('请重试', '网络开小差了～请稍后重试')
+          this.toastModal('请稍后重试', '当前有人正在拼团')
         }
         //  来晚一步啦～
         if (res.code == '4160032399') {
