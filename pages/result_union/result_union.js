@@ -48,7 +48,7 @@ mutulPage({
         var unionSucc = true
       } else {
         var unionSucc = false
-        list.cutTime = list.count_down / 1000
+        list.cutTime = parseInt(list.count_down) / 1000
         this.countdown()
       }
       this.setData({
@@ -79,21 +79,22 @@ mutulPage({
     track(this, 'h5_tcpa_pintuan_asst_qrcode_click')
   },
   countdown: function () {
-    var list = this.data.item
     var cutDownFun = () => {
-      if (list.cutTime < 1) {
+      if (this.data.item.cutTime < 1) {
         clearInterval(this.data.xxtimer)
         wx.redirectTo({
           url: `../detail/detail?id=${this.data.id}`
         })
         return
       }
-      list.cutTime -= 1
+      this.data.item.cutTime -= 1
       this.setData({
-        item: list
+        item: {
+          ...this.data.item
+        }
       })
     };
-    !this.data.xxtimer && (this.data.xxtimer = setTimeout(cutDownFun, 1000))
+    !this.data.xxtimer && (this.data.xxtimer = setInterval(cutDownFun, 1000))
   },
   goback: function () {
     track(this, 'h5_tcpa_pintuan_near_active_click')
