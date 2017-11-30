@@ -96,7 +96,7 @@ module.exports = {
   },
   compose: function () {
     this.loadingIn('加载中')
-    track(this, 'h5_tcpa_gold_photo_save')
+    track(this, 'h5_tcpa_gold_sharepic_click')
     var _images = this.data.goldMoneyModalData.images
     _images.qr.src = this.getGoldMoneyModalData('actQrImg')
     _images.avatar.src = this.getGoldMoneyModalData('avatarUrl')

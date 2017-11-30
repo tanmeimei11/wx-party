@@ -121,7 +121,7 @@ mutulPage({
     })
   },
   share: function () {
-    track(this, 'h5_tcpa_gold_forward')
+    track(this, 'h5_tcpa_gold_forwardhigh_click')
     this.setGoldMoneyModalData('isShow', true)
   }
 })

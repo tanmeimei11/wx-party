@@ -131,6 +131,7 @@ mutulPage({
     this.getLocation().then((res) => {
       console.log('-------获取地理位置---------')
       // 鼓励金详情页面好友分享点进来 options.sharekey
+      console.log(options.sharekey)
       if (options.sharekey) {
         this.setData({
           is_share: true
@@ -174,6 +175,7 @@ mutulPage({
       this.loadBalance()
         .then((is_get_bouns) => {
           if (!is_get_bouns) {
+            track(this, 'h5_tcpa_gold_see_expo')
             this.showGetMoneyModal()
           }
         })
@@ -231,6 +233,7 @@ mutulPage({
     this.setData({
       toTop : false
     })
+    track(this, 'h5_tcpa_index_top_click')
     wx.pageScrollTo({
       scrollTop: 0
     })
@@ -240,10 +243,14 @@ mutulPage({
     return wxPromisify(wx.authorize)({
       scope: 'scope.userLocation'
     }).then(suc => {
+      console.log("授权成功")
       return wxPromisify(wx.getLocation)({
         type: 'gcj02'
       })
-    }, rej => {}).then(res => {
+    }, rej => {
+      console.log('授权失败')
+    }).then(res => {
+      console.log("获取地理位置成功")
       if (res) {
         var latitude = res.latitude
         var longitude = res.longitude
@@ -251,6 +258,8 @@ mutulPage({
           _gps: longitude + ',' + latitude
         })
       }
+    }, rej => {
+      console.log("获取地理位置失败")
     })
   },
 
@@ -461,7 +470,10 @@ mutulPage({
         if (!res.data.is_owner) { // 不是自己才展示弹窗
           _data[_type] = true
         }
-
+        if (res.data.is_first_amount == true) { //分享进来第一次领取
+          track(this, 'h5_tcpa_gold_forward_expo')
+          console.log(this.data.riseMoney)
+        }
         this.setData(_data)
       }
     })

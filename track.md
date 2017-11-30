@@ -8,6 +8,7 @@
 (弹窗)立即查看：h5_tcpa_gold_see_click
 (弹窗)转发好友：h5_tcpa_gold_forward_box
 我的鼓励金：h5_tcpa_gold_incentive_click
+置顶：h5_tcpa_index_top_click
 
 ## 详情页面
 进入页面：h5_tcpa_detail_entry
@@ -43,7 +44,8 @@
 选择图片：h5_tcpa_active_photo_add
 
 ## 我的鼓励金页面
-转发按钮：h5_tcpa_gold_forward
+转发按钮：h5_tcpa_gold_forwardhigh_click
+生成朋友圈分享图：h5_tcpa_gold_sharepic_click
 
 ## 支付成功页面
 活动小助手：：h5_tcpa_paysucc_getqr
