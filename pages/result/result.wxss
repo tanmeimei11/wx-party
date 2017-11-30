@@ -26,7 +26,7 @@
 .c-other .s-logo {
   width: 64rpx;
   height: 64rpx;
-  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/6CD1BC72-FBBB-BC4E-528E-50943934E20F.jpg);
+  background-image: url(https://inimg07.jiuyan.info/in/2017/11/30/EB192FF8-32E4-B90C-AA8F-1E9761410466.jpg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -97,7 +97,7 @@
   width: 120rpx;
   height: 120rpx;
   margin: 60rpx auto 0;
-  background-image: url(https://inimg01.jiuyan.info/in/2017/10/15/6CD1BC72-FBBB-BC4E-528E-50943934E20F.jpg);
+  background-image: url(https://inimg07.jiuyan.info/in/2017/11/30/EB192FF8-32E4-B90C-AA8F-1E9761410466.jpg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
