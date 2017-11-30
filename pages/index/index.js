@@ -219,24 +219,28 @@ mutulPage({
         onTop: false
       })
     }
-    if (e.scrollTop >this.data.scrollHeight) {
+    if (e.scrollTop > this.data.scrollHeight) {
       this.setData({
-        toTop : true
+        toTop: true
       })
     } else {
       this.setData({
-        toTop : false
+        toTop: false
       })
     }
   },
   toTop: function () {
     this.setData({
-      toTop : false
+      toTop: false
     })
     track(this, 'h5_tcpa_index_top_click')
     wx.pageScrollTo({
       scrollTop: 0
     })
+  },
+  changeAppData: function (key, val) {
+    app.globalData.deviceInfo == null && (app.globalData.deviceInfo = {})
+    app.globalData.deviceInfo[key] = val
   },
   getLocation: function (e) {
     let self = this
@@ -254,12 +258,10 @@ mutulPage({
       if (res) {
         var latitude = res.latitude
         var longitude = res.longitude
+        var _gps = longitude + ',' + latitude
+        this.changeAppData('gps', _gps)
         self.setData({
-          globalData:{
-            ...this.data.globalData,
-            deviceInfo: longitude + ',' + latitude
-          },
-          _gps: longitude + ',' + latitude
+          _gps: _gps
         })
         console.log(this.data.globalData)
       }

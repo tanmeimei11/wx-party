@@ -7,10 +7,13 @@ var getDeviceInfo = (key) => {
     return
   }
   var deviceInfo = app.globalData.deviceInfo
-  if (deviceInfo) {
+  if (deviceInfo && deviceInfo.screenWidth) {
     return key ? deviceInfo[key] : deviceInfo
   }
-  app.globalData.deviceInfo = wx.getSystemInfoSync()
+  app.globalData.deviceInfo = {
+    ...app.globalData.deviceInfo,
+    ...wx.getSystemInfoSync()
+  }
   deviceInfo = wx.getSystemInfoSync()
   return key ? deviceInfo[key] : deviceInfo
 }
