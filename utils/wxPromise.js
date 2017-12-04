@@ -76,6 +76,8 @@ var request = option => {
       console.log('start request option:', option)
       wx.request(option)
     }
+  }, () => {
+    console.log('登陆中...')
   })
 }
 
@@ -88,9 +90,10 @@ var wxCheckLogin = option => {
   console.log('check token')
   let _token = wx.getStorageSync('token')
   if (_token) {
-    console.log('token:', _token)
+    console.log('token succ:', _token)
     return Promise.resolve(_token)
   }
+  console.log('token fail:', _token)
   return wxLogin(option)
 }
 
@@ -113,7 +116,7 @@ var wxLogin = option => {
   loginCollectOptions.push(option)
   if (isLoginIng) {
     console.log('正在登陆')
-    return ''
+    return Promise.reject()
   } else {
     console.log('开始登陆')
     isLoginIng = true
