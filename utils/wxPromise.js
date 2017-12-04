@@ -6,6 +6,7 @@ var DOMAIN = config.DOMAIN
 var code = ''
 var isLoginIng = false
 var loginCollectOptions = [] // 请求搜集器
+var LOG = console.log || (() => {})
 
 /**
  * 封装wxPromisefy
@@ -67,17 +68,17 @@ var request = option => {
   wxCheckLogin(option).then((token) => {
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
     if (token) {
-      console.log('get token', token);
+      LOG('get token', token);
       requestBefore(option, token)
       if (isMock) {
         option.success(require('../mock/' + mockConfig[option.url]))
         return
       }
-      console.log('start request option:', option)
+      LOG('start request option:', option)
       wx.request(option)
     }
   }, () => {
-    console.log('登陆中...')
+    LOG('登陆中...')
   })
 }
 
@@ -87,13 +88,13 @@ var request = option => {
  * 由于checkssion接口 有的时候 一直进去fail 所以 取消掉检查的这一步
  */
 var wxCheckLogin = option => {
-  console.log('check token')
+  LOG('check token')
   let _token = wx.getStorageSync('token')
   if (_token) {
-    console.log('token succ:', _token)
+    LOG('token succ:', _token)
     return Promise.resolve(_token)
   }
-  console.log('token fail:', _token)
+  LOG('token fail:', _token)
   return wxLogin(option)
 }
 
@@ -115,23 +116,23 @@ var wxLogin = option => {
   // 搜集登录的request 这样防止请求很多次code 重复多次登录
   loginCollectOptions.push(option)
   if (isLoginIng) {
-    console.log('正在登陆')
+    LOG('正在登陆')
     return Promise.reject()
   } else {
-    console.log('开始登陆')
+    LOG('开始登陆')
     isLoginIng = true
   }
 
   return wxPromisify(wx.login)()
     .then(res => {
       code = res.code
-      console.log('get code', code)
+      LOG('get code', code)
       return wxPromisify(wx.getUserInfo)({
         lang: 'zh_CN'
       })
     })
     .then(res => {
-      console.log('get userInfo', res)
+      LOG('get userInfo', res)
       let _data = {
         url: DOMAIN + '/party/login',
         data: {
@@ -140,20 +141,20 @@ var wxLogin = option => {
           iv: res.iv
         }
       }
-      console.log('login', _data)
+      LOG('login', _data)
       return wxPromisify(wx.request)(_data)
     }).then((res) => {
       if (res.succ && res.data) {
-        console.log('login succ', res)
+        LOG('login succ', res)
         wx.setStorageSync("token", res.data)
         isLoginIng = false
         loginRequest()
       } else {
-        console.log('login fail', res)
+        LOG('login fail', res)
       }
     }).catch((error) => {
-      console.log('login error', res)
-      console.log(error)
+      LOG('login error', res)
+      LOG(error)
     })
 }
 
