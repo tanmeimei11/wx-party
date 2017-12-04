@@ -1,3 +1,5 @@
+@import './union.wxss';
+@import './time.wxss';
 .c-wrap.c-pay-wrap {
   margin-top: 330rpx;
   padding-top: 52rpx;
@@ -47,6 +49,7 @@
   color: #B0B0B0;
   font-size: 24rpx;
   word-break: wrap;
+  margin-top: 10rpx;
   /* text-align: center; */
 }
 

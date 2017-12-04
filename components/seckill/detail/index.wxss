@@ -23,6 +23,7 @@
   line-height: 28rpx;
 }
 
+.c-bottom-group .sd-tips,
 .seckill-detail .sd-tips {
   position: absolute;
   right: 40rpx;
@@ -31,7 +32,8 @@
   height: 190rpx;
   background: #fff;
   border-radius: 8rpx;
-  background: url(http://inimg07.jiuyan.info/in/2017/11/06/F8484B47-23CC-FC53-CFE8-CB2D475E67A2.png) no-repeat center center;
+  background: url(http://inimg07.jiuyan.info/in/2017/11/06/F8484B47-23CC-FC53-CFE8-CB2D475E67A2.png) no-repeat;
+  background-position: center;
   background-size: cover;
   box-sizing: border-box;
   padding-top: 73rpx;
@@ -39,6 +41,15 @@
   text-align: left;
 }
 
+.c-bottom-group .sd-tips {
+  width: 505rpx;
+  height: 217rpx;
+  bottom: 110rpx;
+  padding-top: 90rpx;
+  background-image: url(https://inimg07.jiuyan.info/in/2017/11/26/0A2442C8-2014-1F71-18AB-D9E2075BF89F.jpg);
+}
+
+.c-bottom-group .sd-tips .sdt-avatar,
 .seckill-detail .sd-tips .sdt-avatar {
   position: absolute;
   left: 30rpx;
@@ -52,6 +63,11 @@
   border-radius: 100%;
 }
 
+.c-bottom-group .sd-tips .sdt-avatar {
+  top: 90rpx;
+}
+
+.c-bottom-group .sd-tips .sdt-avatar::after,
 .seckill-detail .sd-tips .sdt-avatar::after {
   content: '';
   position: absolute;
@@ -64,20 +80,24 @@
   background-position: center;
 }
 
+.c-bottom-group .sd-tips .sdt-avatar.male::after,
 .seckill-detail .sd-tips .sdt-avatar.male::after {
   background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/AC7CA472-C19B-62EF-952B-97CAAD1C65F0.jpg);
 }
 
+.c-bottom-group .sd-tips .sdt-avatar.female::after,
 .seckill-detail .sd-tips .sdt-avatar.female::after {
   background-image: url(https://inimg01.jiuyan.info/in/2017/10/13/E72C5ACB-CCD1-7428-FD66-2AD0662288CF.jpg);
 }
 
+.c-bottom-group .sd-tips .sdt-name,
 .seckill-detail .sd-tips .sdt-name {
   font-size: 24rpx;
   color: #666;
   line-height: 33rpx;
 }
 
+.c-bottom-group .sd-tips .sdt-desc,
 .seckill-detail .sd-tips .sdt-desc {
   font-size: 28rpx;
   line-height: 44rpx;

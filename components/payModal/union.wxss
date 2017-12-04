@@ -1,0 +1,96 @@
+.union-pay {
+  margin: 0 auto;
+  width: 381rpx;
+  border-bottom: 1rpx solid #E0E0E0;
+  padding-bottom: 35rpx;
+}
+
+.r-avatar-wrap {
+  width: 312rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 25rpx 0;
+}
+
+.r-avatar-wrap>view {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.r-avatar-wrap .r-avatar {
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.r-avatar-wrap .r-avatar.none:after {
+  display: none!important;
+}
+
+.r-avatar-wrap .r-avatar::after {
+  content: '';
+  position: absolute;
+  top: 80rpx;
+  left: 80rpx;
+  width: 24rpx;
+  height: 24rpx;
+  transform: translate(-100%, -100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.r-avatar-wrap .r-avatar.male::after {
+  background-image: url(http://inimg07.jiuyan.info/in/2017/11/28/6ED5D101-D20C-2AAC-EE6B-48F0E9E7CFD3.png);
+}
+
+.r-avatar-wrap .r-avatar.female::after {
+  background-image: url(http://inimg05.jiuyan.info/in/2017/11/28/64BAA0EE-2CFE-1D3C-3F2E-A15C2D326205.png);
+}
+
+.none+.r-text {
+  color: #B0B0B0!important;
+}
+
+.r-avatar-wrap .r-text {
+  text-align: center;
+  max-width: 150rpx;
+  font-size: 22rpx;
+  color: #333;
+  line-height: 35rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 17rpx 0 0 0;
+}
+
+.s-ravatar-tips {
+  text-align: center;
+  font-size: 22rpx;
+  color: #666666;
+  /* white-space: nowrap; */
+}
+
+.s-ravatar-tips-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.s-ravatar-tips-wrap text {
+  font-size: 22rpx;
+  color: #666666;
+}

@@ -6,7 +6,6 @@ const qnTokenUrl = config.qnTokenUrl
 const qnUploadUrl = config.qnUploadUrl
 const qnResUrl = config.qnResUrl
 
-
 /**
  * 上传文件到七牛
  * @param {*} file 
@@ -41,13 +40,10 @@ const uploadImageToQiniu = (file) => {
  * 支付接口
  * @param {*} id 
  */
-var payMoney = (id, is_seckill_finish) => {
+var payMoney = (_data) => {
   return request({
     url: '/activity/join_order',
-    data: {
-      id: id,
-      is_seckill_finish: is_seckill_finish
-    }
+    data: _data
   }).then(Res => {
     if (Res.succ) {
       // 不需要进行实际的支付
@@ -76,23 +72,13 @@ var payMoney = (id, is_seckill_finish) => {
         }
       })
     } else {
-      // 没有秒杀到 
-      if (Res.code == '4000032352') {
-        return Promise.reject('fail')
-      }
+      return Promise.reject(Res)
     }
   })
 }
 
-// 秒杀活动 post
-var paySeckill = (id) => {
-  return request({
-    url: '/activity/seckill',
-    data: {
-      id: id
-    }
-  })
-}
+
+
 
 module.exports = {
   uploadImageToQiniu,

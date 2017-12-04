@@ -1,0 +1,7 @@
+.toastModal .u-txt{
+  margin-top: 0;
+}
+
+.toastModal .u-detail{
+  color: #666;
+}

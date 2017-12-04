@@ -1,7 +1,7 @@
 import track from '../../utils/track.js'
 var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
   mixins: [goldMoneyModal],
@@ -21,7 +21,6 @@ mutulPage({
     wx.showLoading({
       title: '加载中...'
     })
-    this.countTime()
     let self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -80,7 +79,7 @@ mutulPage({
       }
     })
   },
-  promoLower: function () {
+  onReachBottom: function () {
     if (this.data.noMoreNote) {
       return
     }
@@ -122,23 +121,7 @@ mutulPage({
     })
   },
   share: function () {
-    track(this, 'h5_tcpa_gold_forward')
+    track(this, 'h5_tcpa_gold_forwardhigh_click')
     this.setGoldMoneyModalData('isShow', true)
-  },
-  countTime: function () {
-    let date = new Date()
-    let theDay = date.getDay()
-    if (theDay == 0) {
-      theDay = 7
-    }
-    date.setDate(date.getDate() + 8 - theDay)
-    let theYear = date.getFullYear()
-    let theMonth = date.getMonth() + 1
-    let theDate = date.getDate()
-
-    let newMonday = theYear + '.' + theMonth + '.' + theDate
-    this.setData({
-      nextMonday: newMonday
-    })
   }
 })

@@ -24,5 +24,6 @@ module.exports = {
   [`${DOMAIN}/activity/interestinseckill`]: "remindSeckill",
   [`${DOMAIN}/bounty/bounty_img`]: "img",
   [`${DOMAIN}/activity/detail_img`]: "img",
-  [`${DOMAIN}/activity/join_order`]: "joinOrder"
+  [`${DOMAIN}/activity/join_order`]: "joinOrder",
+  [`${DOMAIN}/union/pay_after_info`]: "union"
 }

@@ -6,7 +6,7 @@ var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
 // var seckillEntry = require('../../components/seckill/entry/index.js')
 var seckillEntry = require('../../components/seckill/item/index.js')
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 
 mutulPage({
@@ -33,6 +33,7 @@ mutulPage({
     is_share: false,
     is_ending: false,
     onTop: false,
+    toTop: false,
     screen: '全部活动',
     screenID: '',
     screenList: [],
@@ -46,6 +47,7 @@ mutulPage({
     currentID2: '',
     nowTime: 0,
     notfindpromo: false,
+    globalData: app.globalData,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“加群”，获取二维码链接',
@@ -173,6 +175,7 @@ mutulPage({
       this.loadBalance()
         .then((is_get_bouns) => {
           if (!is_get_bouns) {
+            track(this, 'h5_tcpa_gold_see_expo')
             this.showGetMoneyModal()
           }
         })
@@ -193,10 +196,7 @@ mutulPage({
       }
     })
   },
-  upper: function () {
-    // console.log("upper");
-  },
-  promoLower: function () {
+  onReachBottom: function () {
     // console.log("promoLower")
     let that = this;
     setTimeout(function () {
@@ -209,8 +209,8 @@ mutulPage({
       that.loadMoreQun();
     }, 300);
   },
-  scroll: function (e) {
-    if (e.detail.scrollTop > this.data.launchTop) {
+  onPageScroll: function (e) {
+    if (e.scrollTop > this.data.launchTop) {
       this.setData({
         onTop: true
       })
@@ -219,25 +219,57 @@ mutulPage({
         onTop: false
       })
     }
+    if (e.scrollTop > this.data.scrollHeight) {
+      this.setData({
+        toTop: true
+      })
+    } else {
+      this.setData({
+        toTop: false
+      })
+    }
+  },
+  toTop: function () {
+    this.setData({
+      toTop: false
+    })
+    track(this, 'h5_tcpa_index_top_click')
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+  },
+  changeAppData: function (key, val) {
+    app.globalData.deviceInfo == null && (app.globalData.deviceInfo = {})
+    app.globalData.deviceInfo[key] = val
   },
   getLocation: function (e) {
     let self = this
     return wxPromisify(wx.authorize)({
       scope: 'scope.userLocation'
     }).then(suc => {
+      console.log("授权成功")
       return wxPromisify(wx.getLocation)({
         type: 'gcj02'
       })
-    }, rej => {}).then(res => {
+    }, rej => {
+      console.log('授权失败')
+    }).then(res => {
+      console.log("获取地理位置成功")
       if (res) {
         var latitude = res.latitude
         var longitude = res.longitude
+        var _gps = longitude + ',' + latitude
+        this.changeAppData('gps', _gps)
         self.setData({
-          _gps: longitude + ',' + latitude
+          _gps: _gps
         })
+        console.log(this.data.globalData)
       }
+    }, rej => {
+      console.log("获取地理位置失败")
     })
   },
+
   loadMorePromo: function () {
     console.log('111')
     if (this.data.loadingMorePromo) {
@@ -308,7 +340,9 @@ mutulPage({
             noMorePromo: false,
           })
         }
+        // 搜索返回判断
         if (bottomItem) {
+          // 搜索为空
           if (res.data.is_empty) {
             this.setData({
               notfindpromo: true,
@@ -443,7 +477,9 @@ mutulPage({
         if (!res.data.is_owner) { // 不是自己才展示弹窗
           _data[_type] = true
         }
-
+        if (res.data.is_first_amount == true) { //分享进来第一次领取
+          track(this, 'h5_tcpa_gold_forward_expo')
+        }
         this.setData(_data)
       }
     })

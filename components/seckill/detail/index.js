@@ -9,7 +9,8 @@ module.exports = {
       is_seckill_finish: 1,
       is_seckill: 0,
       isShow: false,
-      seckillStatus: ''
+      seckillStatus: '',
+      cutDownTimer: null
     }
   },
   setSeckillInfo(data) {
@@ -17,6 +18,7 @@ module.exports = {
 
     var seckillStatus = ''
     var seckill = {
+      cutDownTimer: null,
       count_down: +data.count_down / 1000,
       is_seckill: +data.is_seckill,
       name: data.share_user_name,
@@ -92,22 +94,26 @@ module.exports = {
     })
   },
   countdown() {
-    if (this.data.seckill.count_down === 0) {
-      var _seckill = this.data.seckill
-      _seckill.seckillStatus = 'begin'
-      this.setData({
-        seckill: _seckill
-      })
-      return
-    }
-
-    this.setData({
-      seckill: {
-        ...this.data.seckill,
-        count_down: this.data.seckill.count_down - 1
+    var cutDownFun = () => {
+      if (this.data.seckill.count_down <= 0) {
+        clearInterval(this.data.seckill.cutDownTimer)
+        var _seckill = this.data.seckill
+        _seckill.seckillStatus = 'begin'
+        this.setData({
+          seckill: _seckill
+        })
+        return
       }
-    })
-    setTimeout(() => this.countdown(), 1000)
+
+      this.setData({
+        seckill: {
+          ...this.data.seckill,
+          count_down: this.data.seckill.count_down - 1
+        }
+      })
+    };
+
+    !this.data.seckill.cutDownTimer && (this.data.seckill.cutDownTimer = setInterval(cutDownFun, 1000))
   },
   // 显示弹窗
   showSeckillModal() {

@@ -1,16 +1,23 @@
 const app = getApp()
 let getLenStr = require('../../utils/util.js').getLenStr
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 var request = require('../../utils/wxPromise.js').requestPromisify
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime
 var payModal = require('../../components/payModal/index.js')
 var seckillDetail = require('../../components/seckill/detail/index.js')
 var toastWhite = require('../../components/toastWhite/index.js')
+var union = require('../../components/union/index.js')
+var unionIngModal = require('../../components/unionIngModal/index.js')
+var unionStatus = require('../../components/unionStatus/index.js')
+var toastModal = require('../../components/toastModal/index.js')
 import track from '../../utils/track.js'
 mutulPage({
-  mixins: [payModal, seckillDetail, toastWhite],
+  mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal, unionStatus, toastModal],
   data: {
+    detailDone: false,
+    sharePathQuery: [],
+    sharePathTitle: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_detail_entry',
     indicatorDots: false,
     autoplay: true,
@@ -33,6 +40,7 @@ mutulPage({
     isShowVerifyModal: false,
     isSubmitFormId: true,
     newDesc: false,
+    showPrompt: false,
     joinTips: [
       '1、点击下方按钮联系小助手',
       '2、回复“报名”，获取二维码链接',
@@ -65,7 +73,7 @@ mutulPage({
     }
   },
   onShareAppMessage: function (res) {
-    return {
+    var _shareInfo = {
       title: `"${getLenStr(this.data.headLine.title,30).str}"火热报名中,快来加入吧～`,
       path: `pages/detail/detail?id=${this.data.id}`,
       imageUrl: this.data.transferImageUrl,
@@ -77,9 +85,15 @@ mutulPage({
         // 转发失败
       }
     }
+    if (this.data.unionIngModalInfo.isShow) {
+      _shareInfo = this.getUnionShareInfo()
+    }
+    return _shareInfo
   },
-  onLoad: function (options) {
+  onLoad(options) {
     track(this, 'h5_tcpa_detail_screen_enter')
+    console.log('------options-----')
+    console.log(options)
     wx.showLoading({
       title: '加载中...'
     })
@@ -88,15 +102,24 @@ mutulPage({
     })
 
     // 取页面上的id
+    var deviceInfo = app.getDeviceInfo()
+    var _isAndrod = /android/.test(deviceInfo.system.toLowerCase())
     this.setData({
       shareUserId: options.shareUserId || '',
       id: options.id || '11001',
-      sessionFrom: `activity_${options.id}`,
-      sessionFromQr: `activitymanager_${options.id}`,
-      sessionFromAct: `typeactivity_${options.id}`
+      sessionFrom: `activity_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromQr: `activitymanager_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromAct: `typeactivity_${_isAndrod ? 'android_' : ''}${options.id}`,
+      // sessionFrom: `activity_${options.id}`,
+      // sessionFromQr: `activitymanager_${options.id}`,
+      // sessionFromAct: `typeactivity_${options.id}`,
+      shareUnionId: options.shareUnionId || '',
     })
-
-    options.isShowPayModal && this.showPayModal()
+    console.log(this.data.sessionFromAct)
+    if (options.isShowPayModal && options.shareUnionId) {
+      this.data.showPayModalByUnion = true
+      this.showPayModal()
+    }
     // 秒杀分享
     if (options.shareUserId) {
       track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
@@ -128,6 +151,10 @@ mutulPage({
       })
     }
 
+    if (options.show_prompt) {
+      this.showUnionStatus()
+    }
+
     if (!this.data.userInfo) {
       wxPromisify(wx.getUserInfo)()
         .then((res) => {
@@ -138,33 +165,44 @@ mutulPage({
           })
         })
     }
-
     // 数据
     if (this.data.id) {
       request({
         url: "/activity/detail",
         data: {
           id: this.data.id,
-          shareUserId: this.data.shareUserId
+          shareUserId: this.data.shareUserId,
+          union_id: this.data.shareUnionId
         }
       }).then((res) => {
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
+          if (!options.show_prompt) {
+            if ((res.data.union_info && !res.data.union_info.is_owner) || res.data.join_status == 1) {
+              track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
+            }
+          }
         }
       })
     }
   },
   showPayModal: function () {
+    var _data = {
+      act_id: this.data.id,
+    }
+    // 开团或者秒杀
+    if (this.data.showPayModalByUnion) {
+      _data.is_union = true
+    } else {
+      _data.is_seckill_finish = this.data.seckill.is_seckill_finish
+    }
     request({
       url: '/activity/cost',
-      data: {
-        act_id: this.data.id,
-        is_seckill_finish: this.data.seckill.is_seckill_finish
-      }
+      data: _data
     }).then(res => {
       if (res.succ) {
         var _preText = ''
-        if (this.data.seckill.is_seckill_finish == 0) {
+        if (this.data.seckill.is_seckill_finish == 0 && !this.data.unionInfo.is_union) {
           _preText = '秒杀活动不支持鼓励金，'
         }
         // 计算的文案
@@ -174,6 +212,15 @@ mutulPage({
           res.data.desc = `＊${_preText}如果最终不参加，会扣除鸽子费¥${res.data.book_charge}，最终退款¥0`
         } else {
           res.data.desc = `＊鼓励金只抵扣活动费用，不抵扣鸽子费\n＊如果最终不参加，¥${res.data.book_charge}元鸽子费不会退款`
+        }
+        var _ms = res.data.count_down
+        if (_ms) {
+          var _h = parseInt(_ms / 1000 / 60 / 60)
+          if (_h <= 1) {
+            this.toastModal('来晚了一步', '活动开始前一小时内，无法拼团报名')
+            return
+          }
+          res.data.count_down_info = _h >= 24 ? '24小时内邀请好友报名，即享受拼团价' : '活动开始前一小时之前，邀请好友报名，即享受拼团价'
         }
         this.setData({
           priceInfo: res.data,
@@ -282,14 +329,31 @@ mutulPage({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
-  openBook: function () {
+  openBook: function (e) {
+
+    // 秒杀倒计时
     if (this.data.seckill.seckillStatus == 'ready' || this.data.bookStatus == '1') {
       return
     }
+    // 分享秒杀
     if (this.data.shareUserId) {
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
-    track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
+    // 开团状态变化 
+    this.changeUnionStatus()
+    if (e.target.dataset.union == 1) {
+      console.log(this.data.unionInfo.union_status)
+      track(this, 'h5_tcpa_pintuan_click', [`active_id=${this.data.id}`, `type=${this.data.unionInfo.union_status}`])
+      this.setData({
+        showPayModalByUnion: true
+      })
+
+    } else {
+      track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
+      this.setData({
+        showPayModalByUnion: false
+      })
+    }
     // 首次报名
     if (this.data.isNeedInfo == 1) {
       this.redirectApply()
@@ -313,7 +377,7 @@ mutulPage({
   },
   redirectApply: function () {
     wx.redirectTo({
-      url: `../apply/apply?nextpage=detail&prepage=detail&id=${this.data.id}`
+      url: `../apply/apply?nextpage=detail&prepage=detail&id=${this.data.id}&shareUnionId=${this.data.shareUnionId}`
     })
   },
   closeJoin: function () {
@@ -332,6 +396,7 @@ mutulPage({
     }
     wx.hideLoading()
     this.setData({
+      detailDone: true,
       imgUrls: data.act_url,
       headLine: {
         title: data.act_name,
@@ -370,6 +435,8 @@ mutulPage({
     })
     // 设置秒杀信息
     this.setSeckillInfo(data)
+    // 设置拼团信息
+    this.setUnionInfo(data)
   },
   loadImages: function (images) {
     var imgPromiseList = []
@@ -447,7 +514,7 @@ mutulPage({
       ctx.draw()
     })
   },
-  getImgFromBack() {
+  getImgFromBack: function () {
     request({
       url: '/activity/detail_img',
       data: {
@@ -528,7 +595,7 @@ mutulPage({
         })
       }
       return prePromise.then(res => {
-        console.log(res)
+        // console.log(res)
         return wxPromisify(wx.saveImageToPhotosAlbum)({
           filePath: res.path
         })
@@ -582,5 +649,8 @@ mutulPage({
     wx.makePhoneCall({
       phoneNumber: this.data.infos.phone
     })
+  },
+  bannerQr: function () {
+    track(this, 'h5_tcpa_active_introduce_join', [`active_id=${this.data.id}`])
   }
 })

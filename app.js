@@ -4,6 +4,7 @@
 // let util = require('./utils/util.js')
 var ga = require('./lib/ga.js');
 var _v = require('./utils/config.js')._v;
+var getDeviceInfo = require('./utils/client.js').getDeviceInfo;
 var GoogleAnalytics = ga.GoogleAnalytics;
 App({
   // ...
@@ -18,9 +19,11 @@ App({
     }
     return this.tracker;
   },
+  getDeviceInfo: getDeviceInfo,
   globalData: {
     code: null,
-    userInfo: null
+    userInfo: null,
+    deviceInfo: null
   },
   onLaunch: function () {}
   // ...
