@@ -184,11 +184,7 @@
     width: 100%!important;
     height: 100%!important;
     opacity: 0;
-<<<<<<< HEAD
     z-index: 0!important;
-=======
-    z-index: 0;
->>>>>>> phrase6
   }
 
   .wx-contact-button-wrapper {
