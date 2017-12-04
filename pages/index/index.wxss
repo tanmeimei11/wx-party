@@ -729,3 +729,32 @@
   position: relative;
   padding: 30rpx 40rpx 20rpx;
 }
+
+.toTop {
+  background: #fff;
+  width: 90rpx;
+  height: 42rpx;
+  position: fixed;
+  bottom: 180rpx;
+  right: 40rpx;
+  box-shadow: 0 0 12rpx 0 rgba(0, 0, 0, 0.10);
+  color: #333;
+  font-size: 22rpx;
+  border-radius: 50%;
+  padding-top: 48rpx;
+  text-align: center;
+  z-index: 1
+}
+
+.toTop::before {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  left: 30rpx;
+  width: 30rpx;
+  height: 17rpx;
+  background: url(https://inimg07.jiuyan.info/in/2017/11/24/06FEACBE-4CC6-90FA-D454-E606D2D9BC04.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

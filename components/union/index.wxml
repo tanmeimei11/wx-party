@@ -1,0 +1,35 @@
+<!-- 双人成团 -->
+<template name="union">
+  <view class="c-bottom-nav c-bottom-group">
+    <!-- 通过分享进来的 -->
+    <view class="sd-tips {{union_status == 2 ? 'late':''}}" wx:if="{{!is_owner && (union_status==0||union_status==2||union_status==3) && shareUnionId}}">
+      <view class="sdt-avatar {{launch_info.gender=='男' ? 'male': 'female'}} " style="background-image:url({{launch_info.avatar}}) ">
+      </view>
+      <view class='sdt-name'>{{launch_info.nick_name}} 邀请你</view>
+      <view class='sdt-desc'>{{desc}}</view>
+    </view>
+    <!-- 按钮列表 -->
+    <view class="btn-group-share " catchtap="openInviteModal">
+      <view></view>分享
+    </view>
+    <block wx:if="{{union_status==0||union_status==2||union_status==3}}">
+      <view class="btn-group btn-group-book" catchtap="openBook">报名 {{price}} </view>
+      <view class="btn-group btn-group-two" catchtap="openBook" data-union="1">两人成团 ¥{{union_charge}} </view>
+    </block>
+    <view class="btn-group btn-group-ing " wx:elif="{{union_status==1}}" catchtap="goUnionIng">
+      <text class="big ">拼团中</text>
+      <view class="small">
+        <wxs src="../../utils/tools.wxs" module="tools" />
+        <view class="cut-time">
+          <text>{{tools.hour(union_countdown_diff)}}</text>:
+          <text>{{tools.minute(union_countdown_diff)}}</text>:
+          <text>{{tools.second(union_countdown_diff)}}</text>
+        </view>
+        内邀请到好友参与，即享受拼团价
+      </view>
+    </view>
+    <view class="btn-group btn-group-ing" wx:elif="{{union_status==4}}" catchtap="goUnionSucc">
+      <text class="big">拼团成功</text>
+    </view>
+  </view>
+</template>

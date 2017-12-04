@@ -11,6 +11,9 @@
 	"libVersion": "1.5.4",
 	"appid": "wx48155bddeea6fb66",
 	"projectname": "wx-party",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
 	"miniprogramRoot": "./",
 	"condition": {
 		"search": {
@@ -28,13 +31,13 @@
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "from=wechat"
+					"query": "from=wechat&sharekey=12345"
 				},
 				{
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=19801&isShowOtherAct=false&from=xiangxiang&shareUnionId=123&prepage=launch"
+					"query": "id=19801&isShowOtherAct=false&from=xiangxiang"
 				},
 				{
 					"id": -1,
@@ -95,6 +98,12 @@
 					"name": "detail shareUserId",
 					"pathName": "pages/detail/detail",
 					"query": "id=15901&shareUserId=1aRJYn"
+				},
+				{
+					"id": 12,
+					"name": "result_union",
+					"pathName": "pages/result_union/result_union",
+					"query": "prepage=apply&promonum=93&id=21502&isSeckill=1&transferImageUrl=https://inimg07.jiuyan.info/aW4vMjAxNy8xMS8wNi84RTVDNjM0Ni04QTNGLTk2QzQtRjRBQi03MTcyODRFOTRFNTIuanBn&title=啊发斯蒂芬胜多负少&user_id=1021408"
 				}
 			]
 		}

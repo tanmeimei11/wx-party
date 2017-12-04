@@ -1,5 +1,5 @@
 //launch.js
-var mutulPage = require('../../utils/util.js').mutulPage
+var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var request = require('../../utils/wxPromise.js').requestPromisify
 var formatTimeToTime = require('../../utils/util.js').formatTimeToTime

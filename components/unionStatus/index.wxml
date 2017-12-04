@@ -1,0 +1,33 @@
+<!-- 双人成团状态弹窗 -->
+<template name="unionStatus">
+  <view class="c-modal" wx:if="{{unionStatus.is_show}}">
+    <view class="c-wrap u-bg {{unionInfo.union_status == '4' ? 'succ' : 'fail'}}">
+
+      <view class="u-txt" wx:if="{{unionInfo.union_status == '4'}}">拼团成功</view>
+      <view class="u-txt" wx:if="{{unionInfo.union_status == '3'}}">拼团失败</view>
+
+      <view class="u-detail" wx:if="{{unionInfo.union_status == '4'}}">记得和小伙伴一起来玩耍哦</view>
+      <view class="u-detail" wx:if="{{unionInfo.union_status == '3'}}">已经超过了拼团截止时间</view>
+
+      <view class="r-avatar">
+        <view class="r-avatarme {{unionInfo.launch_info.gender == '男' ? 'male' : 'female'}}">
+          <view class="sex" style="background-image:url({{unionInfo.launch_info.avatar}})"></view>
+          <text>{{unionInfo.launch_info.nick_name}}</text>
+        </view>
+        <view class="r-connect" wx:if="{{unionInfo.union_status == '4'}}"></view>
+        <view class="r-avatarher {{unionInfo.join_info.gender == '男' ? 'male' : 'female'}} {{unionInfo.union_status == '4' ? '' : 'none'}}">
+          <view wx:if="{{unionInfo.union_status == '4'}}">
+            <view class="sex" style="background-image:url({{unionInfo.join_info.avatar}})"></view>
+            <text>{{unionInfo.join_info.nick_name}}</text>
+          </view>
+          <view wx:else>
+            <view class="sex noone"></view>
+            <text>还差1人</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="u-btn" catchtap="closeWindow">我知道啦</view>
+    </view>
+  </view>
+</template>

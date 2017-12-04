@@ -2,7 +2,7 @@ import track from '../../../utils/track.js'
 var requestPromisify = require('../../../utils/wxPromise.js').requestPromisify
 module.exports = {
   data: {
-    xxtimer:null
+    xxtimer: null
   },
   initSeckill: function () {
     this.setData({
@@ -14,17 +14,21 @@ module.exports = {
     this.countdown()
   },
   countdown: function () {
-    clearTimeout(this.data.xxtimer)
     if (this.data.promoList.filter(item => item.cutTime > 0).length == 0) {
       return
     }
-    this.setData({
-      promoList: this.data.promoList.map(item => ({
-        ...item,
-        cutTime: (item.cutTime - 1 <= 0) ? 0 : (item.cutTime - 1)
-      }))
-    })
-
-    this.data.xxtimer = setTimeout(() => this.countdown(), 1000)
+    var cutDownFun = () => {
+      console.log('333333')
+      if (this.data.promoList.filter(item => item.cutTime > 0).length == 0) {
+        return
+      }
+      this.setData({
+        promoList: this.data.promoList.map(item => ({
+          ...item,
+          cutTime: (item.cutTime - 1 <= 0) ? 0 : (item.cutTime - 1)
+        }))
+      })
+    };
+    !this.data.xxtimer && (this.data.xxtimer = setInterval(cutDownFun, 1000))
   }
 }

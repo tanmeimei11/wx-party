@@ -1,7 +1,7 @@
 <!--detail.wxml-->
 <form bindsubmit="formSubmit" report-submit="true" class="submit-from">
   <button formType="submit" class="submit-btn">
-    <view class="container">
+    <view class="container" wx:if="{{detailDone}}">
       <!-- 埋点 -->
       <image src="{{trackSeed}}" style="width:0;height:0;" />
 
@@ -33,7 +33,7 @@
       </swiper>
 
       <!-- 秒杀导航 -->
-      <view class="c-seckill">
+      <view class="c-seckill" wx:if="{{!unionInfo.is_union}}">
         <import src="../../components/seckill/detail/index.wxml" />
         <template is="detailBar" data="{{...seckill}}" />
       </view>
@@ -65,7 +65,7 @@
           <view class="m-text">
             <!-- 点击跳客服 -->
             <view wx:if="{{banner}}" class="new-banner">
-              <contact-button type="default-dark" size="20" session-from="{{sessionFromAct}}">
+              <contact-button type="default-dark" size="20" session-from="{{sessionFromAct}}" catchtap="bannerQr">
               </contact-button>
               <image src="{{banner}}" mode="widthFix"></image>
             </view>
@@ -76,6 +76,13 @@
             </block>
             <!--   <text class="m-more" bindtap="lookMore" wx:if="{{isShowIntroAll}}">展开全部</text>
             <text class="m-more less" bindtap="lookLess" wx:if="{{isShowIntroLess}}">收起全部</text> -->
+            <!-- 点击跳客服 -->
+            <view wx:if="{{banner}}" class="new-banner">
+              <contact-button type="default-dark" size="20" session-from="{{sessionFromAct}}" catchtap="bannerQr">
+              </contact-button>
+              <image src="{{banner}}" mode="widthFix"></image>
+            </view>
+
           </view>
 
         </view>
@@ -97,7 +104,7 @@
 
 
       <!-- 底部导航 -->
-      <view class="c-bottom-nav">
+      <view class="c-bottom-nav" wx:if="{{!unionInfo.is_union}}">
         <!-- 审核未通过 -->
         <block wx:if="{{actStatus == '3'}}">
           <view class="btn-end-act">审核未通过 </view>
@@ -113,18 +120,25 @@
         <!-- 邀请好友 签到  -->
         <block wx:if="{{actStatus == '0'}}">
           <view class="s-btn" bindtap="openInviteModal">邀请好友</view>
-          <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" bindtap="openSign">签到</view>
+          <view class="s-btn btn-sign" wx:if="{{isOrgize=='1'}}" catchtap="openSign">签到</view>
           <block wx:elif="{{bookStatus == '0'}}">
             <!-- 秒杀详细 -->
-            <view class="s-btn btn-sign" bindtap="openBook">
+            <view class="s-btn btn-sign" catchtap="openBook">
               <import src="../../components/seckill/detail/index.wxml" />
               <template is="detail" data="{{...seckill}}" />
             </view>
           </block>
-          <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" bindtap="openBookAlready">已报名
+          <view class="s-btn btn-sign btn-sign-again" wx:elif="{{bookStatus != '0'}}" catchtap="openBookAlready">已报名
           </view>
         </block>
       </view>
+      <!-- union  双人成团-->
+      <block wx:else>
+        <import src="../../components/union/index.wxml" />
+        <template is="union" data="{{...unionInfo,shareUnionId:shareUnionId,price:infos.charge,defaultUnionInfo:defaultUnionInfo}}"
+        />
+      </block>
+
 
       <!-- 邀请弹窗 -->
       <view class="c-modal" wx:if="{{isShowInviteModal}}">
@@ -163,9 +177,19 @@
       <!-- canvas -->
       <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
 
+      <!-- 拼团弹窗 -->
+      <import src="../../components/unionStatus/index.wxml" />
+      <template is="unionStatus" data="{{unionInfo:unionInfo,showPrompt:showPrompt,unionStatus:unionStatus}}" />
+      <!-- 来晚提示弹窗 -->
+      <import src="../../components/toastModal/index.wxml" />
+      <template is="toastModal" data="{{late:late,lateModal:lateModal,txt1:lateModal.txt1,txt2:lateModal.txt2}}" />
       <!-- 支付弹窗 -->
       <import src="../../components/payModal/index.wxml" />
-      <template is="payModal" data="{{isShowPayModal:isShowPayModal,priceInfo:priceInfo}}" />
+      <template is="payModal" data="{{unionInfo:unionInfo,isShowPayModal:isShowPayModal,priceInfo:priceInfo,shareUnionId:shareUnionId}}"
+      />
+      <!-- 拼团中弹窗 -->
+      <import src="../../components/unionIngModal/index.wxml" />
+      <template is="unionIngModal" data="{{...unionIngModalInfo,unionInfo:unionInfo}}" />
       <!-- 白色 toast 弹窗 -->
       <include src="../../components/toastWhite/index.wxml" />
     </view>

@@ -3,7 +3,7 @@ var request = require('../../utils/wxPromise.js').requestPromisify
 module.exports = {
   data: {
     toastWhiteTimer: null,
-    isShowToastWhite: false
+    isShowToastWhite: false,
   },
   showToastWhite: function (str) {
     clearTimeout(this.toastWhiteTimer)
