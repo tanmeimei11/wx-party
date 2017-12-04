@@ -3,13 +3,11 @@
   <view class="launch-bg">
     <view class="launch-promo">
       <text bindtap="launchPromo">发起活动</text>
-      <view>
-        <view class="launch-shu"></view>
-        <text bindtap="toBalance">
-          <text>鼓励金</text>
-          <text class="launch-balance">(￥{{myMoney}})</text>
-        </text>
-      </view>
+      <view class="launch-shu"></view>
+      <text bindtap="toBalance">
+        <text>鼓励金</text>
+        <text class="launch-balance">(￥{{myMoney}})</text>
+      </text>
       <!-- <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view> -->
       <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
     </view>
