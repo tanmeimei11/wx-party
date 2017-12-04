@@ -46,4 +46,8 @@
   <!-- 拆红包弹窗 -->
   <import src="../../components/openMoneyModal/index.wxml" />
   <template is="openMoneyModal" data="{{...openMoneyModalData}}" />
+
+  <!-- 拆红包分享 -->
+  <import src="../../components/openShareMoneyModal/index.wxml" />
+  <template is="openShareMoneyModal" data="{{...openShareMoneyModalData}}" />
 </view>

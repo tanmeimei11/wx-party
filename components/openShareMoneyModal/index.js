@@ -2,16 +2,16 @@
 import track from '../../utils/track.js'
 module.exports = {
   data: {
-    openMoneyModalData: {
-      isShow: false,
+    openShareMoneyModalData: {
+      isShow: true,
       money: 20,
       name: 'in同城趴送你'
     }
   },
   reciveRedpocket: function () {
     this.setData({
-      openMoneyModalData: {
-        ...this.data.openMoneyModalData,
+      openShareMoneyModalData: {
+        ...this.data.openShareMoneyModalData,
         isShow: false
       }
     })

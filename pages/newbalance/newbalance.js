@@ -1,10 +1,11 @@
 import track from '../../utils/track.js'
 var openMoneyModal = require('../../components/openMoneyModal/index.js')
+var openShareMoneyModal = require('../../components/openShareMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
-  mixins: [openMoneyModal],
+  mixins: [openMoneyModal, openShareMoneyModal],
   data: {
     balance: 0.00,
     currentCursor: 0,
