@@ -31,5 +31,10 @@
     <import src="../../components/riseMoneyModal/index.wxml" />
     <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney,isScanTwice:isScanTwice}}"
     />
+
+
+    <!-- 红包弹窗 -->
+    <import src="../../components/openRedpocketModal/index.wxml" />
+    <template is="openRedpocketModal" data="{{...openRedpocketModalData}}" />
   </button>
 </form>

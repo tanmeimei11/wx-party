@@ -7,11 +7,12 @@ var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
 // var seckillEntry = require('../../components/seckill/entry/index.js')
 var seckillEntry = require('../../components/seckill/item/index.js')
+var openRedpocketModal = require('../../components/openRedpocketModal/index.js')
 var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 
 mutulPage({
-  mixins: [getMoneyModal, riseMoneyModal, seckillEntry],
+  mixins: [getMoneyModal, riseMoneyModal, seckillEntry, openRedpocketModal],
   data: {
     seckill: [],
     qunList: [],

@@ -1,10 +1,10 @@
 import track from '../../utils/track.js'
-var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
+var openMoneyModal = require('../../components/openMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
-  mixins: [goldMoneyModal],
+  mixins: [openMoneyModal],
   data: {
     balance: 0.00,
     currentCursor: 0,
@@ -31,7 +31,7 @@ mutulPage({
     })
     wx.getUserInfo({
       success: function (res) {
-        self.setGoldMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
+        // self.setGoldMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
       }
     })
     wx.setNavigationBarTitle({
@@ -54,7 +54,7 @@ mutulPage({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
             })
           }
-          self.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
+          // self.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
           wx.hideLoading()
         })
       }

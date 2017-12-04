@@ -1,0 +1,59 @@
+.c-wrap.c-open-money-wrap {
+  width: 574rpx;
+  height: 485rpx;
+  background: url('https://inimg07.jiuyan.info/in/2017/12/04/3CB64C0A-3842-6F5B-9630-8C39DBCB92F4.jpg');
+  background-repeat: no-repeat;
+  background-size: 574rpx 485rpx;
+  padding: 0;
+}
+
+.c-open-money-wrap .s-close {
+  top: 50rpx;
+  background: none;
+}
+
+.c-open-money-wrap text {
+  color: #fff;
+  font-size: 56rpx;
+  margin: 0 5rpx;
+  font-weight: bold;
+  /* margin-top: 8rpx; */
+  /* vertical-align: bottom; */
+}
+
+.c-open-money-wrap .s-redpocket {
+  color: #fff;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: row;
+  /* align-items: flex-end; */
+  justify-content: center;
+  line-height: 60rpx;
+}
+
+.c-open-money-wrap .s-top-tip {
+  color: #fff;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+}
+
+.c-open-money-wrap .s-btn {
+  width: 430rpx;
+  height: 85rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  text-align: center;
+  margin: 58rpx auto 0;
+  border-radius: 200rpx;
+  color: #333333;
+  background-color: #fff462;
+}
+
+.s-text-wrap {
+  position: absolute;
+  bottom: 60rpx;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
