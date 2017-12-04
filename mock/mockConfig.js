@@ -25,5 +25,6 @@ module.exports = {
   [`${DOMAIN}/bounty/bounty_img`]: "img",
   [`${DOMAIN}/activity/detail_img`]: "img",
   [`${DOMAIN}/activity/join_order`]: "joinOrder",
-  [`${DOMAIN}/union/pay_after_info`]: "union"
+  [`${DOMAIN}/union/pay_after_info`]: "union",
+  [`${DOMAIN}/bounty/is_hangzhou`]: "isHangzhou"
 }

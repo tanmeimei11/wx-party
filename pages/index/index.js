@@ -1,6 +1,7 @@
 const app = getApp()
 let util = require('../../utils/util.js')
 let request = require('../../utils/wxPromise.js').requestPromisify
+var locationStorage = require('../../utils/api.js').locationStorage
 import track from '../../utils/track.js'
 var getMoneyModal = require('../../components/getMoneyModal/index.js')
 var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
@@ -43,9 +44,9 @@ mutulPage({
     sortList: [],
     sortOpen: false,
     _gps: '',
+    isHangzhou: false,
     currentID1: '',
     currentID2: '',
-    nowTime: 0,
     notfindpromo: false,
     globalData: app.globalData,
     joinTips: [
@@ -125,7 +126,6 @@ mutulPage({
           scrollHeight: res.windowHeight,
           windowWidth: res.windowWidth,
           launchTop: res.windowWidth / 750 * 150,
-          nowTime: new Date().getTime()
         });
       }
     })
@@ -255,18 +255,22 @@ mutulPage({
       console.log('授权失败')
     }).then(res => {
       console.log("获取地理位置成功")
-      if (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var _gps = longitude + ',' + latitude
-        this.changeAppData('gps', _gps)
-        self.setData({
-          _gps: _gps
-        })
-        console.log(this.data.globalData)
-      }
+      var latitude = res.latitude
+      var longitude = res.longitude
+      var _gps = longitude + ',' + latitude
+      this.changeAppData('gps', _gps)
+      self.setData({
+        _gps: _gps
+      })
+      return locationStorage({
+        gps: _gps
+      })
     }, rej => {
       console.log("获取地理位置失败")
+    }).then(res => {
+      this.setData({
+        isHangzhou: wx.getStorageSync('locationHZ')
+      })
     })
   },
 

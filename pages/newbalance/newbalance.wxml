@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- 埋点 -->
+  <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
+  <view class="balance">
+    <view class="title">
+      <text>我的鼓励金</text>
+    </view>
+    <view class="money">{{balance}}</view>
+    <text class="time">报名成功时，鼓励金可以直接抵用现金</text>
+  </view>
+
+<!--   <view class="balance">
+    
+  </view> -->
+
+  <view class="banance-btn" bindtap="share">
+    <view>转发最高赚￥100</view>
+  </view>
+
+  <view class="tips">
+    <text>鼓励金可以在支付活动费用的时候直接抵扣现金，每个活动抵扣上限为20</text>
+    <text>分享二维码图片给好友，好友扫码之后就会获得一次升值机会，每次最高升值10元</text>
+    <text>每位好友每周都可以帮你升值一次哦</text>
+    <text>鼓励金一直有效，不会清0 、不可提现，只适用于活动报名</text>
+    <text>鼓励金一旦使用不会退回</text>
+    <text>鼓励金不适用于秒杀活动</text>
+    <text>最终解释权归in同城趴所有</text>
+  </view>
+
+  <view class="history" wx:if="{{list.length > 0}}">
+    <text class="title">历史记录</text>
+    <block wx:for="{{list}}" wx:for-index="idx" wx:key="id">
+      <view class="list {{idx == 0 ? 'first' : ''}}">
+        <text class="note">{{item.note}}</text>
+        <text class="operation {{ item.operation_amount-0 < 0 ? 'used' : ''}}">{{item.operation_amount}}</text>
+        <text class="time">{{item.created_at}}</text>
+        <text class="account">余额：￥{{item.account_amount}}</text>
+      </view>
+    </block>
+    <view class="lower-loading" wx:if="{{!noMoreNote}}">
+      <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
+      <text class="lower-loading-txt">加载中...</text>
+    </view>
+  </view>
+
+  <!-- 分享弹窗 -->
+  <import src="../../components/goldMoneyModal/index.wxml" />
+  <template is="goldMoneyModal" data="{{...goldMoneyModalData}}" />
+</view>
