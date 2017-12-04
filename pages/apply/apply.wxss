@@ -10,7 +10,7 @@
   color: #333333;
   font-size: 40rpx;
   padding: 60rpx 0;
-  border-bottom: 1rpx solid #E0E0E0;
+  /*border-bottom: 1rpx solid #E0E0E0;*/
 }
 
 .c-line {

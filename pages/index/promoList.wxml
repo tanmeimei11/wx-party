@@ -1,14 +1,15 @@
-<scroll-view scroll-y="{{!screenOpen && !sortOpen}}" class="container " upper-threshold="10" lower-threshold="5" bindscrolltolower="promoLower"
-  bindscroll="scroll" style="height:{{scrollHeight}}px;">
+<view class="container">
   <!-- 发起活动 -->
   <view class="launch-bg">
     <view class="launch-promo">
       <text bindtap="launchPromo">发起活动</text>
-      <view class="launch-shu"></view>
-      <text bindtap="toBalance">
-        <text>鼓励金</text>
-        <text class="launch-balance">(￥{{myMoney}})</text>
-      </text>
+      <view>
+        <view class="launch-shu"></view>
+        <text bindtap="toBalance">
+          <text>鼓励金</text>
+          <text class="launch-balance">(￥{{myMoney}})</text>
+        </text>
+      </view>
       <!-- <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view> -->
       <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>
     </view>
@@ -39,6 +40,7 @@
       </block>
     </view>
   </view>
+  <view class="toTop" bindtap="toTop" wx:if="{{toTop}}">顶部</view>
   <view class="list">
     <view class="notfindpromo" wx:if="{{notfindpromo}}">
       <view class="notfindpromoimg"></view>
@@ -83,4 +85,4 @@
     </block>
     <include src="lowerLoading" />
   </view>
-</scroll-view>
+</view>

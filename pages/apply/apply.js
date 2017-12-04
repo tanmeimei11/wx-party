@@ -41,6 +41,7 @@ Page({
     if (option.id) {
       this.setData({
         id: option.id,
+        shareUnionId: option.shareUnionId || '',
         sessionFrom: `activity_${option.id}`
       })
     }
@@ -92,18 +93,18 @@ Page({
     wx.showToast(_data)
   },
   verify: function (e, type) {
-    if (this.data.regionText == originText.region) {
-      !type && this.toast(errorText['region'], 'error')
-      return
-    }
-    if (this.data.birthText == originText.birth || (+new Date(this.data.birthText.replace(/-/g, '/')) - +new Date() > 100)) {
-      !type && this.toast(errorText['birth'], 'error')
-      return
-    }
-    if (/^\s*$/g.test(this.data.job.replace(/\s+/g, ''))) {
-      !type && this.toast(errorText['job'], 'error')
-      return
-    }
+    // if (this.data.regionText == originText.region) {
+    //   !type && this.toast(errorText['region'], 'error')
+    //   return
+    // }
+    // if (this.data.birthText == originText.birth || (+new Date(this.data.birthText.replace(/-/g, '/')) - +new Date() > 100)) {
+    //   !type && this.toast(errorText['birth'], 'error')
+    //   return
+    // }
+    // if (/^\s*$/g.test(this.data.job.replace(/\s+/g, ''))) {
+    //   !type && this.toast(errorText['job'], 'error')
+    //   return
+    // }
     if (!(/\d{11}/.test(this.data.phoneNum))) {
       !type && this.toast(errorText['phone'], 'error')
       return
@@ -121,9 +122,9 @@ Page({
     requestPromisify({
       url: `/activity/add_info`,
       data: {
-        area: this.data.region,
-        birth: this.data.birthText,
-        work: this.data.job.replace(/\s+/g, ''),
+        // area: this.data.region,
+        // birth: this.data.birthText,
+        // work: this.data.job.replace(/\s+/g, ''),
         phone: this.data.phoneNum
       }
     }).then((res) => {
@@ -131,6 +132,13 @@ Page({
         if (this.data.prepage == 'detail') {
           this.toast('提交成功')
           setTimeout(() => {
+            if (this.data.shareUnionId) {
+              wx.redirectTo({
+                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true&shareUnionId=${this.data.shareUnionId}`
+              })
+              return
+            }
+
             if (this.data.id) {
               wx.redirectTo({
                 url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true`
