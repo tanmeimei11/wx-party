@@ -1,0 +1,15 @@
+<!-- 鼓励金钱窗 -->
+<template name="getMoneyModal">
+  <view class="c-modal" wx:if="{{isShowGetMoneyModal}}">
+    <view class="c-wrap c-get-money-wrap">
+      <view class="s-close" bindtap="closeGetMoneyModal"></view>
+      <view class="s-text-wrap">
+        <view class="s-top-tip">恭喜你获得鼓励金</view>
+        <view class="s-money">¥{{myMoney}}</view>
+        <view class="s-bottom-tip">转发好友让鼓励金升值，最高升值20倍</view>
+        <view class="s-btn" bindtap="lookBalance" wx:if="{{!riseMoney}}">立即查看</view>
+        <view class="s-btn" bindtap="lookBalanceShare" wx:if="{{riseMoney}}">立即查看</view>
+      </view>
+    </view>
+  </view>
+</template>

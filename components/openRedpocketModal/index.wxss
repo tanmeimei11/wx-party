@@ -1,0 +1,50 @@
+.c-wrap.c-get-money-wrap {
+  height: 704rpx;
+  background: url('https://inimg07.jiuyan.info/in/2017/11/05/399E9829-F16D-E537-154C-C0EEE0F0EFE6.jpg');
+  background-repeat: no-repeat;
+  background-size: 560rpx 705rpx;
+  background-position: center;
+  padding: 0;
+  margin-top: 200rpx;
+}
+
+.c-get-money-wrap .s-close {
+  top: 50rpx;
+  background: none;
+}
+
+.c-get-money-wrap .s-btn {
+  width: 430rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 43rpx auto 0;
+  border-radius: 200rpx;
+  color: #333333;
+  background-color: #FFF462;
+}
+
+.s-text-wrap {
+  position: absolute;
+  bottom: 50rpx;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+
+.s-text-wrap .s-top-tip {
+  font-size: 28rpx;
+}
+
+.s-text-wrap .s-money {
+  font-size: 72rpx;
+  margin: 22rpx 0;
+}
+
+.s-text-wrap .s-bottom-tip {
+  font-size: 24rpx;
+  padding-bottom: 10rpx;
+  opacity: 0.8;
+}
