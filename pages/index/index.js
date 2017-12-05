@@ -380,42 +380,75 @@ mutulPage({
   },
   showGetMoneyModal: function () {
     return request({
-      url: '/bounty/get',
+      // url: '/bounty/get', 换了新接口
+      url: '/bounty/get_new',
       data: {
         gps: this.data._gps
       }
     }).then(res => {
-      if (res.succ) {
-        this.setData({
-          isShowGetMoneyModal: res.data.is_pop,
-          is_get_bouns: true,
-          myMoney: res.data.bounty,
-        })
+      if (res.succ && res.data) {
+        // 判断是鼓励斤还是红包
+        var _data = res.data
+        if (_data.bounty_type == 0) {
+          this.setData({
+            isShowGetMoneyModal: _data.is_pop,
+            is_get_bouns: true,
+            myMoney: _data.bounty,
+          })
+        } else {
+          this.setData({
+            openRedpocketModalData: {
+              ...this.data.openRedpocketModalData,
+              isShow: _data.is_pop,
+            },
+            is_get_bouns: true,
+            myMoney: _data.bounty,
+          })
+        }
       }
     })
   },
   showShareMoneyModal: function (sharekey) {
     request({
-      url: '/bounty/open',
+      // url: '/bounty/open',
+      url: '/bounty/open_new',
       data: {
         share_key: sharekey
       }
     }).then(res => {
-      if (res.succ) {
-        let _type = res.data.is_first_amount == true ? 'isShowGetMoneyModal' : 'isShowRiseMoneyModal'
-        var _data = {
-          myMoney: res.data.my_amount,
-          riseMoney: res.data.friend_amount,
-          friendAvatar: res.data.avatar_url,
-          friendNick: res.data.nick_name,
-          is_get_bouns: true,
-          isScanTwice: res.data.is_already_open
+      if (res.succ && res.data) {
+        var _data = res.data
+        var _type = ""
+
+        // 分享显示弹窗的类型
+        if (_data.bounty_type == 0 && _data.bounty_info.is_first_amount) {
+          _type = 'isShowGetMoneyModal'
+        } else if (_data.bounty_type == 1 && _data.redpacket_info.is_first_amount) {
+          _type = 'isShowOpenRedpocketModal'
+        } else {
+          _type = 'isShowRiseMoneyModal'
         }
 
-        if (!res.data.is_owner) { // 不是自己才展示弹窗
+        var _info = _data.bounty_type == 0 ? _data.bounty_info : _data.redpacket_info
+        var _data = {
+          shareModalType: _data.bounty_type,
+          myMoney: _info.my_amount || 0,
+          riseMoney: _info.friend_amount || 0,
+          friendAvatar: _info.avatar_url,
+          friendNick: _info.nick_name,
+          is_get_bouns: true,
+          isScanTwice: _info.is_already_open,
+          openRedpocketModalData: {
+            ...this.data.openRedpocketModalData,
+            redpocketNum: _info.num || 0
+          }
+        }
+
+
+        if (!_info.is_owner) { // 不是自己才展示弹窗
           _data[_type] = true
         }
-        if (res.data.is_first_amount == true) { //分享进来第一次领取
+        if (_info.is_first_amount == true) { //分享进来第一次领取
           track(this, 'h5_tcpa_gold_forward_expo')
         }
         this.setData(_data)
