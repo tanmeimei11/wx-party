@@ -45,6 +45,10 @@ var requestBefore = (option, token) => {
     '_s': deviceInfo.system.toLowerCase(),
     '_gps': deviceInfo.gps || ''
   }
+  option.data = {
+    ...option.data,
+    ...cookieObj
+  }
   option.header = {
     'Cookie': Object.keys(cookieObj).map((key) => {
       return `${key}=${cookieObj[key]}`
