@@ -6,6 +6,14 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
   mixins: [goldMoneyModal],
   data: {
+    imgUrls: [
+      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
+      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
+      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
+      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
+      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
+      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png'
+    ],
     balance: 0.00,
     currentCursor: 0,
     scrollHeight: 0,

@@ -26,6 +26,34 @@
   color: #ff1d1a;
 }
 
+.balance-redpacket{
+  background: #ffdb4f;
+  width: 100%;
+  height: 482rpx;
+}
+
+.redpacketList>view{
+  width: auto;
+}
+
+.balance-redpacket .redpacketNum{
+  font-size: 34rpx;
+  color: #c05c00;
+  margin: 43rpx 40rpx;
+}
+
+.redpacketList{
+  height: 314rpx;
+}
+
+.redpacket{
+  height: 314rpx;
+  width: 264rpx;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
 /*.balance .title text {
   position: absolute;
   top: 0;
