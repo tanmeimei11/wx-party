@@ -10,10 +10,14 @@
   </view>
 
   <view class="balance-redpacket">
-    <view class="redpacketNum">待拆红包（剩余<text>20</text>个红包待拆）</view>
+    <view class="redpacketNum">待拆红包（剩余<text>{{listLast}}</text>个红包待拆）</view>
     <scroll-view class="redpacketList" scroll-x style="width: 100%">
-      <block wx:for="{{imgUrls}}">
-        <view class="redpacket" style="background-image: url({{item}})"></view>
+      <block wx:for="{{packetList}}">
+        <view class="redpacket" catchtap="openPacket" data-item="{{item}}">
+          <view class="avatar" style="background-image: url({{item.user_avatar}});"></view>
+          <view class="name">{{item.is_allow ? item.nick_name : '待拆红包'}}</view>
+          <view class="detail">{{item.detail}}</view>
+        </view>
       </block>
     </scroll-view>
   </view>

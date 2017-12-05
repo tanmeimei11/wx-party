@@ -3,7 +3,7 @@ import track from '../../utils/track.js'
 module.exports = {
   data: {
     openShareMoneyModalData: {
-      isShow: true,
+      isShow: false,
       money: 20,
       name: 'in同城趴送你'
     }
@@ -13,6 +13,14 @@ module.exports = {
       openShareMoneyModalData: {
         ...this.data.openShareMoneyModalData,
         isShow: false
+      }
+    })
+  },
+  openRedpocket: function () {
+    this.setData({
+      openShareMoneyModalData: {
+        ...this.data.openShareMoneyModalData,
+        isShow: true
       }
     })
   }

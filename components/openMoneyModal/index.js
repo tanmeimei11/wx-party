@@ -15,5 +15,16 @@ module.exports = {
         isShow: false
       }
     })
+  },
+
+  setRedpocket: function (open,nickname,num) {
+    this.setData({
+      openMoneyModalData: {
+        ...this.data.openMoneyModalData,
+        isShow: open,
+        name: nickname,
+        money: num
+      }
+    })
   }
 }
