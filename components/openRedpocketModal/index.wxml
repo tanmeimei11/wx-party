@@ -1,0 +1,15 @@
+<!-- 鼓励金钱窗 -->
+<template name="openRedpocketModal">
+  <view class="c-modal" wx:if="{{isShow}}">
+    <view class="c-wrap c-open-redpocket-wrap">
+      <view class="s-text-wrap">
+        <view class="s-top-tip">恭喜你</view>
+        <view class="s-redpocket">获得本周
+          <text>{{redpocketNum}} </text>
+          个红包
+        </view>
+        <view class="s-btn" bindtap="openRedpocket" wx:if="{{!riseMoney}}">立即去拆</view>
+      </view>
+    </view>
+  </view>
+</template>

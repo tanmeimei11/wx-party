@@ -1,8 +1,8 @@
 /**index.wxss**/
 
 @import '../../components/goldMoneyModal/index.wxss';
-.container {}
-
+@import '../../components/openMoneyModal/index.wxss';
+@import '../../components/openShareMoneyModal/index.wxss';
 .balance {
   width: 100%;
   height: 560rpx;

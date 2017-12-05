@@ -1,10 +1,11 @@
 import track from '../../utils/track.js'
-var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
+var openMoneyModal = require('../../components/openMoneyModal/index.js')
+var openShareMoneyModal = require('../../components/openShareMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
-  mixins: [goldMoneyModal],
+  mixins: [openMoneyModal, openShareMoneyModal],
   data: {
     imgUrls: [
       'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
@@ -39,7 +40,7 @@ mutulPage({
     })
     wx.getUserInfo({
       success: function (res) {
-        self.setGoldMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
+        // self.setGoldMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
       }
     })
     wx.setNavigationBarTitle({
@@ -62,7 +63,7 @@ mutulPage({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
             })
           }
-          self.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
+          // self.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
           wx.hideLoading()
         })
       }

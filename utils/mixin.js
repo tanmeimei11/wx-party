@@ -21,7 +21,6 @@ var baseMethods = {
       duration: 2000
     })
   }
-
 }
 var mutulPage = (data) => {
   var realData = data

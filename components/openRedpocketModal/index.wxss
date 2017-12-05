@@ -1,0 +1,58 @@
+.c-wrap.c-open-redpocket-wrap {
+  width: 574rpx;
+  height: 570rpx;
+  background: url('https://inimg07.jiuyan.info/in/2017/12/04/21D24F8F-1DE5-DD9D-B41F-7ECA38B2E6C6.jpg') #fff;
+  background-repeat: no-repeat;
+  background-size: 574rpx 258rpx;
+  padding: 0;
+}
+
+.c-open-redpocket-wrap .s-close {
+  top: 50rpx;
+  background: none;
+}
+
+.c-open-redpocket-wrap text {
+  color: #fd4836;
+  font-size: 58rpx;
+  margin: 0 5rpx;
+  /* margin-top: 8rpx; */
+  /* vertical-align: bottom; */
+}
+
+.c-open-redpocket-wrap .s-redpocket {
+  color: #fd4836;
+  font-size: 36rpx;
+  display: flex;
+  flex-direction: row;
+  /* align-items: flex-end; */
+  justify-content: center;
+  line-height: 60rpx;
+}
+
+.c-open-redpocket-wrap .s-top-tip {
+  color: #fd4836;
+  font-size: 42rpx;
+  padding: 20rpx 0;
+}
+
+.c-open-redpocket-wrap .s-btn {
+  width: 430rpx;
+  height: 85rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  text-align: center;
+  margin: 43rpx auto 0;
+  border-radius: 200rpx;
+  color: #fff;
+  background-color: #fd4836;
+}
+
+.s-text-wrap {
+  position: absolute;
+  bottom: 60rpx;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
