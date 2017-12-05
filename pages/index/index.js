@@ -15,14 +15,12 @@ mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry, openRedpocketModal],
   data: {
     seckill: [],
-    qunList: [],
     promoList: [],
     launchTop: 0,
     hidden: false,
     scrollHeight: 0,
     noMorePromo: false,
-    currentList: 'qunList',
-    qunListLoaded: false,
+    currentList: 'promoList',
     promoListLoaded: false,
     loadingMorePromo: false,
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_index_entry',
@@ -32,8 +30,6 @@ mutulPage({
     isSubmitFormId: true,
     myMoney: '',
     is_get_bouns: true,
-    is_share: false,
-    is_ending: false,
     onTop: false,
     toTop: false,
     screen: '全部活动',
@@ -49,33 +45,7 @@ mutulPage({
     currentID1: '',
     currentID2: '',
     notfindpromo: false,
-    globalData: app.globalData,
-    joinTips: [
-      '1、点击下方按钮联系小助手',
-      '2、回复“加群”，获取二维码链接',
-      '3、选择对应群二维码，长按识别',
-      '4、小助手邀请你进群'
-    ]
-  },
-  downloadQrcode: function () {},
-  setShare: function (tab) {
-    if (tab == 1) {
-      this.onShareAppMessage = function () {
-        return {
-          title: 'in同城趴，出门一起玩，认识新朋友',
-          desc: 'in同城趴本周活动报名中，点击查看',
-          path: '/pages/index/index'
-        }
-      }
-    } else {
-      this.onShareAppMessage = function () {
-        return {
-          title: 'in同城趴本周活动报名中，点击查看',
-          desc: 'in同城趴，出门一起玩，认识新朋友',
-          path: '/pages/index/index?tab=2'
-        }
-      }
-    }
+    globalData: app.globalData
   },
   closeSelect: function () {
     this.setData({
@@ -111,16 +81,17 @@ mutulPage({
     }
   },
   onLoad(options) {
-    console.log('-------options---------')
-    console.log(options)
+    console.log('options：', options)
     track(this, 'h5_tcpa_index_screen_enter')
     track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
-    wx.setNavigationBarTitle({
-      title: 'in 同城趴'
-    })
+
+    // 分渠道埋点
+    if (options.from) {
+      wx.setStorageSync("from", options.from)
+    }
 
     let self = this
-    console.log('-------获取设备信息---------')
+    console.log('获取设备信息')
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
@@ -131,58 +102,16 @@ mutulPage({
       }
     })
     this.getLocation().then((res) => {
-      console.log('-------获取地理位置---------')
+      console.log('获取地理位置')
       // 鼓励金详情页面好友分享点进来 options.sharekey
       if (options.sharekey) {
-        this.setData({
-          is_share: true
-        })
         track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
         this.showShareMoneyModal(options.sharekey)
+      } else {
+        this.loadBalance()
       }
-
-      // 分渠道埋点
-      if (options.from) {
-        wx.setStorageSync("from", options.from)
-      }
-      // 即将过期
-      if (options.ending) {
-        this.setData({
-          is_ending: true
-        })
-      }
-      console.log('-------switchTab2---------')
-      this.switchTab2()
+      this.loadMorePromo()
     })
-  },
-  switchTab2: function (e) {
-    if (this.data.currentList == 'promoList') {
-      return
-    }
-    if (e) {
-      this.setShare(2)
-      track(this, 'h5_tcpa_index_active_tab_click ')
-    }
-    this.setData({
-      currentCursorPromo: 0,
-      noMorePromo: false,
-      promoList: [],
-      currentList: 'promoList',
-      hidden: false,
-      currentCursorPromo: 0
-    })
-    if (!this.data.is_share) {
-      console.log('-------loadBalance---------')
-      this.loadBalance()
-        .then((is_get_bouns) => {
-          if (!is_get_bouns) {
-            track(this, 'h5_tcpa_gold_see_expo')
-            this.showGetMoneyModal()
-          }
-        })
-    }
-    this.loadMorePromo()
-    // this.loadSeckill()
   },
   loadBalance: function () {
     return request({
@@ -193,7 +122,12 @@ mutulPage({
           myMoney: res.data.balance,
           is_get_bouns: res.data.is_get_bouns
         })
-        return res.data.is_get_bouns
+
+        // 从来没有领取过 那就直接领取
+        if (!is_get_bouns) {
+          track(this, 'h5_tcpa_gold_see_expo')
+          this.showGetMoneyModal()
+        }
       }
     })
   },
@@ -274,7 +208,6 @@ mutulPage({
       })
     })
   },
-
   loadMorePromo: function () {
     console.log('111')
     if (this.data.loadingMorePromo) {
@@ -447,42 +380,75 @@ mutulPage({
   },
   showGetMoneyModal: function () {
     return request({
-      url: '/bounty/get',
+      // url: '/bounty/get', 换了新接口
+      url: '/bounty/get_new',
       data: {
         gps: this.data._gps
       }
     }).then(res => {
-      if (res.succ) {
-        this.setData({
-          isShowGetMoneyModal: res.data.is_pop,
-          is_get_bouns: true,
-          myMoney: res.data.bounty,
-        })
+      if (res.succ && res.data) {
+        // 判断是鼓励斤还是红包
+        var _data = res.data
+        if (_data.bounty_type == 0) {
+          this.setData({
+            isShowGetMoneyModal: _data.is_pop,
+            is_get_bouns: true,
+            myMoney: _data.bounty,
+          })
+        } else {
+          this.setData({
+            openRedpocketModalData: {
+              ...this.data.openRedpocketModalData,
+              isShow: _data.is_pop,
+            },
+            is_get_bouns: true,
+            myMoney: _data.bounty,
+          })
+        }
       }
     })
   },
   showShareMoneyModal: function (sharekey) {
     request({
-      url: '/bounty/open',
+      // url: '/bounty/open',
+      url: '/bounty/open_new',
       data: {
         share_key: sharekey
       }
     }).then(res => {
-      if (res.succ) {
-        let _type = res.data.is_first_amount == true ? 'isShowGetMoneyModal' : 'isShowRiseMoneyModal'
-        var _data = {
-          myMoney: res.data.my_amount,
-          riseMoney: res.data.friend_amount,
-          friendAvatar: res.data.avatar_url,
-          friendNick: res.data.nick_name,
-          is_get_bouns: true,
-          isScanTwice: res.data.is_already_open
+      if (res.succ && res.data) {
+        var _data = res.data
+        var _type = ""
+
+        // 分享显示弹窗的类型
+        if (_data.bounty_type == 0 && _data.bounty_info.is_first_amount) {
+          _type = 'isShowGetMoneyModal'
+        } else if (_data.bounty_type == 1 && _data.redpacket_info.is_first_amount) {
+          _type = 'isShowOpenRedpocketModal'
+        } else {
+          _type = 'isShowRiseMoneyModal'
         }
 
-        if (!res.data.is_owner) { // 不是自己才展示弹窗
+        var _info = _data.bounty_type == 0 ? _data.bounty_info : _data.redpacket_info
+        var _data = {
+          shareModalType: _data.bounty_type,
+          myMoney: _info.my_amount || 0,
+          riseMoney: _info.friend_amount || 0,
+          friendAvatar: _info.avatar_url,
+          friendNick: _info.nick_name,
+          is_get_bouns: true,
+          isScanTwice: _info.is_already_open,
+          openRedpocketModalData: {
+            ...this.data.openRedpocketModalData,
+            redpocketNum: _info.num || 0
+          }
+        }
+
+
+        if (!_info.is_owner) { // 不是自己才展示弹窗
           _data[_type] = true
         }
-        if (res.data.is_first_amount == true) { //分享进来第一次领取
+        if (_info.is_first_amount == true) { //分享进来第一次领取
           track(this, 'h5_tcpa_gold_forward_expo')
         }
         this.setData(_data)

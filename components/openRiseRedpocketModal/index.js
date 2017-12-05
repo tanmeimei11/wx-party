@@ -2,10 +2,12 @@
 import track from '../../utils/track.js'
 module.exports = {
   data: {
-    isShowOpenRedpocketModal: false,
-    openRedpocketModalData: {
-      redpocketNum: 20
-    }
+    isShowOpenRiseRedpocketModal: false,
+  },
+  closeOpenRiseMoneyModal: function () {
+    this.setData({
+      isShowOpenRiseRedpocketModal: false
+    })
   },
   lookNewbalance: function () {
     wx.navigateTo({
@@ -13,9 +15,4 @@ module.exports = {
     })
     this.closeRedpocketModal()
   },
-  closeRedpocketModal: function () {
-    this.setData({
-      isShowOpenRedpocketModal: false
-    })
-  }
 }

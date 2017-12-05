@@ -6,8 +6,8 @@
 }
 
 .c-share-money-wrap .s-close {
-  top: 50rpx;
-  background: none;
+  top: 10rpx;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/11/05/071B5DFD-47BA-4F0B-F965-1D65BC5DA2D2.jpg');
 }
 
 .c-share-money-wrap .s-lock-wrap {
