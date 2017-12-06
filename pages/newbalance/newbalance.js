@@ -54,7 +54,7 @@ mutulPage({
           url: '/bounty/get_new'
         }).then((res2) => {
           console.log(res2)
-          if (res2.data.bounty_type > 0) {// 红包
+          if (res2.data.bounty_type > 0) { // 红包
             this.setData({
               listLast: res2.data.redpacket_info.num
             })
@@ -103,10 +103,10 @@ mutulPage({
   openPacket: function (e) {
     var item = e.currentTarget.dataset.item
     if (!item.is_allow) {
-      this.setOpenShareMoneyModalData('isShow',true)
+      this.setOpenShareMoneyModalData('isShow', true)
       return
     }
-    this.setRedpocket(true, item.nick_name, item.redpacket_amount)
+    this.setRedpocket(true, item.nick_name, item.redpacket_amount, item.user_avatar)
     request({
       url: '/bounty/redpacket_open',
       data: {

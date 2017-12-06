@@ -5,7 +5,8 @@ module.exports = {
     openMoneyModalData: {
       isShow: false,
       money: 20,
-      name: 'in同城趴送你'
+      name: 'in同城趴送你',
+      avatarUrl: '',
     }
   },
   reciveRedpocket: function () {
@@ -16,14 +17,14 @@ module.exports = {
       }
     })
   },
-
-  setRedpocket: function (open,nickname,num) {
+  setRedpocket: function (open, nickname, num, avatarUrl) {
     this.setData({
       openMoneyModalData: {
         ...this.data.openMoneyModalData,
         isShow: open,
         name: nickname,
-        money: num
+        money: num,
+        avatarUrl: avatarUrl
       }
     })
   }

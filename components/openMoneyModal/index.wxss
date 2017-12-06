@@ -1,10 +1,25 @@
 .c-wrap.c-open-money-wrap {
   width: 574rpx;
-  height: 485rpx;
-  background: url('https://inimg07.jiuyan.info/in/2017/12/04/3CB64C0A-3842-6F5B-9630-8C39DBCB92F4.jpg');
+  height: 423rpx;
+  background: url('https://inimg07.jiuyan.info/in/2017/12/06/E70126C1-4B47-F721-A79B-D0D3AFD6E4E8.jpg');
   background-repeat: no-repeat;
-  background-size: 574rpx 485rpx;
+  background-size: 574rpx 423rpx;
   padding: 0;
+}
+
+.c-open-money-wrap .top-avatar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130rpx;
+  height: 130rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-color: #fff;
 }
 
 .c-open-money-wrap .s-close {
