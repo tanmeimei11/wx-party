@@ -9,10 +9,10 @@ module.exports = {
   },
   lookNewbalance: function () {
     track(this, 'h5_tcpa_redbag_nowopen_v7')
+    this.closeRedpocketModal()
     wx.navigateTo({
       url: `../newbalance/newbalance`
     })
-    this.closeRedpocketModal()
   },
   closeRedpocketModal: function () {
     this.setData({

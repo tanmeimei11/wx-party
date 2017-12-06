@@ -9,7 +9,7 @@ module.exports = {
       isShowOpenRiseRedpocketModal: false
     })
   },
-  lookNewbalance: function () {
+  lookNewbalance1: function () {
     this.closeOpenRiseRedpocketModal()
     wx.navigateTo({
       url: `../newbalance/newbalance`
