@@ -47,7 +47,7 @@ module.exports = {
   },
   getImgFromBack() {
     request({
-      url: '/bounty/bounty_img',
+      url: '/bounty/edpacket_img ',
     }).then(res => {
       if (res.succ && res.data) {
         this.saveImage(res.data)

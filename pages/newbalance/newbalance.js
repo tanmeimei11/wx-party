@@ -19,7 +19,7 @@ mutulPage({
     packetModal: '',
     list: [],
     nextMonday: '',
-    trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_balance_enter',
+    trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_newbalance_enter',
     sharekey: '',
     shareUrl: 'https://inimg07.jiuyan.info/in/2017/12/06/0E8E4A0B-D7A7-AF8C-6EAE-C9BBB2E0DDF6.jpg'
   },
