@@ -17,6 +17,7 @@ mutulPage({
     listLoaded: false,
     packetModal: '',
     list: [],
+    index: '',
     nextMonday: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_newbalance_enter',
     sharekey: '',
