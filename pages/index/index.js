@@ -366,8 +366,6 @@ mutulPage({
     request({
       url: '/bounty/bounty_type'
     }).then(res => {
-      console.log(this)
-      wx.setStorageSync('page1', this)
       if (res.succ && res.data == 0) {
         wx.navigateTo({
           url: '../balance/balance'
