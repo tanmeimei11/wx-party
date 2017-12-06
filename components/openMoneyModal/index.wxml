@@ -4,7 +4,7 @@
     <view class="c-wrap c-open-money-wrap">
       <view class="top-avatar" style="background-image:url({{avatarUrl}})"></view>
       <view class="s-text-wrap">
-        <view class="s-top-tip">{{name}}</view>
+        <view class="s-top-tip">{{name}}送你</view>
         <view class="s-redpocket">
           <text>¥{{money}} </text>
         </view>
