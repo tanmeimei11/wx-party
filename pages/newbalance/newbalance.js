@@ -1,12 +1,11 @@
 import track from '../../utils/track.js'
 var openMoneyModal = require('../../components/openMoneyModal/index.js')
 var openShareMoneyModal = require('../../components/openShareMoneyModal/index.js')
-var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
-  mixins: [openMoneyModal, openShareMoneyModal, goldMoneyModal],
+  mixins: [openMoneyModal, openShareMoneyModal],
   data: {
     packetList: [],
     listLast: '',
