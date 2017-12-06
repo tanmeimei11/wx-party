@@ -14,7 +14,7 @@ module.exports = {
       }, //鼓励金信息
       "redpacket_info": {
         "num": "20", //红包数量
-        "is_pop": "false", // 是否弹窗  false 否  true 是  
+        "is_pop": "true", // 是否弹窗  false 否  true 是  
         "share_qrcode_url": "https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg" //分享二维码url
       }, //红包信息 //鼓励金与红包位互斥的关系,只会出现其中一个根据bounty_type判断
     },
