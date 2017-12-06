@@ -111,9 +111,15 @@ mutulPage({
     })
   },
   openPacket: function (e) {
+    console.log(e)
     var item = e.currentTarget.dataset.item
     this.data.packetModal = item
+    this.setData({
+      index: e.currentTarget.dataset.index
+    })
+    track(this, 'h5_tcpa_redbag_open_v7', [`user_id=${e.currentTarget.dataset.item.user_id}`])
     if (!item.is_allow) {
+      track(this, 'h5_tcpa_redbag_share_expo_v7')
       this.setOpenShareMoneyModalData('isShow', true)
       return
     }
@@ -127,8 +133,9 @@ mutulPage({
       }
     }).then(res => {
       if (res.succ) {
+        track(this, 'h5_tcpa_redbag_get_v7')
         var list = this.data.packetList
-        list.splice(list.findIndex(e => e.user_id === this.data.packetModal.user_id), 1)
+        list.splice(this.data.index, 1)
         this.setData({
           balance: res.data.amount,
           packetList: list,

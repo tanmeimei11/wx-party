@@ -12,7 +12,7 @@
       </view>
       <view class="s-mid-text">每位好友扫码一次即可获得一次拆红包机会</view>
       <view class="s-transmit s-btn">
-        <button type="default" bindtap="transferTrack" open-type="share">转发给好友/群拆红包</button>
+        <button type="default" bindtap="newtransferTrack" open-type="share">转发给好友/群拆红包</button>
       </view>
       <view class="s-quan s-btn " bindtap="compose">生成朋友圈分享图</view>
     </view>

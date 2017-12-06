@@ -435,6 +435,7 @@ mutulPage({
         if (_data.bounty_type == 0 && _data.bounty_info.is_first_amount) {
           _type = 'isShowGetMoneyModal'
         } else if (_data.bounty_type == 1 && _data.redpacket_info.is_first_amount) {
+          track(this, 'h5_tcpa_redbag_box_expo_v7')
           _type = 'isShowOpenRedpocketModal'
         } else if (_data.bounty_type == 0 && !_data.bounty_info.is_first_amount) {
           _type = 'isShowRiseMoneyModal'

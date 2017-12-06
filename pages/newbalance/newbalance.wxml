@@ -15,8 +15,8 @@
       <text>{{listLast}}</text>个红包待拆）
     </view>
     <scroll-view class="redpacketList" scroll-x style="width: 100%" wx:if="{{listLast}}">
-      <block wx:for="{{packetList}}">
-        <view class="redpacket" catchtap="openPacket" data-item="{{item}}">
+      <block wx:for="{{packetList}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+        <view class="redpacket" catchtap="openPacket" data-item="{{item}}" data-index="{{idx}}">
           <view class="avatar" style="background-image: url({{item.user_avatar}});"></view>
           <view class="name">{{item.is_allow ? item.nick_name : '待拆红包'}}</view>
           <view class="detail">{{item.detail}}</view>
