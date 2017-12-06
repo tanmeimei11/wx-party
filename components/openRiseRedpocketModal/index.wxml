@@ -22,7 +22,7 @@
         <text class="nick-name">{{redpocketNum}}</text>
         <text>{{redpocketNum == 20 ? '个红包':'个红包待拆'}}</text>
       </view>
-      <view class="s-btn" bindtap="lookNewbalance">立即去拆</view>
+      <view class="s-btn" bindtap="lookNewbalance1">立即去拆</view>
     </view>
   </view>
 </template>
