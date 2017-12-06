@@ -7,14 +7,8 @@ let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
   mixins: [openMoneyModal, openShareMoneyModal],
   data: {
-    imgUrls: [
-      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
-      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
-      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
-      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
-      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png',
-      'http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png'
-    ],
+    packetList: [],
+    listLast: '',
     balance: 0.00,
     currentCursor: 0,
     scrollHeight: 0,
@@ -85,6 +79,44 @@ mutulPage({
             noMoreNote: true
           })
         }
+      }
+    })
+    this.getRedPacket()
+  },
+  getRedPacket: function () {
+    request({
+      url: '/bounty/my_redpacket',
+    }).then(res => {
+      if (res.succ) {
+        this.setData({
+          packetList: res.data,
+          listLast: res.data.length
+        })
+      }
+    })
+  },
+  openPacket: function (e) {
+    var item = e.currentTarget.dataset.item
+    if (!item.is_allow) {
+      return
+    }
+    this.setRedpocket(true,item.nick_name,item.redpacket_amount)
+    request({
+      url: '/bounty/redpacket_open',
+      data: {
+        user_id: item.user_id
+      }
+    }).then(res => {
+      if (res.succ) {
+        // openMoneyModal.data.isShow = true
+
+        var list = this.data.packetList
+        list.splice(list.findIndex(e => e.user_id === item.user_id), 1)
+        this.setData({
+          balance: res.data.amount,
+          packetList: list,
+          listLast: list.length
+        })
       }
     })
   },
