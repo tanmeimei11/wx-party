@@ -12,6 +12,7 @@ var openRiseRedpocketModal = require('../../components/openRiseRedpocketModal/in
 var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 
+
 mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry, openRedpocketModal, openRiseRedpocketModal],
   data: {
@@ -365,6 +366,8 @@ mutulPage({
     request({
       url: '/bounty/bounty_type'
     }).then(res => {
+      console.log(this)
+      wx.setStorageSync('page1', this)
       if (res.succ && res.data == 0) {
         wx.navigateTo({
           url: '../balance/balance'
@@ -405,21 +408,19 @@ mutulPage({
         var _data = res.data
         if (_data.bounty_type == 0) {
           this.setData({
-            isShowGetMoneyModal: _data.bounty_info.is_pop,
+            isShowGetMoneyModal: _data.is_pop,
             is_get_bouns: true,
-            myMoney: _data.bounty_info.bounty,
+            myMoney: _data.bounty,
           })
         } else {
           track(this, 'h5_tcpa_redbag_box_expo_v7')
           this.setData({
-            isShowOpenRedpocketModal: _data.redpacket_info.is_pop,
-            redpocketNum: _data.redpacket_info.num,
             openRedpocketModalData: {
               ...this.data.openRedpocketModalData,
-              redpocketNum: _data.redpacket_info.num
+              isShow: _data.is_pop,
             },
             is_get_bouns: true,
-            myMoney: _data.redpacket_info.bounty,
+            myMoney: _data.bounty,
           })
         }
       }
@@ -441,8 +442,13 @@ mutulPage({
         if (_data.bounty_type == 0 && _data.bounty_info && _data.bounty_info.is_first_amount) {
           _type = 'isShowGetMoneyModal'
         } else if (_data.bounty_type == 1 && _data.redpacket_info && _data.redpacket_info.is_first_amount) {
+<<<<<<< HEAD
           track(this, 'h5_tcpa_redbag_sharepage_box_v7', [`type=0`, `user_id=${ _data.redpacket_info.friend_user_id}`])
           _type = 'isShowOpenRiseRedpocketModal'
+=======
+          track(this, 'h5_tcpa_redbag_box_expo_v7')
+          _type = 'isShowOpenRedpocketModal'
+>>>>>>> b198377d58b2802a7c301069d54a45f522695f1a
         } else if (_data.bounty_type == 0 && _data.bounty_info && !_data.bounty_info.is_first_amount) {
           _type = 'isShowRiseMoneyModal'
         } else {

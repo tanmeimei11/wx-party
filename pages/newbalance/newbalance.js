@@ -24,6 +24,11 @@ mutulPage({
     shareUrl: 'https://inimg07.jiuyan.info/in/2017/12/06/0E8E4A0B-D7A7-AF8C-6EAE-C9BBB2E0DDF6.jpg'
   },
   onLoad: function (option) {
+    console.log(this)
+    console.log(wx.getStorageSync('page1'))
+    wx.getStorageSync('page1').setData({
+      myMoney: 222
+    })
     track(this, 'h5_tcpa_balance_screen_enter')
     wx.showLoading({
       title: '加载中...'
@@ -59,7 +64,7 @@ mutulPage({
           console.log(res2)
           if (res2.data.bounty_type > 0) { // 红包
             this.setData({
-              listLast: res2.data.redpacket_info.num
+              // listLast: res2.data.redpacket_info.num
             })
             this.setOpenShareMoneyModalData('actQrImg', res2.data.redpacket_info.share_qrcode_url)
           } else if (!res.data.is_get_bouns) {
@@ -106,6 +111,7 @@ mutulPage({
       if (res.succ) {
         this.setData({
           packetList: res.data.list,
+          listLast: res.data.list.length,
           sharekey: res.data.share_key
         })
       }
