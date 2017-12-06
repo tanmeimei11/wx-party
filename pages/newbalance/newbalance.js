@@ -66,7 +66,7 @@ mutulPage({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty_info.bounty)).toFixed(2),
             })
           }
-          this.setOpenShareMoneyModalData('actQrImg', res2.data.redpacket_info.share_qrcode_url)
+          this.setOpenShareMoneyModalData('images', res2.data.redpacket_info.share_qrcode_url)
           wx.hideLoading()
         })
       }
