@@ -11,6 +11,7 @@ module.exports = {
   },
   lookNewbalance1: function () {
     this.closeOpenRiseRedpocketModal()
+    track(this, 'h5_tcpa_redbag_sharepage_nowopen_v7')
     wx.navigateTo({
       url: `../newbalance/newbalance`
     })

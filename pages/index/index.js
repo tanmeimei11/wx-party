@@ -125,7 +125,7 @@ mutulPage({
         })
 
         // 从来没有领取过 那就直接领取
-        if (!res.data.is_get_bouns.is_get_bouns) {
+        if (!res.data.is_get_bouns) {
           track(this, 'h5_tcpa_gold_see_expo')
           this.showGetMoneyModal()
         }
@@ -411,6 +411,7 @@ mutulPage({
             myMoney: _data.bounty,
           })
         } else {
+          track(this, 'h5_tcpa_redbag_box_expo_v7')
           this.setData({
             openRedpocketModalData: {
               ...this.data.openRedpocketModalData,
@@ -439,11 +440,17 @@ mutulPage({
         if (_data.bounty_type == 0 && _data.bounty_info && _data.bounty_info.is_first_amount) {
           _type = 'isShowGetMoneyModal'
         } else if (_data.bounty_type == 1 && _data.redpacket_info && _data.redpacket_info.is_first_amount) {
+<<<<<<< HEAD
+          track(this, 'h5_tcpa_redbag_sharepage_box_v7', [`type=0`, `user_id=${ _data.redpacket_info.friend_user_id}`])
+          _type = 'isShowOpenRiseRedpocketModal'
+=======
           track(this, 'h5_tcpa_redbag_box_expo_v7')
           _type = 'isShowOpenRedpocketModal'
+>>>>>>> b198377d58b2802a7c301069d54a45f522695f1a
         } else if (_data.bounty_type == 0 && _data.bounty_info && !_data.bounty_info.is_first_amount) {
           _type = 'isShowRiseMoneyModal'
         } else {
+          track(this, 'h5_tcpa_redbag_sharepage_box_v7', [`type=1`, `user_id=${ _data.redpacket_info.friend_user_id}`])
           _type = 'isShowOpenRiseRedpocketModal'
         }
 
