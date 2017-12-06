@@ -57,7 +57,6 @@ mutulPage({
   onShareAppMessage: function () {
     return {
       title: 'in同城趴，出门一起玩，认识新朋友',
-      desc: 'in同城趴本周活动报名中，点击查看',
       path: '/pages/index/index'
     }
   },
@@ -336,14 +335,7 @@ mutulPage({
       url: _url
     })
   },
-  toBalance: function () {
-    track(this, 'h5_tcpa_gold_incentive_click')
-    this.setData({
-      is_ending: false
-    })
-    wx.navigateTo({
-      url: '../balance/balance'
-    })
+  setTimeoutBnalance: function () {
     setTimeout(() => {
       request({
         url: '/account/balance'
@@ -364,6 +356,25 @@ mutulPage({
         }
       })
     }, 2000)
+  },
+  toBalance: function () {
+    track(this, 'h5_tcpa_gold_incentive_click')
+    // 先进行判断
+    request({
+      url: '/bounty/bounty_type'
+    }).then(res => {
+      if (res.succ && res.data == 0) {
+        wx.navigateTo({
+          url: '../balance/balance'
+        })
+      } else {
+        wx.navigateTo({
+          url: '../newbalance/newbalance'
+        })
+      }
+    }).then(() => {
+      this.setTimeoutBnalance()
+    })
   },
   formSubmit: function (e) {
     if (this.data.isSubmitFormId) {
