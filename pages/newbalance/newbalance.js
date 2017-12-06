@@ -61,12 +61,12 @@ mutulPage({
             this.setData({
               listLast: res2.data.redpacket_info.num
             })
+            this.setOpenShareMoneyModalData('actQrImg', res2.data.redpacket_info.share_qrcode_url)
           } else if (!res.data.is_get_bouns) {
             this.setData({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty_info.bounty)).toFixed(2),
             })
           }
-          this.setOpenShareMoneyModalData('actQrImg', res2.data.redpacket_info.share_qrcode_url)
           wx.hideLoading()
         })
       }
