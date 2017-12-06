@@ -1,11 +1,12 @@
 import track from '../../utils/track.js'
 var openMoneyModal = require('../../components/openMoneyModal/index.js')
 var openShareMoneyModal = require('../../components/openShareMoneyModal/index.js')
+var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
 mutulPage({
-  mixins: [openMoneyModal, openShareMoneyModal],
+  mixins: [openMoneyModal, openShareMoneyModal, goldMoneyModal],
   data: {
     packetList: [],
     listLast: '',
@@ -50,14 +51,19 @@ mutulPage({
           })
         }
         request({
-          url: '/bounty/get'
+          url: '/bounty/get_new'
         }).then((res2) => {
-          if (res2.succ && !res.data.is_get_bouns) {
+          console.log(res2)
+          if (res2.data.bounty_type > 0) {// 红包
             this.setData({
-              balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty)).toFixed(2),
+              listLast: res2.data.redpacket_info.num
+            })
+          } else if (!res.data.is_get_bouns) {
+            this.setData({
+              balance: (parseFloat(res.data.balance) + parseFloat(res2.data.redpacket_info.num)).toFixed(2),
             })
           }
-          // self.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
+          this.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
           wx.hideLoading()
         })
       }
@@ -89,8 +95,7 @@ mutulPage({
     }).then(res => {
       if (res.succ) {
         this.setData({
-          packetList: res.data,
-          listLast: res.data.length
+          packetList: res.data
         })
       }
     })
@@ -98,6 +103,7 @@ mutulPage({
   openPacket: function (e) {
     var item = e.currentTarget.dataset.item
     if (!item.is_allow) {
+      this.setOpenShareMoneyModalData('isShow',true)
       return
     }
     this.setRedpocket(true,item.nick_name,item.redpacket_amount)

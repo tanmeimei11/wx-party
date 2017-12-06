@@ -73,8 +73,19 @@
   color: #fff;
   border: 1rpx solid #fff462;
   background-color: #fff462;
-  color: #333;
   position: relative;
+}
+
+.c-share-money-wrap .s-transmit button{
+  color: #333;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff462;
 }
 
 .c-share-money-wrap .s-quan {

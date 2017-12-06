@@ -18,7 +18,7 @@ module.exports = {
   [`${DOMAIN}/activity/seckill`]: "seckill",
   [`${DOMAIN}/activity/inventorys`]: "inventorys",
   [`${DOMAIN}/activity/share_info`]: "share_info",
-  // [`${DOMAIN}/bounty/get`]: "get",
+  [`${DOMAIN}/bounty/get`]: "get",
   [`${DOMAIN}/bounty/get_new`]: "get",
   [`${DOMAIN}/account/balance`]: "balance",
   [`${DOMAIN}/activity/act_type`]: "actType",

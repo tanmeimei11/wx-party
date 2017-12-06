@@ -11,7 +11,7 @@
 
   <view class="balance-redpacket">
     <view class="redpacketNum">待拆红包（剩余<text>{{listLast}}</text>个红包待拆）</view>
-    <scroll-view class="redpacketList" scroll-x style="width: 100%">
+    <scroll-view class="redpacketList" scroll-x style="width: 100%" wx:if="{{listLast}}">
       <block wx:for="{{packetList}}">
         <view class="redpacket" catchtap="openPacket" data-item="{{item}}">
           <view class="avatar" style="background-image: url({{item.user_avatar}});"></view>
@@ -20,6 +20,7 @@
         </view>
       </block>
     </scroll-view>
+    <view class="noredpacket" wx:if="{{listLast === 0}}"></view>
   </view>
 
  <!--  <view class="banance-btn" bindtap="share">
