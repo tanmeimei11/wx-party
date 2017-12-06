@@ -63,10 +63,10 @@ mutulPage({
             })
           } else if (!res.data.is_get_bouns) {
             this.setData({
-              balance: (parseFloat(res.data.balance) + parseFloat(res2.data.redpacket_info.num)).toFixed(2),
+              balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty_info.bounty)).toFixed(2),
             })
           }
-          // this.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
+          this.setOpenShareMoneyModalData('images', res2.data.redpacket_info.share_qrcode_url)
           wx.hideLoading()
         })
       }

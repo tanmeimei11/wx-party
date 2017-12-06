@@ -10,7 +10,8 @@
   </view>
 
   <view class="balance-redpacket">
-    <view class="redpacketNum">待拆红包（剩余
+    <view class="redpacketNum">
+      <text>待拆红包（剩余</text>
       <text>{{listLast}}</text>个红包待拆）
     </view>
     <scroll-view class="redpacketList" scroll-x style="width: 100%" wx:if="{{listLast}}">
