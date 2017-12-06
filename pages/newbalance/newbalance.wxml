@@ -10,7 +10,8 @@
   </view>
 
   <view class="balance-redpacket">
-    <view class="redpacketNum">待拆红包（剩余<text>{{listLast}}</text>个红包待拆）</view>
+    <view class="redpacketNum">待拆红包（剩余
+      <text>{{listLast}}</text>个红包待拆）</view>
     <scroll-view class="redpacketList" scroll-x style="width: 100%">
       <block wx:for="{{packetList}}">
         <view class="redpacket" catchtap="openPacket" data-item="{{item}}">
@@ -22,7 +23,7 @@
     </scroll-view>
   </view>
 
- <!--  <view class="banance-btn" bindtap="share">
+  <!--  <view class="banance-btn" bindtap="share">
 =======
   <view class="banance-btn" bindtap="share">
 >>>>>>> c72b4b72f5e964b0abc9e67715c71b0425284fd9
@@ -56,8 +57,8 @@
   </view>
 
   <!-- 分享弹窗 -->
-  <import src="../../components/goldMoneyModal/index.wxml" />
-  <template is="goldMoneyModal" data="{{...goldMoneyModalData}}" />
+  <!-- <import src="../../components/goldMoneyModal/index.wxml" />
+  <template is="goldMoneyModal" data="{{...goldMoneyModalData}}" /> -->
 
   <!-- 拆红包弹窗 -->
   <import src="../../components/openMoneyModal/index.wxml" />

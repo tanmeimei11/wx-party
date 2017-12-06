@@ -65,8 +65,8 @@ module.exports = {
     this.loadingIn('加载中')
     track(this, 'h5_tcpa_gold_sharepic_click')
     var _images = this.data.openShareMoneyModalData.images
-    // _images.qr.src = this.getOpenShareMoneyModalData('actQrImg')
-    // _images.avatar.src = this.getOpenShareMoneyModalData('avatarUrl')
+    _images.qr.src = this.getOpenShareMoneyModalData('actQrImg')
+    _images.avatar.src = this.getOpenShareMoneyModalData('avatarUrl')
     util.loadImages(_images)
       .then(() => {
         var ctx = wx.createCanvasContext('firstCanvas')

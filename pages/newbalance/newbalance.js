@@ -100,7 +100,7 @@ mutulPage({
     if (!item.is_allow) {
       return
     }
-    this.setRedpocket(true,item.nick_name,item.redpacket_amount)
+    this.setRedpocket(true, item.nick_name, item.redpacket_amount)
     request({
       url: '/bounty/redpacket_open',
       data: {
