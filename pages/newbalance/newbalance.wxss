@@ -94,14 +94,19 @@
 .redpacket:first-child{
   margin-left: 40rpx;
 }
-/*.balance .title text {
-  position: absolute;
-  top: 0;
-  left: 40rpx;
-  line-height: 30rpx;
-  font-size: 24rpx;
-  color: #ff1d1a;
-}*/
+
+.redpacket:last-child{
+  margin-right: 40rpx;
+}
+
+.noredpacket{
+  width: 669rpx;
+  height: 314rpx;
+  margin: 0 auto;
+  background: url(http://inimg05.jiuyan.info/in/2017/12/05/1256F15D-5BA4-2A86-EEA6-A3627EF3F702.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+}
 
 .balance .money {
   display: block;

@@ -7,7 +7,7 @@ var images = require('../goldMoneyModal/config').images
 module.exports = {
   data: {
     openShareMoneyModalData: {
-      isShow: true,
+      isShow: false,
       images: images,
     }
   },

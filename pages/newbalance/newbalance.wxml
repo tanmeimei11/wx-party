@@ -11,8 +11,9 @@
 
   <view class="balance-redpacket">
     <view class="redpacketNum">待拆红包（剩余
-      <text>{{listLast}}</text>个红包待拆）</view>
-    <scroll-view class="redpacketList" scroll-x style="width: 100%">
+      <text>{{listLast}}</text>个红包待拆）
+    </view>
+    <scroll-view class="redpacketList" scroll-x style="width: 100%" wx:if="{{listLast}}">
       <block wx:for="{{packetList}}">
         <view class="redpacket" catchtap="openPacket" data-item="{{item}}">
           <view class="avatar" style="background-image: url({{item.user_avatar}});"></view>
@@ -21,14 +22,8 @@
         </view>
       </block>
     </scroll-view>
+    <view class="noredpacket" wx:if="{{listLast === 0}}"></view>
   </view>
-
-  <!--  <view class="banance-btn" bindtap="share">
-=======
-  <view class="banance-btn" bindtap="share">
->>>>>>> c72b4b72f5e964b0abc9e67715c71b0425284fd9
-    <view>转发最高赚￥100</view>
-  </view> -->
 
   <view class="tips">
     <text>鼓励金可以在支付活动费用的时候直接抵扣现金，每个活动抵扣上限为20</text>
