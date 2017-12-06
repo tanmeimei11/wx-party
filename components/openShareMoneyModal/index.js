@@ -11,6 +11,9 @@ module.exports = {
       images: images,
     }
   },
+  newtransferTrack: function () {
+    track(this, 'h5_tcpa_redbag_forward_v7')
+  },
   setOpenShareMoneyModalData: function (key, value) {
     var _openShareMoneyModalData = this.data.openShareMoneyModalData
     _openShareMoneyModalData[key] = value
@@ -63,7 +66,7 @@ module.exports = {
   },
   compose: function () {
     this.loadingIn('加载中')
-    track(this, 'h5_tcpa_gold_sharepic_click')
+    track(this, 'h5_tcpa_redbag_sharepic_save_v7')
     var _images = this.data.openShareMoneyModalData.images
     _images.qr.src = this.getOpenShareMoneyModalData('actQrImg')
     _images.avatar.src = this.getOpenShareMoneyModalData('avatarUrl')

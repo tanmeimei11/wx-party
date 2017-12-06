@@ -8,6 +8,7 @@ module.exports = {
     }
   },
   lookNewbalance: function () {
+    track(this, 'h5_tcpa_redbag_nowopen_v7')
     wx.navigateTo({
       url: `../newbalance/newbalance`
     })
