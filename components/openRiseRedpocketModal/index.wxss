@@ -1,14 +1,14 @@
-.c-wrap.c-rise-money-wrap {
+.c-wrap.c-rise-redpocket-wrap {
   margin-top: 306rpx;
   text-align: center;
   padding: 0 0 70rpx 0!important;
 }
 
-.c-wrap.c-rise-money-wrap .s-close {
+.c-wrap.c-rise-redpocket-wrap .s-close {
   background-image: url('https://inimg07.jiuyan.info/in/2017/11/05/071B5DFD-47BA-4F0B-F965-1D65BC5DA2D2.jpg')
 }
 
-.c-rise-money-wrap .s-header {
+.c-rise-redpocket-wrap .s-header {
   color: #fff;
   height: 209rpx;
   background-image: url(http://inimg05.jiuyan.info/in/2017/11/05/83797657-FB5E-CC5A-AB81-B1412FE62751.png);
@@ -20,7 +20,7 @@
   box-sizing: border-box;
 }
 
-.c-rise-money-wrap .s-header .s-avatar {
+.c-rise-redpocket-wrap .s-header .s-avatar {
   width: 40rpx;
   height: 40rpx;
   overflow: hidden;
@@ -31,7 +31,7 @@
   margin-right: 10rpx;
 }
 
-.c-rise-money-wrap .s-header .nick {
+.c-rise-redpocket-wrap .s-header .nick {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,7 +39,7 @@
   justify-content: center;
 }
 
-.c-rise-money-wrap .nick-name {
+.c-rise-redpocket-wrap .nick-name {
   display: inline-block;
   max-width: 200rpx;
   overflow: hidden;
@@ -47,7 +47,7 @@
   white-space: nowrap;
 }
 
-.c-rise-money-wrap .s-header .s-title {
+.c-rise-redpocket-wrap .s-title {
   font-size: 32rpx;
   color: #fff;
   margin-top: 20rpx;
@@ -56,22 +56,27 @@
   font-weight: bold;
 }
 
-.c-rise-money-wrap .s-header .s-title text {
+.c-rise-redpocket-wrap .s-header .s-title text {
   vertical-align: middle;
 }
 
-.c-rise-money-wrap .s-desc {
-  font-size: 28rpx;
-  color: #B0B0B0;
+.c-rise-redpocket-wrap .s-header .s-title .nick-name {
+  color: #fff462;
+  font-size: 40rpx;
 }
 
-.c-rise-money-wrap .s-money {
+.c-rise-redpocket-wrap .s-desc {
+  font-size: 28rpx;
+  color: #f8aa23;
+}
+
+.c-rise-redpocket-wrap .s-money {
   font-size: 72rpx;
   color: #333333;
   margin: 18rpx auto 40rpx;
 }
 
-.c-rise-money-wrap .s-btn {
+.c-rise-redpocket-wrap .s-btn {
   width: 460rpx;
   height: 80rpx;
   line-height: 80rpx;
@@ -81,4 +86,20 @@
   border-radius: 200rpx;
   color: #fff;
   background-color: #FF4338;
+}
+
+.c-rise-redpocket-wrap .s-pocket {
+  /* background-color: #FF4338; */
+  color: #fd4836;
+  font-size: 28rpx;
+}
+
+.c-rise-redpocket-wrap .s-pocket text {
+  vertical-align: middle;
+}
+
+.c-rise-redpocket-wrap .s-pocket .nick-name {
+  font-size: 56rpx;
+  margin-bottom: 14rpx;
+  margin-right: 5rpx;
 }
