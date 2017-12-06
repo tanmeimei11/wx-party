@@ -66,7 +66,7 @@ mutulPage({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.redpacket_info.num)).toFixed(2),
             })
           }
-          // this.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
+          this.setOpenShareMoneyModalData('actQrImg', res2.data.share_qrcode_url)
           wx.hideLoading()
         })
       }
