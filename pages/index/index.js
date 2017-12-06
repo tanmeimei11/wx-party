@@ -106,7 +106,6 @@ mutulPage({
       console.log('获取地理位置')
       // 鼓励金详情页面好友分享点进来 options.sharekey
       if (options.sharekey) {
-        track(this, 'h5_tcpa_gold_share_page', [`user_id=${options.sharekey}`])
         this.showShareMoneyModal(options.sharekey)
       } else {
         this.loadBalance()
@@ -438,11 +437,13 @@ mutulPage({
 
         // 分享显示弹窗的类型
         if (_data.bounty_type == 0 && _data.bounty_info && _data.bounty_info.is_first_amount) {
+          track(this, 'h5_tcpa_gold_share_page', [`user_id=${sharekey}`])
           _type = 'isShowGetMoneyModal'
         } else if (_data.bounty_type == 1 && _data.redpacket_info && _data.redpacket_info.is_first_amount) {
           track(this, 'h5_tcpa_redbag_sharepage_box_v7', [`type=0`, `user_id=${ _data.redpacket_info.friend_user_id}`])
           _type = 'isShowOpenRiseRedpocketModal'
         } else if (_data.bounty_type == 0 && _data.bounty_info && !_data.bounty_info.is_first_amount) {
+          track(this, 'h5_tcpa_gold_share_page', [`user_id=${sharekey}`])
           _type = 'isShowRiseMoneyModal'
         } else {
           console.log('2222')
