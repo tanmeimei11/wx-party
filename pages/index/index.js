@@ -412,10 +412,7 @@ mutulPage({
         } else {
           track(this, 'h5_tcpa_redbag_box_expo_v7')
           this.setData({
-            openRedpocketModalData: {
-              ...this.data.openRedpocketModalData,
-              isShow: _data.is_pop,
-            },
+            isShowOpenRedpocketModal: true,
             is_get_bouns: true,
             myMoney: _data.bounty,
           })
