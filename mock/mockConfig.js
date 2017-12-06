@@ -30,5 +30,6 @@ module.exports = {
   [`${DOMAIN}/union/pay_after_info`]: "union",
   [`${DOMAIN}/bounty/my_redpacket`]: "my_redpacket",
   [`${DOMAIN}/bounty/redpacket_open`]: "redpacket_open",
-  [`${DOMAIN}/bounty/is_hangzhou`]: "isHangzhou"
+  [`${DOMAIN}/bounty/is_hangzhou`]: "isHangzhou",
+  [`${DOMAIN}/bounty/bounty_type`]: "bounty_type"
 }

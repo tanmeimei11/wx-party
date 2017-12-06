@@ -124,7 +124,7 @@ mutulPage({
         })
 
         // 从来没有领取过 那就直接领取
-        if (!is_get_bouns) {
+        if (!res.data.is_get_bouns.is_get_bouns) {
           track(this, 'h5_tcpa_gold_see_expo')
           this.showGetMoneyModal()
         }
@@ -132,7 +132,6 @@ mutulPage({
     })
   },
   onReachBottom: function () {
-    // console.log("promoLower")
     let that = this;
     setTimeout(function () {
       that.loadMorePromo();
