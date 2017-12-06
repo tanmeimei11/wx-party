@@ -405,16 +405,17 @@ mutulPage({
         if (_data.bounty_type == 0) {
           track(this, 'h5_tcpa_gold_see_expo')
           this.setData({
-            isShowGetMoneyModal: _data.is_pop,
+            isShowGetMoneyModal: _data.bounty_info.is_pop,
             is_get_bouns: true,
-            myMoney: _data.bounty,
+            myMoney: _data.bounty_info.bounty,
           })
         } else {
           track(this, 'h5_tcpa_redbag_box_expo_v7')
           console.log(_data)
           console.log('------------')
           this.setData({
-            isShowOpenRedpocketModal: _data.is_pop,
+            isShowOpenRedpocketModal: _data.redpacket_info.is_pop,
+            redpocketNum: _data.redpacket_info.num,
             is_get_bouns: true,
             myMoney: _data.bounty,
           })
