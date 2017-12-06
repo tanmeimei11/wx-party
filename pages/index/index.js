@@ -8,11 +8,12 @@ var riseMoneyModal = require('../../components/riseMoneyModal/index.js')
 // var seckillEntry = require('../../components/seckill/entry/index.js')
 var seckillEntry = require('../../components/seckill/item/index.js')
 var openRedpocketModal = require('../../components/openRedpocketModal/index.js')
+var openRiseRedpocketModal = require('../../components/openRiseRedpocketModal/index.js')
 var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 
 mutulPage({
-  mixins: [getMoneyModal, riseMoneyModal, seckillEntry, openRedpocketModal],
+  mixins: [getMoneyModal, riseMoneyModal, seckillEntry, openRedpocketModal, openRiseRedpocketModal],
   data: {
     seckill: [],
     promoList: [],
@@ -425,8 +426,10 @@ mutulPage({
           _type = 'isShowGetMoneyModal'
         } else if (_data.bounty_type == 1 && _data.redpacket_info.is_first_amount) {
           _type = 'isShowOpenRedpocketModal'
-        } else {
+        } else if (_data.bounty_type == 0 && !_data.bounty_info.is_first_amount) {
           _type = 'isShowRiseMoneyModal'
+        } else {
+          _type = 'isShowOpenRiseRedpocketModal'
         }
 
         var _info = _data.bounty_type == 0 ? _data.bounty_info : _data.redpacket_info
@@ -438,10 +441,7 @@ mutulPage({
           friendNick: _info.nick_name,
           is_get_bouns: true,
           isScanTwice: _info.is_already_open,
-          openRedpocketModalData: {
-            ...this.data.openRedpocketModalData,
-            redpocketNum: _info.num || 0
-          }
+          redpocketNum: _info.num || 0
         }
 
 

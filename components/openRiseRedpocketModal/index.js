@@ -4,15 +4,16 @@ module.exports = {
   data: {
     isShowOpenRiseRedpocketModal: false,
   },
-  closeOpenRiseMoneyModal: function () {
+  closeOpenRiseRedpocketModal: function () {
     this.setData({
       isShowOpenRiseRedpocketModal: false
     })
   },
   lookNewbalance: function () {
+    this.closeOpenRiseRedpocketModal()
     wx.navigateTo({
       url: `../newbalance/newbalance`
     })
-    this.closeRedpocketModal()
+
   },
 }

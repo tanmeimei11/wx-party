@@ -28,14 +28,19 @@
     <template is="getMoneyModal" data="{{isShowGetMoneyModal:isShowGetMoneyModal,myMoney:myMoney,riseMoney:riseMoney}}" />
 
     <!-- 升值奖励金弹窗 -->
-    <import src="../../components/riseMoneyModal/index.wxml" />
+    <import src="../../components/openRiseRedpocketModal/index.wxml" />
     <template is="riseMoneyModal" data="{{isShowRiseMoneyModal:isShowRiseMoneyModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney,isScanTwice:isScanTwice,shareModalType:shareModalType}}"
     />
 
-
     <!-- 红包弹窗 -->
     <import src="../../components/openRedpocketModal/index.wxml" />
-    <template is="openRedpocketModal" data="{{...openRedpocketModalData,isShowOpenRedpocketModal:isShowOpenRedpocketModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney,isScanTwice:isScanTwice}}"
+    <template is="openRedpocketModal" data="{{redpocketNum:redpocketNum,isShowOpenRedpocketModal:isShowOpenRedpocketModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney,isScanTwice:isScanTwice}}"
+    />
+
+
+    <!-- 升值红包弹窗 -->
+    <import src="../../components/openRiseRedpocketModal/index.wxml" />
+    <template is="openRiseRedpocketModal" data="{{isShowOpenRiseRedpocketModal:isShowOpenRiseRedpocketModal,friendAvatar:friendAvatar,friendNick:friendNick,myMoney:myMoney,riseMoney:riseMoney,isScanTwice:isScanTwice,redpocketNum:redpocketNum}}"
     />
   </button>
 </form>
