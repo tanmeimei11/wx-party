@@ -59,7 +59,7 @@ mutulPage({
           console.log(res2)
           if (res2.data.bounty_type > 0) { // 红包
             this.setData({
-              listLast: res2.data.redpacket_info.num
+              // listLast: res2.data.redpacket_info.num
             })
             this.setOpenShareMoneyModalData('actQrImg', res2.data.redpacket_info.share_qrcode_url)
           } else if (!res.data.is_get_bouns) {
@@ -106,6 +106,7 @@ mutulPage({
       if (res.succ) {
         this.setData({
           packetList: res.data.list,
+          listLast: res.data.list.length,
           sharekey: res.data.share_key
         })
       }
