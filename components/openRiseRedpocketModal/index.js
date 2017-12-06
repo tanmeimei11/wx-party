@@ -14,6 +14,5 @@ module.exports = {
     wx.navigateTo({
       url: `../newbalance/newbalance`
     })
-
-  },
+  }
 }
