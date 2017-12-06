@@ -95,7 +95,7 @@ mutulPage({
   onShareAppMessage: function () {
     return {
       title: '领取20个红包，报名同城活动直接抵扣现金！',
-      path: `/pages/index/index?sharekey${this.data.sharekey}`,
+      path: `/pages/index/index?sharekey=${this.data.sharekey}`,
       imageUrl: `${this.data.shareUrl}`
     }
   },
