@@ -12,6 +12,7 @@ var openRiseRedpocketModal = require('../../components/openRiseRedpocketModal/in
 var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 
+
 mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry, openRedpocketModal, openRiseRedpocketModal],
   data: {
@@ -365,6 +366,8 @@ mutulPage({
     request({
       url: '/bounty/bounty_type'
     }).then(res => {
+      console.log(this)
+      wx.setStorageSync('page1', this)
       if (res.succ && res.data == 0) {
         wx.navigateTo({
           url: '../balance/balance'
@@ -405,20 +408,18 @@ mutulPage({
         var _data = res.data
         if (_data.bounty_type == 0) {
           this.setData({
-            isShowGetMoneyModal: _data.bounty_info.is_pop,
+            isShowGetMoneyModal: _data.is_pop,
             is_get_bouns: true,
-            myMoney: _data.bounty_info.bounty,
+            myMoney: _data.bounty,
           })
         } else {
           this.setData({
-            isShowOpenRedpocketModal: _data.redpacket_info.is_pop,
-            redpocketNum: _data.redpacket_info.num,
             openRedpocketModalData: {
               ...this.data.openRedpocketModalData,
-              redpocketNum: _data.redpacket_info.num
+              isShow: _data.is_pop,
             },
             is_get_bouns: true,
-            myMoney: _data.redpacket_info.bounty,
+            myMoney: _data.bounty,
           })
         }
       }
@@ -441,15 +442,11 @@ mutulPage({
           _type = 'isShowGetMoneyModal'
         } else if (_data.bounty_type == 1 && _data.redpacket_info && _data.redpacket_info.is_first_amount) {
           track(this, 'h5_tcpa_redbag_box_expo_v7')
-          _type = 'isShowOpenRiseRedpocketModal'
+          _type = 'isShowOpenRedpocketModal'
         } else if (_data.bounty_type == 0 && _data.bounty_info && !_data.bounty_info.is_first_amount) {
           _type = 'isShowRiseMoneyModal'
         } else {
           _type = 'isShowOpenRiseRedpocketModal'
-        }
-        // 埋点
-        if (_data.bounty_type == 1) {
-          track(this, 'h5_tcpa_redbag_share_page_v7', [`user_id=${ _data.redpacket_info.friend_user_id}`])
         }
 
         var _info = _data.bounty_type == 0 ? _data.bounty_info : _data.redpacket_info
