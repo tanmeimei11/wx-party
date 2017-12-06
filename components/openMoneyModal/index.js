@@ -9,14 +9,6 @@ module.exports = {
       avatarUrl: '',
     }
   },
-  reciveRedpocket: function () {
-    this.setData({
-      openMoneyModalData: {
-        ...this.data.openMoneyModalData,
-        isShow: false
-      }
-    })
-  },
   setRedpocket: function (open, nickname, num, avatarUrl) {
     this.setData({
       openMoneyModalData: {

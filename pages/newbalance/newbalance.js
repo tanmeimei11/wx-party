@@ -16,6 +16,7 @@ mutulPage({
     loading: false,
     noMoreNote: false,
     listLoaded: false,
+    packetModal: '',
     list: [],
     nextMonday: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_balance_enter'
@@ -63,7 +64,7 @@ mutulPage({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.redpacket_info.num)).toFixed(2),
             })
           }
-          this.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
+          // this.setGoldMoneyModalData('actQrImg', res2.data.share_qrcode_url)
           wx.hideLoading()
         })
       }
@@ -102,26 +103,31 @@ mutulPage({
   },
   openPacket: function (e) {
     var item = e.currentTarget.dataset.item
+    this.data.packetModal = item
     if (!item.is_allow) {
       this.setOpenShareMoneyModalData('isShow', true)
       return
     }
     this.setRedpocket(true, item.nick_name, item.redpacket_amount, item.user_avatar)
+  },
+  reciveRedpocket: function () {
     request({
       url: '/bounty/redpacket_open',
       data: {
-        user_id: item.user_id
+        user_id: this.data.packetModal.user_id
       }
     }).then(res => {
       if (res.succ) {
-        // openMoneyModal.data.isShow = true
-
         var list = this.data.packetList
-        list.splice(list.findIndex(e => e.user_id === item.user_id), 1)
+        list.splice(list.findIndex(e => e.user_id === this.data.packetModal.user_id), 1)
         this.setData({
           balance: res.data.amount,
           packetList: list,
-          listLast: list.length
+          listLast: list.length,
+          openMoneyModalData: {
+            ...this.data.openMoneyModalData,
+            isShow: false
+          }
         })
       }
     })
