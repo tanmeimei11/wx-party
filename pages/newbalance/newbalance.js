@@ -38,7 +38,7 @@ mutulPage({
     })
     wx.getUserInfo({
       success: function (res) {
-        // self.setGoldMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
+        self.setOpenShareMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
       }
     })
     wx.setNavigationBarTitle({
@@ -66,7 +66,7 @@ mutulPage({
               balance: (parseFloat(res.data.balance) + parseFloat(res2.data.bounty_info.bounty)).toFixed(2),
             })
           }
-          this.setOpenShareMoneyModalData('images', res2.data.redpacket_info.share_qrcode_url)
+          this.setOpenShareMoneyModalData('actQrImg', res2.data.redpacket_info.share_qrcode_url)
           wx.hideLoading()
         })
       }
@@ -105,7 +105,8 @@ mutulPage({
     }).then(res => {
       if (res.succ) {
         this.setData({
-          packetList: res.data
+          packetList: res.data.list,
+          sharekey: res.data.share_key
         })
       }
     })

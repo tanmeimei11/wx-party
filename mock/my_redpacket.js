@@ -2,7 +2,8 @@ module.exports = {
   data: {
     "msg":"",
     "code":"0",
-    "data":[
+    "data":{
+        'list':[
             {
                 "is_sys":"true",//是否系统红包
                 "is_allow":true,//是否拥有拆开权限
@@ -37,7 +38,9 @@ module.exports = {
                 "is_sys":"false",//是否系统红包
                 "is_allow":false,//是否拥有拆开权限
             }
-    ],
+        ],   
+        share_key:'suuq'
+    },
     "succ":true,
     "timestamp":"1508744458"
 }
