@@ -188,6 +188,9 @@ mutulPage({
     }, rej => {
       console.log('授权失败')
     }).then(res => {
+      if (!res) {
+        return
+      }
       console.log("获取地理位置成功")
       var latitude = res.latitude
       var longitude = res.longitude
@@ -432,12 +435,12 @@ mutulPage({
         var _type = ""
 
         // 分享显示弹窗的类型
-        if (_data.bounty_type == 0 && _data.bounty_info.is_first_amount) {
+        if (_data.bounty_type == 0 && _data.bounty_info && _data.bounty_info.is_first_amount) {
           _type = 'isShowGetMoneyModal'
-        } else if (_data.bounty_type == 1 && _data.redpacket_info.is_first_amount) {
+        } else if (_data.bounty_type == 1 && _data.redpacket_info && _data.redpacket_info.is_first_amount) {
           track(this, 'h5_tcpa_redbag_box_expo_v7')
           _type = 'isShowOpenRedpocketModal'
-        } else if (_data.bounty_type == 0 && !_data.bounty_info.is_first_amount) {
+        } else if (_data.bounty_type == 0 && _data.bounty_info && !_data.bounty_info.is_first_amount) {
           _type = 'isShowRiseMoneyModal'
         } else {
           _type = 'isShowOpenRiseRedpocketModal'
