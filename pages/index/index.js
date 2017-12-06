@@ -125,7 +125,6 @@ mutulPage({
 
         // 从来没有领取过 那就直接领取
         if (!res.data.is_get_bouns) {
-          track(this, 'h5_tcpa_gold_see_expo')
           this.showGetMoneyModal()
         }
       }
@@ -404,6 +403,7 @@ mutulPage({
         // 判断是鼓励斤还是红包
         var _data = res.data
         if (_data.bounty_type == 0) {
+          track(this, 'h5_tcpa_gold_see_expo')
           this.setData({
             isShowGetMoneyModal: _data.is_pop,
             is_get_bouns: true,
