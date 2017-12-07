@@ -1,0 +1,247 @@
+/**index.wxss**/
+
+@import '../../components/goldMoneyModal/index.wxss';
+@import '../../components/openMoneyModal/index.wxss';
+@import '../../components/openShareMoneyModal/index.wxss';
+.balance {
+  width: 100%;
+  height: 560rpx;
+  background-image: url(https://inimg02.jiuyan.info/in/2017/12/04/AE93F783-6B9C-4B18-4D22-21189F0ECB0A.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  text-align: center;
+  padding-top: 132rpx;
+  box-sizing: border-box;
+}
+
+.balance .title {
+  margin: 0 auto;
+  width: 160rpx;
+  height: 30rpx;
+  position: relative;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #ff1d1a;
+}
+
+.balance-redpacket{
+  background: #ffdb4f;
+  width: 100%;
+  height: 482rpx;
+}
+
+.redpacketList{
+  width: auto;
+  white-space: nowrap;
+}
+
+.balance-redpacket .redpacketNum{
+  font-size: 34rpx;
+  color: #c05c00;
+  margin: 43rpx 40rpx 35rpx;
+}
+
+.redpacketList{
+  height: 314rpx;
+}
+
+.redpacket{
+  height: 314rpx;
+  width: 264rpx;
+  display: inline-block;
+  position: relative;
+  background-image: url(http://inimg05.jiuyan.info/in/2017/12/04/38E8042F-C876-032A-5574-A3BE50A07296.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  vertical-align:middle;
+}
+
+.redpacket .avatar{
+  margin: 149rpx auto 0;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.redpacket .name{
+  margin: 12rpx auto 0;
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  color: #fff;
+}
+
+.redpacket .detail{
+  margin-top: 12rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff1ba;
+  height: 24rpx;
+  line-height: 24rpx;
+}
+
+.redpacket:first-child{
+  margin-left: 40rpx;
+}
+
+.redpacket:last-child{
+  margin-right: 40rpx;
+}
+
+.noredpacket{
+  width: 669rpx;
+  height: 314rpx;
+  margin: 0 auto;
+  background: url(http://inimg05.jiuyan.info/in/2017/12/05/1256F15D-5BA4-2A86-EEA6-A3627EF3F702.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.balance .money {
+  display: block;
+  /* margin-top: 11rpx; */
+  font-size: 62rpx;
+  color: #ff1d1a;
+  letter-spacing: 0;
+  line-height: 88rpx;
+  height: 88rpx;
+}
+
+.balance .time {
+  display: block;
+  /*margin-top: 20rpx;*/
+  font-size: 24rpx;
+  color: #e29b13;
+  line-height: 24rpx;
+  letter-spacing: 0;
+}
+
+.banance-btn {
+  margin: 60rpx auto 0;
+  width: 500rpx;
+  height: 100rpx;
+  border-radius: 100px;
+  /* box-shadow: 0 5rpx 15rpx 0 rgba(227, 93, 75, 0.47); */
+  text-align: center;
+  background-image: linear-gradient(0deg, #ff3228, #ff7234 100%);
+  box-shadow: 0 0 5rpx 5rpx #ff3228;
+}
+
+.banance-btn view {
+  background-image: url(https://inimg07.jiuyan.info/in/2017/11/17/B0BABF5E-83A5-51ED-9E8C-7E7418E47171.jpg);
+  background-repeat: no-repeat;
+  background-size: 39rpx 39rpx;
+  background-position: left center;
+  color: #fff;
+  font-size: 40rpx;
+  line-height: 100rpx;
+  display: inline-block;
+  padding-left: 53rpx;
+}
+
+.tips {
+  margin: 80rpx 40rpx 0;
+  padding-bottom: 30rpx;
+}
+
+.tips text {
+  font-size: 24rpx;
+  color: #b0b0b0;
+  letter-spacing: 0;
+  line-height: 38rpx;
+  display: block;
+  margin: 0 0 10rpx 28rpx;
+  position: relative;
+}
+
+.tips text:before {
+  content: '';
+  position: absolute;
+  left: -25rpx;
+  top: 14rpx;
+  width: 11rpx;
+  height: 11rpx;
+  background: #ffb67c;
+  display: block;
+  border-radius: 50%;
+}
+
+.history {
+  border-top: 1px solid #e0e0e0;
+  margin: 0 40rpx;
+  padding-top: 50rpx;
+}
+
+.history .title {
+  font-size: 34rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  font-weight: bold;
+}
+
+.history .list {
+  position: relative;
+  width: 670rpx;
+  height: 156rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #e0e0e0;
+}
+
+.history .list.first {
+  border-top: none;
+}
+
+.history .note {
+  position: absolute;
+  width: 500rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 30rpx;
+  left: 0;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.history .operation {
+  position: absolute;
+  top: 30rpx;
+  right: 0;
+  font-size: 28rpx;
+  color: #36D4B0;
+}
+
+.history .operation.used {
+  color: #ff4338
+}
+
+.history .operation.used text {
+  display: none;
+}
+
+.history .time {
+  position: absolute;
+  top: 82rpx;
+  left: 0;
+  font-size: 24rpx;
+  color: #b0b0b0;
+}
+
+.history .account {
+  position: absolute;
+  top: 82rpx;
+  right: 0;
+  font-size: 24rpx;
+  color: #b0b0b0;
+}

@@ -1,0 +1,28 @@
+<!-- 鼓励金钱窗 -->
+<template name="openRiseRedpocketModal">
+  <view class="c-modal" wx:if="{{isShowOpenRiseRedpocketModal}}">
+    <view class="c-wrap c-rise-redpocket-wrap">
+      <!-- <view class="s-close" bindtap="closeRiseMoneyModal"></view> -->
+      <view class="s-header">
+        <view class="nick">
+          <view class="s-avatar" style="background-image:url({{friendAvatar}})"></view>
+          <text class="nick-name">{{friendNick}}</text>
+        </view>
+        <view class="s-title" wx:if="{{!isScanTwice}}">
+          <text>帮好友抢到一个</text>
+          <text class="nick-name">¥{{riseMoney}}</text>
+          <text>的红包</text>
+        </view>
+        <view class="s-title" wx:else>
+          同一个好友每周只能帮他抢一次红包
+        </view>
+      </view>
+      <view class="s-desc">{{redpocketNum == 20 ? '恭喜你领取本周':'本周你还有'}}</view>
+      <view class="s-title s-pocket">
+        <text class="nick-name">{{redpocketNum}}</text>
+        <text>{{redpocketNum == 20 ? '个红包':'个红包待拆'}}</text>
+      </view>
+      <view class="s-btn" bindtap="lookNewbalance1">立即去拆</view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,22 @@
+<!-- 鼓励金钱窗 -->
+<template name="openShareMoneyModal">
+  <view class="c-modal" wx:if="{{isShow}}">
+    <view class="c-wrap c-share-money-wrap">
+      <view class="s-close" bindtap="closeOpenShareMoneyModal"></view>
+      <view class="s-lock-wrap">
+        <view class="left"></view>
+        <view class="right">
+          <text>邀请好友帮你</text>
+          <text>解锁该红包</text>
+        </view>
+      </view>
+      <view class="s-mid-text">每位好友扫码一次即可获得一次拆红包机会</view>
+      <view class="s-transmit s-btn">
+        <button type="default" bindtap="newtransferTrack" open-type="share">转发给好友/群拆红包</button>
+      </view>
+      <view class="s-quan s-btn " bindtap="compose">生成朋友圈分享图</view>
+    </view>
+    <!-- canvas -->
+    <canvas style="width: 750px; height: 866px;position:absolute;top:-1000px;left:-1000px;" canvas-id="firstCanvas"></canvas>
+  </view>
+</template>

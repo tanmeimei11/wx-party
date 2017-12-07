@@ -1,0 +1,15 @@
+<!-- 鼓励金钱窗 -->
+<template name="openMoneyModal">
+  <view class="c-modal" wx:if="{{isShow}}">
+    <view class="c-wrap c-open-money-wrap">
+      <view class="top-avatar" style="background-image:url({{avatarUrl}})"></view>
+      <view class="s-text-wrap">
+        <view class="s-top-tip">{{name}}送你</view>
+        <view class="s-redpocket">
+          <text>¥{{money}} </text>
+        </view>
+        <view class="s-btn" bindtap="reciveRedpocket" wx:if="{{!riseMoney}}">收下红包</view>
+      </view>
+    </view>
+  </view>
+</template>

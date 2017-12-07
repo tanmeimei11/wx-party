@@ -1,0 +1,66 @@
+<view class="container">
+  <!-- 埋点 -->
+  <image src="{{trackSeed}}" style="width:0;height:0;display: block" />
+  <view class="balance">
+    <view class="title">
+      <text>我的鼓励金</text>
+    </view>
+    <view class="money">{{balance}}</view>
+    <text class="time">报名成功时，鼓励金可以直接抵用现金</text>
+  </view>
+
+  <view class="balance-redpacket">
+    <view class="redpacketNum">
+      <text>待拆红包（剩余</text>
+      <text>{{listLast}}</text>个红包待拆）
+    </view>
+    <scroll-view class="redpacketList" scroll-x style="width: 100%" wx:if="{{listLast}}">
+      <block wx:for="{{packetList}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
+        <view class="redpacket" catchtap="openPacket" data-item="{{item}}" data-index="{{idx}}">
+          <view class="avatar" style="background-image: url({{item.user_avatar}});"></view>
+          <view class="name">{{item.is_allow ? item.nick_name : '待拆红包'}}</view>
+          <view class="detail">{{item.detail}}</view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="noredpacket" wx:if="{{listLast === 0}}"></view>
+  </view>
+
+  <view class="tips">
+    <text>鼓励金可以在支付活动费用的时候直接抵扣现金，每个活动抵扣上限为20</text>
+    <text>分享好友之后，好友扫码或者点击就会获得一次拆红包的机会</text>
+    <text>每位好友每周只能帮你获得一次拆红包的机会</text>
+    <text>鼓励金一直有效，不可提现</text>
+    <text>鼓励金一旦使用不会退回</text>
+    <text>鼓励金不适用于秒杀活动</text>
+    <text>最终解释权归in同城趴所有</text>
+  </view>
+
+  <view class="history" wx:if="{{list.length > 0}}">
+    <text class="title">历史记录</text>
+    <block wx:for="{{list}}" wx:for-index="idx" wx:key="id">
+      <view class="list {{idx == 0 ? 'first' : ''}}">
+        <text class="note">{{item.note}}</text>
+        <text class="operation {{ item.operation_amount-0 < 0 ? 'used' : ''}}">{{item.operation_amount}}</text>
+        <text class="time">{{item.created_at}}</text>
+        <text class="account">余额：￥{{item.account_amount}}</text>
+      </view>
+    </block>
+    <view class="lower-loading" wx:if="{{!noMoreNote}}">
+      <image src="/images/lower-loading.gif" class="lower-loading-gif"></image>
+      <text class="lower-loading-txt">加载中...</text>
+    </view>
+  </view>
+
+  <!-- 分享弹窗 -->
+  <!-- <import src="../../components/goldMoneyModal/index.wxml" />
+  <template is="goldMoneyModal" data="{{...goldMoneyModalData}}" /> -->
+
+  <!-- 拆红包弹窗 -->
+  <import src="../../components/openMoneyModal/index.wxml" />
+  <template is="openMoneyModal" data="{{...openMoneyModalData}}" />
+
+  <!-- 拆红包分享 -->
+  <import src="../../components/openShareMoneyModal/index.wxml" />
+  <template is="openShareMoneyModal" data="{{...openShareMoneyModalData}}" />
+</view>

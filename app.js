@@ -23,6 +23,7 @@ App({
   globalData: {
     code: null,
     userInfo: null,
+    balanceIndex: 0,
     deviceInfo: null
   },
   onLaunch: function () {}

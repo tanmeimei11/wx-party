@@ -77,10 +77,26 @@ var payMoney = (_data) => {
   })
 }
 
-
+var locationStorage = (gps) => {
+  var location = 'locationHZ'
+  var HZ = wx.getStorageSync(location) || false;
+  if (HZ) {
+    return Promise.resolve()
+  }
+  return request({
+    url: '/bounty/is_hangzhou',
+    data: gps
+  }).then(suc =>{
+    wx.setStorageSync(location, suc.data);
+    return Promise.resolve()
+  },rej => {
+    return Promise.reject()
+  })
+}
 
 
 module.exports = {
   uploadImageToQiniu,
-  payMoney
+  payMoney,
+  locationStorage
 }

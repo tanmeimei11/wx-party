@@ -1,0 +1,96 @@
+.c-wrap.c-share-money-wrap {
+  width: 574rpx;
+  height: 620rpx;
+  background-image: linear-gradient(-180deg, #ff685a 0%, #ff4338 100%);
+  padding: 0;
+}
+
+.c-share-money-wrap .s-close {
+  top: 10rpx;
+  background-image: url('https://inimg07.jiuyan.info/in/2017/11/05/071B5DFD-47BA-4F0B-F965-1D65BC5DA2D2.jpg');
+}
+
+.c-share-money-wrap .s-lock-wrap {
+  color: #fff;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+}
+
+.c-share-money-wrap .s-lock-wrap {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 400rpx;
+  height: 182rpx;
+  padding-top: 46rpx;
+  margin: 0 auto;
+}
+
+.c-share-money-wrap .s-lock-wrap .left {
+  flex: 1.7;
+  background: url('https://inimg07.jiuyan.info/in/2017/12/04/8DC8B07D-CE5E-7B1E-A8E6-8E16BBB46A4B.jpg');
+  background-repeat: no-repeat;
+  background-size: 128rpx 160rpx;
+  background-position: center;
+}
+
+.c-share-money-wrap .s-lock-wrap .right {
+  flex: 2;
+  font-size: 34rpx;
+  line-height: 50rpx;
+  padding-top: 62rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.c-share-money-wrap .s-lock-wrap .right text {
+  display: block;
+}
+
+.c-share-money-wrap .s-mid-text {
+  font-size: 24rpx;
+  line-height: 100rpx;
+  height: 100rpx;
+  white-space: nowrap;
+  color: #fff;
+  text-align: center;
+  opacity: .7;
+}
+
+.c-share-money-wrap .s-btn {
+  width: 460rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 200rpx;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+
+.c-share-money-wrap .s-transmit {
+  color: #fff;
+  border: 1rpx solid #fff462;
+  background-color: #fff462;
+  position: relative;
+}
+
+.c-share-money-wrap .s-transmit button{
+  color: #333;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff462;
+}
+
+.c-share-money-wrap .s-quan {
+  color: #fff;
+  border: 1rpx solid #fff462;
+  color: #fff462;
+  position: relative;
+}

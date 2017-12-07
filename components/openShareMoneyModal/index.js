@@ -3,26 +3,29 @@ var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 import track from '../../utils/track.js'
 var util = require('../../utils/util.js')
 var getAuth = require('../../utils/auth.js').get
-var images = require('./config').images
+var images = require('../goldMoneyModal/config').images
 module.exports = {
   data: {
-    goldMoneyModalData: {
-      images: images,
+    openShareMoneyModalData: {
       isShow: false,
+      images: images,
     }
   },
-  setGoldMoneyModalData: function (key, value) {
-    var _goldMoneyModalData = this.data.goldMoneyModalData
-    _goldMoneyModalData[key] = value
+  newtransferTrack: function () {
+    track(this, 'h5_tcpa_redbag_forward_v7')
+  },
+  setOpenShareMoneyModalData: function (key, value) {
+    var _openShareMoneyModalData = this.data.openShareMoneyModalData
+    _openShareMoneyModalData[key] = value
     this.setData({
-      goldMoneyModalData: _goldMoneyModalData
+      openShareMoneyModalData: _openShareMoneyModalData
     })
   },
-  getGoldMoneyModalData: function (key) {
-    return this.data.goldMoneyModalData[key]
+  getOpenShareMoneyModalData: function (key) {
+    return this.data.openShareMoneyModalData[key]
   },
-  closeGoldMoneyModal: function () {
-    this.setGoldMoneyModalData('isShow', false)
+  closeOpenShareMoneyModal: function () {
+    this.setOpenShareMoneyModalData('isShow', false)
   },
   saveImage: function (url) {
     getAuth('writePhotosAlbum')
@@ -47,7 +50,7 @@ module.exports = {
   },
   getImgFromBack() {
     request({
-      url: '/bounty/bounty_img',
+      url: '/bounty/edpacket_img ',
     }).then(res => {
       if (res.succ && res.data) {
         this.saveImage(res.data)
@@ -55,7 +58,7 @@ module.exports = {
     }).catch(() => {
       wx.hideLoading()
       wx.showToast({
-        title: '当前微信版本不支持, 请截屏分享',
+        title: '当前微信版本不支持, 请升级版本',
         image: '../../images/toast-fail.png',
         duration: 2000
       })
@@ -63,10 +66,10 @@ module.exports = {
   },
   compose: function () {
     this.loadingIn('加载中')
-    track(this, 'h5_tcpa_gold_sharepic_click')
-    var _images = this.data.goldMoneyModalData.images
-    _images.qr.src = this.getGoldMoneyModalData('actQrImg')
-    _images.avatar.src = this.getGoldMoneyModalData('avatarUrl')
+    track(this, 'h5_tcpa_redbag_sharepic_save_v7')
+    var _images = this.data.openShareMoneyModalData.images
+    _images.qr.src = this.getOpenShareMoneyModalData('actQrImg')
+    _images.avatar.src = this.getOpenShareMoneyModalData('avatarUrl')
     util.loadImages(_images)
       .then(() => {
         var ctx = wx.createCanvasContext('firstCanvas')
@@ -87,11 +90,11 @@ module.exports = {
               ctx.setTextAlign('center')
               ctx.setFillStyle('white')
               ctx.setFontSize(42)
-              ctx.fillText('扫码拆开红包', 375, 315)
+              ctx.fillText('扫码领取本周20个红包', 375, 315)
               ctx.setFontSize(36)
 
               ctx.setFillStyle('#FEE1DD')
-              ctx.fillText('红包最高可升值为 ¥100 ', 375, 375)
+              ctx.fillText('红包直接抵扣现金', 375, 375)
               ctx.draw(true)
               return wxPromisify(wx.canvasToTempFilePath)({
                 canvasId: 'firstCanvas',

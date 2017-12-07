@@ -8,6 +8,7 @@
     "pages/result/result",
     "pages/launch/launch",
     "pages/balance/balance",
+    "pages/newbalance/newbalance",
     "pages/result_union/result_union"
   ],
   "window": {

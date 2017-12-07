@@ -12,12 +12,14 @@ module.exports = {
   [`${DOMAIN}/activity/add_info`]: "submit",
   [`${DOMAIN}/activity/join`]: "join",
   [`${DOMAIN}/account/details`]: "accountlist",
-  [`${DOMAIN}/bounty/open`]: "open",
+  // [`${DOMAIN}/bounty/open`]: "open",
+  [`${DOMAIN}/bounty/open_new`]: "open",
   [`${DOMAIN}/activity/cost`]: "cost",
   [`${DOMAIN}/activity/seckill`]: "seckill",
   [`${DOMAIN}/activity/inventorys`]: "inventorys",
   [`${DOMAIN}/activity/share_info`]: "share_info",
   [`${DOMAIN}/bounty/get`]: "get",
+  [`${DOMAIN}/bounty/get_new`]: "get",
   [`${DOMAIN}/account/balance`]: "balance",
   [`${DOMAIN}/activity/act_type`]: "actType",
   [`${DOMAIN}/activity/remindseckill`]: "remindSeckill",
@@ -25,5 +27,10 @@ module.exports = {
   [`${DOMAIN}/bounty/bounty_img`]: "img",
   [`${DOMAIN}/activity/detail_img`]: "img",
   [`${DOMAIN}/activity/join_order`]: "joinOrder",
-  [`${DOMAIN}/union/pay_after_info`]: "union"
+  [`${DOMAIN}/union/pay_after_info`]: "union",
+  [`${DOMAIN}/bounty/my_redpacket`]: "my_redpacket",
+  [`${DOMAIN}/bounty/redpacket_open`]: "redpacket_open",
+  [`${DOMAIN}/bounty/is_hangzhou`]: "isHangzhou",
+  [`${DOMAIN}/bounty/bounty_type`]: "bounty_type",
+  [`${DOMAIN}/bounty/edpacket_img`]: "img"
 }
