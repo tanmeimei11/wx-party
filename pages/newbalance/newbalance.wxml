@@ -6,7 +6,7 @@
       <text>我的鼓励金</text>
     </view>
     <view class="money">{{balance}}</view>
-    <text class="time">报名成功时，鼓励金可以直接抵用现金</text>
+    <text class="time">报名活动时，鼓励金可以直接抵用现金</text>
   </view>
 
   <view class="balance-redpacket">
@@ -31,7 +31,6 @@
     <text>分享好友之后，好友扫码或者点击就会获得一次拆红包的机会</text>
     <text>每位好友每周只能帮你获得一次拆红包的机会</text>
     <text>鼓励金一直有效，不可提现</text>
-    <text>鼓励金一旦使用不会退回</text>
     <text>鼓励金不适用于秒杀活动</text>
     <text>最终解释权归in同城趴所有</text>
   </view>
