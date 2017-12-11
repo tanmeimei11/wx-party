@@ -54,7 +54,7 @@ mutulPage({
       this.setData({
         hidden: true,
         item: list,
-        unionSucc: true,
+        unionSucc: unionSucc,
         done: true,
         union_id: res.data.union_id
       })
