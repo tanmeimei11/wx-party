@@ -87,6 +87,7 @@
 
 .r-tips{
   margin-left: 60rpx;
+  margin-top: 40rpx;
 }
 
 .r-tips .r-txt1{

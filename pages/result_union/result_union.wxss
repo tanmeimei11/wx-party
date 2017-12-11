@@ -21,9 +21,9 @@
 }
 
 .r-txt .r-img {
-  width: 129rpx;
-  height: 129rpx;
-  background-image: url(https://inimg07.jiuyan.info/in/2017/10/31/1B56058C-0CEE-8710-CB3D-CBCF6D4EC8D9.png);
+  width: 48rpx;
+  height: 48rpx;
+  background-image: url(http://inimg01.jiuyan.info/in/2017/12/11/2CA4B74D-47E4-54D0-AC2A-BC730E795474.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -32,7 +32,7 @@
 
 .r-txt .r-suc-txt {
   font-size: 40rpx;
-  margin: auto;
+  margin: 40rpx auto 0;
   text-align: center;
   font-size: #333;
 }
@@ -58,8 +58,8 @@
 }
 
 .unionSucc .r-avatar{
-  margin: 40rpx 0 80rpx;
-  padding-bottom: 40rpx;
+  margin: 40rpx 0 0;
+  /* padding-bottom: 40rpx; */
   box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.03);
 }
 
@@ -133,7 +133,7 @@
   border-radius: 8rpx;
   background: #fff;
   box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.1);
-  margin: 50rpx auto;
+  margin: 0 auto 50rpx;
 }
 
 .r-link .r-link-img {
@@ -163,14 +163,14 @@
 }
 
 .r-link .r-link-btn {
-  width: 320rpx;
+  width: 360rpx;
   height: 80rpx;
   border: 1rpx solid #FF4338;
   border-radius: 100rpx;
-  background: #fff;
-  margin: 60rpx auto 0;
-  font-size: 28rpx;
-  color: #FF4338;
+  background-image: linear-gradient(0deg, #FF7869 0%, #FF4338 99%);
+  margin: 315rpx auto 0;
+  font-size: 32rpx;
+  color: #fff;
   line-height: 80rpx;
   position: relative;
   overflow: hidden;
@@ -214,4 +214,34 @@
 
 .r-link contact-button {
   transform: scale(10, 3);
+}
+
+.r-link {
+  width: 100%;
+  height: 450rpx;
+  padding-bottom: 64rpx;
+  /* border-radius: 8rpx; */
+  /* background: #fff; */
+  /* box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.1); */
+  background-image: url(http://inimg05.jiuyan.info/in/2017/12/11/CD36A161-209E-6B11-AE16-693A72E33A3C.png);
+  background-repeat: no-repeat;
+  background-size: 590rpx 390rpx;
+  background-position: center;
+  box-shadow: 0 8px 20px 0 rgba(0,0,0,0.03);
+}
+
+.r-tips{
+  margin-left: 60rpx;
+}
+
+.r-tips .r-txt1{
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 22rpx;
+}
+
+.r-tips .r-txt2{
+  font-size: 26rpx;
+  color: #888;
+  line-height: 50rpx;
 }
