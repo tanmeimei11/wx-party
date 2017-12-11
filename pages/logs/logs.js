@@ -11,12 +11,15 @@ mutulPage({
   mixins: [goldMoneyModal, toastWhite],
   data: {
     access_token: '',
-    qrImg: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg'
+    qrImg: 'https://inimg01.jiuyan.info/in/2017/02/28/85929FBE-BB9D-91D5-7BA3-068EE42A6000-1JyqzdYV.jpg',
+    webviewUrl: 'https://m.in66.com/applinks?protocol=in%253A%252F%252Fin%253Ftovc%253D108%2526h5%253D1%2526pid%253D1RvnooAw%2526cid%253D1JXPrbza',
+    isShowWebview: false
   },
   onLoad: function (e) {
     // this.getAccessToken()
     // this.pay()
-    this.toastWhite('123213')
+    // this.toastWhite('123213')
+
 
   },
   auth: function () {
@@ -151,5 +154,15 @@ mutulPage({
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
+  },
+  openApp: function () {
+    // 打开网页
+    if (wx.canIUse('web-view')) {
+      this.setData({
+        isShowWebview: true
+      })
+    } else {
+      console.log('kefu')
+    }
   }
 })

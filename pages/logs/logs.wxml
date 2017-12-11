@@ -12,6 +12,8 @@
   <!-- <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true" action="/replay">
     <button formType="submit">Submit</button>
   </form> -->
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 电话</button>
-  <include src="../../components/toastWhite/index.wxml" />
+  <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 电话</button>
+  <include src="../../components/toastWhite/index.wxml" /> -->
+  <button type="default" size="defaultSize" bindtap="openApp" hover-class="defaultTap">打开app</button>
+  <web-view wx:if="{{isShowWebview}}" src="{{webviewUrl}}"></web-view>
 </view>
