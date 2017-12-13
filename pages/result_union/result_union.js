@@ -24,6 +24,9 @@ mutulPage({
     trackSeed: `http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_pintuan_succ_page`
   },
   onLoad: function (option) {
+    this.Polling(option)
+  },
+  pageLoaded: function (option) {
     track(this, 'h5_tcpa_pintuan_succ_page', [`active_id=${this.data.id}`])
     console.log(option)
     console.log(decodeURIComponent(option.title))
@@ -35,6 +38,25 @@ mutulPage({
       title: decodeURIComponent(option.title),
       transferImageUrl: decodeURIComponent(option.transferImageUrl),
     })
+    this.getInfo()
+  },
+  Polling: function(option) {
+    request({
+      url: `/activity/order/issucc`,
+      data: {
+        orderNo: app.globalData.orderNo
+      }
+    }).then((res) => {
+      if (res.succ) {
+        this.pageLoaded(option)
+      } else {
+        setTimeout(() => {
+          this.Polling(option)
+        },1000)
+      }
+    })
+  },
+  getInfo: function() {
     request({
       url: `/union/pay_after_info`,
       data: {

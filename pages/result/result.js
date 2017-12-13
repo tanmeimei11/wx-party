@@ -1,5 +1,6 @@
 import track from '../../utils/track.js'
 const app = getApp()
+var request = require('../../utils/wxPromise.js').requestPromisify
 import {
   mutulPage
 } from '../../utils/mixin.js'
@@ -35,6 +36,9 @@ mutulPage({
     wx.setNavigationBarTitle({
       title: '报名成功'
     })
+    this.Polling(option)
+  },
+  pageLoaded: function (option) {
     // 取页面上的id
     this.setData({
       toAPPsession: `openapp_${option.id}_${app.globalData.orderNo}`,
@@ -45,6 +49,22 @@ mutulPage({
       title: option.title,
     })
     this.setSeckillOptions(option)
+  },
+  Polling: function(option) {
+    request({
+      url: `/activity/order/issucc`,
+      data: {
+        orderNo: app.globalData.orderNo
+      }
+    }).then((res) => {
+      if (res.succ) {
+        this.pageLoaded(option)
+      } else {
+        setTimeout(() => {
+          this.Polling(option)
+        },1000)
+      }
+    })
   },
   goBack: function () {
     track(this, 'h5_tcpa_paysucc_look')
