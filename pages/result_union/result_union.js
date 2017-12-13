@@ -32,7 +32,7 @@ mutulPage({
     console.log(decodeURIComponent(option.title))
     // 取页面上的id
     this.setData({
-      toAPPsession: `openapp_${option.id}_${app.globalData.orderNo}`,
+      toAPPsession: `openapp_${option.id}_${app.globalData.orderNo || '11'}`,
       id: option.id,
       user_id: option.user_id,
       title: decodeURIComponent(option.title),
@@ -44,7 +44,7 @@ mutulPage({
     request({
       url: `/activity/order/issucc`,
       data: {
-        orderNo: app.globalData.orderNo
+        orderNo: app.globalData.orderNo || '11'
       }
     }).then((res) => {
       if (res.succ) {
