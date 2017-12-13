@@ -24,7 +24,8 @@ App({
     code: null,
     userInfo: null,
     balanceIndex: 0,
-    deviceInfo: null
+    deviceInfo: null,
+    orderNo: null
   },
   onLaunch: function () {}
   // ...

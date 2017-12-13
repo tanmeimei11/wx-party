@@ -1,4 +1,5 @@
 import track from '../../utils/track.js'
+const app = getApp()
 import {
   mutulPage
 } from '../../utils/mixin.js'
@@ -6,6 +7,7 @@ var seckillResult = require('../../components/seckill/result/index.js')
 mutulPage({
   mixins: [seckillResult],
   data: {
+    toAPPsession: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_result_enter'
   },
   onShareAppMessage(options) {
@@ -35,6 +37,7 @@ mutulPage({
     })
     // 取页面上的id
     this.setData({
+      toAPPsession: `openapp_${option.id}_${app.globalData.orderNo}`,
       id: option.id,
       promoText: `本周在你附近举办的${option.promonum == 0 ? "" : `${option.promonum}个`}活动`,
       sessionFrom: `activityassistant_${option.id}`,

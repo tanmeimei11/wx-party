@@ -395,6 +395,9 @@ mutulPage({
       this.data.images.head.src = this.changeHttpUrl(data.act_url[0])
     }
     wx.hideLoading()
+    if (data.order_no) {
+      app.globalData.orderNo = data.order_no
+    }
     this.setData({
       detailDone: true,
       imgUrls: data.act_url,

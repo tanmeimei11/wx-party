@@ -1,4 +1,5 @@
 import track from '../../utils/track.js'
+const app = getApp()
 var request = require('../../utils/wxPromise.js').requestPromisify
 import {
   mutulPage
@@ -8,6 +9,7 @@ mutulPage({
   mixins: [seckillResult],
   data: {
     item: [],
+    toAPPsession: '',
     xxtimer: null,
     unionSucc: false,
     done: false,
@@ -27,6 +29,7 @@ mutulPage({
     console.log(decodeURIComponent(option.title))
     // 取页面上的id
     this.setData({
+      toAPPsession: `openapp_${option.id}_${app.globalData.orderNo}`,
       id: option.id,
       user_id: option.user_id,
       title: decodeURIComponent(option.title),

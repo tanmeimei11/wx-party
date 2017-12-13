@@ -1,6 +1,7 @@
 var request = require('wxPromise.js').requestPromisify
 var wxPromisify = require('wxPromise.js').wxPromisify
 var config = require('config.js')
+const app = getApp()
 
 const qnTokenUrl = config.qnTokenUrl
 const qnUploadUrl = config.qnUploadUrl
@@ -47,6 +48,7 @@ var payMoney = (_data) => {
   }).then(Res => {
     if (Res.succ) {
       // 不需要进行实际的支付
+      app.globalData.orderNo = Res.data.order_no
       if (Res.data.order_directly == 1) {
         return Promise.resolve()
       }

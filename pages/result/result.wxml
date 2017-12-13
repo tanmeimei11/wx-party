@@ -18,7 +18,7 @@
 
   <view class="r-link">
     <view class="r-link-btn" wx:if="{{!seckill.isSeckill}}" bindtap="getQrTrack">打开app领取报名码
-      <contact-button type="default-dark" size="20" session-from="{{sessionFrom}}">
+      <contact-button type="default-dark" size="20" session-from="{{toAPPsession}}">
       </contact-button>
     </view>
   </view>
