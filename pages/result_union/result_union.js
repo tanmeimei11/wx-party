@@ -24,17 +24,39 @@ mutulPage({
     trackSeed: `http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_pintuan_succ_page`
   },
   onLoad: function (option) {
+    this.Polling(option)
+  },
+  pageLoaded: function (option) {
     track(this, 'h5_tcpa_pintuan_succ_page', [`active_id=${this.data.id}`])
     console.log(option)
     console.log(decodeURIComponent(option.title))
     // 取页面上的id
     this.setData({
-      toAPPsession: `openapp_${option.id}_${app.globalData.orderNo}`,
+      toAPPsession: `openapp_${option.id}_${app.globalData.orderNo || '11'}`,
       id: option.id,
       user_id: option.user_id,
       title: decodeURIComponent(option.title),
       transferImageUrl: decodeURIComponent(option.transferImageUrl),
     })
+    this.getInfo()
+  },
+  Polling: function(option) {
+    request({
+      url: `/activity/order/issucc`,
+      data: {
+        orderNo: app.globalData.orderNo || '11'
+      }
+    }).then((res) => {
+      if (res.succ) {
+        this.pageLoaded(option)
+      } else {
+        setTimeout(() => {
+          this.Polling(option)
+        },1000)
+      }
+    })
+  },
+  getInfo: function() {
     request({
       url: `/union/pay_after_info`,
       data: {
