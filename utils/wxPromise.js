@@ -41,8 +41,9 @@ var requestBefore = (option, token) => {
     'tg_auth': token,
     '_v': config._v,
     'wxv': deviceInfo.version,
-    '_pf': deviceInfo.platform,
-    '_s': deviceInfo.system.toLowerCase(),
+    // '_pf': deviceInfo.platform,
+    '_s': `${deviceInfo.platform.toLowerCase()}_wxminiprogram`,
+    '_sys': deviceInfo.system.toLowerCase(),
     '_gps': deviceInfo.gps || ''
   }
   option.data = {
