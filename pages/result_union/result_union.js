@@ -24,7 +24,8 @@ mutulPage({
     trackSeed: `http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_pintuan_succ_page`
   },
   onLoad: function (option) {
-    this.Polling(option)
+    // this.Polling(option)
+    this.getInfo(option)
   },
   pageLoaded: function (option) {
     track(this, 'h5_tcpa_pintuan_succ_page', [`active_id=${this.data.id}`])
@@ -34,11 +35,12 @@ mutulPage({
     this.setData({
       toAPPsession: `openapp_${option.id}_${app.globalData.orderNo || '11'}`,
       id: option.id,
+      hidden: true,
       user_id: option.user_id,
       title: decodeURIComponent(option.title),
       transferImageUrl: decodeURIComponent(option.transferImageUrl),
     })
-    this.getInfo()
+    // this.getInfo()
   },
   Polling: function(option) {
     request({
@@ -56,7 +58,7 @@ mutulPage({
       }
     })
   },
-  getInfo: function() {
+  getInfo: function(option) {
     request({
       url: `/union/pay_after_info`,
       data: {
@@ -71,13 +73,15 @@ mutulPage({
       var list = res.data
       if (res.data.join_info && res.data.join_info.join_avatar) {
         var unionSucc = true
+        this.Polling(option)
       } else {
         var unionSucc = false
         list.cutTime = parseInt(list.count_down) / 1000
         this.countdown()
+        this.pageLoaded(option)
       }
       this.setData({
-        hidden: true,
+        // hidden: true,
         item: list,
         unionSucc: unionSucc,
         done: true,
