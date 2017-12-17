@@ -34,11 +34,11 @@ mutulPage({
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_pay_succ_page')
-    // track(this, 'h5_tcpa_result_screen_enter')
     wx.setNavigationBarTitle({
       title: '支付成功'
     })
     this.Polling(option)
+    track(this, 'h5_tcpa_result_screen_enter')
   },
   pageLoaded: function (option) {
     // 取页面上的id
