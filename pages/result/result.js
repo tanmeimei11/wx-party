@@ -8,6 +8,7 @@ var seckillResult = require('../../components/seckill/result/index.js')
 mutulPage({
   mixins: [seckillResult],
   data: {
+    hidden: false,
     toAPPsession: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_result_enter'
   },
@@ -32,9 +33,10 @@ mutulPage({
     }
   },
   onLoad: function (option) {
-    track(this, 'h5_tcpa_result_screen_enter')
+    track(this, 'h5_tcpa_pay_succ_page')
+    // track(this, 'h5_tcpa_result_screen_enter')
     wx.setNavigationBarTitle({
-      title: '报名成功'
+      title: '支付成功'
     })
     this.Polling(option)
   },
@@ -58,6 +60,10 @@ mutulPage({
       }
     }).then((res) => {
       if (res.succ) {
+        this.setData({
+          hidden: true
+        })
+        this.hidden = true
         this.pageLoaded(option)
       } else {
         setTimeout(() => {
@@ -73,6 +79,7 @@ mutulPage({
     })
   },
   getQrTrack: function () {
-    track(this, 'h5_tcpa_paysucc_look')
+    // track(this, 'h5_tcpa_paysucc_look')
+    track(this, 'h5_tcpa_pay_openapp_click')
   }
 })

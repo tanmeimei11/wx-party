@@ -128,6 +128,7 @@
 
 .r-link {
   text-align: center;
+  padding-top: 1rpx;
 }
 
 .r-link .r-link-name {
