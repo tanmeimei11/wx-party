@@ -25,8 +25,9 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [{
+			"current": 12,
+			"list": [
+				{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
@@ -36,7 +37,7 @@
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=19801&isShowOtherAct=false&from=xiangxiang"
+					"query": "id=16806&isShowOtherAct=false&from=xiangxiang"
 				},
 				{
 					"id": -1,
@@ -102,7 +103,7 @@
 					"id": 12,
 					"name": "result_union",
 					"pathName": "pages/result_union/result_union",
-					"query": "prepage=apply&promonum=93&id=21502&isSeckill=1&transferImageUrl=https://inimg07.jiuyan.info/aW4vMjAxNy8xMS8wNi84RTVDNjM0Ni04QTNGLTk2QzQtRjRBQi03MTcyODRFOTRFNTIuanBn&title=啊发斯蒂芬胜多负少&user_id=1021408"
+					"query": "prepage=apply&promonum=93&id=21502&isSeckill=1&transferImageUrl=https://inimg07.jiuyan.info/aW4vMjAxNy8xMS8wNi84RTVDNjM0Ni04QTNGLTk2QzQtRjRBQi03MTcyODRFOTRFNTIuanBn&title=啊发斯蒂芬胜多负少&user_id= 124119268"
 				},
 				{
 					"id": 13,
