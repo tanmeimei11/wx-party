@@ -68,10 +68,16 @@ var requestBefore = (option, token) => {
  * @param {*} option 
  */
 
-var request = option => {
-  wxCheckLogin(option).then((token) => {
+var request = (option,isCheck) => {
+  var isCheckPromise = null
+  if(!isCheck){
+    isCheckPromise = Promise.resolve('')
+  }else{
+    isCheckPromise = wxCheckLogin(option)
+  }
+  isCheckPromise.then((token) => {
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
-    if (token) {
+    if (token || !isCheck) {
       LOG('get token', token);
       requestBefore(option, token)
       if (isMock) {
@@ -80,6 +86,8 @@ var request = option => {
       }
       LOG('start request option:', option)
       wx.request(option)
+    }else{
+      LOG('未登陆...')
     }
   }, () => {
     LOG('登陆中...')
