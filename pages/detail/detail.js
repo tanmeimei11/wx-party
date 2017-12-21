@@ -330,7 +330,10 @@ mutulPage({
     })
   },
   openBook: function (e) {
+    //判断是否是游客状态
+    if(app.isGetToken()){
 
+    }
     // 秒杀倒计时
     if (this.data.seckill.seckillStatus == 'ready' || this.data.bookStatus == '1') {
       return

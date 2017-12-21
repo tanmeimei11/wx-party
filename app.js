@@ -26,6 +26,10 @@ App({
     balanceIndex: 0,
     deviceInfo: null
   },
+  isGetToken:function(){
+    var _token = wx.getStorageSync('token')||''
+    return  _token ? true : false
+  },
   onLaunch: function () {}
   // ...
 })
