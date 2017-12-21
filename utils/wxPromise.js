@@ -70,8 +70,7 @@ var requestBefore = (option, token) => {
 
 var request = (option,checkStatus) => {
   var isCheckPromise = null
-  console.log(arguments)
-  var isNotCheck = arguments.length > 2 && !checkStatus
+  var isNotCheck = checkStatus == 'notcheck' ? true:false
   if(isNotCheck){
     isCheckPromise = Promise.resolve('')
   }else{

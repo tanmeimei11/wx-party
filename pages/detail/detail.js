@@ -15,6 +15,7 @@ import track from '../../utils/track.js'
 mutulPage({
   mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal, unionStatus, toastModal],
   data: {
+    options:{},
     detailDone: false,
     sharePathQuery: [],
     sharePathTitle: '',
@@ -49,6 +50,7 @@ mutulPage({
     ],
     sessionFromQr: wx.getStorageSync('token'),
     priceInfo: {},
+    isNeedCheck:false,
     images: {
       head: {
         src: "",
@@ -91,100 +93,9 @@ mutulPage({
     return _shareInfo
   },
   onLoad(options) {
-    track(this, 'h5_tcpa_detail_screen_enter')
-    console.log('------options-----')
-    console.log(options)
-    wx.showLoading({
-      title: '加载中...'
-    })
-    wx.setNavigationBarTitle({
-      title: '活动详情'
-    })
-
-    // 取页面上的id
-    var deviceInfo = app.getDeviceInfo()
-    var _isAndrod = /android/.test(deviceInfo.system.toLowerCase())
-    this.setData({
-      shareUserId: options.shareUserId || '',
-      id: options.id || '11001',
-      sessionFrom: `activity_${_isAndrod ? 'android_' : ''}${options.id}`,
-      sessionFromQr: `activitymanager_${_isAndrod ? 'android_' : ''}${options.id}`,
-      sessionFromAct: `typeactivity_${_isAndrod ? 'android_' : ''}${options.id}`,
-      // sessionFrom: `activity_${options.id}`,
-      // sessionFromQr: `activitymanager_${options.id}`,
-      // sessionFromAct: `typeactivity_${options.id}`,
-      shareUnionId: options.shareUnionId || '',
-    })
-    console.log(this.data.sessionFromAct)
-    if (options.isShowPayModal && options.shareUnionId) {
-      this.data.showPayModalByUnion = true
-      this.showPayModal()
-    }
-    // 秒杀分享
-    if (options.shareUserId) {
-      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
-    }
-    // 分渠道
-    if (options.from) {
-      wx.setStorageSync("from", options.from)
-      track(this, 'h5_tcpa_detail_enter', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
-    }
-
-    // 是否显示导航条
-    if (!options.isShowOtherAct) {
-      track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
-      this.setData({
-        isShowOtherAct: true
-      })
-    } else {
-      track(this, 'h5_tcpa_active_detail_entry_byindex', [`id=${this.data.id}`])
-    }
-
-    // 审核中
-    if (options.prepage == 'launch') {
-      this.setData({
-        isShowVerifyModal: true
-      })
-    } else if (options.prepage == 'apply') { // 支付
-      this.setData({
-        promoDelayMoney: true
-      })
-    }
-
-    if (options.show_prompt) {
-      this.showUnionStatus()
-    }
-
-    if (!this.data.userInfo) {
-      wxPromisify(wx.getUserInfo)()
-        .then((res) => {
-          this.data.images.avatar.src = res.userInfo.avatarUrl
-          this.setData({
-            userInfo: res.userInfo,
-            images: this.data.images
-          })
-        })
-    }
-    // 数据
-    if (this.data.id) {
-      request({
-        url: "/activity/detail_new",
-        data: {
-          id: this.data.id,
-          shareUserId: this.data.shareUserId,
-          union_id: this.data.shareUnionId
-        }
-      },false).then((res) => {
-        if (res.succ && res.data) {
-          this.getActiveInfo(res.data)
-          if (!options.show_prompt) {
-            if ((res.data.union_info && !res.data.union_info.is_owner) || res.data.join_status == 1) {
-              track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
-            }
-          }
-        }
-      })
-    }
+    this.data.options = options
+    this.init()
+    
   },
   showPayModal: function () {
     var _data = {
@@ -329,11 +240,113 @@ mutulPage({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
+  detaiLoginRefresh:function(){
+    this.setData({
+      isNeedCheck:true
+    })
+    this.init()
+  },
+  init:function(){
+    var options = this.data.options
+    track(this, 'h5_tcpa_detail_screen_enter')
+    console.log('options',options)
+    wx.showLoading({
+      title: '加载中...'
+    })
+    wx.setNavigationBarTitle({
+      title: '活动详情'
+    })
+
+    // 取页面上的id
+    var deviceInfo = app.getDeviceInfo()
+    var _isAndrod = /android/.test(deviceInfo.system.toLowerCase())
+    this.setData({
+      shareUserId: options.shareUserId || '',
+      id: options.id || '11001',
+      sessionFrom: `activity_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromQr: `activitymanager_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromAct: `typeactivity_${_isAndrod ? 'android_' : ''}${options.id}`,
+      shareUnionId: options.shareUnionId || '',
+    })
+    console.log(this.data.sessionFromAct)
+    if (options.isShowPayModal && options.shareUnionId) {
+      this.data.showPayModalByUnion = true
+      this.showPayModal()
+    }
+    // 秒杀分享
+    if (options.shareUserId) {
+      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
+    }
+    // 分渠道
+    if (options.from) {
+      wx.setStorageSync("from", options.from)
+      track(this, 'h5_tcpa_detail_enter', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
+    }
+
+    // 是否显示导航条
+    if (!options.isShowOtherAct) {
+      track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
+      this.setData({
+        isShowOtherAct: true
+      })
+    } else {
+      track(this, 'h5_tcpa_active_detail_entry_byindex', [`id=${this.data.id}`])
+    }
+
+    // 审核中
+    if (options.prepage == 'launch') {
+      this.setData({
+        isShowVerifyModal: true
+      })
+    } else if (options.prepage == 'apply') { // 支付
+      this.setData({
+        promoDelayMoney: true
+      })
+    }
+
+    if (options.show_prompt) {
+      this.showUnionStatus()
+    }
+
+    if (!this.data.userInfo) {
+      wxPromisify(wx.getUserInfo)()
+        .then((res) => {
+          this.data.images.avatar.src = res.userInfo.avatarUrl
+          this.setData({
+            userInfo: res.userInfo,
+            images: this.data.images
+          })
+        })
+    }
+    // 数据
+    if (this.data.id) {
+      console.log(this.data.isNeedCheck)
+      request({
+        url: "/activity/detail_new",
+        data: {
+          id: this.data.id,
+          shareUserId: this.data.shareUserId,
+          union_id: this.data.shareUnionId
+        }
+      },this.data.isNeedCheck).then((res) => {
+        if (res.succ && res.data) {
+          this.getActiveInfo(res.data)
+          if (!options.show_prompt) {
+            if ((res.data.union_info && !res.data.union_info.is_owner) || res.data.join_status == 1) {
+              track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
+            }
+          }
+        }
+      })
+    }
+  },
   openBook: function (e) {
     //判断是否是游客状态
-    if(app.isGetToken()){
-
+    if(!app.isGetToken()){
+      this.detaiLoginRefresh()
+      return 
     }
+  
     // 秒杀倒计时
     if (this.data.seckill.seckillStatus == 'ready' || this.data.bookStatus == '1') {
       return
