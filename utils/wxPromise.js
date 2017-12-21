@@ -11,9 +11,10 @@ var LOG = console.log || (() => {})
 /**
  * 封装wxPromisefy
  */
-var wxPromisify = fn => {
-  return function (obj = {}) {
+var wxPromisify = (fn) => {
+  return function (obj = {},isNotCheck) {
     return new Promise((resolve, reject) => {
+      obj.isNotCheck = isNotCheck
       obj.success = function (res) {
         if (res.data) {
           resolve(res.data)
@@ -68,17 +69,17 @@ var requestBefore = (option, token) => {
  * @param {*} option 
  */
 
-var request = (option,checkStatus) => {
+var request = (option) => {
   var isCheckPromise = null
-  var isNotCheck = checkStatus == 'notcheck' ? true:false
-  if(isNotCheck){
+  console.log(option.isNotCheck)
+  if(option.isNotCheck){
     isCheckPromise = Promise.resolve('')
   }else{
     isCheckPromise = wxCheckLogin(option)
   }
   isCheckPromise.then((token) => {
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
-    if (token || isNotCheck) {
+    if (token || option.isNotCheck) {
       LOG('get token', token);
       requestBefore(option, token)
       if (isMock) {
