@@ -70,14 +70,16 @@ var requestBefore = (option, token) => {
 
 var request = (option,isCheck) => {
   var isCheckPromise = null
-  if(!isCheck){
+  console.log(arguments)
+  var isCheckStatus = arguments.length > 2 && !isCheck
+  if(!isCheckStatus){
     isCheckPromise = Promise.resolve('')
   }else{
     isCheckPromise = wxCheckLogin(option)
   }
   isCheckPromise.then((token) => {
     // var token = '05b81ab2f8f6c6d1458a0f59b22e8c9b'
-    if (token || !isCheck) {
+    if (token || !isCheckStatus) {
       LOG('get token', token);
       requestBefore(option, token)
       if (isMock) {

@@ -32,5 +32,7 @@ module.exports = {
   [`${DOMAIN}/bounty/redpacket_open`]: "redpacket_open",
   [`${DOMAIN}/bounty/is_hangzhou`]: "isHangzhou",
   [`${DOMAIN}/bounty/bounty_type`]: "bounty_type",
-  [`${DOMAIN}/bounty/edpacket_img`]: "img"
+  [`${DOMAIN}/bounty/redpacket_img`]: "img",
+  [`${DOMAIN}/bounty/list`]: "promoList",
+  [`${DOMAIN}/bounty/detail_new`]: "detail"
 }
