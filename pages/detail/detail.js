@@ -50,7 +50,7 @@ mutulPage({
     ],
     sessionFromQr: wx.getStorageSync('token'),
     priceInfo: {},
-    isNeedCheck:false,
+    isNotCheck:true,
     images: {
       head: {
         src: "",
@@ -95,7 +95,6 @@ mutulPage({
   onLoad(options) {
     this.data.options = options
     this.init()
-    
   },
   showPayModal: function () {
     var _data = {
@@ -242,7 +241,7 @@ mutulPage({
   },
   detaiLoginRefresh:function(){
     this.setData({
-      isNeedCheck:true
+      isNotCheck:false
     })
     this.init()
   },
@@ -320,7 +319,7 @@ mutulPage({
     }
     // 数据
     if (this.data.id) {
-      console.log(this.data.isNeedCheck)
+      console.log(this.data.isNotCheck)
       request({
         url: "/activity/detail_new",
         data: {
@@ -328,7 +327,7 @@ mutulPage({
           shareUserId: this.data.shareUserId,
           union_id: this.data.shareUnionId
         }
-      },this.data.isNeedCheck).then((res) => {
+      },this.data.isNotCheck).then((res) => {
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
           if (!options.show_prompt) {
