@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -37,7 +37,7 @@
 					"id": 1,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "id=19801&isShowOtherAct=false&from=xiangxiang"
+					"query": "id=25101&isShowOtherAct=false&from=xiangxiang"
 				},
 				{
 					"id": -1,

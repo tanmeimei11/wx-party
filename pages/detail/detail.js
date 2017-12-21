@@ -168,13 +168,13 @@ mutulPage({
     // 数据
     if (this.data.id) {
       request({
-        url: "/activity/detail",
+        url: "/activity/detail_new",
         data: {
           id: this.data.id,
           shareUserId: this.data.shareUserId,
           union_id: this.data.shareUnionId
         }
-      }).then((res) => {
+      },false).then((res) => {
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
           if (!options.show_prompt) {
