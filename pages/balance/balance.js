@@ -3,6 +3,8 @@ var goldMoneyModal = require('../../components/goldMoneyModal/index.js')
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
+var getAuth = require('../../utils/auth').get
+var app = getApp()
 mutulPage({
   mixins: [goldMoneyModal],
   data: {
@@ -35,22 +37,6 @@ mutulPage({
     })
   },
   getBalance: function () {
-
-  },
-  refresh: function () {
-    this.data.isNotCheck = false
-    getAuth('userInfo').then(
-      this.init()
-    )
-  },
-  onLoad: function () {
-    track(this, 'h5_tcpa_balance_screen_enter')
-    this.init()
-    wx.showLoading({
-      title: '加载中...'
-    })
-    this.getSystemInfo()
-    this.getUserInfo()
     let self = this
     request({
       url: '/account/balance'
@@ -74,6 +60,9 @@ mutulPage({
         })
       }
     })
+  },
+  getAccountDetail: function () {
+    let self = this
     request({
       url: '/account/details',
       data: {
@@ -94,8 +83,29 @@ mutulPage({
       }
     })
   },
-  init: function () {
+  loadingIn: function (text) {
+    wx.showLoading({
+      title: text
+    })
+  },
+  onLoad: function () {
+    track(this, 'h5_tcpa_balance_screen_enter')
+    if (app.isGetToken()) {
+      this.init()
+    } else {
+      getAuth('userInfo', true)
+        .then(() => {
+          this.init()
+        })
+    }
 
+  },
+  init: function () {
+    this.loadingIn('加载中...')
+    this.getSystemInfo()
+    this.getUserInfo()
+    this.getBalance()
+    this.getAccountDetail()
   },
   onReachBottom: function () {
     if (this.data.noMoreNote) {
