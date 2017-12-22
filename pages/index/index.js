@@ -47,6 +47,7 @@ mutulPage({
     currentID1: '',
     currentID2: '',
     notfindpromo: false,
+    isNotCheck: false,
     globalData: app.globalData
   },
   closeSelect: function () {
@@ -116,7 +117,7 @@ mutulPage({
   loadBalance: function () {
     return request({
       url: '/account/balance'
-    }).then((res) => {
+    }, this.data.isNotCheck).then((res) => {
       if (res.succ) {
         this.setData({
           myMoney: res.data.balance,
@@ -210,19 +211,10 @@ mutulPage({
     })
   },
   loadMorePromo: function () {
-    console.log('111')
     if (this.data.loadingMorePromo) {
       return
     }
     this.data.loadingMorePromo = true
-    // if (this.data.noMorePromo) {
-    //   console.log('noMorePromo')
-    //   this.setData({
-    //     hidden: true,
-    //     loadingMoreQun: false
-    //   })
-    //   return
-    // }
     this.getPromo()
   },
   reselect: function (e) {
@@ -259,7 +251,7 @@ mutulPage({
   getPromo: function (bottomItem) {
     console.log('-------getPromo-----groups_new----')
     request({
-      url: '/activity/groups_new',
+      url: '/activity/list',
       data: {
         limit: 10,
         cursor: this.data.currentCursorPromo,
@@ -267,9 +259,8 @@ mutulPage({
         screen: this.data.screenID,
         sort: this.data.sortID
       }
-    }).then((res) => {
+    }, this.data.isNotCheck).then((res) => {
       if (res.succ && res.data && res.data.list) {
-        // console.log(res.data)
         if (res.data.list.length < 10) {
           this.setData({
             noMorePromo: true,
@@ -336,11 +327,11 @@ mutulPage({
       url: _url
     })
   },
-  setTimeoutBnalance: function () {
+  setTimeoutBalance: function () {
     setTimeout(() => {
       request({
         url: '/account/balance'
-      }).then(res => {
+      }, this.data.isNotCheck).then(res => {
         if (res.succ) {
           if (res.data.is_get_bouns) {
             this.setData({
@@ -363,7 +354,7 @@ mutulPage({
     // 先进行判断
     request({
       url: '/bounty/bounty_type'
-    }).then(res => {
+    }, this.data.isNotCheck).then(res => {
       if (res.succ && res.data == 0) {
         wx.navigateTo({
           url: '../balance/balance'
@@ -374,7 +365,7 @@ mutulPage({
         })
       }
     }).then(() => {
-      this.setTimeoutBnalance()
+      this.setTimeoutBalance()
     })
   },
   formSubmit: function (e) {
@@ -384,7 +375,7 @@ mutulPage({
         data: {
           formId: e.detail.formId
         }
-      }).then(res => {
+      }, this.data.isNotCheck).then(res => {
         if (res.succ) {} else {
           this.data.isSubmitFormId = false
         }
@@ -398,7 +389,7 @@ mutulPage({
       data: {
         gps: this.data._gps
       }
-    }).then(res => {
+    }, this.data.isNotCheck).then(res => {
       if (res.succ && res.data) {
         // 判断是鼓励斤还是红包
         var _data = res.data
@@ -430,7 +421,7 @@ mutulPage({
       data: {
         share_key: sharekey
       }
-    }).then(res => {
+    }, this.data.isNotCheck).then(res => {
       if (res.succ && res.data) {
         var _data = res.data
         var _type = ""
@@ -446,7 +437,6 @@ mutulPage({
           track(this, 'h5_tcpa_gold_share_page', [`user_id=${sharekey}`])
           _type = 'isShowRiseMoneyModal'
         } else {
-          console.log('2222')
           track(this, 'h5_tcpa_redbag_sharepage_box_v7', [`type=1`, `user_id=${ _data.redpacket_info.friend_user_id}`])
           _type = 'isShowOpenRiseRedpocketModal'
         }
