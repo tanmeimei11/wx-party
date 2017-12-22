@@ -215,6 +215,12 @@ mutulPage({
     return obj.str.replace(/\\n/g, '\n')
   },
   openInviteModal: function () {
+    //判断是否是游客状态
+    if (!app.isGetToken()) {
+      this.detaiLoginRefresh()
+      return
+    }
+
     track(this, 'h5_tcpa_active_invite_click', [`id=${this.data.id}`])
     this.setData({
       isShowInviteModal: true
@@ -272,7 +278,6 @@ mutulPage({
       sessionFromAct: `typeactivity_${_isAndrod ? 'android_' : ''}${options.id}`,
       shareUnionId: options.shareUnionId || '',
     })
-    console.log(this.data.sessionFromAct)
     if (options.isShowPayModal && options.shareUnionId) {
       this.data.showPayModalByUnion = true
       this.showPayModal()
@@ -320,6 +325,13 @@ mutulPage({
             userInfo: res.userInfo,
             images: this.data.images
           })
+          this.data.isNotCheck = false
+          if (!app.isGetToken()) {
+            this.detaiLoginRefresh()
+            return
+          }
+        }, () => {
+          console.log('拒绝授权')
         })
     }
     // 数据

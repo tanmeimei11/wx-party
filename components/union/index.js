@@ -25,9 +25,9 @@ module.exports = {
       }
       union_info.join_info = this.data.defaultUnionInfo
     }
-    union_info.union_countdown_diff = data.union_info.union_countdown_diff / 1000
+    union_info.union_countdown_diff = parseInt(+data.union_info.union_countdown_diff / 1000)
     this.setData({
-      unionInfo: data.union_info
+      unionInfo: union_info
     })
     this.countdownPay()
   },
@@ -45,6 +45,7 @@ module.exports = {
       return
     }
     var cutDownFun = () => {
+        console.log(this.data.unionInfo.union_countdown_diff)
         // joiner 进来倒计时结束 (拼团者0 ＋ 发起者 1) ＝> 已过期3
         if (this.data.unionInfo.union_countdown_diff <= 0) {
           clearInterval(this.data.unionInfo.cutDownTimer)

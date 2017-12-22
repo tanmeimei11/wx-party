@@ -48,7 +48,7 @@ mutulPage({
         var unionSucc = true
       } else {
         var unionSucc = false
-        list.cutTime = parseInt(list.count_down) / 1000
+        list.cutTime = parseInt(+list.count_down / 1000)
         this.countdown()
       }
       this.setData({

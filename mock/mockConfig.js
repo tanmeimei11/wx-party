@@ -34,5 +34,5 @@ module.exports = {
   [`${DOMAIN}/bounty/bounty_type`]: "bounty_type",
   [`${DOMAIN}/bounty/redpacket_img`]: "img",
   [`${DOMAIN}/bounty/list`]: "promoList",
-  [`${DOMAIN}/bounty/detail_new`]: "detail"
+  [`${DOMAIN}/activity/detail_new`]: "detail"
 }
