@@ -26,12 +26,11 @@
 		},
 		"miniprogram": {
 			"current": 13,
-			"list": [
-				{
+			"list": [{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "sharekey=1LElwMNd"
+					"query": ""
 				},
 				{
 					"id": 1,

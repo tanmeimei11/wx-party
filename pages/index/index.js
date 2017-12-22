@@ -11,6 +11,7 @@ var openRedpocketModal = require('../../components/openRedpocketModal/index.js')
 var openRiseRedpocketModal = require('../../components/openRiseRedpocketModal/index.js')
 var mutulPage = require('../../utils/mixin.js').mutulPage
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
+var getAuth = require('../../utils/auth').get
 
 
 mutulPage({
@@ -47,7 +48,7 @@ mutulPage({
     currentID1: '',
     currentID2: '',
     notfindpromo: false,
-    isNotCheck: false,
+    isNotCheck: true,
     globalData: app.globalData
   },
   closeSelect: function () {
@@ -87,11 +88,7 @@ mutulPage({
     track(this, 'h5_tcpa_index_screen_enter')
     track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
 
-    // 分渠道埋点
-    if (options.from) {
-      wx.setStorageSync("from", options.from)
-    }
-
+    this.data.isNotCheck = !app.isGetToken()
     let self = this
     console.log('获取设备信息')
     wx.getSystemInfo({
@@ -103,16 +100,20 @@ mutulPage({
         });
       }
     })
-    this.getLocation().then((res) => {
-      console.log('获取地理位置')
-      // 鼓励金详情页面好友分享点进来 options.sharekey
-      if (options.sharekey) {
-        this.showShareMoneyModal(options.sharekey)
-      } else {
-        this.loadBalance()
-      }
-      this.loadMorePromo()
-    })
+    
+    this.getLocation()
+    
+    // 分渠道埋点
+    if (options.from) {
+      wx.setStorageSync("from", options.from)
+    }
+    this.loadMorePromo()
+    // 鼓励金详情页面好友分享点进来 options.sharekey
+    if (options.sharekey) {
+      this.showShareMoneyModal(options.sharekey)
+    } else {
+      this.loadBalance()
+    }
   },
   loadBalance: function () {
     return request({
@@ -178,7 +179,8 @@ mutulPage({
   },
   getLocation: function (e) {
     let self = this
-    return wxPromisify(wx.authorize)({
+    console.log('授权开始')
+    wxPromisify(wx.authorize)({
       scope: 'scope.userLocation'
     }).then(suc => {
       console.log("授权成功")
@@ -186,6 +188,9 @@ mutulPage({
         type: 'gcj02'
       })
     }, rej => {
+      return wxPromisify(wx.getLocation)({
+        type: 'gcj02'
+      })
       console.log('授权失败')
     }).then(res => {
       if (!res) {
@@ -203,10 +208,17 @@ mutulPage({
         gps: _gps
       })
     }, rej => {
+      return locationStorage({
+        gps: ''
+      })
       console.log("获取地理位置失败")
     }).then(res => {
       this.setData({
         isHangzhou: wx.getStorageSync('locationHZ')
+      })
+    }, rej => {
+      this.setData({
+        isHangzhou: false
       })
     })
   },

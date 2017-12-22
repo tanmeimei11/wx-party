@@ -7,6 +7,7 @@ module.exports = {
   [`${DOMAIN}/activity/detail`]: "detail",
   [`${DOMAIN}/citysocial/groups`]: "qunList",
   [`${DOMAIN}/activity/groups_new`]: "promoList",
+  [`${DOMAIN}/activity/list`]: "promoList",
   [`${DOMAIN}/activity/signins`]: "signins",
   [`${DOMAIN}/activity/prepare`]: "prepare",
   [`${DOMAIN}/activity/add_info`]: "submit",
