@@ -1,6 +1,8 @@
 var wxPromisify = require('common.js').wxPromisify
 
-// Promisify
+/**
+ * 方法promise化
+ */
 var authPromisify = [
   'login', 'getUserInfo', 'authorize', 'getSetting', 'startRecord', 'stopRecord',
   'showModal', 'openSetting'
@@ -12,6 +14,11 @@ var authPromisify = [
   wxPromisify: wxPromisify
 });
 
+/**
+ * 
+ * @param {*} key  授权的信息
+ * @param {*} isforce 强制授权会循环弹窗
+ */
 function get(key, isforce) {
   var scope = 'scope.' + key;
   return new Promise((authRes, authRej) => {
@@ -34,7 +41,12 @@ function get(key, isforce) {
   });
 }
 
-// 弹窗询问 
+/**
+ * 
+ * @param {*} scope 授权信息
+ * @param {*} authRes 回调
+ * @param {*} isforce 强制弹窗
+ */
 function reGet(scope, authRes, isforce) {
   authPromisify.showModal({
     title: '请在设置中打开用户信息授权',

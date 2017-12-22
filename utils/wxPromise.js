@@ -95,14 +95,12 @@ var wxCheckLogin = option => {
 
 
 var loginRequest = () => {
-
   if (!loginCollectOptions.length) return
   for (var i = 0; i < loginCollectOptions.length; i++) {
     request(loginCollectOptions[i])
   }
   loginCollectOptions = []
 }
-
 
 /**
  * 登录
