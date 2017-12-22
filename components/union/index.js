@@ -27,7 +27,10 @@ module.exports = {
     }
     union_info.union_countdown_diff = parseInt(+data.union_info.union_countdown_diff / 1000)
     this.setData({
-      unionInfo: union_info
+      unionInfo: {
+        ...this.data.unionInfo,
+        ...union_info
+      }
     })
     this.countdownPay()
   },
@@ -44,42 +47,46 @@ module.exports = {
     if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3 || this.data.unionInfo.union_status == 4) {
       return
     }
-    var cutDownFun = () => {
-        console.log(this.data.unionInfo.union_countdown_diff)
-        // joiner 进来倒计时结束 (拼团者0 ＋ 发起者 1) ＝> 已过期3
-        if (this.data.unionInfo.union_countdown_diff <= 0) {
-          clearInterval(this.data.unionInfo.cutDownTimer)
-          var _data = {
-            ...this.data.unionInfo,
-            union_status: 3,
-            desc: '来晚一步，拼团已经过期了'
-          }
-          this.setData({
-            unionInfo: _data,
-            isShowPayModal: false,
-            unionIngModalInfo: {
-              ...this.data.unionIngModalInfo,
-              isShow: false
-            },
-            isShowPayModal: false
-          })
-          return
-        }
+    if (this.data.unionInfo.cutDownTimer) {
+      clearInterval(this.data.unionInfo.cutDownTimer)
+    }
 
-        this.setData({
-          unionInfo: {
-            ...this.data.unionInfo,
-            union_countdown_diff: this.data.unionInfo.union_countdown_diff - 1
-          }
-        })
+    this.setData({
+      unionInfo: {
+        ...this.data.unionInfo,
+        cutDownTimer: setInterval(this.cutDownFun, 1000)
       }
-
-      !this.data.unionInfo.cutDownTimer && (this.data.unionInfo.cutDownTimer = setInterval(cutDownFun, 1000))
+    })
+  },
+  cutDownFun: function () {
+    // joiner 进来倒计时结束 (拼团者0 ＋ 发起者 1) ＝> 已过期3
+    if (this.data.unionInfo.union_countdown_diff <= 0) {
+      clearInterval(this.data.unionInfo.cutDownTimer)
+      var _data = {
+        ...this.data.unionInfo,
+        union_status: 3,
+        desc: '来晚一步，拼团已经过期了'
+      }
+      this.setData({
+        unionInfo: _data,
+        isShowPayModal: false,
+        unionIngModalInfo: {
+          ...this.data.unionIngModalInfo,
+          isShow: false
+        },
+        isShowPayModal: false
+      })
+      return
+    }
+    this.setData({
+      unionInfo: {
+        ...this.data.unionInfo,
+        union_countdown_diff: this.data.unionInfo.union_countdown_diff - 1
+      }
+    })
   },
   // 拼团成功
   goUnionSucc: function () {
-    // console.log('-------------------')
-    // console.log(this.getUnionParam())
     wx.redirectTo({
       url: `../result_union/result_union?${this.getUnionParam()}`
     })

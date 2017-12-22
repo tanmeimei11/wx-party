@@ -1,3 +1,4 @@
+var wxPromisify = require('./common').wxPromisify
 // 本地
 let mockConfig = require('../mock/mockConfig');
 var config = require('config')
@@ -8,26 +9,6 @@ var isLoginIng = false
 var loginCollectOptions = [] // 请求搜集器
 var LOG = console.log || (() => {})
 
-/**
- * 封装wxPromisefy
- */
-var wxPromisify = (fn) => {
-  return function (obj = {}, isNotCheck) {
-    return new Promise((resolve, reject) => {
-      obj.isNotCheck = isNotCheck
-      obj.success = function (res) {
-        if (res.data) {
-          resolve(res.data)
-        }
-        resolve(res)
-      }
-      obj.fail = function (res) {
-        reject(res)
-      }
-      fn(obj)
-    })
-  }
-}
 /**
  * 登陆前的准备
  * @param {*} option  
@@ -114,6 +95,7 @@ var wxCheckLogin = option => {
 
 
 var loginRequest = () => {
+
   if (!loginCollectOptions.length) return
   for (var i = 0; i < loginCollectOptions.length; i++) {
     request(loginCollectOptions[i])
@@ -143,6 +125,9 @@ var wxLogin = option => {
       LOG('get code', code)
       return wxPromisify(wx.getUserInfo)({
         lang: 'zh_CN'
+      }).then((res) => {
+        console.log('getUserInfo')
+        return res
       })
     })
     .then(res => {

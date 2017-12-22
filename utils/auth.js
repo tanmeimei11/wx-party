@@ -1,4 +1,4 @@
-var wxPromisify = require('wxPromise.js').wxPromisify
+var wxPromisify = require('common.js').wxPromisify
 
 // Promisify
 var authPromisify = [
@@ -42,9 +42,9 @@ function reGet(scope, authRes) {
     authPromisify.openSetting().then(() => {
       authPromisify.getSetting().then(res => {
         if (!res.authSetting[scope]) {
-          setTimeout(() => {
-            reGet(scope, authRes);
-          }, 100);
+          // setTimeout(() => {
+          //   reGet(scope, authRes);
+          // }, 100);
         } else {
           authRes();
         }

@@ -218,7 +218,7 @@ mutulPage({
   openInviteModal: function () {
     //判断是否是游客状态
     if (!app.isGetToken()) {
-      this.detaiLoginRefresh()
+      this.refresh()
       return
     }
 
@@ -247,20 +247,15 @@ mutulPage({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
-  detaiLoginRefresh: function () {
-    this.setData({
-      isNotCheck: false
+  refresh: function () {
+    this.data.isNotCheck = false
+    getAuth('userInfo').then(() => {
+      this.init()
     })
-    //获取授权
-    getAuth('userInfo')
-      .then(() => {
-        this.init()
-      })
   },
   init: function () {
     var options = this.data.options
     track(this, 'h5_tcpa_detail_screen_enter')
-    console.log('options', options)
     wx.showLoading({
       title: '加载中...'
     })
@@ -328,7 +323,7 @@ mutulPage({
           })
           this.data.isNotCheck = false
           if (!app.isGetToken()) {
-            this.detaiLoginRefresh()
+            this.refresh()
             return
           }
         }, () => {
@@ -337,7 +332,6 @@ mutulPage({
     }
     // 数据
     if (this.data.id) {
-      console.log(this.data.isNotCheck)
       request({
         url: "/activity/detail_new",
         data: {
@@ -360,7 +354,7 @@ mutulPage({
   openBook: function (e) {
     //判断是否是游客状态
     if (!app.isGetToken()) {
-      this.detaiLoginRefresh()
+      this.refresh()
       return
     }
 
@@ -375,7 +369,6 @@ mutulPage({
     // 开团状态变化 
     this.changeUnionStatus()
     if (e.target.dataset.union == 1) {
-      console.log(this.data.unionInfo.union_status)
       track(this, 'h5_tcpa_pintuan_click', [`active_id=${this.data.id}`, `type=${this.data.unionInfo.union_status}`])
       this.setData({
         showPayModalByUnion: true
