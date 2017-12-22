@@ -95,6 +95,7 @@ mutulPage({
   },
   onLoad(options) {
     this.data.options = options
+    this.data.isNotCheck = !app.isGetToken()
     this.init()
   },
   showPayModal: function () {
