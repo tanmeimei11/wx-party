@@ -12,7 +12,7 @@ var LOG = console.log || (() => {})
  * 封装wxPromisefy
  */
 var wxPromisify = (fn) => {
-  return function (obj = {},isNotCheck) {
+  return function (obj = {}, isNotCheck) {
     return new Promise((resolve, reject) => {
       obj.isNotCheck = isNotCheck
       obj.success = function (res) {
@@ -42,8 +42,8 @@ var requestBefore = (option, token) => {
     'tg_auth': token,
     '_v': config._v,
     'wxv': deviceInfo.version,
-    '_pf': deviceInfo.platform,
-    '_s': deviceInfo.system.toLowerCase(),
+    '_s': `${deviceInfo.platform.toLowerCase()}_wxminiprogram`,
+    '_sys': deviceInfo.system.toLowerCase(),
     '_gps': deviceInfo.gps || ''
   }
   option.data = {
@@ -72,9 +72,9 @@ var requestBefore = (option, token) => {
 var request = (option) => {
   var isCheckPromise = null
   console.log(option.isNotCheck)
-  if(option.isNotCheck){
+  if (option.isNotCheck) {
     isCheckPromise = Promise.resolve('')
-  }else{
+  } else {
     isCheckPromise = wxCheckLogin(option)
   }
   isCheckPromise.then((token) => {
@@ -88,7 +88,7 @@ var request = (option) => {
       }
       LOG('start request option:', option)
       wx.request(option)
-    }else{
+    } else {
       LOG('未登陆...')
     }
   }, () => {

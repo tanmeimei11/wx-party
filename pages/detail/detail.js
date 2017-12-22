@@ -11,11 +11,12 @@ var union = require('../../components/union/index.js')
 var unionIngModal = require('../../components/unionIngModal/index.js')
 var unionStatus = require('../../components/unionStatus/index.js')
 var toastModal = require('../../components/toastModal/index.js')
+var getAuth = require('../../utils/auth').get
 import track from '../../utils/track.js'
 mutulPage({
   mixins: [payModal, seckillDetail, toastWhite, union, unionIngModal, unionStatus, toastModal],
   data: {
-    options:{},
+    options: {},
     detailDone: false,
     sharePathQuery: [],
     sharePathTitle: '',
@@ -50,7 +51,7 @@ mutulPage({
     ],
     sessionFromQr: wx.getStorageSync('token'),
     priceInfo: {},
-    isNotCheck:true,
+    isNotCheck: true,
     images: {
       head: {
         src: "",
@@ -239,16 +240,20 @@ mutulPage({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
-  detaiLoginRefresh:function(){
+  detaiLoginRefresh: function () {
     this.setData({
-      isNotCheck:false
+      isNotCheck: false
     })
-    this.init()
+    //获取授权
+    getAuth('userInfo')
+      .then(() => {
+        this.init()
+      })
   },
-  init:function(){
+  init: function () {
     var options = this.data.options
     track(this, 'h5_tcpa_detail_screen_enter')
-    console.log('options',options)
+    console.log('options', options)
     wx.showLoading({
       title: '加载中...'
     })
@@ -327,7 +332,7 @@ mutulPage({
           shareUserId: this.data.shareUserId,
           union_id: this.data.shareUnionId
         }
-      },this.data.isNotCheck).then((res) => {
+      }, this.data.isNotCheck).then((res) => {
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
           if (!options.show_prompt) {
@@ -341,11 +346,11 @@ mutulPage({
   },
   openBook: function (e) {
     //判断是否是游客状态
-    if(!app.isGetToken()){
+    if (!app.isGetToken()) {
       this.detaiLoginRefresh()
-      return 
+      return
     }
-  
+
     // 秒杀倒计时
     if (this.data.seckill.seckillStatus == 'ready' || this.data.bookStatus == '1') {
       return
@@ -641,7 +646,7 @@ mutulPage({
         data: {
           formId: e.detail.formId
         }
-      }).then(res => {
+      }, this.data.isNotCheck).then(res => {
         if (res.succ) {
           // console.log('发送成功')
         } else {
