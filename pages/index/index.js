@@ -39,7 +39,7 @@ mutulPage({
     screenID: '',
     screenList: [],
     screenOpen: false,
-    sort: '默认排序',
+    sort: '综合排序',
     sortID: '',
     sortList: [],
     sortOpen: false,
@@ -100,13 +100,14 @@ mutulPage({
         });
       }
     })
+
     wxPromisify(wx.getUserInfo)()
       .then((res) => {
         this.data.isNotCheck = false
         this.getLocation().then(() => {
           console.log(app.isGetToken())
           if (app.isGetToken()) {
-            this.init()
+            this.refresh()
           }
         })
       }, () => {
@@ -114,7 +115,16 @@ mutulPage({
         this.getLocation()
       })
     this.init()
-    this.getPromo()
+  },
+  refresh: function () {
+    this.data.isNotCheck = false
+    this.data.loadingMorePromo = true
+    this.setData({
+      promoList: [],
+      hidden: false,
+      currentCursorPromo: 0
+    })
+    this.init()
   },
   init: function () {
     // 分渠道埋点
@@ -127,6 +137,7 @@ mutulPage({
     } else {
       this.loadBalance()
     }
+    this.getPromo()
   },
   loadBalance: function () {
     return request({
@@ -149,12 +160,6 @@ mutulPage({
     let that = this;
     setTimeout(function () {
       that.loadMorePromo();
-    }, 300);
-  },
-  lower: function (e) {
-    let that = this;
-    setTimeout(function () {
-      that.loadMoreQun();
     }, 300);
   },
   onPageScroll: function (e) {
@@ -350,9 +355,18 @@ mutulPage({
   launchPromo: function () {
     track(this, 'h5_tcpa_active_setup_click')
     var _url = '../launch/launch'
-    wx.navigateTo({
-      url: _url
-    })
+    if (!app.isGetToken()) {
+      getAuth('userInfo', true)
+      .then(() => {
+        wx.navigateTo({
+          url: _url
+        })
+      })
+    } else {
+      wx.navigateTo({
+        url: _url
+      })
+    }
   },
   setTimeoutBalance: function () {
     setTimeout(() => {
