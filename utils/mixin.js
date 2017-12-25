@@ -3,6 +3,7 @@ var baseMethods = {
   loadingIn: function (text) {
     wx.showLoading({
       title: text,
+      mask: true
     })
   },
   loadingOut: function () {
