@@ -1,4 +1,5 @@
 import track from '../../../utils/track.js'
+var app = getApp()
 var request = require('../../../utils/wxPromise.js').requestPromisify
 
 module.exports = {
@@ -46,6 +47,12 @@ module.exports = {
     this.countdown()
   },
   setSeckillWarnBefore() {
+    //判断是否是游客状态
+    if (!app.isGetToken()) {
+      this.refresh()
+      return
+    }
+
     if (!this.data.id) {
       return
     }
@@ -72,6 +79,11 @@ module.exports = {
   },
   // 设置提醒
   setSeckillWarn() {
+    //判断是否是游客状态
+    if (!app.isGetToken()) {
+      this.refresh()
+      return
+    }
     if (!this.data.id) {
       return
     }
@@ -94,6 +106,9 @@ module.exports = {
     })
   },
   countdown() {
+    if (this.data.seckill.is_seckill_finish == 1) {
+      return
+    }
     var cutDownFun = () => {
       if (this.data.seckill.count_down <= 0) {
         clearInterval(this.data.seckill.cutDownTimer)
