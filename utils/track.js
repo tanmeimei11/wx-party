@@ -1,8 +1,7 @@
 // import common from './common'
 const U_TRACK = 'http://stats1.jiuyan.info/onepiece/router.html'
-// var isTrack = require('./config.js')
+var isTrack = require('./config.js').isTrack
 // const U_TRACK = 'http://10.10.109.253:8018/index.html'
-// 这里是ga统计
 var ga = require('../lib/ga.js');
 var config = require('./config.js')
 
@@ -10,7 +9,7 @@ var HitBuilders = ga.HitBuilders;
 var t = getApp().getTracker();
 var trackArray = []
 var gaTrackArray = []
-var isTrack = false
+var isTrackLoading = false
 
 var gaTrack = (app, track) => {
   var _action = track.action
@@ -47,7 +46,7 @@ var requestTrack = (app) => {
         return requestTrack(app)
       }, 100)
     } else {
-      isTrack = false
+      isTrackLoading = false
       resolve()
     }
   })
@@ -61,10 +60,14 @@ export default function track(app, seed, query = []) {
   let trackSeed = combineQuery(app, seed, query)
   // 这样请求会被丢弃 有的埋点抓不到 原因1，img赋值太快了造成页面请求还没有发就被丢弃了 2，替换的过快 setdata直接跳过类似vue 好像setdata内部也是和vue内部一样的 超过一定数量采取更新dom 
   trackArray.push(trackSeed)
-  if (isTrack) {
+  console.log(isTrack)
+  if (!isTrack) {
     return
   }
-  isTrack = true
+  if (isTrackLoading) {
+    return
+  }
+  isTrackLoading = true
   requestTrack(app)
 }
 

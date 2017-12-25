@@ -42,7 +42,8 @@ Page({
       this.setData({
         id: option.id,
         shareUnionId: option.shareUnionId || '',
-        sessionFrom: `activity_${option.id}`
+        sessionFrom: `activity_${option.id}`,
+        byUnion: option.byUnion
       })
     }
 
@@ -134,14 +135,14 @@ Page({
           setTimeout(() => {
             if (this.data.shareUnionId) {
               wx.redirectTo({
-                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true&shareUnionId=${this.data.shareUnionId}`
+                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true&shareUnionId=${this.data.shareUnionId}&byUnion=${this.data.byUnion}`
               })
               return
             }
 
             if (this.data.id) {
               wx.redirectTo({
-                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true`
+                url: `../${this.data.nextpage}/${this.data.nextpage}?prepage=apply&id=${this.data.id}&isShowOtherAct=false&isShowPayModal=true&byUnion=${this.data.byUnion}`
               })
             }
           }, 2000)

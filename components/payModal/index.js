@@ -3,9 +3,7 @@ var payMoney = require('../../utils/api.js').payMoney
 import track from '../../utils/track.js'
 module.exports = {
   data: {
-    isShowPayModal: false,
-    promoMoney: 0,
-    promoDelayMoney: 0
+    isShowPayModal: false
   },
   closePayModal: function () {
     this.setData({
@@ -23,7 +21,7 @@ module.exports = {
       track(this, 'h5_tcpa_pintuan_pay_click', [`active_amt=${this.data.priceInfo.act_charge}`, `pt_amt=${this.data.priceInfo.union_discount}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_id=${this.data.id}`, `type=${this.data.unionInfo.is_owner ? 1 : 0}`])
     } else {
       _data.is_seckill_finish = this.data.seckill.is_seckill_finish
-      track(this, 'h5_tcpa_pay_click', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.promoMoney == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.act_charge}`])
+      track(this, 'h5_tcpa_pay_click', [`amt=${this.data.priceInfo.final_cost}`, `type=${this.data.this.data.priceInfo.charge == 0 ? 0:1}`, `gz_amt=${this.data.priceInfo.book_charge}`, `glj_amt=${this.data.priceInfo.bounty_deduct}`, `active_amt=${this.data.priceInfo.act_charge}`])
     }
     payMoney(_data)
       .then(() => {
