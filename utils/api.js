@@ -81,17 +81,16 @@ var locationStorage = (gps) => {
   var location = 'locationHZ'
   var HZ = wx.getStorageSync(location) || false;
   if (HZ) {
+    console.log('ishangzhou')
     return Promise.resolve()
   }
   return request({
     url: '/bounty/is_hangzhou',
     data: gps
-  }, true).then(suc =>{
-    var getLoc = suc.succ ? succ.data : false
+  }, false).then((suc) => {
+    var getLoc = suc.succ ? suc.data : false
     wx.setStorageSync(location, getLoc);
-    return Promise.resolve()
-  },rej => {
-    return Promise.reject()
+    return Promise.resolve(suc)
   })
 }
 

@@ -6,7 +6,7 @@
       <view class="launch-shu" wx:if="{{isHangzhou}}"></view>
       <text bindtap="toBalance" wx:if="{{isHangzhou}}">
         <text>鼓励金</text>
-        <text class="launch-balance">(￥{{myMoney}})</text>
+        <text class="launch-balance" wx:if="{{myMoney}}">(￥{{myMoney}})</text>
       </text>
       <!-- <view class="launch-tips" bindtap="toBalance" wx:if="{{!is_get_bouns}}"></view> -->
       <view class="launch-ending" bindtap="toBalance" wx:if="{{is_ending}}"></view>

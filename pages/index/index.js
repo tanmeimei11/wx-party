@@ -100,18 +100,20 @@ mutulPage({
         });
       }
     })
-    this.getLocation().then(() => {
-      wxPromisify(wx.getUserInfo)()
-      .then((res) => {
-        this.data.isNotCheck = false
-        if (!app.isGetToken()) {
-          this.refresh()
+    wxPromisify(wx.getUserInfo)()
+    .then((res) => {
+      this.data.isNotCheck = false
+      this.getLocation().then(() => {
+        console.log(app.isGetToken())
+        if (app.isGetToken()) {
+          this.init()
         }
-      }, () => {
-        console.log('拒绝授权')
       })
+    }, () => {
+      console.log('拒绝授权')
     })
     this.init()
+    this.getPromo()
   },
   init: function () {
     // 分渠道埋点
@@ -124,21 +126,20 @@ mutulPage({
     } else {
       this.loadBalance()
     }
-    this.getPromo()
   },
-  refresh: function () {
-    this.data.isNotCheck = false
-    this.data.loadingMorePromo = true
-    this.setData({
-      promoList: [],
-      hidden: false,
-      currentCursorPromo: 0
-    })
-    this.init()
-    // getAuth('userInfo').then(() => {
+  // refresh: function () {
+  //   this.data.isNotCheck = false
+  //   this.data.loadingMorePromo = true
+  //   this.setData({
+  //     promoList: [],
+  //     hidden: false,
+  //     currentCursorPromo: 0
+  //   })
+  //   this.init()
+  //   // getAuth('userInfo').then(() => {
 
-    // })
-  },
+  //   // })
+  // },
   loadBalance: function () {
     return request({
       url: '/account/balance'
@@ -236,13 +237,9 @@ mutulPage({
         gps: ''
       })
       console.log("获取地理位置失败")
-    }).then(res => {
+    }).then((res) => {
       this.setData({
         isHangzhou: wx.getStorageSync('locationHZ')
-      })
-    }, rej => {
-      this.setData({
-        isHangzhou: false
       })
     })
   },
