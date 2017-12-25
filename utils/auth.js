@@ -54,15 +54,18 @@ function reGet(scope, authRes, isforce, gps) {
     confirmText: '去设置',
     showCancel: false
   }).then(() => {
-    authPromisify.openSetting().then(() => {
+    authPromisify.openSetting().then((r) => {
+      console.log('r', r)
       authPromisify.getSetting().then(res => {
-        if (!res.authSetting[scope]) {
+        console.log('res', res)
+        if (!r.authSetting[scope]) {
           if (isforce) {
             setTimeout(() => {
               reGet(scope, authRes, isforce);
             }, 100);
           }
         } else {
+          console.log('succ')
           authRes();
         }
       })

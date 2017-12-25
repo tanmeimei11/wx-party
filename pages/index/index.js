@@ -101,18 +101,18 @@ mutulPage({
       }
     })
     wxPromisify(wx.getUserInfo)()
-    .then((res) => {
-      this.data.isNotCheck = false
-      this.getLocation().then(() => {
-        console.log(app.isGetToken())
-        if (app.isGetToken()) {
-          this.init()
-        }
+      .then((res) => {
+        this.data.isNotCheck = false
+        this.getLocation().then(() => {
+          console.log(app.isGetToken())
+          if (app.isGetToken()) {
+            this.init()
+          }
+        })
+      }, () => {
+        console.log('拒绝授权')
+        this.getLocation()
       })
-    }, () => {
-      console.log('拒绝授权')
-      this.getLocation()
-    })
     this.init()
     this.getPromo()
   },
@@ -128,19 +128,6 @@ mutulPage({
       this.loadBalance()
     }
   },
-  // refresh: function () {
-  //   this.data.isNotCheck = false
-  //   this.data.loadingMorePromo = true
-  //   this.setData({
-  //     promoList: [],
-  //     hidden: false,
-  //     currentCursorPromo: 0
-  //   })
-  //   this.init()
-  //   // getAuth('userInfo').then(() => {
-
-  //   // })
-  // },
   loadBalance: function () {
     return request({
       url: '/account/balance'
@@ -251,14 +238,14 @@ mutulPage({
     this.data.loadingMorePromo = true
     this.getPromo()
   },
-  reselect: function (e,back) {
+  reselect: function (e, back) {
     if (this.data.loadingMorePromo) {
       return
     }
     let res = e.currentTarget.dataset
     if (res.sort === 'gps' && !back) {
       getAuth('userLocation', false, true).then(() => {
-        this.reselect(e,true)
+        this.reselect(e, true)
       })
       return
     }
@@ -362,7 +349,7 @@ mutulPage({
   },
   launchPromo: function () {
     track(this, 'h5_tcpa_active_setup_click')
-    var _url = this.data.isNeedFillInfo ? '../apply/apply?nextpage=launch&prepage=index' : '../launch/launch'
+    var _url = '../launch/launch'
     wx.navigateTo({
       url: _url
     })
