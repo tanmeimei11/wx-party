@@ -39,7 +39,7 @@ mutulPage({
     screenID: '',
     screenList: [],
     screenOpen: false,
-    sort: '排序',
+    sort: '默认排序',
     sortID: '',
     sortList: [],
     sortOpen: false,
