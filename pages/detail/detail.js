@@ -28,7 +28,7 @@ mutulPage({
     circular: true,
     curSwiperIdx: 0,
     id: '',
-    userInfo: app.globalData.userInfo,
+    userInfo: {},
     isShowIntroAll: false,
     isShowIntroLess: false,
     isShowInviteModal: false,

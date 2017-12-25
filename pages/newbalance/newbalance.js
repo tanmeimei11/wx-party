@@ -37,17 +37,12 @@ mutulPage({
     }
   },
   init: function () {
-    this.loadingIn()
+    this.loadingIn('加载中...')
     this.getSystemInfo()
     this.getUserInfo()
     this.getBalance()
     this.getDetail()
     this.getRedPacket()
-  },
-  loadingIn: function () {
-    wx.showLoading({
-      title: '加载中...'
-    })
   },
   getSystemInfo: function () {
     let self = this
