@@ -111,6 +111,7 @@ mutulPage({
       })
     }, () => {
       console.log('拒绝授权')
+      this.getLocation()
     })
     this.init()
     this.getPromo()
