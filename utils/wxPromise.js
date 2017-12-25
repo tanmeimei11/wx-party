@@ -52,7 +52,6 @@ var requestBefore = (option, token) => {
 
 var request = (option) => {
   var isCheckPromise = null
-  console.log(option.isNotCheck)
   if (option.isNotCheck) {
     isCheckPromise = Promise.resolve('')
   } else {
@@ -95,14 +94,12 @@ var wxCheckLogin = option => {
 
 
 var loginRequest = () => {
-
   if (!loginCollectOptions.length) return
   for (var i = 0; i < loginCollectOptions.length; i++) {
     request(loginCollectOptions[i])
   }
   loginCollectOptions = []
 }
-
 
 /**
  * 登录
@@ -125,9 +122,6 @@ var wxLogin = option => {
       LOG('get code', code)
       return wxPromisify(wx.getUserInfo)({
         lang: 'zh_CN'
-      }).then((res) => {
-        console.log('getUserInfo')
-        return res
       })
     })
     .then(res => {

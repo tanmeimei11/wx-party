@@ -104,7 +104,7 @@ mutulPage({
     this.loadMorePromo()
     
     this.getLocation()
-    
+
     // 分渠道埋点
     if (options.from) {
       wx.setStorageSync("from", options.from)

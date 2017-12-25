@@ -4,6 +4,8 @@ var openShareMoneyModal = require('../../components/openShareMoneyModal/index.js
 var wxPromisify = require('../../utils/wxPromise.js').wxPromisify
 var mutulPage = require('../../utils/mixin.js').mutulPage
 let request = require('../../utils/wxPromise.js').requestPromisify
+var getAuth = require('../../utils/auth').get
+var app = getApp()
 mutulPage({
   mixins: [openMoneyModal, openShareMoneyModal],
   data: {
@@ -25,9 +27,29 @@ mutulPage({
   },
   onLoad: function (option) {
     track(this, 'h5_tcpa_balance_screen_enter')
+    if (app.isGetToken()) {
+      this.init()
+    } else {
+      getAuth('userInfo', true)
+        .then(() => {
+          this.init()
+        })
+    }
+  },
+  init: function () {
+    this.loadingIn()
+    this.getSystemInfo()
+    this.getUserInfo()
+    this.getBalance()
+    this.getDetail()
+    this.getRedPacket()
+  },
+  loadingIn: function () {
     wx.showLoading({
       title: '加载中...'
     })
+  },
+  getSystemInfo: function () {
     let self = this
     wx.getSystemInfo({
       success: function (res) {
@@ -36,14 +58,16 @@ mutulPage({
         });
       }
     })
+  },
+  getUserInfo: function () {
+    let self = this
     wx.getUserInfo({
       success: function (res) {
         self.setOpenShareMoneyModalData('avatarUrl', res.userInfo.avatarUrl)
       }
     })
-    wx.setNavigationBarTitle({
-      title: '我的鼓励金'
-    })
+  },
+  getBalance: function () {
     request({
       url: '/account/balance'
     }).then((res) => {
@@ -71,6 +95,8 @@ mutulPage({
         })
       }
     })
+  },
+  getDetail: function () {
     request({
       url: '/account/details',
       data: {
@@ -90,7 +116,6 @@ mutulPage({
         }
       }
     })
-    this.getRedPacket()
   },
   onShareAppMessage: function () {
     return {
@@ -146,7 +171,7 @@ mutulPage({
             ...this.data.openMoneyModalData,
             isShow: false
           }
-        }) 
+        })
         getCurrentPages()[0].setData({
           myMoney: res.data.amount
         })

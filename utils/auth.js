@@ -1,6 +1,8 @@
 var wxPromisify = require('common.js').wxPromisify
 
-// Promisify
+/**
+ * 方法promise化
+ */
 var authPromisify = [
   'login', 'getUserInfo', 'authorize', 'getSetting', 'startRecord', 'stopRecord',
   'showModal', 'openSetting'
@@ -12,39 +14,54 @@ var authPromisify = [
   wxPromisify: wxPromisify
 });
 
-function get(key) {
+/**
+ * 
+ * @param {*} key  授权的信息
+ * @param {*} isforce 强制授权会循环弹窗
+ */
+function get(key, isforce) {
   var scope = 'scope.' + key;
   return new Promise((authRes, authRej) => {
     authPromisify.getSetting().then(res => {
+      console.log(res)
       if (res.authSetting[scope]) {
         authRes(true);
       } else {
+        console.log(scope)
         authPromisify.authorize({
           scope: scope
         }).then(suc => {
           authRes(suc);
         }, rej => {
-          reGet(scope, authRes);
+          console.log('rej', rej)
+          reGet(scope, authRes, isforce);
         })
       }
     })
   });
 }
 
-// 弹窗询问 
-function reGet(scope, authRes) {
+/**
+ * 
+ * @param {*} scope 授权信息
+ * @param {*} authRes 回调
+ * @param {*} isforce 强制弹窗
+ */
+function reGet(scope, authRes, isforce) {
   authPromisify.showModal({
-    title: '授权提醒',
-    content: '拒绝授权会影响小程序的使用, 请点击重新授权',
-    confirmText: '重新授权',
+    title: '请在设置中打开用户信息授权',
+    content: '未获取您的公开信息（昵称、头像等）将无法使用鼓励金和报名活动',
+    confirmText: '去设置',
     showCancel: false
   }).then(() => {
     authPromisify.openSetting().then(() => {
       authPromisify.getSetting().then(res => {
         if (!res.authSetting[scope]) {
-          // setTimeout(() => {
-          //   reGet(scope, authRes);
-          // }, 100);
+          if (isforce) {
+            setTimeout(() => {
+              reGet(scope, authRes, isforce);
+            }, 100);
+          }
         } else {
           authRes();
         }
