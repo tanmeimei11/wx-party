@@ -89,6 +89,7 @@ mutulPage({
     track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
 
     this.data.isNotCheck = !app.isGetToken()
+    console.log(this.data.isNotCheck)
     let self = this
     console.log('获取设备信息')
     wx.getSystemInfo({
@@ -100,6 +101,7 @@ mutulPage({
         });
       }
     })
+    this.loadMorePromo()
     
     this.getLocation()
     
@@ -107,7 +109,6 @@ mutulPage({
     if (options.from) {
       wx.setStorageSync("from", options.from)
     }
-    this.loadMorePromo()
     // 鼓励金详情页面好友分享点进来 options.sharekey
     if (options.sharekey) {
       this.showShareMoneyModal(options.sharekey)
