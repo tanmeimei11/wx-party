@@ -32,8 +32,15 @@ mutulPage({
     } else {
       getAuth('userInfo', true)
         .then(() => {
+          this.freshIndex()
           this.init()
         })
+    }
+  },
+  freshIndex: function () {
+    var _page = getCurrentPages()
+    if (_page[0].data.title == 'index') {
+      _page[0].refresh()
     }
   },
   init: function () {

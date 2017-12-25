@@ -167,8 +167,7 @@ mutulPage({
             userInfo: res.userInfo,
             images: this.data.images
           })
-          this.data.isNotCheck = false
-          this.init()
+          this.refresh()
         }, () => {
           console.log('拒绝授权')
         })
@@ -352,9 +351,17 @@ mutulPage({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
+  freshIndex: function () {
+    var _page = getCurrentPages()
+    if (_page[0].data.title == 'index') {
+      _page[0].refresh()
+    }
+  },
   refresh: function () {
     this.data.isNotCheck = false
     getAuth('userInfo').then(() => {
+      // 刷新首页
+      this.freshIndex()
       this.init()
     })
   },

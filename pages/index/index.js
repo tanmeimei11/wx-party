@@ -17,6 +17,7 @@ var getAuth = require('../../utils/auth').get
 mutulPage({
   mixins: [getMoneyModal, riseMoneyModal, seckillEntry, openRedpocketModal, openRiseRedpocketModal],
   data: {
+    title: 'index',
     seckill: [],
     promoList: [],
     launchTop: 0,
