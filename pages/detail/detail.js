@@ -106,9 +106,9 @@ mutulPage({
       wx.setStorageSync("from", options.from)
       track(this, 'h5_tcpa_detail_enter', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
     }
-
-    this.initUserInfo()
     this.initDetail().then(() => {
+      track(this, 'h5_tcpa_detail_info_succ', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
+      this.initUserInfo()
       this.initShowNav()
       if (options.show_prompt) {
         this.showUnionStatus()
@@ -168,10 +168,6 @@ mutulPage({
             images: this.data.images
           })
           this.data.isNotCheck = false
-          if (!app.isGetToken()) {
-            this.refresh()
-            return
-          }
         }, () => {
           console.log('拒绝授权')
         })

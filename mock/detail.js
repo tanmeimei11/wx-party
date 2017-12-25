@@ -58,7 +58,7 @@ module.exports = {
       "is_seckill_reminded": false, // 是否已经秒杀提醒
       "is_seckill_interested": false, // 秒杀结束后 是否已经 关注秒杀
       "union_info": {
-        "is_union": false, //是否拼团,
+        "is_union": true, //是否拼团,
         "union_id": "455667",
         "union_charge": "18.00",
         "union_status": "0", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
