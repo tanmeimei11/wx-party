@@ -32,22 +32,24 @@ mutulPage({
     } else {
       getAuth('userInfo', true)
         .then(() => {
+          this.freshIndex()
           this.init()
         })
     }
   },
+  freshIndex: function () {
+    var _page = getCurrentPages()
+    if (_page[0].data.title == 'index') {
+      _page[0].refresh()
+    }
+  },
   init: function () {
-    this.loadingIn()
+    this.loadingIn('加载中...')
     this.getSystemInfo()
     this.getUserInfo()
     this.getBalance()
     this.getDetail()
     this.getRedPacket()
-  },
-  loadingIn: function () {
-    wx.showLoading({
-      title: '加载中...'
-    })
   },
   getSystemInfo: function () {
     let self = this

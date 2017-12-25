@@ -28,7 +28,7 @@ mutulPage({
     circular: true,
     curSwiperIdx: 0,
     id: '',
-    userInfo: app.globalData.userInfo,
+    userInfo: '',
     isShowIntroAll: false,
     isShowIntroLess: false,
     isShowInviteModal: false,
@@ -167,8 +167,7 @@ mutulPage({
             userInfo: res.userInfo,
             images: this.data.images
           })
-          this.data.isNotCheck = false
-          this.init()
+          this.refresh()
         }, () => {
           console.log('拒绝授权')
         })
@@ -195,7 +194,7 @@ mutulPage({
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
           if (!options.show_prompt) {
-            if (res.data.union_info.is_union && !res.data.union_info.is_owner && res.data.union_info.owner_info) {
+            if (res.data.union_info && res.data.union_info.is_union && !res.data.union_info.is_owner && res.data.union_info.owner_info) {
               track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
             }
           }
@@ -352,9 +351,17 @@ mutulPage({
       url: `../sign/sign?id=${this.data.id}&title=${this.data.headLine.title}`
     })
   },
+  freshIndex: function () {
+    var _page = getCurrentPages()
+    if (_page[0].data.title == 'index') {
+      _page[0].refresh()
+    }
+  },
   refresh: function () {
     this.data.isNotCheck = false
     getAuth('userInfo').then(() => {
+      // 刷新首页
+      this.freshIndex()
       this.init()
     })
   },
