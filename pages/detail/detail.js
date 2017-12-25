@@ -28,7 +28,7 @@ mutulPage({
     circular: true,
     curSwiperIdx: 0,
     id: '',
-    userInfo: {},
+    userInfo: '',
     isShowIntroAll: false,
     isShowIntroLess: false,
     isShowInviteModal: false,
@@ -195,7 +195,7 @@ mutulPage({
         if (res.succ && res.data) {
           this.getActiveInfo(res.data)
           if (!options.show_prompt) {
-            if (res.data.union_info.is_union && !res.data.union_info.is_owner && res.data.union_info.owner_info) {
+            if (res.data.union_info && res.data.union_info.is_union && !res.data.union_info.is_owner && res.data.union_info.owner_info) {
               track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
             }
           }
