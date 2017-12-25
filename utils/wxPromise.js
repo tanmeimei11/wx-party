@@ -52,7 +52,6 @@ var requestBefore = (option, token) => {
 
 var request = (option) => {
   var isCheckPromise = null
-  console.log(option.isNotCheck)
   if (option.isNotCheck) {
     isCheckPromise = Promise.resolve('')
   } else {
@@ -123,9 +122,6 @@ var wxLogin = option => {
       LOG('get code', code)
       return wxPromisify(wx.getUserInfo)({
         lang: 'zh_CN'
-      }).then((res) => {
-        console.log('getUserInfo')
-        return res
       })
     })
     .then(res => {
