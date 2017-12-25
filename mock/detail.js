@@ -23,7 +23,7 @@ module.exports = {
       "end_time": 1511062140000,
       "house_no": "12",
       "id": "275",
-      "is_need_info": "0",
+      "is_need_info": "1",
       "is_org": "0",
       "is_top": "0",
       "join_status": "0",
@@ -61,7 +61,7 @@ module.exports = {
         "is_union": true, //是否拼团,
         "union_id": "455667",
         "union_charge": "18.00",
-        "union_status": "1", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
+        "union_status": "0", //  0 -> 无， 1 -> 发起拼团了，2->拼团人来晚一步， 3-> （发起拼团人看）拼团过期， 4-> （双方都可以看）拼团成功
         // "union_countdown_diff": 85860000, // 过期时间 - 现在时间差 （millis）
         "union_countdown_diff": 5000, // 过期时间 - 现在时间差 （millis）
         "launch_info": {

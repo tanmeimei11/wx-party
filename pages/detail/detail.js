@@ -43,13 +43,7 @@ mutulPage({
     isSubmitFormId: true,
     newDesc: false,
     showPrompt: false,
-    joinTips: [
-      '1、点击下方按钮联系小助手',
-      '2、回复“报名”，获取二维码链接',
-      '3、选择对应活动二维码，长按识别',
-      '4、进群，报名成功'
-    ],
-    sessionFromQr: wx.getStorageSync('token'),
+    sessionFromQr: '',
     priceInfo: {},
     isNotCheck: true,
     images: {
@@ -94,9 +88,122 @@ mutulPage({
     return _shareInfo
   },
   onLoad(options) {
-    this.data.options = options
+    this.initOptions(options)
     this.data.isNotCheck = !app.isGetToken()
     this.init()
+  },
+  init: function () {
+    track(this, 'h5_tcpa_detail_screen_enter')
+    var options = this.data.options
+    this.loadingIn('加载中...')
+    this.initOptionsData()
+    // 秒杀分享
+    if (options.shareUserId) {
+      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
+    }
+    // 分渠道
+    if (options.from) {
+      wx.setStorageSync("from", options.from)
+      track(this, 'h5_tcpa_detail_enter', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
+    }
+
+    this.initUserInfo()
+    this.initDetail().then(() => {
+      this.initShowNav()
+      if (options.show_prompt) {
+        this.showUnionStatus()
+      }
+      // 审核中
+      if (options.prepage == 'launch') {
+        this.setData({
+          isShowVerifyModal: true
+        })
+      } else if (options.prepage == 'apply') { // 支付
+        this.initShowPayModal()
+      }
+    })
+  },
+  initOptionsData: function () {
+    var options = this.data.options
+    // 取页面上的id
+    var deviceInfo = app.getDeviceInfo()
+    var _isAndrod = /android/.test(deviceInfo.system.toLowerCase())
+    this.setData({
+      shareUserId: options.shareUserId || '',
+      id: options.id || '11001',
+      sessionFrom: `activity_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromQr: `activitymanager_${_isAndrod ? 'android_' : ''}${options.id}`,
+      sessionFromAct: `typeactivity_${_isAndrod ? 'android_' : ''}${options.id}`,
+      shareUnionId: options.shareUnionId || '',
+
+    })
+  },
+  initShowPayModal: function () {
+    var options = this.data.options
+    if (options.isShowPayModal && (options.shareUnionId || options.byUnion)) {
+      this.data.showPayModalByUnion = true
+      this.showPayModal()
+    }
+  },
+  initShowNav: function () {
+    var options = this.data.options
+    // 是否显示导航条
+    if (!options.isShowOtherAct) {
+      track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
+      this.setData({
+        isShowOtherAct: true
+      })
+    } else {
+      track(this, 'h5_tcpa_active_detail_entry_byindex', [`id=${this.data.id}`])
+    }
+
+  },
+  initUserInfo: function () {
+    if (!this.data.userInfo) {
+      wxPromisify(wx.getUserInfo)()
+        .then((res) => {
+          this.data.images.avatar.src = res.userInfo.avatarUrl
+          this.setData({
+            userInfo: res.userInfo,
+            images: this.data.images
+          })
+          this.data.isNotCheck = false
+          if (!app.isGetToken()) {
+            this.refresh()
+            return
+          }
+        }, () => {
+          console.log('拒绝授权')
+        })
+    }
+  },
+  initOptions: function (options) {
+    this.setData({
+      options: options
+    })
+  },
+  initDetail: function () {
+    var options = this.data.options
+    // 数据
+    if (this.data.id) {
+      return request({
+        url: "/activity/detail_new",
+        data: {
+          id: this.data.id,
+          shareUserId: this.data.shareUserId,
+          union_id: this.data.shareUnionId
+        }
+      }, this.data.isNotCheck).then((res) => {
+        if (res.succ && res.data) {
+          this.getActiveInfo(res.data)
+          if (!options.show_prompt) {
+            if (res.data.union_info.is_union && !res.data.union_info.is_owner && res.data.union_info.owner_info) {
+              track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
+            }
+          }
+        }
+      })
+    }
   },
   showPayModal: function () {
     var _data = {
@@ -253,111 +360,12 @@ mutulPage({
       this.init()
     })
   },
-  init: function () {
-    var options = this.data.options
-    track(this, 'h5_tcpa_detail_screen_enter')
-    wx.showLoading({
-      title: '加载中...'
-    })
-    wx.setNavigationBarTitle({
-      title: '活动详情'
-    })
-
-    // 取页面上的id
-    var deviceInfo = app.getDeviceInfo()
-    var _isAndrod = /android/.test(deviceInfo.system.toLowerCase())
-    this.setData({
-      shareUserId: options.shareUserId || '',
-      id: options.id || '11001',
-      sessionFrom: `activity_${_isAndrod ? 'android_' : ''}${options.id}`,
-      sessionFromQr: `activitymanager_${_isAndrod ? 'android_' : ''}${options.id}`,
-      sessionFromAct: `typeactivity_${_isAndrod ? 'android_' : ''}${options.id}`,
-      shareUnionId: options.shareUnionId || '',
-    })
-    if (options.isShowPayModal && options.shareUnionId) {
-      this.data.showPayModalByUnion = true
-      this.showPayModal()
-    }
-    // 秒杀分享
-    if (options.shareUserId) {
-      track(this, 'h5_tcpa_share_page', [`id=${this.data.id}`, `user_id=${options.shareUserId}`])
-    }
-    // 分渠道
-    if (options.from) {
-      wx.setStorageSync("from", options.from)
-      track(this, 'h5_tcpa_detail_enter', [`cannel_id=${options.from}`, `active_id=${this.data.id}`])
-    }
-
-    // 是否显示导航条
-    if (!options.isShowOtherAct) {
-      track(this, 'h5_tcpa_active_detail_entry_byshare', [`id=${this.data.id}`])
-      this.setData({
-        isShowOtherAct: true
-      })
-    } else {
-      track(this, 'h5_tcpa_active_detail_entry_byindex', [`id=${this.data.id}`])
-    }
-
-    // 审核中
-    if (options.prepage == 'launch') {
-      this.setData({
-        isShowVerifyModal: true
-      })
-    } else if (options.prepage == 'apply') { // 支付
-      this.setData({
-        promoDelayMoney: true
-      })
-    }
-
-    if (options.show_prompt) {
-      this.showUnionStatus()
-    }
-
-    if (!this.data.userInfo) {
-      wxPromisify(wx.getUserInfo)()
-        .then((res) => {
-          this.data.images.avatar.src = res.userInfo.avatarUrl
-          this.setData({
-            userInfo: res.userInfo,
-            images: this.data.images
-          })
-          this.data.isNotCheck = false
-          if (!app.isGetToken()) {
-            this.refresh()
-            return
-          }
-        }, () => {
-          console.log('拒绝授权')
-        })
-    }
-    // 数据
-    if (this.data.id) {
-      request({
-        url: "/activity/detail_new",
-        data: {
-          id: this.data.id,
-          shareUserId: this.data.shareUserId,
-          union_id: this.data.shareUnionId
-        }
-      }, this.data.isNotCheck).then((res) => {
-        if (res.succ && res.data) {
-          this.getActiveInfo(res.data)
-          if (!options.show_prompt) {
-            if (res.data.union_info.is_union && !res.data.union_info.is_owner && res.data.union_info.owner_info) {
-              track(this, 'h5_tcpa_pintuan_active_share_page', [`active_id=${res.data.act_id}`, `user_id=${res.data.union_info.owner_info.user_id}`])
-            }
-          }
-        }
-      })
-    }
-  },
   openBook: function (e) {
     //判断是否是游客状态
     if (!app.isGetToken()) {
       this.refresh()
       return
     }
-
     // 秒杀倒计时
     if (this.data.seckill.seckillStatus == 'ready' || this.data.bookStatus == '1') {
       return
@@ -366,26 +374,29 @@ mutulPage({
     if (this.data.shareUserId) {
       track(this, 'h5_tcpa_share_seckill_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`])
     }
-    // 开团状态变化 
-    this.changeUnionStatus()
-    if (e.target.dataset.union == 1) {
-      track(this, 'h5_tcpa_pintuan_click', [`active_id=${this.data.id}`, `type=${this.data.unionInfo.union_status}`])
-      this.setData({
-        showPayModalByUnion: true
-      })
-
-    } else {
-      track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
-      this.setData({
-        showPayModalByUnion: false
-      })
-    }
+    // 过期 重置状态
+    this.changeUnionToOrigin()
+    // 点击的是报名还是开团
+    this.chooseWhichBook(e)
     // 首次报名
     if (this.data.isNeedInfo == 1) {
       this.redirectApply()
       return
     }
     this.showPayModal()
+  },
+  chooseWhichBook: function (e) {
+    if (e.target.dataset.union == 1) {
+      track(this, 'h5_tcpa_pintuan_click', [`active_id=${this.data.id}`, `type=${this.data.unionInfo.union_status}`])
+      this.setData({
+        showPayModalByUnion: true
+      })
+    } else {
+      track(this, 'h5_tcpa_active_book_click', [`id=${this.data.id}`, `type=${this.data.seckill.is_seckill}`, `acttype=${this.data.actType}`])
+      this.setData({
+        showPayModalByUnion: false
+      })
+    }
   },
   getRedirectParam() {
     return [`id=${this.data.id}`,
@@ -403,7 +414,7 @@ mutulPage({
   },
   redirectApply: function () {
     wx.redirectTo({
-      url: `../apply/apply?nextpage=detail&prepage=detail&id=${this.data.id}&shareUnionId=${this.data.shareUnionId}`
+      url: `../apply/apply?nextpage=detail&prepage=detail&id=${this.data.id}&shareUnionId=${this.data.shareUnionId}&byUnion=${this.data.showPayModalByUnion}`
     })
   },
   closeJoin: function () {
@@ -453,8 +464,6 @@ mutulPage({
       actStatus: (data.is_org == 1 && data.act_status == 1) ? 0 : data.act_status, // 如果是创建者 那么永远都不会结束
       transferImageUrl: data.act_url[0],
       isNeedInfo: data.is_need_info,
-      promoMoney: data.charge || 0,
-      promoDelayMoney: data.booking_charge || 0,
       otherPromoNum: data.other_act_count,
       actType: data.act_type,
       banner: data.banner

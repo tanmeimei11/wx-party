@@ -25,7 +25,7 @@ module.exports = {
       }
       union_info.join_info = this.data.defaultUnionInfo
     }
-    union_info.union_countdown_diff = parseInt(+data.union_info.union_countdown_diff / 1000)
+    union_info.union_countdown_diff = parseInt(+data.union_info.union_countdown_diff / 1000) - 1
     this.setData({
       unionInfo: {
         ...this.data.unionInfo,
@@ -44,7 +44,7 @@ module.exports = {
   },
   // 拼团倒计时
   countdownPay: function () {
-    if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3 || this.data.unionInfo.union_status == 4) {
+    if (this.data.unionInfo.union_status == 0 || this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3 || this.data.unionInfo.union_status == 4) {
       return
     }
     if (this.data.unionInfo.cutDownTimer) {
@@ -67,15 +67,15 @@ module.exports = {
         union_status: 3,
         desc: '来晚一步，拼团已经过期了'
       }
-      this.setData({
+      var d = {
         unionInfo: _data,
-        isShowPayModal: false,
         unionIngModalInfo: {
           ...this.data.unionIngModalInfo,
           isShow: false
         },
         isShowPayModal: false
-      })
+      }
+      this.setData(d)
       return
     }
     this.setData({
@@ -101,10 +101,10 @@ module.exports = {
       }
     })
   },
-  // 判断状态  (来晚了 过期了)状态重置到0
-  changeUnionStatus: function () {
+  // 过期状态  (拼团人来晚了 活动过期了)状态重置到0
+  changeUnionToOrigin: function () {
     var _data = {}
-    if (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3) {
+    if (this.data.unionInfo && (this.data.unionInfo.union_status == 2 || this.data.unionInfo.union_status == 3)) {
       _data = {
         unionInfo: {
           ...this.data.unionInfo,
