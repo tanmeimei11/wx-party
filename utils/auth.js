@@ -19,7 +19,7 @@ var authPromisify = [
  * @param {*} key  授权的信息
  * @param {*} isforce 强制授权会循环弹窗
  */
-function get(key, isforce) {
+function get(key, isforce, gps) {
   var scope = 'scope.' + key;
   return new Promise((authRes, authRej) => {
     authPromisify.getSetting().then(res => {
@@ -34,7 +34,7 @@ function get(key, isforce) {
           authRes(suc);
         }, rej => {
           console.log('rej', rej)
-          reGet(scope, authRes, isforce);
+          reGet(scope, authRes, isforce, gps);
         })
       }
     })
@@ -47,10 +47,10 @@ function get(key, isforce) {
  * @param {*} authRes 回调
  * @param {*} isforce 强制弹窗
  */
-function reGet(scope, authRes, isforce) {
+function reGet(scope, authRes, isforce, gps) {
   authPromisify.showModal({
-    title: '请在设置中打开用户信息授权',
-    content: '未获取您的公开信息（昵称、头像等）将无法使用鼓励金和报名活动',
+    title: gps ? '请在设置中打开地理位置授权' : '请在设置中打开用户信息授权',
+    content: gps ? '未获取您的地理位置将无法使用离我最近功能' : '未获取您的公开信息（昵称、头像等）将无法使用鼓励金和报名活动',
     confirmText: '去设置',
     showCancel: false
   }).then(() => {

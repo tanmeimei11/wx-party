@@ -88,8 +88,6 @@ mutulPage({
     track(this, 'h5_tcpa_index_screen_enter')
     track(this, 'h5_tcpa_index_enter', [`cannel_id=${options.from}`])
 
-    this.data.isNotCheck = !app.isGetToken()
-    console.log(this.data.isNotCheck)
     let self = this
     console.log('获取设备信息')
     wx.getSystemInfo({
@@ -102,9 +100,18 @@ mutulPage({
       }
     })
     this.loadMorePromo()
-    
-    this.getLocation()
-
+    this.getLocation().then(() => {
+      wxPromisify(wx.getUserInfo)()
+      .then((res) => {
+        this.data.isNotCheck = false
+        if (!app.isGetToken()) {
+          this.refresh()
+          return
+        }
+      }, () => {
+        console.log('拒绝授权')
+      })
+    })
     // 分渠道埋点
     if (options.from) {
       wx.setStorageSync("from", options.from)
@@ -115,6 +122,18 @@ mutulPage({
     } else {
       this.loadBalance()
     }
+  },
+  refresh: function () {
+    this.data.isNotCheck = false
+    this.data.loadingMorePromo = true
+    this.setData({
+      promoList: [],
+      hidden: false,
+      currentCursorPromo: 0
+    })
+    getAuth('userInfo').then(() => {
+      this.getPromo()
+    })
   },
   loadBalance: function () {
     return request({
@@ -181,7 +200,7 @@ mutulPage({
   getLocation: function (e) {
     let self = this
     console.log('授权开始')
-    wxPromisify(wx.authorize)({
+    return wxPromisify(wx.authorize)({
       scope: 'scope.userLocation'
     }).then(suc => {
       console.log("授权成功")
@@ -230,12 +249,18 @@ mutulPage({
     this.data.loadingMorePromo = true
     this.getPromo()
   },
-  reselect: function (e) {
+  reselect: function (e,back) {
     if (this.data.loadingMorePromo) {
       return
     }
-    this.data.loadingMorePromo = true
     let res = e.currentTarget.dataset
+    if (res.sort === 'gps' && !back) {
+      getAuth('userLocation', false, true).then(() => {
+        this.reselect(e,true)
+      })
+      return
+    }
+    this.data.loadingMorePromo = true
     this.setData({
       promoList: []
     })
