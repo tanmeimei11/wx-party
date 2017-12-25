@@ -93,35 +93,38 @@ mutulPage({
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
+          options: options,
           scrollHeight: res.windowHeight,
           windowWidth: res.windowWidth,
           launchTop: res.windowWidth / 750 * 150,
         });
       }
     })
-    this.loadMorePromo()
     this.getLocation().then(() => {
       wxPromisify(wx.getUserInfo)()
       .then((res) => {
         this.data.isNotCheck = false
         if (!app.isGetToken()) {
           this.refresh()
-          return
         }
       }, () => {
         console.log('拒绝授权')
       })
     })
+    this.init()
+  },
+  init: function () {
     // 分渠道埋点
-    if (options.from) {
-      wx.setStorageSync("from", options.from)
+    if (this.data.options.from) {
+      wx.setStorageSync("from", this.data.options.from)
     }
     // 鼓励金详情页面好友分享点进来 options.sharekey
-    if (options.sharekey) {
-      this.showShareMoneyModal(options.sharekey)
+    if (this.data.options.sharekey) {
+      this.showShareMoneyModal(this.data.options.sharekey)
     } else {
       this.loadBalance()
     }
+    this.getPromo()
   },
   refresh: function () {
     this.data.isNotCheck = false
@@ -131,9 +134,10 @@ mutulPage({
       hidden: false,
       currentCursorPromo: 0
     })
-    getAuth('userInfo').then(() => {
-      this.getPromo()
-    })
+    this.init()
+    // getAuth('userInfo').then(() => {
+
+    // })
   },
   loadBalance: function () {
     return request({
