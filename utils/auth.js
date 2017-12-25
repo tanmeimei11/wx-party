@@ -52,25 +52,27 @@ function reGet(scope, authRes, isforce, gps) {
     title: gps ? '请在设置中打开地理位置授权' : '请在设置中打开用户信息授权',
     content: gps ? '未获取您的地理位置将无法使用离我最近功能' : '未获取您的公开信息（昵称、头像等）将无法使用鼓励金和报名活动',
     confirmText: '去设置',
-    showCancel: false
-  }).then(() => {
-    authPromisify.openSetting().then((r) => {
-      console.log('r', r)
-      authPromisify.getSetting().then(res => {
-        console.log('res', res)
-        if (!r.authSetting[scope]) {
-          if (isforce) {
-            setTimeout(() => {
-              reGet(scope, authRes, isforce);
-            }, 100);
+    showCancel: true
+  }).then((a) => {
+    if (a.confirm) {
+      authPromisify.openSetting().then((r) => {
+        console.log('r', r)
+        authPromisify.getSetting().then(res => {
+          console.log('res', res)
+          if (r.authSetting[scope] || res.authSetting[scope]) {
+            console.log('succ')
+            authRes();
+          } else {
+            if (isforce) {
+              setTimeout(() => {
+                reGet(scope, authRes, isforce);
+              }, 100);
+            }
           }
-        } else {
-          console.log('succ')
-          authRes();
-        }
+        })
       })
-    });
-  });
+    }
+  })
 }
 
 module.exports = {
