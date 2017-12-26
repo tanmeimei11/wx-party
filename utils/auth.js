@@ -31,6 +31,7 @@ function get(key, isforce, gps) {
         authPromisify.authorize({
           scope: scope
         }).then(suc => {
+          console.log('suc', suc)
           authRes(suc);
         }, rej => {
           console.log('rej', rej)

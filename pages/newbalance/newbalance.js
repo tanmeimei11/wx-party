@@ -51,6 +51,14 @@ mutulPage({
     this.getDetail()
     this.getRedPacket()
   },
+  refresh: function (cb) {
+    getAuth('userInfo', true)
+      .then(() => {
+        this.init()
+        this.freshIndex()
+        typeof cb == 'function' && cb()
+      })
+  },
   getSystemInfo: function () {
     let self = this
     wx.getSystemInfo({
@@ -223,6 +231,8 @@ mutulPage({
   },
   share: function () {
     track(this, 'h5_tcpa_gold_forwardhigh_click')
-    this.setGoldMoneyModalData('isShow', true)
+    this.refresh(() => {
+      this.setGoldMoneyModalData('isShow', true)
+    })
   }
 })

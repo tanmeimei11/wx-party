@@ -125,7 +125,6 @@ var wxLogin = option => {
       }).then(res => {
         return res
       }, error => {
-        console.log('12222222222')
         isLoginIng = false
       })
     })

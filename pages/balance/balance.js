@@ -90,16 +90,15 @@ mutulPage({
   },
   onLoad: function () {
     track(this, 'h5_tcpa_balance_screen_enter')
-    if (app.isGetToken()) {
-      this.init()
-    } else {
-      getAuth('userInfo', true)
-        .then(() => {
-          this.init()
-          this.freshIndex()
-        })
-    }
-
+    this.refresh()
+  },
+  refresh: function (cb) {
+    getAuth('userInfo', true)
+      .then(() => {
+        this.init()
+        this.freshIndex()
+        typeof cb == 'function' && cb()
+      })
   },
   init: function () {
     this.loadingIn('加载中...')
@@ -157,6 +156,8 @@ mutulPage({
   },
   share: function () {
     track(this, 'h5_tcpa_gold_forwardhigh_click')
-    this.setGoldMoneyModalData('isShow', true)
+    this.refresh(() => {
+      this.setGoldMoneyModalData('isShow', true)
+    })
   }
 })
