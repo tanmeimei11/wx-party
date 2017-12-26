@@ -103,7 +103,7 @@ mutulPage({
     })
     if (app.isGetToken()) {
       this.setData({
-        isNotCheck: true
+        isNotCheck: false
       })
     }
     this.init()
@@ -127,9 +127,9 @@ mutulPage({
       } else if (!res.authSetting['scope.userInfo']) {
         // second check
         getAuth('userInfo', false)
-        .then(() => {
-          this.refresh()
-        })
+          .then(() => {
+            this.refresh()
+          })
       }
     })
   },
@@ -371,12 +371,12 @@ mutulPage({
     var _url = '../launch/launch'
     if (!app.isGetToken()) {
       getAuth('userInfo', false)
-      .then(() => {
-        this.refresh()
-        wx.navigateTo({
-          url: _url
+        .then(() => {
+          this.refresh()
+          wx.navigateTo({
+            url: _url
+          })
         })
-      })
     } else {
       wx.navigateTo({
         url: _url

@@ -86,7 +86,9 @@ var locationStorage = (data) => {
   console.log(data.isNotCheck)
   return request({
     url: '/bounty/is_hangzhou',
-    data: data.gps
+    data: {
+      gps: data.gps
+    }
   }, data.isNotCheck).then((suc) => {
     var getLoc = suc.succ ? suc.data : false
     wx.setStorageSync(location, getLoc);
