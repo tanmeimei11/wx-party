@@ -102,32 +102,48 @@ mutulPage({
       }
     })
 
-    wxPromisify(wx.getUserInfo)()
-      .then((res) => {
-        this.data.isNotCheck = false
-        this.getLocation().then(() => {
-          console.log(app.isGetToken())
-          if (app.isGetToken()) {
-            this.refresh()
-          }
-        })
-      }, () => {
-        console.log('拒绝授权')
-        this.getLocation()
-      })
     this.init()
+  },
+  twoAuth: function () {
+    wxPromisify(wx.getSetting)().then((res) => {
+      console.log(res.authSetting['scope.userInfo'])
+      if (res.authSetting['scope.userInfo'] === undefined) {
+        // first check
+        wxPromisify(wx.getUserInfo)()
+          .then((res) => {
+            this.getLocation().then(() => {
+              if (!app.isGetToken()) {
+                this.refresh()
+              }
+            })
+          }, () => {
+            console.log('拒绝授权')
+            this.getLocation()
+          })
+      } else if (!res.authSetting['scope.userInfo']) {
+        // second check
+        getAuth('userInfo', false)
+        .then(() => {
+          this.refresh()
+        })
+      }
+    })
   },
   refresh: function () {
-    this.data.isNotCheck = false
-    this.data.loadingMorePromo = true
-    this.setData({
-      promoList: [],
-      hidden: false,
-      currentCursorPromo: 0
+    this.getLocation().then(() => {
+      this.data.isNotCheck = false
+      this.data.loadingMorePromo = true
+      this.setData({
+        promoList: [],
+        hidden: false,
+        currentCursorPromo: 0
+      })
+      this.init()
     })
-    this.init()
   },
   init: function () {
+    this.getPromo()
+    this.twoAuth()
     // 分渠道埋点
     if (this.data.options.from) {
       wx.setStorageSync("from", this.data.options.from)
@@ -138,7 +154,6 @@ mutulPage({
     } else {
       this.loadBalance()
     }
-    this.getPromo()
   },
   loadBalance: function () {
     return request({
@@ -199,18 +214,8 @@ mutulPage({
   getLocation: function (e) {
     let self = this
     console.log('授权开始')
-    return wxPromisify(wx.authorize)({
-      scope: 'scope.userLocation'
-    }).then(suc => {
-      console.log("授权成功")
-      return wxPromisify(wx.getLocation)({
-        type: 'gcj02'
-      })
-    }, rej => {
-      return wxPromisify(wx.getLocation)({
-        type: 'gcj02'
-      })
-      console.log('授权失败')
+    return wxPromisify(wx.getLocation)({
+      type: 'gcj02'
     }).then(res => {
       if (!res) {
         return
@@ -251,7 +256,9 @@ mutulPage({
     let res = e.currentTarget.dataset
     if (res.sort === 'gps' && !back) {
       getAuth('userLocation', false, true).then(() => {
-        this.reselect(e, true)
+        this.getLocation().then(() => {
+          this.reselect(e, true)
+        })
       })
       return
     }
@@ -357,7 +364,7 @@ mutulPage({
     track(this, 'h5_tcpa_active_setup_click')
     var _url = '../launch/launch'
     if (!app.isGetToken()) {
-      getAuth('userInfo', true)
+      getAuth('userInfo', false)
       .then(() => {
         wx.navigateTo({
           url: _url
