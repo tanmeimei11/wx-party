@@ -130,8 +130,8 @@ mutulPage({
     })
   },
   refresh: function () {
+    this.data.isNotCheck = false
     this.getLocation().then(() => {
-      this.data.isNotCheck = false
       this.data.loadingMorePromo = true
       this.setData({
         promoList: [],
@@ -229,11 +229,13 @@ mutulPage({
         _gps: _gps
       })
       return locationStorage({
-        gps: _gps
+        gps: _gps,
+        isNotCheck: this.data.isNotCheck
       })
     }, rej => {
       return locationStorage({
-        gps: ''
+        gps: '',
+        isNotCheck: this.data.isNotCheck
       })
       console.log("获取地理位置失败")
     }).then((res) => {
@@ -366,6 +368,7 @@ mutulPage({
     if (!app.isGetToken()) {
       getAuth('userInfo', false)
       .then(() => {
+        this.refresh()
         wx.navigateTo({
           url: _url
         })

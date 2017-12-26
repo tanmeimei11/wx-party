@@ -77,16 +77,17 @@ var payMoney = (_data) => {
   })
 }
 
-var locationStorage = (gps) => {
+var locationStorage = (data) => {
   var location = 'locationHZ'
   var HZ = wx.getStorageSync(location) || false;
   if (HZ) {
     return Promise.resolve()
   }
+  console.log(data.isNotCheck)
   return request({
     url: '/bounty/is_hangzhou',
-    data: gps
-  }, true).then((suc) => {
+    data: data.gps
+  }, data.isNotCheck).then((suc) => {
     var getLoc = suc.succ ? suc.data : false
     wx.setStorageSync(location, getLoc);
     return Promise.resolve(suc)
