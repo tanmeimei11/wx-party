@@ -130,6 +130,8 @@ mutulPage({
           .then(() => {
             this.refresh()
           })
+      } else {
+        this.getLocation()
       }
     })
   },
