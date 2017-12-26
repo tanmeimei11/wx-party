@@ -101,7 +101,11 @@ mutulPage({
         });
       }
     })
-
+    if (app.isGetToken()) {
+      this.setData({
+        isNotCheck: true
+      })
+    }
     this.init()
   },
   twoAuth: function () {
