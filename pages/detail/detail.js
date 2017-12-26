@@ -160,18 +160,30 @@ mutulPage({
   },
   initUserInfo: function () {
     if (!this.data.userInfo) {
-      getAuth('userInfo').then(() => {
-        wxPromisify(wx.getUserInfo)().then((res) => {
-          this.data.images.avatar.src = res.userInfo.avatarUrl
-          this.setData({
-            userInfo: res.userInfo,
-            images: this.data.images
+      wxPromisify(wx.getSetting)().then(res => {
+        if (res.authSetting['scope.userInfo'] == false) {
+          getAuth('userInfo').then(() => {
+            wxPromisify(wx.getUserInfo)().then(res => {
+              this.getUserInfoByAuth(res)
+            })
           })
-          this.refresh()
-        }, () => {
-          console.log('拒绝授权')
+          return
+        }
+
+        wxPromisify(wx.getUserInfo)().then(res => {
+          this.getUserInfoByAuth(res)
         })
       })
+    }
+  },
+  getUserInfoByAuth: function (res) {
+    if (res) {
+      this.data.images.avatar.src = res.userInfo.avatarUrl
+      this.setData({
+        userInfo: res.userInfo,
+        images: this.data.images
+      })
+      this.refresh()
     }
   },
   initOptions: function (options) {
