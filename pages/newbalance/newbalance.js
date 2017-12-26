@@ -20,6 +20,7 @@ mutulPage({
     packetModal: '',
     list: [],
     index: '',
+    isFreshIndex: false,
     nextMonday: '',
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_newbalance_enter',
     sharekey: '',
@@ -30,17 +31,15 @@ mutulPage({
     if (app.isGetToken()) {
       this.init()
     } else {
-      getAuth('userInfo', true)
-        .then(() => {
-          this.init()
-          this.freshIndex()
-        })
+      this.data.isFreshIndex = true
+      this.refresh()
     }
   },
   freshIndex: function () {
     var _page = getCurrentPages()
     if (_page[0].data.title == 'index') {
       _page[0].refresh()
+      this.data.isFreshIndex = false
     }
   },
   init: function () {
@@ -55,7 +54,7 @@ mutulPage({
     getAuth('userInfo', true)
       .then(() => {
         this.init()
-        this.freshIndex()
+        this.data.isFreshIndex && this.freshIndex()
         typeof cb == 'function' && cb()
       })
   },
