@@ -94,7 +94,6 @@ var locationStorage = (data) => {
   })
 }
 
-
 module.exports = {
   uploadImageToQiniu,
   payMoney,
