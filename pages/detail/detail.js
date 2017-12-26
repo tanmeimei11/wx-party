@@ -360,9 +360,8 @@ mutulPage({
   refresh: function () {
     this.data.isNotCheck = false
     getAuth('userInfo').then(() => {
-      // 刷新首页
-      this.freshIndex()
       this.init()
+      this.freshIndex()
     })
   },
   openBook: function (e) {

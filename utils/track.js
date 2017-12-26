@@ -60,7 +60,6 @@ export default function track(app, seed, query = []) {
   let trackSeed = combineQuery(app, seed, query)
   // 这样请求会被丢弃 有的埋点抓不到 原因1，img赋值太快了造成页面请求还没有发就被丢弃了 2，替换的过快 setdata直接跳过类似vue 好像setdata内部也是和vue内部一样的 超过一定数量采取更新dom 
   trackArray.push(trackSeed)
-  console.log(isTrack)
   if (!isTrack) {
     return
   }

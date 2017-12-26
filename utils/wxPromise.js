@@ -122,6 +122,11 @@ var wxLogin = option => {
       LOG('get code', code)
       return wxPromisify(wx.getUserInfo)({
         lang: 'zh_CN'
+      }).then(res => {
+        return res
+      }, error => {
+        console.log('12222222222')
+        isLoginIng = false
       })
     })
     .then(res => {

@@ -32,8 +32,8 @@ mutulPage({
     } else {
       getAuth('userInfo', true)
         .then(() => {
-          this.freshIndex()
           this.init()
+          this.freshIndex()
         })
     }
   },
