@@ -164,7 +164,7 @@ mutulPage({
         if (res.authSetting['scope.userInfo'] == false) {
           getAuth('userInfo').then(() => {
             wxPromisify(wx.getUserInfo)().then(res => {
-              this.getUserInfoByAuth(res)
+              this.getUserInfoByAuth(res, true)
             })
           })
           return
@@ -176,14 +176,14 @@ mutulPage({
       })
     }
   },
-  getUserInfoByAuth: function (res) {
+  getUserInfoByAuth: function (res, fresh) {
     if (res) {
       this.data.images.avatar.src = res.userInfo.avatarUrl
       this.setData({
         userInfo: res.userInfo,
         images: this.data.images
-      })
-      this.refresh()
+      });
+      fresh && this.refresh()
     }
   },
   initOptions: function (options) {
