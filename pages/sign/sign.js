@@ -95,6 +95,12 @@ Page({
       personDesc: _desc,
       gender: item.gender
     }
+  },
+  phonecall: function (num) {
+    console.log(num.currentTarget.dataset.num)
+    wx.makePhoneCall({
+      phoneNumber: num.currentTarget.dataset.num
+    })
   }
 
 })

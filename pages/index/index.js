@@ -309,7 +309,7 @@ mutulPage({
       }
     }, this.data.isNotCheck).then((res) => {
       if (res.succ && res.data && res.data.list) {
-        if (res.data.list.length < 10) {
+        if (!res.data.list.length) {
           this.setData({
             noMorePromo: true,
           })
