@@ -1,5 +1,5 @@
 module.exports = {
-  _v: '0.2.1',
+  _v: '0.2.2',
   // DOMAIN: 'http://qaactivity.in66.com',
   // DOMAIN: 'http://10.10.106.127:30929', 
   DOMAIN: 'https://activity.in66.com',
