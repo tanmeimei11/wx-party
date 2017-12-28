@@ -30,6 +30,8 @@
     </view>
   </view>
   <view class="accounts" bindtap="toAccounts">申请结算</view>
+  <view class="accounts">结算中</view>
+  <view class="accounts" bindtap="toAccounts">申请结算</view>
   <view class='not-sign' wx:if="{{siginInUsers.length < 0}}">
     <image class="not-img" src="http://inimg05.jiuyan.info/in/2017/10/16/5DBCDD5A-FD06-39B6-BD07-877974B1F87E.jpg"></image>
     <view class="not-txt">还没有人签到</view>

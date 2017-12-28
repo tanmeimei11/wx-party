@@ -45,7 +45,7 @@ Page({
   },
   getRequest: function () {
     return requestPromisify({
-      url: "/activity/prepare",
+      url: "/activity/prepare_new",
       data: {
         id: this.data.id
       }

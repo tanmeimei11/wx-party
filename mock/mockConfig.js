@@ -9,7 +9,7 @@ module.exports = {
   [`${DOMAIN}/activity/groups_new`]: "promoList",
   [`${DOMAIN}/activity/list`]: "promoList",
   [`${DOMAIN}/activity/signins`]: "signins",
-  [`${DOMAIN}/activity/prepare`]: "prepare",
+  [`${DOMAIN}/activity/prepare_new`]: "prepare",
   [`${DOMAIN}/activity/add_info`]: "submit",
   [`${DOMAIN}/activity/join`]: "join",
   [`${DOMAIN}/account/details`]: "accountlist",

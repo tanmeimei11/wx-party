@@ -1,5 +1,22 @@
 <view class="container">
-  <view class="test">
-    haha
+  <image src="{{trackSeed}}" style="width:0;height:0;" />
+  <view class="accountInfo">
+    <text class="title">结算信息</text>
+    <view>报名人数：<text>30</text></view>
+    <view>签到人数：<text>30</text></view>
+    <view>未签到数：<text>30</text></view>
+    <view class="accountNum">本次结算金额：<text>￥30</text></view>
   </view>
+  <view class="account">
+    <text class="title">结算账户</text>
+    <view>
+      <text>支付宝账号：</text>
+      <input bindinput="inputalipay"/>
+    </view>
+    <view>
+      <text>真实姓名：</text>
+      <input bindinput="inputname"/>
+    </view>
+  </view>
+  <view class="btn" bindtap="jiesuan">确定结算</view>
 </view>
