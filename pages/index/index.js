@@ -50,6 +50,7 @@ mutulPage({
     currentID2: '',
     notfindpromo: false,
     isNotCheck: true,
+    skip: false,
     globalData: app.globalData
   },
   closeSelect: function () {
@@ -109,6 +110,10 @@ mutulPage({
     this.init()
   },
   twoAuth: function () {
+    if (this.data.skip) {
+      this.data.skip = false
+      return
+    }
     wxPromisify(wx.getSetting)().then((res) => {
       console.log(res.authSetting['scope.userInfo'])
       if (res.authSetting['scope.userInfo'] === undefined) {
@@ -122,7 +127,10 @@ mutulPage({
             })
           }, () => {
             console.log('拒绝授权')
-            this.getLocation()
+            this.getLocation().then(() => {
+              this.data.skip = true
+              this.refresh()
+            })
           })
       } else if (!res.authSetting['scope.userInfo']) {
         // second check
@@ -136,7 +144,7 @@ mutulPage({
     })
   },
   refresh: function () {
-    this.data.isNotCheck = false
+    this.data.isNotCheck = this.data.skip
     this.getLocation().then(() => {
       this.data.loadingMorePromo = true
       this.setData({
@@ -309,7 +317,7 @@ mutulPage({
       }
     }, this.data.isNotCheck).then((res) => {
       if (res.succ && res.data && res.data.list) {
-        if (res.data.list.length < 10) {
+        if (!res.data.list.length) {
           this.setData({
             noMorePromo: true,
           })
