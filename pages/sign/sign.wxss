@@ -12,6 +12,7 @@
   border-radius: 8rpx;
   margin: 120rpx auto 0 auto;
   overflow: hidden;
+  padding-bottom: 72rpx;
 }
 
 .code-bar {
@@ -53,7 +54,7 @@
   padding: 0 50rpx;
   color: #666666;
   font-size: 28rpx;
-  margin-top: 120rpx;
+  margin-top: 50rpx;
 }
 
 .s-line .title {
@@ -155,6 +156,10 @@
   color: #B0B0B0
 }
 
+.mm-user .user-desc.done {
+  color: #ff5e51
+}
+
 .not-sign {
   width: 100%;
   margin-top: 190rpx;
@@ -182,4 +187,11 @@
   font-size: 28rpx;
   color: #43DDF5;
   line-height: 32rpx;
+}
+
+.user-phone{
+  display: inline-block;
+  float: right;
+  font-size: 22rpx;
+  line-height: 80rpx;
 }

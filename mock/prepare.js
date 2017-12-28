@@ -1,30 +1,45 @@
 module.exports = {
-  "msg": "",
-  "code": "200003",
-  "succ": true,
-  "data": {
-    "act_qrcode_url": "https://inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg",
-    "list": [{
-        "age": "11",
-        "avatar_url": "//inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg",
-        "city": "浙江",
-        "district": "城西",
-        "gender": "1",
-        "work": "程序员",
-        "name": "芥末芥末",
-        "sex": "female"
-      },
-      {
-        "age": "11",
-        "avatar_url": "//inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg",
-        "city": "浙江",
-        "district": "城西",
-        "gender": "1",
-        "work": "程序员",
-        "name": "芥末芥末",
-        "sex": "male"
-      }
-    ]
-  },
-  "timestamp": "1508137696"
+  data: {
+    "msg": "",
+    "code": "200003",
+    "succ": true,
+    "data": {
+      "act_qrcode_url":"https://inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg", //二维码图片地址
+      "list":[
+          {
+              "name":"犀牛",
+              "avatar_url": "https://inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg",
+              "userId": "123",
+              "phone": "110",
+              "gender": "男",
+              "join_status":"2", //1 表示已报名 2 表示已签到
+          },
+          {
+              "name":"犀牛",
+              "avatar_url": "https://inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg",
+              "userId": "123",
+              "phone": "120",
+              "gender": "男",
+              "join_status":"1", //1 表示已报名 2 表示已签到
+          },
+          {
+              "name":"犀牛",
+              "avatar_url": "https://inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg",
+              "userId": "123",
+              "phone": "120",
+              "gender": "男",
+              "join_status":"1", //1 表示已报名 2 表示已签到
+          },
+          {
+              "name":"犀牛",
+              "avatar_url": "https://inimg01.jiuyan.info/in/2015/12/06/50E0D236-8186-87D4-278E-184399C6B81D-1ndoVWb.jpg",
+              "userId": "123",
+              "phone": "120",
+              "gender": "男",
+              "join_status":"2", //1 表示已报名 2 表示已签到
+          }
+      ]
+    },
+    "timestamp": "1508137696"
+  }
 }

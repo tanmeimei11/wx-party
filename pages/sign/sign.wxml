@@ -7,12 +7,12 @@
       <view class='text'>{{title}}</view>
     </view>
     <image class="code-box" wx:if="{{qrImage}}" src="{{qrImage}}"></image>
-    <view class="code-txt">到场用户使用in app扫码签到</view>
-    <view class="get-code-txt">签到后用户会获得自己的编号</view>
+    <view class="code-txt">用微信扫码获取编号</view>
+    <!-- <view class="get-code-txt">签到后用户会获得自己的编号</view> -->
   </view>
   <!-- 报名用户 -->
   <view class="s-line" wx:if="{{siginInUsers.length > 0}}">
-    <view class="title">已签到用户</view>
+    <!-- <view class="title">已签到用户</view> -->
     <view class="mm-user" wx:for="{{siginInUsers}}" wx:for-index="idx" wx:for-item="item" wx:key="{{idx}}">
       <view class='num'>{{idx+1}}</view>
       <view class="user-avatar" style="background-image:url({{item.avatar_url}})">
@@ -20,8 +20,12 @@
       </view>
       <view class="user-info">
         <view class="user-nick">{{item.name}}</view>
-        <view class="user-desc">{{item.personDesc}}</view>
+        <view class="user-desc {{item.join_status === '2' ? 'done' : ''}}">
+          <text wx:if="{{item.join_status === '2'}}">已签到</text>
+          <text wx:else>未签到</text>
+        </view>
       </view>
+      <view class="user-phone">{{item.phone}}</view>
     </view>
   </view>
   <view class='not-sign' wx:if="{{siginInUsers.length < 0}}">
