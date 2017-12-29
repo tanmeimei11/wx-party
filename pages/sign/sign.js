@@ -13,7 +13,7 @@ Page({
     userInfo: app.globalData.userInfo,
     siginInUsers: [],
     qrImage: '',
-    requestInyerval: 3000,
+    requestInterval: 3000,
     trackSeed: 'http://stats1.jiuyan.info/onepiece/router.html?action=h5_tcpa_sign_enter'
   },
   onLoad: function (option) {
@@ -45,11 +45,12 @@ Page({
   },
   getRequest: function () {
     return requestPromisify({
-      url: "/activity/prepare",
+      url: "/activity/prepare_new",
       data: {
         id: this.data.id
       }
     }).then((res) => {
+      console.log(res)
       if (res.succ && res.data) {
         this.getListInfo(res.data)
       } else {
@@ -66,14 +67,15 @@ Page({
         if (pageRouter[len - 1].route == 'pages/sign/sign') {
           this.getRequest()
         }
-      }, this.data.requestInyerval)
+      }, this.data.requestInterval)
     })
   },
   getListInfo: function (data) {
     this.setData({
-      siginInUsers: data.list.map(this.getDescCollect),
+      siginInUsers: data.list,
       qrImage: data.act_qrcode_url
     })
+    console.log(this.data.siginInUsers)
   },
   getDescCollect: function (item) {
     var _desc = ''
@@ -93,6 +95,12 @@ Page({
       personDesc: _desc,
       gender: item.gender
     }
+  },
+  phonecall: function (num) {
+    console.log(num.currentTarget.dataset.num)
+    wx.makePhoneCall({
+      phoneNumber: num.currentTarget.dataset.num
+    })
   }
 
 })

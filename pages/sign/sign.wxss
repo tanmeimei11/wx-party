@@ -3,6 +3,7 @@
   overflow: hidden;
   height: 100%;
   width: 100%;
+  padding-bottom: 100rpx;
 }
 
 .sign-wrap .code-wrap {
@@ -12,6 +13,7 @@
   border-radius: 8rpx;
   margin: 120rpx auto 0 auto;
   overflow: hidden;
+  padding-bottom: 72rpx;
 }
 
 .code-bar {
@@ -49,11 +51,11 @@
 }
 
 .s-line {
-  border-bottom: 1rpx solid #E0E0E0;
+  /* border-bottom: 1rpx solid #E0E0E0; */
   padding: 0 50rpx;
   color: #666666;
   font-size: 28rpx;
-  margin-top: 120rpx;
+  margin-top: 50rpx;
 }
 
 .s-line .title {
@@ -155,6 +157,10 @@
   color: #B0B0B0
 }
 
+.mm-user .user-desc.done {
+  color: #ff5e51
+}
+
 .not-sign {
   width: 100%;
   margin-top: 190rpx;
@@ -182,4 +188,25 @@
   font-size: 28rpx;
   color: #43DDF5;
   line-height: 32rpx;
+}
+
+.user-phone{
+  display: inline-block;
+  float: right;
+  font-size: 22rpx;
+  line-height: 80rpx;
+}
+
+.accounts{
+  position: fixed;
+  bottom: 29rpx;
+  left: 40rpx;
+  border-radius: 100rpx;
+  background-image: linear-gradient(0deg, #FF7869 0%, #FF4338 99%);
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 80rpx;
+  height: 80rpx;
+  width: 670rpx;
+  text-align: center
 }

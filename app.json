@@ -9,7 +9,8 @@
     "pages/launch/launch",
     "pages/balance/balance",
     "pages/newbalance/newbalance",
-    "pages/result_union/result_union"
+    "pages/result_union/result_union",
+    "pages/applymoney/applymoney"
   ],
   "window": {
     "backgroundTextStyle": "light",

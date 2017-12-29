@@ -1,0 +1,94 @@
+.accountInfo{
+    position: relative;
+    padding-bottom: 50rpx;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 0 auto;
+    width: 630rpx;
+}
+
+.accountInfo .title{
+    margin: 43rpx 25rpx;
+    color: #333;
+    display: block;
+    font-size: 36rpx;
+}
+
+.accountInfo .title:before{
+    content: "";
+    left: 0;
+    width: 6rpx;
+    background: #FF5A4D;
+    display: block;
+    border-radius: 100rpx;
+    position: absolute;
+    top: 54rpx;
+    height: 30rpx;
+}
+
+.accountInfo>view{
+    color: #666;
+    font-size: 32rpx;
+    line-height: 65rpx;
+}
+
+.accountInfo .accountNum{
+    color: #333;
+    font-weight: bold;
+    line-height: 100rpx;
+}
+
+.accountInfo .accountNum text{
+    color: #fca93f;
+}
+
+.account{
+    position: relative;
+    margin: 30rpx auto;
+    width: 630rpx;
+}
+
+.account .title{
+    margin: 43rpx 25rpx;
+    color: #333;
+    display: block;
+    font-size: 36rpx;
+}
+
+.account .title:before{
+    content: "";
+    left: 0;
+    width: 6rpx;
+    background: #FF5A4D;
+    display: block;
+    border-radius: 100rpx;
+    position: absolute;
+    top: 54rpx;
+    height: 30rpx;
+}
+
+.account>view>text{
+    font-size: 32rpx;
+    color: #666;
+    width: 192rpx;
+    text-align: center;
+    display: inline-block;
+}
+
+.account input{
+    border-bottom: 1px solid #d8d8d8;
+    display: inline-block;
+}
+
+.btn{
+    position: fixed;
+    bottom: 60rpx;
+    left: 40rpx;
+    border-radius: 100rpx;
+    background-image: linear-gradient(0deg, #FF7869 0%, #FF4338 100%);
+    font-size: 32rpx;
+    color: #fff;
+    line-height: 80rpx;
+    height: 80rpx;
+    width: 670rpx;
+    text-align: center
+}
