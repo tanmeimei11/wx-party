@@ -8,7 +8,7 @@
     </view>
     <image class="code-box" wx:if="{{qrImage}}" src="{{qrImage}}"></image>
 
-    <view class="code-txt">用微信扫码获取编号</view>
+    <view class="code-txt">用微信扫码签到</view>
     <!-- <view class="get-code-txt">签到后用户会获得自己的编号</view> -->
   </view>
   <!-- 报名用户 -->
@@ -29,11 +29,12 @@
       <view class="user-phone" bindtap="phonecall" data-num="{{item.phone}}">{{item.phone}}</view>
     </view>
   </view>
-  <view class="accounts" bindtap="toAccounts">申请结算</view>
-  <view class="accounts">结算中</view>
-  <view class="accounts" bindtap="toAccounts">申请结算</view>
-  <view class='not-sign' wx:if="{{siginInUsers.length < 0}}">
+  <view class='not-sign' wx:else>
     <image class="not-img" src="http://inimg05.jiuyan.info/in/2017/10/16/5DBCDD5A-FD06-39B6-BD07-877974B1F87E.jpg"></image>
     <view class="not-txt">还没有人签到</view>
   </view>
+  <!-- <view class="accounts" bindtap="toAccounts">申请结算</view>
+  <view class="accounts">结算中</view>
+  <view class="accounts" bindtap="toAccounts">申请结算</view> -->
+
 </view>
