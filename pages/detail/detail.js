@@ -47,31 +47,19 @@ mutulPage({
     priceInfo: {},
     isNotCheck: true,
     images: {
-      head: {
-        src: "",
-        local: ""
-      },
-      bottom: {
+      body: {
         src: "https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg",
         local: ""
       },
-      curtain: {
-        src: "https://inimg01.jiuyan.info/in/2017/10/18/B29CD73D-7BA7-7EC6-5176-9EB0263BF8B0.jpg",
+      qrcode: {
+        src: 'https://inimg01.jiuyan.info/in/2017/10/16/2BB3896A-650A-D7AD-F90B-88D0322F5038.jpg',
         local: ""
-      },
-      logo: {
-        src: '',
-        local: ""
-      },
-      avatar: {
-        src: "",
-        local: ""
-      },
+      }
     }
   },
   onShareAppMessage: function (res) {
     var _shareInfo = {
-      title: `"${getLenStr(this.data.headLine.title,30).str}"火热报名中,快来加入吧～`,
+      title: `"${getLenStr(this.data.headLine.title, 30).str}"火热报名中,快来加入吧～`,
       path: `pages/detail/detail?id=${this.data.id}`,
       imageUrl: this.data.transferImageUrl,
       success: function (res) {
@@ -416,10 +404,10 @@ mutulPage({
   },
   getRedirectParam() {
     return [`id=${this.data.id}`,
-      `promonum=${this.data.otherPromoNum}`,
-      `isSeckill=${(this.data.seckill.is_seckill == 1 && this.data.seckill.is_seckill_finish==0)?1:0}`,
-      `transferImageUrl=${encodeURIComponent(this.data.transferImageUrl)}`,
-      `title=${encodeURIComponent(getLenStr(this.data.headLine.title,30).str)}`
+    `promonum=${this.data.otherPromoNum}`,
+    `isSeckill=${(this.data.seckill.is_seckill == 1 && this.data.seckill.is_seckill_finish == 0) ? 1 : 0}`,
+    `transferImageUrl=${encodeURIComponent(this.data.transferImageUrl)}`,
+    `title=${encodeURIComponent(getLenStr(this.data.headLine.title, 30).str)}`
     ].join('&')
   },
   openBookAlready: function () {
@@ -456,7 +444,7 @@ mutulPage({
         desc: `发起人：${data.creator_name}`
       },
       infos: {
-        charge: `¥${ data.charge || 0}`,
+        charge: `¥${data.charge || 0}`,
         sAddr: data.city_district,
         time: formatTimeToTime(data.start_time, data.end_time, true),
         detailAddr: (data.latitude == '0') ? data.act_location : '',
@@ -473,7 +461,7 @@ mutulPage({
       tempLessIntro: this.getLenStr(data.act_desc),
       siginInUsers: data.joiners.map(this.getDescCollect),
       actQrImg: data.share_qrcode_url,
-      otherAct: `本周在你附近举办的${data.other_act_count==0 ? "":`${data.other_act_count}个`}活动`,
+      otherAct: `本周在你附近举办的${data.other_act_count == 0 ? "" : `${data.other_act_count}个`}活动`,
       images: this.data.images,
       bookStatus: data.join_status,
       isOrgize: data.is_org,
@@ -694,7 +682,7 @@ mutulPage({
       address: this.data.infos.mapAddress,
       name: this.data.infos.mapName
     }
-    wxPromisify(wx.openLocation)(_data).then(res => {})
+    wxPromisify(wx.openLocation)(_data).then(res => { })
   },
   makePhoneCall: function () {
     wx.makePhoneCall({

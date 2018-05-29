@@ -12,6 +12,11 @@
   <!-- <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true" action="/replay">
     <button formType="submit">Submit</button>
   </form> -->
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 电话</button>
-  <include src="../../components/toastWhite/index.wxml" />
+  <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 电话</button>
+  <include src="../../components/toastWhite/index.wxml" /> -->
+
+  <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 电话</button>
+  <include src="../../components/toastWhite/index.wxml" /> -->
+
+  <!-- <web-view src="https://www.in66.com/tag/index?tgid=1DLErx"></web-view> -->
 </view>
